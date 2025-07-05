@@ -197,9 +197,15 @@ function SmileDetector({ user }) {
   // practice 단계 진입 시 카메라 자동 시작
   useEffect(() => {
     if (currentStep === 'practice' && !isStreaming) {
+      // 비로그인 사용자가 이미 무료 세션을 사용한 경우
+      if (!user && hasUsedFreeSession) {
+        setShowLoginPrompt(true)
+        setCurrentStep('purpose') // 초기 단계로 되돌림
+        return
+      }
       startCamera()
     }
-  }, [currentStep])
+  }, [currentStep, user, hasUsedFreeSession])
 
   // 카메라가 켜지면 자동으로 분석 시작
   useEffect(() => {
@@ -273,11 +279,6 @@ function SmileDetector({ user }) {
   }
 
   const handleEmotionSelect = (emotion) => {
-    // 비로그인 사용자가 이미 무료 세션을 사용한 경우
-    if (!user && hasUsedFreeSession) {
-      setShowLoginPrompt(true)
-      return
-    }
     setEmotionBefore(emotion)
     setCurrentStep('context')
   }
@@ -324,11 +325,12 @@ function SmileDetector({ user }) {
         sessions.push(sessionData)
         localStorage.setItem('tempSessions', JSON.stringify(sessions))
         
-        // 오늘 무료 세션 사용 기록
-        if (!hasUsedFreeSession) {
+        // 오늘 무료 세션 사용 기록 - 실제로 연습을 완료했을 때만
+        if (!hasUsedFreeSession && maxScore > 0) {
           const today = new Date().toDateString()
           localStorage.setItem('lastFreeSession', today)
           setHasUsedFreeSession(true)
+          showToast('오늘의 무료 체험을 완료했습니다!', 'info', 3000)
         }
       }
     }
@@ -806,6 +808,12 @@ function SmileDetector({ user }) {
 
   // 다시 시작
   const resetGuide = () => {
+    // 비로그인 사용자가 이미 무료 세션을 사용한 경우
+    if (!user && hasUsedFreeSession) {
+      setShowLoginPrompt(true)
+      return
+    }
+    
     // 카메라 정리
     stopCamera()
     
