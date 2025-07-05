@@ -25,20 +25,26 @@
 
 .auth-card {
   width: 100%;
-  max-width: 1200px;
+  max-width: 400px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .auth-form-container {
   width: 100%;
-  min-width: 400px;  /* Landing 페이지와 동일한 최소 너비 */
 }
 
 .auth-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 }
 
 .auth-header h1 {
@@ -65,12 +71,12 @@
 
 /* 폼 스타일 */
 .auth-form {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   text-align: center;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   text-align: left;
 }
 
@@ -165,7 +171,7 @@
 /* 구분선 */
 .auth-divider {
   text-align: center;
-  margin: 40px 0;
+  margin: 24px 0;
   position: relative;
 }
 
@@ -191,7 +197,7 @@
 /* 게스트 옵션 */
 .guest-option {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .guest-link {
@@ -250,7 +256,7 @@
 /* 홈 링크 */
 .auth-home {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 32px;
 }
 
 .home-link {
@@ -351,5 +357,91 @@
   .auth-submit {
     font-size: 15px;
     padding: 16px 28px;
+  }
+}
+
+/* 320px 디바이스 대응 */
+@media (max-width: 360px) {
+  .auth-container {
+    padding: 12px;
+  }
+  
+  .auth-card {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+  
+  .auth-header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  .auth-header h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .auth-header p {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    font-size: 13px;
+  }
+  
+  .form-group input {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .auth-submit {
+    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    margin-top: 20px;
+  }
+  
+  .auth-footer {
+    margin-top: 24px;
+    font-size: 13px;
+  }
+  
+  .auth-home {
+    margin-top: 24px;
+  }
+  
+  .home-link {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+  
+  /* 이메일 인증 안내 */
+  .verification-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .email-verification-info h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .email-verification-info p {
+    font-size: 14px;
+  }
+  
+  .verification-tips {
+    padding: 16px;
+    font-size: 13px;
+  }
+  
+  .verification-tips h4 {
+    font-size: 14px;
   }
 }

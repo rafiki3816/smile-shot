@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { practiceDB } from './supabaseClient'
+import { generateCoachingAdvice, generateWeeklyReport, getRandomTip } from './utils/coachingEngine'
 
-function PracticeHistory({ user }) {
+function PracticeHistory({ user, onNavigateToPractice }) {
   const navigate = useNavigate()
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
@@ -12,11 +13,34 @@ function PracticeHistory({ user }) {
     avgScore: 0,
     totalTime: 0
   })
+  const [coachingAdvice, setCoachingAdvice] = useState(null)
+  const [weeklyReport, setWeeklyReport] = useState(null)
+  const [showWeeklyReport, setShowWeeklyReport] = useState(false)
 
   // 컴포넌트 로드 시 기록 불러오기
   useEffect(() => {
     loadHistory()
   }, [user])
+
+  // 코칭 조언 생성
+  useEffect(() => {
+    if (history.length > 0 || todayStats.sessions === 0) {
+      const advice = generateCoachingAdvice(history, todayStats)
+      setCoachingAdvice(advice)
+      
+      // 주간 리포트 생성 (일요일이거나 7일 이상 연습한 경우)
+      const today = new Date().getDay()
+      const hasWeekOfData = history.filter(s => {
+        const daysDiff = Math.floor((new Date() - new Date(s.date)) / (1000 * 60 * 60 * 24))
+        return daysDiff < 7
+      }).length >= 7
+      
+      if (today === 0 || hasWeekOfData) {
+        const report = generateWeeklyReport(history)
+        setWeeklyReport(report)
+      }
+    }
+  }, [history, todayStats])
 
   // 기록 불러오기
   const loadHistory = async () => {
@@ -37,7 +61,8 @@ function PracticeHistory({ user }) {
             duration: session.duration,
             smileType: session.smile_type,
             context: session.context,
-            timestamp: new Date(session.created_at).getTime()
+            timestamp: new Date(session.created_at).getTime(),
+            metrics: session.metrics || null
           }))
           setHistory(formattedHistory)
           calculateTodayStats(formattedHistory)
@@ -197,28 +222,6 @@ function PracticeHistory({ user }) {
         </div>
       </div>
 
-      {/* 달성 목표 & 배지 */}
-      <div className="achievements-section">
-        <h3>달성 목표</h3>
-        <div className="badges-grid">
-          <div className={`badge ${history.length >= 1 ? 'earned' : 'locked'}`}>
-            <div className="badge-icon">🎯</div>
-            <div className="badge-name">첫 연습</div>
-          </div>
-          <div className={`badge ${history.some(s => s.maxScore >= 90) ? 'earned' : 'locked'}`}>
-            <div className="badge-icon">⭐</div>
-            <div className="badge-name">90점 돌파</div>
-          </div>
-          <div className={`badge ${history.length >= 30 ? 'earned' : 'locked'}`}>
-            <div className="badge-icon">🏆</div>
-            <div className="badge-name">30일 마스터</div>
-            {history.length < 30 && (
-              <div className="badge-progress">{history.length}/30</div>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* 오늘의 통계 */}
       <div className="today-stats">
         <h3>오늘의 연습 통계</h3>
@@ -259,25 +262,105 @@ function PracticeHistory({ user }) {
         </div>
       )}
 
-      {/* 맞춤 코칭 메시지 */}
-      <div className="coaching-section">
-        <h3>오늘의 맞춤 조언</h3>
-        <div className="coaching-card">
-          <div className="coach-message">
-            {todayStats.sessions === 0 ? (
-              <p>오늘 첫 연습을 시작해보세요! 꾸준한 연습이 완벽한 미소를 만듭니다.</p>
-            ) : todayStats.avgScore >= 80 ? (
-              <p>훌륭해요! 오늘 평균 {todayStats.avgScore}점을 달성했습니다. 다양한 미소 타입도 도전해보세요!</p>
-            ) : (
-              <p>좋은 시작입니다! 편안한 마음으로 자연스럽게 웃어보세요. 연습이 완벽을 만듭니다.</p>
-            )}
-          </div>
-          <div className="suggested-actions">
-            <button onClick={() => navigate('/app')} className="action-btn primary">
-              연습 시작하기
-            </button>
-          </div>
+      {/* 주간 리포트 */}
+      {weeklyReport && (
+        <div className="weekly-report-banner">
+          <button 
+            onClick={() => setShowWeeklyReport(!showWeeklyReport)}
+            className="report-toggle"
+          >
+            주간 리포트 {showWeeklyReport ? '접기' : '보기'}
+          </button>
+          {showWeeklyReport && (
+            <div className="weekly-report-content">
+              <h4>{weeklyReport.summary}</h4>
+              {weeklyReport.achievements.length > 0 && (
+                <div className="achievements">
+                  <h5>이번 주 성과</h5>
+                  <ul>
+                    {weeklyReport.achievements.map((achievement, idx) => (
+                      <li key={idx}>{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {weeklyReport.nextWeekGoals.length > 0 && (
+                <div className="next-goals">
+                  <h5>다음 주 목표</h5>
+                  <ul>
+                    {weeklyReport.nextWeekGoals.map((goal, idx) => (
+                      <li key={idx}>{goal}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
+      )}
+
+      {/* 전문 코칭 시스템 */}
+      <div className="coaching-section professional">
+        <h3>오늘의 맞춤 조언</h3>
+        {coachingAdvice && (
+          <div className={`coaching-card ${coachingAdvice.category}`}>
+            <div className="coach-main-message">
+              <p>{coachingAdvice.mainMessage}</p>
+            </div>
+            
+            {/* 기술적 조언 */}
+            {coachingAdvice.technicalTips.length > 0 && (
+              <div className="technical-tips">
+                <h4>개선 포인트</h4>
+                <ul>
+                  {coachingAdvice.technicalTips.map((tip, idx) => (
+                    <li key={idx}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* 근육 운동 가이드 */}
+            {coachingAdvice.exercises.length > 0 && (
+              <div className="muscle-exercises">
+                <h4>오늘의 근육 운동</h4>
+                <ul>
+                  {coachingAdvice.exercises.map((exercise, idx) => (
+                    <li key={idx}>{exercise}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* 다음 목표 */}
+            <div className="next-goal">
+              <h4>다음 목표</h4>
+              <p>{coachingAdvice.nextGoal}</p>
+            </div>
+            
+            {/* 추천 연습 시간 */}
+            <div className="recommended-time">
+              <p>{coachingAdvice.recommendedPracticeTime}</p>
+            </div>
+            
+            {/* 동기부여 문구 */}
+            <div className="motivational-quote">
+              <p>"{coachingAdvice.motivationalQuote}"</p>
+            </div>
+            
+            <div className="suggested-actions">
+              <button onClick={onNavigateToPractice || (() => navigate('/app'))} className="action-btn primary">
+                연습 시작하기
+              </button>
+              <button onClick={() => {
+                const newTip = getRandomTip()
+                setCoachingAdvice({...coachingAdvice, motivationalQuote: newTip})
+              }} className="action-btn secondary">
+                다른 조언 보기
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* 날짜별 기록 */}
@@ -310,9 +393,9 @@ function PracticeHistory({ user }) {
                         <span className="duration">{formatDuration(session.duration)}</span>
                         {session.emotionBefore && (
                           <span className="mood-change">
-                            {session.emotionBefore === 'happy' ? '😊' : session.emotionBefore === 'neutral' ? '😐' : '😔'} 
+                            {session.emotionBefore === 'happy' ? '좋음' : session.emotionBefore === 'neutral' ? '보통' : '힘듦'} 
                             → 
-                            {session.maxScore >= 80 ? '😊' : session.maxScore >= 50 ? '🙂' : '😐'}
+                            {session.maxScore >= 80 ? '좋음' : session.maxScore >= 50 ? '양호' : '보통'}
                           </span>
                         )}
                       </div>

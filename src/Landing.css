@@ -40,11 +40,15 @@
   max-width: 1200px;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .landing-header {
   text-align: center;
   margin-bottom: 60px;
+  width: 100%;
 }
 
 .landing-title {
@@ -65,10 +69,12 @@
 
 /* 기능 소개 - 앱의 카드 스타일 적용 */
 .landing-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 24px;
   margin-bottom: 60px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .feature-item {
@@ -136,6 +142,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
   max-width: 400px;
   margin: 0 auto 40px;
 }
@@ -248,5 +255,65 @@
   .action-btn {
     font-size: 15px;
     padding: 16px 28px;
+  }
+}
+
+/* 320px 디바이스 대응 (iPhone SE 등) */
+@media (max-width: 360px) {
+  .landing-container {
+    padding: 12px;
+  }
+  
+  .landing-header {
+    margin-bottom: 32px;
+  }
+  
+  .landing-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .landing-subtitle {
+    font-size: 16px;
+  }
+  
+  .landing-features {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  
+  .feature-item {
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+  
+  .feature-number {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .feature-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .feature-item p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .landing-actions {
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  
+  .action-btn {
+    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 14px;
+  }
+  
+  .landing-footer {
+    font-size: 13px;
   }
 }
