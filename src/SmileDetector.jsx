@@ -305,13 +305,12 @@ function SmileDetector({ user }) {
     // 세션 저장
     if (sessionStartTime && maxScore > 0) {
       const sessionData = {
-        date: new Date().toISOString(),
         purpose: selectedPurpose,
-        smile_type: smileTypes[smileContext]?.title || '미소', // DB 컬럼명과 일치
-        max_score: maxScore, // DB 컬럼명과 일치
+        smile_type: smileTypes[smileContext]?.title || '미소',
+        max_score: maxScore,
         context: smileContext,
-        emotion_before: emotionBefore, // DB 컬럼명과 일치
-        emotion_after: emotionAfter || null, // emotion_after 추가
+        emotion_before: emotionBefore,
+        emotion_after: emotionAfter || 'neutral',
         duration: Math.floor((Date.now() - sessionStartTime) / 1000),
         metrics: maxScoreMetrics // 메트릭 정보 추가
       }
@@ -321,8 +320,13 @@ function SmileDetector({ user }) {
         saveSessionToSupabase(sessionData)
       } else {
         // 비로그인 사용자는 localStorage에 임시 저장
+        const tempSessionData = {
+          ...sessionData,
+          date: new Date().toISOString(), // localStorage용 date 추가
+          id: Date.now() // 임시 ID
+        }
         const sessions = JSON.parse(localStorage.getItem('tempSessions') || '[]')
-        sessions.push(sessionData)
+        sessions.push(tempSessionData)
         localStorage.setItem('tempSessions', JSON.stringify(sessions))
         
         // 오늘 무료 세션 사용 기록 - 실제로 연습을 완료했을 때만
@@ -350,15 +354,21 @@ function SmileDetector({ user }) {
       console.log('저장할 데이터:', sessionData) // 디버깅용
       const { data, error } = await practiceDB.saveSession(sessionData)
       if (error) {
-        console.error('세션 저장 오류:', error)
-        showToast('연습 기록 저장에 실패했습니다.', 'error')
+        console.error('세션 저장 오류 상세:', {
+          error,
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        })
+        showToast(`연습 기록 저장 실패: ${error.message}`, 'error', 5000)
       } else {
         console.log('저장 성공:', data) // 디버깅용
         showToast('연습 기록이 저장되었습니다!', 'success', 3000)
       }
     } catch (error) {
-      console.error('세션 저장 중 오류:', error)
-      showToast('연습 기록 저장 중 오류가 발생했습니다.', 'error')
+      console.error('세션 저장 중 예외 오류:', error)
+      showToast(`저장 중 오류: ${error.message}`, 'error', 5000)
     }
   }
 
