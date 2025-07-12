@@ -1,3 +1,105 @@
+/* 상단 헤더 */
+.app-header {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-button {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  transform: translateX(-5px);
+}
+
+/* 원형 뒤로가기 버튼 */
+.back-button-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #666;
+  padding: 0;
+}
+
+.back-button-circle:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.back-button-circle:active {
+  transform: scale(0.95);
+}
+
+.back-button-circle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 사용자 정보 */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  letter-spacing: -0.01em;
+}
+
+/* 모바일 반응형 - 헤더 */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 15px;
+  }
+  
+  .back-button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .user-name {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
 /* 단계별 가이드 패널 스타일 */
 .step-panel {
   background: rgba(255, 255, 255, 0.9);
@@ -33,23 +135,64 @@
 }
 
 .purpose-btn {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 24px;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 20px 32px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.purpose-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--emerald-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.purpose-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.08), transparent);
+  transition: left 0.6s ease;
+}
+
+.purpose-btn:hover::before {
+  left: 100%;
 }
 
 .purpose-btn:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-color: var(--emerald-green);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.purpose-btn:hover::after {
+  transform: scaleX(1);
+}
+
+.purpose-btn:hover .purpose-title {
+  color: var(--emerald-green);
+}
+
+.purpose-btn:hover .purpose-desc {
+  color: var(--text-primary);
 }
 
 .purpose-title {
@@ -57,12 +200,14 @@
   font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 8px;
+  transition: color 0.3s ease;
 }
 
 .purpose-desc {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
 /* 미소 정보 카드 */
@@ -140,24 +285,109 @@
   font-weight: 500;
 }
 
-.confirm-btn {
-  background: var(--emerald-green);
-  color: var(--text-white);
-  border: none;
-  padding: 16px 32px;
+/* 근육 가이드 섹션 */
+.muscle-guide-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
-  cursor: pointer;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.muscle-guide-section h5 {
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.muscle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.muscle-primary,
+.muscle-secondary {
+  padding: 12px 16px;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.muscle-primary strong,
+.muscle-secondary strong {
+  color: var(--emerald-green);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.muscle-tips {
+  margin-top: 8px;
+}
+
+.muscle-tips strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.muscle-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.muscle-tips li {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.muscle-tips li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  color: var(--emerald-green);
+  font-weight: 600;
+}
+
+.confirm-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+  letter-spacing: -0.01em;
 }
 
 .confirm-btn:hover {
-  background: var(--emerald-dark);
+  background: #0ea571;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
 }
 
 /* 맞춤형 분석 패널 */
@@ -288,17 +518,20 @@
 }
 
 .restart-btn {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: var(--emerald-green);
-  border: 1px solid var(--emerald-green);
-  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 18px 36px;
   border-radius: 16px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
 }
 
 .restart-btn:hover {
@@ -380,6 +613,9 @@
   --emerald-green: #10b981;
   --emerald-light: #34d399;
   --emerald-dark: #059669;
+  --sky-blue: #38bdf8;
+  --sky-blue-light: #7dd3fc;
+  --sky-blue-dark: #0284c7;
   
   /* 무채색 팔레트 */
   --gray-50: #f9fafb;
@@ -403,37 +639,33 @@
 
 /* 루트 컨테이너 */
 #root {
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 50%, #f3f4f6 100%);
-  min-height: 100vh;
+  background: #f5f5f5;
   position: relative;
+  overflow: hidden;
 }
 
 /* Professional Header */
-.app-header {
-  text-align: center;
-  margin-bottom: 40px;
-  color: var(--text-primary);
-  padding: 30px 20px;
+.app-container {
+  width: 100%;
+  max-width: 1200px;
   position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
-.app-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 24px;
-  backdrop-filter: blur(20px);
-  z-index: -1;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+.practice-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
 }
 
 .app-header h1 {
@@ -471,9 +703,21 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 40px;
+  margin: 32px auto 40px;
   padding: 0 20px;
   flex-wrap: wrap;
+  max-width: 600px;
+  position: relative;
+}
+
+.tab-menu::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .tab-button {
@@ -492,7 +736,20 @@
   min-width: 140px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  outline: none;
+  text-align: center;
+}
+
+.tab-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--emerald-green);
+}
+
+.tab-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--emerald-green);
 }
 
 .tab-button::before {
@@ -522,30 +779,75 @@
   color: var(--text-white);
   font-weight: 600;
   box-shadow: 0 6px 24px rgba(16, 185, 129, 0.25);
-  border-color: var(--emerald-green);
+  border-color: var(--emerald-dark);
+  position: relative;
 }
 
 .tab-button.active::after {
   content: '';
-  width: 6px;
-  height: 6px;
-  background: currentColor;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: auto;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--emerald-green);
+  border-radius: 3px 3px 0 0;
+}
+
+/* 로그아웃 버튼 스타일 - 탭 메뉴에서 제거 */
+
+/* 하단 로그아웃 컨테이너 */
+.bottom-logout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* 로그아웃 버튼 */
+.logout-btn {
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 36px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+  
+  /* 에메랄드 그린 톤다운 스타일 */
+  background: rgba(16, 185, 129, 0.08);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 2px 12px rgba(16, 185, 129, 0.1);
+}
+
+.logout-btn:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
 }
 
 .tab-content {
   min-height: 400px;
+  padding-bottom: 50px; /* 하단 로그아웃 버튼 공간 */
 }
 
 /* Professional Main Content */
 .main-content {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: clamp(24px, 4vw, 48px);
-  box-shadow: 0 20px 64px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 20px 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   margin: 0 auto;
   max-width: 800px;
   width: 100%;
@@ -581,19 +883,7 @@
   color: var(--text-primary);
   font-weight: 600;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.practice-section h3::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--emerald-green);
-  border-radius: 1px;
-  display: inline-block;
-  margin-right: 12px;
+  display: block;
 }
 
 .practice-section p {
@@ -620,11 +910,11 @@
 .emotion-check-panel {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  padding: clamp(24px, 4vw, 32px);
+  padding: 20px 32px;
   border-radius: 20px;
-  margin: 0;
+  margin: 0 0 24px 0;
   text-align: center;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.06);
   width: 100%;
   position: relative;
@@ -652,29 +942,31 @@
 }
 
 .emotion-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   width: 100%;
 }
 
 .emotion-btn {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 36px;
   border-radius: 16px;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  color: var(--text-primary);
+  font-size: 16px;
+  color: #1a1a1a;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .emotion-btn::before {
@@ -739,29 +1031,31 @@
 }
 
 .context-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   width: 100%;
 }
 
 .context-btn {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 36px;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
   position: relative;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .context-btn::before {
@@ -830,6 +1124,132 @@
   height: 100%;
   border-radius: 19px;
   pointer-events: none;
+}
+
+/* 근육 가이드 토글 버튼 */
+.muscle-guide-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 12px;
+  font-weight: 600;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.muscle-guide-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.muscle-guide-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.muscle-guide-toggle svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.muscle-guide-toggle.active svg {
+  transform: scale(1.1);
+}
+
+.muscle-guide-toggle .toggle-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 150px;
+  opacity: 1;
+  line-height: 1;
+}
+
+.muscle-guide-toggle.active .toggle-text {
+  max-width: 0;
+  opacity: 0;
+  margin-left: -6px;
+}
+
+.muscle-guide-toggle.active {
+  padding: 6px 10px;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.muscle-guide-toggle.active:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* 점수 표시 오버레이 - 좌측 상단 */
+.score-display-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.score-display-overlay:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.score-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #10b981;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.score-type {
+  font-size: 10px;
+  font-weight: 600;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.score-divider {
+  font-size: 12px;
+  color: #8E8E93;
+  line-height: 1;
+  margin: 0 2px;
 }
 
 /* Professional Analysis Panel */
@@ -1030,8 +1450,8 @@
 
 /* Professional Control Buttons */
 .controls {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   margin: 0;
   width: 100%;
@@ -1039,22 +1459,24 @@
 }
 
 .controls button {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 36px;
   border-radius: 16px;
   cursor: pointer;
-  font-size: clamp(0.85rem, 2vw, 0.95rem);
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .controls button::before {
@@ -1123,20 +1545,25 @@
 
 /* Professional History Styles */
 .practice-history {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .today-stats {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: var(--text-primary);
-  padding: 32px;
-  border-radius: 24px;
-  margin-bottom: 32px;
+  color: #1a1a1a;
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 24px;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
 }
 
 .today-stats h3 {
@@ -1150,15 +1577,6 @@
   gap: 12px;
 }
 
-.today-stats h3::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--emerald-green);
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 12px;
-}
 
 .stats-grid {
   display: grid;
@@ -1168,12 +1586,13 @@
 
 .stat-item {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .stat-item:hover {
@@ -1196,6 +1615,466 @@
   font-weight: 500;
 }
 
+/* 진행 상황 섹션 */
+.progress-section {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.progress-section h3 {
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.progress-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.current-average {
+  text-align: center;
+}
+
+.average-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.average-score {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--emerald-green);
+}
+
+.trend-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.trend-indicator.up {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--emerald-green);
+}
+
+.trend-indicator.down {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.trend-arrow {
+  font-size: 1.2rem;
+}
+
+/* 달성 목표 섹션 */
+.achievements-section {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.achievements-section h3 {
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.badge {
+  text-align: center;
+  padding: 24px 16px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.badge.earned {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(14, 165, 233, 0.1));
+  border: 2px solid var(--emerald-green);
+}
+
+.badge.locked {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  opacity: 0.6;
+}
+
+.badge-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  filter: grayscale(0);
+}
+
+.badge.locked .badge-icon {
+  filter: grayscale(100%);
+}
+
+.badge-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.badge-progress {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* 회원가입 유도 배너 */
+.premium-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(14, 165, 233, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 24px 0;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.banner-content h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.benefits-list li {
+  color: var(--text-secondary);
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.benefits-list li::before {
+  content: '✓ ';
+  color: var(--emerald-green);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.cta-button {
+  background: var(--emerald-green);
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+.cta-button:hover {
+  background: #0ea571;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+/* 코칭 섹션 */
+.coaching-section {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 24px 0;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.coaching-section h3 {
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.coaching-card {
+  text-align: center;
+}
+
+.coach-message {
+  background: rgba(16, 185, 129, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.coach-message p {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.suggested-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.action-btn {
+  padding: 18px 36px;
+  border-radius: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+}
+
+.action-btn.primary {
+  background: var(--emerald-green);
+  color: white;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+.action-btn.primary:hover {
+  background: #0ea571;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+/* 기록 리스트 스타일 */
+.history-list {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  margin-top: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.history-list h3 {
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.no-history {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 40px 0;
+}
+
+.date-group {
+  margin-bottom: 32px;
+}
+
+.date-header {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.session-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.session-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.session-type {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.session-score {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--emerald-green);
+}
+
+.session-details {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.session-details .time {
+  font-weight: 500;
+}
+
+.session-details .duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mood-change {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  background: rgba(16, 185, 129, 0.05);
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+.session-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.session-time {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.session-duration {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.session-scores {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.max-score {
+  color: var(--emerald-green);
+  font-weight: 600;
+}
+
+.avg-score {
+  color: var(--text-secondary);
+}
+
+.delete-button {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-1px);
+}
+
+/* 테스트 버튼 스타일 */
+.add-test-record {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.test-button, .clear-button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.test-button {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--emerald-green);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.test-button:hover {
+  background: rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
+}
+
+.clear-button {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.clear-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
+}
+
 /* 반응형 디자인 */
 @media (max-width: 600px) {
   #root {
@@ -1205,6 +2084,16 @@
   .app-header {
     margin-bottom: 32px;
     padding: 24px 16px;
+  }
+  
+  .back-button-circle {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .back-button-circle svg {
+    width: 18px;
+    height: 18px;
   }
   
   .tab-menu {
@@ -1289,5 +2178,1561 @@
     background: white !important;
     color: black !important;
     box-shadow: none !important;
+  }
+}
+
+/* 로그인 유도 모달 - 첫 화면 톤으로 통일 */
+.login-prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.login-prompt-modal {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.login-prompt-modal h3 {
+  color: #1a1a1a;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.login-prompt-modal p {
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.prompt-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.login-prompt-btn, .signup-prompt-btn {
+  padding: 18px 36px;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-prompt-btn {
+  background: #10b981;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+.login-prompt-btn:hover {
+  background: #0ea571;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.signup-prompt-btn {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1a1a1a;
+}
+
+.signup-prompt-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: #10b981;
+}
+
+.close-prompt {
+  margin-top: 24px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+
+.close-prompt:hover {
+  color: #1a1a1a;
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateX(-5px);
+}
+
+/* 회원가입 유도 박스 */
+.signup-prompt-box {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 32px 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.signup-prompt-box p {
+  color: #666;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.signup-cta-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+  display: inline-block;
+}
+
+.signup-cta-btn:hover {
+  background: #0ea571;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+/* 스켈레톤 UI */
+.skeleton-container {
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.skeleton-title,
+.skeleton-subtitle,
+.skeleton-line,
+.skeleton-button,
+.skeleton-card {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-title {
+  height: 32px;
+  width: 60%;
+  margin: 0 auto 16px;
+}
+
+.skeleton-subtitle {
+  height: 20px;
+  width: 80%;
+  margin: 0 auto 32px;
+}
+
+.skeleton-card {
+  padding: 32px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.skeleton-line {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.skeleton-line.short {
+  width: 70%;
+}
+
+.skeleton-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-button {
+  height: 48px;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.loading-text {
+  text-align: center;
+  color: #666;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+/* 토스트 메시지 */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 300px;
+  max-width: 500px;
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: slideOutRight 0.3s ease-in;
+  opacity: 0;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast-icon {
+  font-size: 20px;
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 15px;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.toast-success {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.toast-success .toast-icon {
+  color: #10b981;
+}
+
+.toast-error {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.toast-error .toast-icon {
+  color: #ef4444;
+}
+
+.toast-warning {
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.toast-warning .toast-icon {
+  color: #f59e0b;
+}
+
+.toast-info {
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.toast-info .toast-icon {
+  color: #3b82f6;
+}
+
+/* 모바일에서 토스트 위치 조정 */
+@media (max-width: 600px) {
+  .toast-container {
+    top: auto;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  
+  .toast {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* iOS 스타일 무료 체험 배지 */
+.ios-free-session-badge {
+  background: #F2F2F7;
+  border-radius: 14px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.ios-badge-text {
+  color: #8E8E93;
+  font-weight: 400;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+.ios-badge-count {
+  color: #007AFF;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* 진행 단계 표시 */
+.step-indicator-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 20px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.3s;
+}
+
+.step-dot.active {
+  background: #10b981;
+  width: 24px;
+  border-radius: 4px;
+}
+
+.step-dot.completed {
+  background: #10b981;
+}
+
+/* 비디오와 코칭 메시지 래퍼 */
+.video-coaching-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+/* 코칭 메시지가 있을 때 비디오 컨테이너 */
+.video-coaching-wrapper .video-container {
+  border-radius: 0;
+  border-bottom: none;
+  box-shadow: none;
+  margin-bottom: -4px; /* 간격 제거 */
+}
+
+/* 코칭 메시지 영역 */
+.coaching-messages-area {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 20px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  min-height: 80px;
+}
+
+.coaching-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coaching-message {
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.coaching-message.primary {
+  background: var(--emerald-green);
+  color: white;
+  font-size: 17px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.coaching-message.secondary {
+  background: rgba(16, 185, 129, 0.06);
+  color: var(--emerald-green);
+  font-size: 15px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 600px) {
+  .coaching-messages-area {
+    margin: 16px auto 0;
+    padding: 20px;
+  }
+  
+  .coaching-message {
+    padding: 14px 20px;
+  }
+  
+  .coaching-message.primary {
+    font-size: 16px;
+  }
+  
+  .coaching-message.secondary {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .coaching-messages-area {
+    padding: 16px;
+  }
+  
+  .coaching-message {
+    padding: 12px 16px;
+  }
+  
+  .coaching-message.primary {
+    font-size: 15px;
+  }
+  
+  .coaching-message.secondary {
+    font-size: 13px;
+  }
+}
+
+/* iOS 스타일 분석 패널 */
+.ios-analysis-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 32px);
+  margin: 16px 0;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.ios-analysis-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ios-analysis-title {
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 8px 0;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+.ios-analysis-title::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--emerald-green);
+  border: 2px solid var(--emerald-green);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 12px;
+  box-sizing: border-box;
+}
+
+.ios-analysis-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+/* iOS 스타일 메트릭 리스트 */
+.ios-metrics-list {
+  margin: 0 0 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ios-metric-item {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ios-metric-item:last-child {
+  margin-bottom: 0;
+}
+
+.ios-metric-item.primary {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.02));
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+.ios-metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ios-metric-label {
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: -0.24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+.ios-metric-value {
+  font-size: clamp(1.3rem, 3vw, 1.5rem);
+  color: var(--text-primary);
+  font-weight: 700;
+  text-align: right;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+.ios-metric-item.primary .ios-metric-value {
+  color: var(--emerald-green);
+}
+
+/* 메트릭 진행률 바 */
+.ios-metric-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ios-metric-fill {
+  height: 100%;
+  background: var(--emerald-green);
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ios-metric-item.primary .ios-metric-fill {
+  background: linear-gradient(90deg, var(--emerald-green), var(--emerald-light));
+}
+
+.ios-metric-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+/* iOS 스타일 하단 정보 */
+.ios-analysis-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 0.5px solid rgba(60, 60, 67, 0.12);
+}
+
+.ios-footer-message {
+  font-size: 13px;
+  color: #8E8E93;
+  text-align: center;
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+/* 최고치 배지 */
+.highest-badge {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  background: #10b981;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* 전체 점수 요약 */
+.overall-score-summary {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.score-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.score-circle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.score-number {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #10b981;
+  line-height: 1;
+}
+
+.score-label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.score-description {
+  flex: 1;
+}
+
+.current-type {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.score-feedback {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 600px) {
+  .analysis-panel-new {
+    padding: 24px;
+  }
+  
+  .metrics-grid {
+    gap: 16px;
+  }
+  
+  .metric-card {
+    padding: 16px;
+  }
+  
+  .metric-percentage {
+    font-size: 20px;
+  }
+  
+  .metric-percentage.highlight {
+    font-size: 24px;
+  }
+  
+  .overall-score-summary {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .score-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .score-number {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .analysis-panel-new {
+    padding: 20px;
+  }
+  
+  .analysis-title {
+    font-size: 18px;
+  }
+  
+  .metric-label {
+    font-size: 14px;
+  }
+  
+  .metric-percentage {
+    font-size: 18px;
+  }
+  
+  .metric-percentage.highlight {
+    font-size: 22px;
+  }
+}
+
+/* iOS 스타일 카메라 권한 모달 */
+.camera-permission-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.camera-permission-modal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 14px;
+  padding: 32px;
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.permission-icon {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.permission-icon svg {
+  width: 56px;
+  height: 56px;
+}
+
+.camera-permission-modal h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.camera-permission-modal p {
+  font-size: 13px;
+  color: #8E8E93;
+  line-height: 18px;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.permission-info {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #000;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.check-icon {
+  margin-right: 8px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.permission-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.permission-allow,
+.permission-cancel,
+.permission-retry {
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.permission-allow {
+  background: #007AFF;
+  color: white;
+}
+
+.permission-allow:hover {
+  opacity: 0.9;
+}
+
+.permission-cancel {
+  background: #F2F2F7;
+  color: #007AFF;
+}
+
+.permission-cancel:hover {
+  background: #E5E5EA;
+}
+
+.permission-retry {
+  background: #007AFF;
+  color: white;
+}
+
+.permission-guide {
+  text-align: left;
+  margin-bottom: 24px;
+  background: #F2F2F7;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.permission-guide h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.08px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.permission-guide ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #3C3C43;
+  letter-spacing: -0.08px;
+  line-height: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.permission-guide li {
+  margin-bottom: 4px;
+}
+
+/* iOS 스타일 컨트롤 버튼 업데이트 */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+  width: 100%;
+  max-width: 480px;
+}
+
+.controls button {
+  background: #007AFF;
+  color: white;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  position: relative;
+  overflow: visible;
+}
+
+.controls button::before {
+  display: none;
+}
+
+.controls button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: none;
+  box-shadow: none;
+  background: #007AFF;
+  border-color: transparent;
+}
+
+.controls button:active:not(:disabled) {
+  opacity: 0.8;
+}
+
+.controls button:disabled {
+  background: #C7C7CC;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: default;
+  border-color: transparent;
+  transform: none;
+}
+
+.controls .stop-detection-btn {
+  background: #FF3B30;
+}
+
+.controls .stop-detection-btn:hover:not(:disabled) {
+  background: #FF3B30;
+  opacity: 0.9;
+}
+
+.controls .continue-practice-btn {
+  background: #007AFF;
+  color: white;
+}
+
+.controls .continue-practice-btn:hover:not(:disabled) {
+  background: #007AFF;
+  opacity: 0.9;
+}
+
+.controls .view-results-btn {
+  background: #34C759;
+  color: white;
+}
+
+.controls .view-results-btn:hover:not(:disabled) {
+  background: #34C759;
+  opacity: 0.9;
+}
+
+/* 연습 컨트롤 버튼 */
+.practice-controls {
+  margin: 16px 0;
+  padding: 0;
+}
+
+.practice-controls button {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 36px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.practice-controls button:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.practice-controls button:active {
+  transform: translateY(0);
+}
+
+/* 연습 화면 레이아웃 - 모바일 최적화 */
+.practice-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 140px); /* 헤더와 상단 여백 제외 */
+}
+
+.practice-main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* 모바일 컴팩트 분석 패널 */
+.ios-analysis-panel.mobile-compact {
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.ios-analysis-panel.mobile-compact .ios-analysis-header {
+  margin-bottom: 12px;
+}
+
+.ios-analysis-panel.mobile-compact .ios-analysis-title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.ios-analysis-panel.mobile-compact .ios-analysis-title::before {
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+}
+
+/* 컴팩트 메트릭 리스트 */
+.ios-metrics-list.compact {
+  margin: 0;
+}
+
+.ios-metric-item.compact {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  gap: 6px;
+}
+
+.ios-metric-item.compact .ios-metric-label {
+  font-size: 13px;
+}
+
+.ios-metric-item.compact .ios-metric-value {
+  font-size: 17px;
+}
+
+.ios-metric-item.compact .ios-metric-bar {
+  height: 6px;
+}
+
+/* 컴팩트 점수 표시 */
+.score-display.compact {
+  margin: 0;
+  padding: 16px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.score-display.compact h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.score-display.compact .score-bar {
+  height: 8px;
+  margin-bottom: 0;
+}
+
+.score-display.compact .max-score {
+  display: none;
+}
+
+/* 비디오 컨테이너 모바일 최적화 */
+@media (max-width: 600px) {
+  .video-coaching-wrapper {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .video-container {
+    height: auto;
+    aspect-ratio: 4/3;
+    max-height: 35vh;
+  }
+  
+  .video-container video {
+    object-fit: cover;
+  }
+  
+  .coaching-messages-area {
+    padding: 12px 16px;
+    min-height: 70px;
+  }
+  
+  .coaching-message {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .coaching-message.primary {
+    font-size: 15px;
+  }
+  
+  .practice-layout {
+    height: calc(100vh - 100px);
+  }
+  
+  .practice-main-content {
+    padding: 0 12px;
+    gap: 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .practice-bottom-section {
+    padding: 12px;
+  }
+  
+  /* 하단 버튼 간격 조정 */
+  .controls {
+    gap: 8px;
+    flex-direction: row;
+  }
+  
+  .controls button {
+    padding: 12px 16px;
+    font-size: 15px;
+    flex: 1;
+  }
+  
+  /* 모바일에서 분석 패널 더 컴팩트하게 */
+  .ios-analysis-panel.mobile-compact {
+    padding: 12px;
+    margin: 6px 0;
+  }
+  
+  .ios-metric-item.compact {
+    padding: 8px 10px;
+    margin-bottom: 6px;
+  }
+  
+  /* 모바일에서 연습 버튼 조정 */
+  .practice-controls {
+    margin: 12px 0;
+  }
+  
+  .practice-controls button {
+    padding: 16px 24px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+}
+
+/* 작은 디바이스 (iPhone SE 등) */
+@media (max-width: 360px) {
+  .video-container {
+    max-height: 35vh;
+  }
+  
+  .ios-analysis-panel.mobile-compact {
+    padding: 12px;
+    margin: 6px 0;
+  }
+  
+  .ios-metric-item.compact {
+    padding: 8px 10px;
+    margin-bottom: 6px;
+  }
+  
+  .ios-metric-item.compact .ios-metric-label {
+    font-size: 12px;
+  }
+  
+  .ios-metric-item.compact .ios-metric-value {
+    font-size: 16px;
+  }
+  
+  .score-display.compact {
+    padding: 12px;
+  }
+  
+  .score-display.compact h3 {
+    font-size: 14px;
+  }
+  
+  .practice-layout {
+    height: calc(100vh - 100px);
+  }
+}
+
+/* 전문 코칭 시스템 스타일 */
+.coaching-section.professional {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.coaching-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.coaching-card.motivation {
+  background: linear-gradient(135deg, rgba(251, 207, 232, 0.1) 0%, rgba(252, 231, 243, 0.1) 100%);
+}
+
+.coaching-card.technical {
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.1) 0%, rgba(240, 249, 255, 0.1) 100%);
+}
+
+.coaching-card.achievement {
+  background: linear-gradient(135deg, rgba(254, 240, 138, 0.1) 0%, rgba(254, 249, 195, 0.1) 100%);
+}
+
+.coaching-card.improvement {
+  background: linear-gradient(135deg, rgba(220, 252, 231, 0.1) 0%, rgba(240, 253, 244, 0.1) 100%);
+}
+
+.coach-main-message {
+  background: rgba(16, 185, 129, 0.08);
+  padding: 28px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.coach-main-message p {
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
+}
+
+.technical-tips,
+.muscle-exercises,
+.next-goal {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.technical-tips h4,
+.muscle-exercises h4,
+.next-goal h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.technical-tips ul,
+.muscle-exercises ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.technical-tips li,
+.muscle-exercises li {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.technical-tips li:hover {
+  border-left-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.muscle-exercises li:hover {
+  border-left-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.next-goal {
+  background: linear-gradient(135deg, rgba(254, 240, 138, 0.1) 0%, rgba(254, 249, 195, 0.1) 100%);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.next-goal p {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.recommended-time {
+  text-align: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.recommended-time p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.motivational-quote {
+  text-align: center;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.motivational-quote p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.motivational-quote::before,
+.motivational-quote::after {
+  content: '"';
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(16, 185, 129, 0.1);
+  font-family: Georgia, serif;
+}
+
+.motivational-quote::before {
+  top: 0;
+  left: 0;
+}
+
+.motivational-quote::after {
+  bottom: 0;
+  right: 0;
+}
+
+.suggested-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-btn.secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 주간 리포트 스타일 */
+.weekly-report-banner {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.report-toggle {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.report-toggle:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.weekly-report-content {
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.weekly-report-content h4 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.weekly-report-content h5 {
+  margin: 16px 0 12px 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.achievements ul,
+.next-goals ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements li,
+.next-goals li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.achievements li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+.next-goals li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .coaching-section.professional {
+    padding: 28px;
+  }
+  
+  .coach-main-message {
+    padding: 20px;
+  }
+  
+  .technical-tips li,
+  .muscle-exercises li {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+  
+  .action-btn {
+    padding: 16px 28px;
+    font-size: 15px;
   }
 }
