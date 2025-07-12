@@ -1274,9 +1274,13 @@ function SmileDetector({ user }) {
             
             {!user && (
               <div className="signup-prompt-box">
-                <p>회원가입하면 모든 연습 기록을 저장하고<br/>무제한으로 연습할 수 있어요!</p>
+                <div className="warning-icon">⚠️</div>
+                <h4>기록이 저장되지 않았습니다</h4>
+                <p>비로그인 상태에서는 연습 기록이 임시로만 저장됩니다.<br/>
+                브라우저를 닫으면 모든 기록이 사라집니다.</p>
+                <p className="highlight-text">지금 회원가입하고 모든 기록을 영구 보관하세요!</p>
                 <button onClick={() => navigate('/signup')} className="signup-cta-btn">
-                  회원가입하기
+                  무료 회원가입하고 기록 저장하기
                 </button>
               </div>
             )}

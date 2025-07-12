@@ -13,7 +13,6 @@ function SignUp() {
   })
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
-  const [showEmailVerification, setShowEmailVerification] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -39,8 +38,16 @@ function SignUp() {
     
     if (!formData.password) {
       newErrors.password = '비밀번호를 입력해주세요'
-    } else if (formData.password.length < 6) {
-      newErrors.password = '비밀번호는 6자 이상이어야 합니다'
+    } else if (formData.password.length < 8) {
+      newErrors.password = '비밀번호는 8자 이상이어야 합니다'
+    } else {
+      // 숫자와 문자 포함 확인
+      const hasLetter = /[a-zA-Z]/.test(formData.password)
+      const hasNumber = /[0-9]/.test(formData.password)
+      
+      if (!hasLetter || !hasNumber) {
+        newErrors.password = '비밀번호는 영문자와 숫자를 모두 포함해야 합니다'
+      }
     }
     
     if (formData.password !== formData.confirmPassword) {
@@ -73,60 +80,16 @@ function SignUp() {
         }
       } else {
         // 회원가입 성공
-        // Supabase의 이메일 인증 설정에 따라 처리
-        if (data.user && !data.session) {
-          // 이메일 인증이 필요한 경우
-          setShowEmailVerification(true)
-        } else if (data.session) {
-          // 이메일 인증이 필요없는 경우 (또는 이미 인증된 경우)
-          alert('회원가입이 완료되었습니다!')
-          navigate('/app')
-        }
+        console.log('회원가입 성공:', data)
+        alert('회원가입이 완료되었습니다!')
+        // 이메일 인증이 비활성화되어 있으므로 바로 앱으로 이동
+        navigate('/app')
       }
     } catch (error) {
       setErrors({ general: '회원가입 중 오류가 발생했습니다.' })
     } finally {
       setLoading(false)
     }
-  }
-
-  if (showEmailVerification) {
-    return (
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-form-container">
-            <div className="auth-header">
-              <h1>SmileShot</h1>
-              <h2>이메일 인증 필요</h2>
-              <p>거의 다 왔어요!</p>
-            </div>
-            
-            <div className="email-verification-info">
-              <div className="verification-icon">📧</div>
-              <h3>이메일을 확인해주세요</h3>
-              <p>{formData.email}로 인증 링크를 보냈어요.</p>
-              <p>이메일의 인증 링크를 클릭하면 회원가입이 완료됩니다.</p>
-              
-              <div className="verification-tips">
-                <h4>이메일이 오지 않나요?</h4>
-                <ul>
-                  <li>스팸 메일함을 확인해주세요</li>
-                  <li>이메일 주소가 올바른지 확인해주세요</li>
-                  <li>몇 분 정도 기다려주세요</li>
-                </ul>
-              </div>
-              
-              <button 
-                onClick={() => navigate('/login')} 
-                className="auth-submit"
-              >
-                로그인 페이지로 이동
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -172,7 +135,7 @@ function SignUp() {
             <input
               type="password"
               name="password"
-              placeholder="비밀번호 (6자 이상)"
+              placeholder="비밀번호 (영문자+숫자, 8자 이상)"
               value={formData.password}
               onChange={handleChange}
               className={errors.password ? 'error' : ''}

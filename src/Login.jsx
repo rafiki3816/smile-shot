@@ -50,13 +50,13 @@ function Login() {
     setLoading(true)
     
     try {
+      console.log('로그인 시도:', { email: formData.email })
       const { data, error } = await auth.signIn(formData.email, formData.password)
+      console.log('로그인 결과:', { data, error })
       
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
           setErrors({ general: '이메일 또는 비밀번호가 올바르지 않습니다' })
-        } else if (error.message.includes('Email not confirmed')) {
-          setErrors({ general: '이메일 인증을 완료해주세요. 받은 편지함을 확인해주세요.' })
         } else {
           setErrors({ general: error.message })
         }

@@ -1876,6 +1876,46 @@
 }
 
 /* 기록 리스트 스타일 */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-header h3 {
+  margin: 0;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  background: #f0f0f0;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.view-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #666;
+}
+
+.view-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.view-btn.active {
+  background: white;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 .history-list {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
@@ -2299,6 +2339,33 @@
 }
 
 /* 회원가입 유도 박스 */
+.warning-text {
+  color: #f44336;
+  font-weight: 600;
+  margin: 10px 0;
+  padding: 10px;
+  background: #ffebee;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.warning-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.signup-prompt-box h4 {
+  color: #f44336;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.highlight-text {
+  color: #2196f3;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
 .signup-prompt-box {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
