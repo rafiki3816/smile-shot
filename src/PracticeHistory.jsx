@@ -253,14 +253,6 @@ function PracticeHistory({ user, onNavigateToPractice }) {
           <div className="banner-content">
             <h3>⚠️ 비로그인 상태에서는 기록이 저장되지 않습니다</h3>
             <p className="warning-text">현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다.</p>
-            <h4>회원가입 혜택:</h4>
-            <ul className="benefits-list">
-              <li>✅ 모든 연습 기록 영구 저장</li>
-              <li>✅ 모든 기기에서 접근 가능</li>
-              <li>✅ 상세한 분석 리포트</li>
-              <li>✅ AI 맞춤형 코칭</li>
-              <li>✅ 무제한 연습 횟수</li>
-            </ul>
             <button onClick={() => navigate('/signup')} className="cta-button">
               무료 회원가입
             </button>
