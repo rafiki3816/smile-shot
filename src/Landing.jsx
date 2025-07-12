@@ -21,10 +21,12 @@ function Landing() {
   }, [navigate])
 
   const handleFreeSession = () => {
-    // 오늘 무료 세션 사용 기록
-    const today = new Date().toDateString()
-    localStorage.setItem('lastFreeSession', today)
+    // 무료 세션 사용 시작
     localStorage.setItem('allowFreeSession', 'true')
+    // 초기 카운트가 없으면 0으로 설정
+    if (!localStorage.getItem('freeSessionCount')) {
+      localStorage.setItem('freeSessionCount', '0')
+    }
     navigate('/app')
   }
 
@@ -70,7 +72,7 @@ function Landing() {
             회원가입
           </Link>
           <button onClick={handleFreeSession} className="action-btn free">
-            무료로 체험하기 (하루 1회)
+            무료로 체험하기 (10회 제공)
           </button>
         </div>
 

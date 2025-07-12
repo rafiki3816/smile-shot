@@ -11,7 +11,7 @@ function SmileDetector({ user }) {
   const { toasts, showToast, removeToast } = useToast()
   const [isStreaming, setIsStreaming] = useState(false)
   const [isModelLoaded, setIsModelLoaded] = useState(false)
-  const [smileScore, setSmileScore] = useState(0)
+  const [, setSmileScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [maxScoreMetrics, setMaxScoreMetrics] = useState(null)
   const [isDetecting, setIsDetecting] = useState(false)
@@ -23,11 +23,11 @@ function SmileDetector({ user }) {
   const [smileContext, setSmileContext] = useState('')
   const [sessionStartTime, setSessionStartTime] = useState(null)
   const [emotionAfter, setEmotionAfter] = useState('')
-  const [wellnessScore, setWellnessScore] = useState(0)
-  const [encouragementLevel, setEncouragementLevel] = useState(1)
+  const [, setWellnessScore] = useState(0)
+  const [, setEncouragementLevel] = useState(1)
   
   // 로그인 및 무료 세션 관련
-  const [hasUsedFreeSession, setHasUsedFreeSession] = useState(false)
+  const [freeSessionCount, setFreeSessionCount] = useState(0)
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   
   // 카메라 권한 관련
@@ -165,18 +165,15 @@ function SmileDetector({ user }) {
       }
     }
     
-    // 비로그인 사용자의 오늘 무료 세션 사용 여부 확인
+    // 비로그인 사용자의 무료 세션 사용 횟수 확인
     const checkFreeSession = () => {
       if (!user) {
-        const today = new Date().toDateString()
-        const lastFreeSession = localStorage.getItem('lastFreeSession')
         const allowFreeSession = localStorage.getItem('allowFreeSession') === 'true'
+        const usedCount = parseInt(localStorage.getItem('freeSessionCount') || '0')
         
-        // 무료 체험을 선택했고, 오늘 아직 사용하지 않았다면 허용
-        if (allowFreeSession && lastFreeSession !== today) {
-          setHasUsedFreeSession(false)
-        } else if (lastFreeSession === today) {
-          setHasUsedFreeSession(true)
+        // 무료 체험을 선택했고, 10회 미만 사용했다면 허용
+        if (allowFreeSession) {
+          setFreeSessionCount(usedCount)
         }
       }
     }
@@ -197,15 +194,15 @@ function SmileDetector({ user }) {
   // practice 단계 진입 시 카메라 자동 시작
   useEffect(() => {
     if (currentStep === 'practice' && !isStreaming) {
-      // 비로그인 사용자가 이미 무료 세션을 사용한 경우
-      if (!user && hasUsedFreeSession) {
+      // 비로그인 사용자가 10회 이상 무료 세션을 사용한 경우
+      if (!user && freeSessionCount >= 10) {
         setShowLoginPrompt(true)
         setCurrentStep('purpose') // 초기 단계로 되돌림
         return
       }
       startCamera()
     }
-  }, [currentStep, user, hasUsedFreeSession])
+  }, [currentStep, user, freeSessionCount])
 
   // 카메라가 켜지면 자동으로 분석 시작
   useEffect(() => {
@@ -329,12 +326,17 @@ function SmileDetector({ user }) {
         sessions.push(tempSessionData)
         localStorage.setItem('tempSessions', JSON.stringify(sessions))
         
-        // 오늘 무료 세션 사용 기록 - 실제로 연습을 완료했을 때만
-        if (!hasUsedFreeSession && maxScore > 0) {
-          const today = new Date().toDateString()
-          localStorage.setItem('lastFreeSession', today)
-          setHasUsedFreeSession(true)
-          showToast('오늘의 무료 체험을 완료했습니다!', 'info', 3000)
+        // 무료 세션 사용 횟수 증가 - 실제로 연습을 완료했을 때만
+        if (maxScore > 0) {
+          const newCount = freeSessionCount + 1
+          localStorage.setItem('freeSessionCount', newCount.toString())
+          setFreeSessionCount(newCount)
+          const remaining = 10 - newCount
+          if (remaining > 0) {
+            showToast(`무료 체험 ${newCount}회 완료! (남은 횟수: ${remaining}회)`, 'info', 3000)
+          } else {
+            showToast('무료 체험 10회를 모두 사용하셨습니다!', 'info', 3000)
+          }
         }
       }
     }
@@ -425,8 +427,8 @@ function SmileDetector({ user }) {
   // 맞춤형 코칭 메시지 - 전문적인 근육 가이드 포함
   const getContextualCoaching = (smileQuality, expressions, context) => {
     const messages = []
-    const wellness = smileQuality.wellness
-    const smileInfo = smileTypes[context]
+    // const wellness = smileQuality.wellness
+    // const smileInfo = smileTypes[context]
     
     // 근육 움직임 기반 전문적 가이드
     const happiness = expressions.happy || 0
@@ -818,8 +820,8 @@ function SmileDetector({ user }) {
 
   // 다시 시작
   const resetGuide = () => {
-    // 비로그인 사용자가 이미 무료 세션을 사용한 경우
-    if (!user && hasUsedFreeSession) {
+    // 비로그인 사용자가 10회 이상 무료 세션을 사용한 경우
+    if (!user && freeSessionCount >= 10) {
       setShowLoginPrompt(true)
       return
     }
@@ -873,7 +875,7 @@ function SmileDetector({ user }) {
   // 무료 체험 남은 횟수 계산
   const getFreeSessionsRemaining = () => {
     if (user) return null // 로그인 사용자는 표시 안함
-    return hasUsedFreeSession ? 0 : 1
+    return Math.max(0, 10 - freeSessionCount)
   }
 
   const freeSessionsRemaining = getFreeSessionsRemaining()
@@ -885,7 +887,7 @@ function SmileDetector({ user }) {
       {/* 무료 체험 표시 */}
       {freeSessionsRemaining !== null && (
         <div className="ios-free-session-badge">
-          <span className="ios-badge-text">오늘 남은 무료 체험: <span className="ios-badge-count">{freeSessionsRemaining}/1</span></span>
+          <span className="ios-badge-text">남은 무료 체험: <span className="ios-badge-count">{freeSessionsRemaining}/10</span></span>
         </div>
       )}
       
@@ -1291,7 +1293,7 @@ function SmileDetector({ user }) {
         <div className="login-prompt-overlay">
           <div className="login-prompt-modal">
             <h3>무료 체험이 종료되었어요</h3>
-            <p>오늘의 무료 연습 횟수를 모두 사용하셨습니다.</p>
+            <p>무료 연습 10회를 모두 사용하셨습니다.</p>
             <p>계속 연습하려면 로그인해주세요!</p>
             <div className="prompt-buttons">
               <button onClick={() => navigate('/login', { state: { from: '/app', message: '계속 연습하려면 로그인해주세요' } })} className="login-prompt-btn">
