@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './Calendar.css'
 
-function Calendar({ sessions }) {
+function Calendar({ sessions, onDateClick }) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(null)
   
@@ -50,11 +50,13 @@ function Calendar({ sessions }) {
   const getSessionsForDate = (date) => {
     if (!sessions) return []
     
-    const dateStr = date.toLocaleDateString('ko-KR')
-    return sessions.filter(session => {
-      const sessionDate = new Date(session.date).toLocaleDateString('ko-KR')
-      return sessionDate === dateStr
-    })
+    // 로컬 날짜 문자열 생성 (YYYY-MM-DD)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const dateStr = `${year}-${month}-${day}`
+    
+    return sessions.filter(session => session.date === dateStr)
   }
   
   // 이전/다음 달로 이동
@@ -79,12 +81,14 @@ function Calendar({ sessions }) {
   return (
     <div className="calendar-container">
       <div className="calendar-header">
-        <button onClick={() => navigateMonth(-1)} className="nav-button">‹</button>
-        <div className="calendar-title">
-          <h3>{currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월</h3>
+        <div className="calendar-month-row">
+          <button onClick={() => navigateMonth(-1)} className="nav-button">‹</button>
+          <h3 className="calendar-month-title">{currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월</h3>
+          <button onClick={() => navigateMonth(1)} className="nav-button">›</button>
+        </div>
+        <div className="calendar-controls">
           <button onClick={goToToday} className="today-button">오늘</button>
         </div>
-        <button onClick={() => navigateMonth(1)} className="nav-button">›</button>
       </div>
       
       <div className="calendar-grid">
@@ -97,47 +101,27 @@ function Calendar({ sessions }) {
         {days.map((day, index) => {
           const daySessions = getSessionsForDate(day.fullDate)
           const hasSession = daySessions.length > 0
-          const maxScore = hasSession ? Math.max(...daySessions.map(s => s.maxScore)) : 0
           
           return (
             <div
               key={index}
               className={`calendar-day ${day.isCurrentMonth ? '' : 'other-month'} ${isToday(day.fullDate) ? 'today' : ''} ${hasSession ? 'has-session' : ''} ${selectedDate?.toDateString() === day.fullDate.toDateString() ? 'selected' : ''}`}
-              onClick={() => setSelectedDate(day.fullDate)}
+              onClick={() => {
+                setSelectedDate(day.fullDate)
+                if (onDateClick) {
+                  onDateClick(day.fullDate)
+                }
+              }}
             >
               <div className="day-number">{day.date}</div>
               {hasSession && (
-                <div className="session-indicators">
-                  <div className="session-count">{daySessions.length}회</div>
-                  <div className={`session-score ${maxScore >= 80 ? 'high' : maxScore >= 50 ? 'medium' : 'low'}`}>
-                    {maxScore}%
-                  </div>
-                </div>
+                <div className="session-indicator"></div>
               )}
             </div>
           )
         })}
       </div>
       
-      {/* 선택된 날짜의 상세 정보 */}
-      {selectedDate && (
-        <div className="selected-date-details">
-          <h4>{selectedDate.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long' })}</h4>
-          {getSessionsForDate(selectedDate).length > 0 ? (
-            <div className="day-sessions">
-              {getSessionsForDate(selectedDate).map((session, idx) => (
-                <div key={idx} className="session-summary">
-                  <span className="session-time">{session.time}</span>
-                  <span className="session-type">{session.smileType || '미소 연습'}</span>
-                  <span className="session-score">{session.maxScore}%</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="no-sessions">이 날은 연습 기록이 없습니다.</p>
-          )}
-        </div>
-      )}
     </div>
   )
 }

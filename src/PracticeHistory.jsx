@@ -19,6 +19,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   const [showWeeklyReport, setShowWeeklyReport] = useState(false)
   const [viewMode, setViewMode] = useState('list') // 'list' 또는 'calendar'
   const [selectedCapture, setSelectedCapture] = useState(null) // 선택된 캡처 모달
+  const [selectedDate, setSelectedDate] = useState(null) // 선택된 날짜의 상세 정보
 
   // 컴포넌트 로드 시 기록 불러오기
   useEffect(() => {
@@ -371,39 +372,48 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
               onClick={() => setViewMode('list')}
             >
-              목록
+              오늘
             </button>
             <button 
               className={`view-btn ${viewMode === 'calendar' ? 'active' : ''}`}
               onClick={() => setViewMode('calendar')}
             >
-              캘린더
+              다이어리
             </button>
           </div>
         </div>
         
         {/* 캘린더 뷰 */}
         {viewMode === 'calendar' ? (
-          <Calendar sessions={history} />
+          <Calendar sessions={history} onDateClick={(date) => {
+            // 로컬 날짜 문자열 생성 (YYYY-MM-DD)
+            const year = date.getFullYear()
+            const month = String(date.getMonth() + 1).padStart(2, '0')
+            const day = String(date.getDate()).padStart(2, '0')
+            const dateStr = `${year}-${month}-${day}`
+            
+            const dateSessions = history.filter(session => session.date === dateStr)
+            if (dateSessions.length > 0) {
+              setSelectedDate({ date: dateStr, sessions: dateSessions })
+            } else {
+              // 기록이 없어도 날짜 정보는 표시
+              setSelectedDate({ date: dateStr, sessions: [] })
+            }
+          }} />
         ) : (
-          /* 목록 뷰 */
-          Object.keys(groupedHistory).length === 0 ? (
-            <p className="no-history">아직 연습 기록이 없습니다.</p>
-          ) : (
-            Object.entries(groupedHistory)
-            .sort(([a], [b]) => new Date(b) - new Date(a))
-            .map(([date, sessions]) => (
-              <div key={date} className="date-group">
+          /* 오늘의 기록 뷰 */
+          (() => {
+            const today = new Date().toISOString().split('T')[0]
+            const todaySessions = groupedHistory[today] || []
+            return todaySessions.length === 0 ? (
+              <p className="no-history">오늘은 아직 연습 기록이 없습니다.</p>
+            ) : (
+              <div key={today} className="date-group">
                 <h4 className="date-header">
-                  {new Date(date).toLocaleDateString('ko-KR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    weekday: 'long'
-                  })}
+                  오늘의 기록
                 </h4>
                 <div className="sessions-list">
-                  {sessions.map(session => (
+                  {todaySessions.map(session => (
                     <div key={session.id} className="session-card">
                       <div className="session-header">
                         <span className="session-type">{session.smileType || '미소 연습'}</span>
@@ -443,10 +453,128 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                   ))}
                 </div>
               </div>
-            ))
-          )
+            )
+          })()  
         )}
       </div>
+      
+      {/* 날짜별 상세 기록 모달 */}
+      {selectedDate && (
+        <div className="date-detail-modal-overlay" onClick={() => setSelectedDate(null)}>
+          <div className="date-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedDate(null)}>×</button>
+            <h3 className="modal-title">
+              {new Date(selectedDate.date).toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+              })}
+            </h3>
+            
+            <div className="modal-content">
+              {selectedDate.sessions.length > 0 ? (
+                <>
+                  {/* 그날의 통계 */}
+                  <div className="date-stats">
+                    <div className="stat-item">
+                      <span className="stat-number">{selectedDate.sessions.length}</span>
+                      <span className="stat-label">연습 횟수</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-number">
+                        {Math.max(...selectedDate.sessions.map(s => s.maxScore))}%
+                      </span>
+                      <span className="stat-label">최고 점수</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-number">
+                        {Math.round(
+                          selectedDate.sessions.reduce((sum, s) => sum + s.avgScore, 0) / 
+                          selectedDate.sessions.length
+                        )}%
+                      </span>
+                      <span className="stat-label">평균 점수</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-number">
+                        {formatDuration(
+                          selectedDate.sessions.reduce((sum, s) => sum + s.duration, 0)
+                        )}
+                      </span>
+                      <span className="stat-label">총 연습 시간</span>
+                    </div>
+                  </div>
+              
+              {/* 최고의 순간 사진들 */}
+              {selectedDate.sessions.some(s => s.metrics?.capturedPhoto) && (
+                <div className="date-captures">
+                  <h4>최고의 순간들 📸</h4>
+                  <div className="captures-grid">
+                    {selectedDate.sessions
+                      .filter(s => s.metrics?.capturedPhoto)
+                      .map(session => (
+                        <div 
+                          key={session.id} 
+                          className="capture-item"
+                          onClick={() => {
+                            setSelectedCapture({
+                              photo: session.metrics.capturedPhoto,
+                              analysis: session.metrics.capturedAnalysis,
+                              date: session.date,
+                              smileType: session.smileType
+                            })
+                            setSelectedDate(null)
+                          }}
+                        >
+                          <img 
+                            src={session.metrics.capturedPhoto} 
+                            alt="최고의 순간" 
+                            className="capture-thumb"
+                          />
+                          <div className="capture-info">
+                            <span className="capture-score">{session.maxScore}%</span>
+                            <span className="capture-time">{session.time}</span>
+                          </div>
+                        </div>
+                      ))
+                  }
+                  </div>
+                </div>
+              )}
+              
+              {/* 세션별 상세 정보 */}
+              <div className="date-sessions">
+                <h4>연습 세션 상세</h4>
+                {selectedDate.sessions.map(session => (
+                  <div key={session.id} className="session-detail">
+                    <div className="session-header">
+                      <span className="session-type">{session.smileType || '미소 연습'}</span>
+                      <span className="session-time">{session.time}</span>
+                    </div>
+                    <div className="session-metrics">
+                      <span>최고 점수: {session.maxScore}%</span>
+                      <span>평균 점수: {session.avgScore}%</span>
+                      <span>연습 시간: {formatDuration(session.duration)}</span>
+                    </div>
+                    {session.context && (
+                      <div className="session-context">
+                        <span>연습 상황: {session.context}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+                </>
+              ) : (
+                <div className="no-sessions-message">
+                  <p>이 날은 연습 기록이 없습니다.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* 최고의 순간 상세보기 모달 */}
       {selectedCapture && (

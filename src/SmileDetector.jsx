@@ -65,17 +65,15 @@ function SmileDetector({ user }) {
   useEffect(() => {
     return () => {
       // 컴포넌트 언마운트 시 카메라 정리
-      if (isStreaming) {
-        const stream = videoRef.current?.srcObject
-        if (stream) {
-          stream.getTracks().forEach(track => track.stop())
-        }
-        if (videoRef.current) {
-          videoRef.current.srcObject = null
-        }
+      if (videoRef.current && videoRef.current.srcObject) {
+        const tracks = videoRef.current.srcObject.getTracks()
+        tracks.forEach(track => {
+          track.stop()
+        })
+        videoRef.current.srcObject = null
       }
     }
-  }, [isStreaming])
+  }, [])
 
   // 미소 타입별 정보 - 전문적 근육 가이드 추가
   const smileTypes = {
@@ -270,7 +268,11 @@ function SmileDetector({ user }) {
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
       const tracks = videoRef.current.srcObject.getTracks()
-      tracks.forEach(track => track.stop())
+      tracks.forEach(track => {
+        track.stop()
+        console.log('Camera track stopped:', track.label)
+      })
+      videoRef.current.srcObject = null
       setIsStreaming(false)
       setIsDetecting(false)
     }
