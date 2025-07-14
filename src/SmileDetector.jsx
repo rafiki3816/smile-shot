@@ -46,13 +46,20 @@ function SmileDetector({ user }) {
   })
   
   // AR 근육 가이드 표시 상태
-  const [showMuscleGuide, setShowMuscleGuide] = useState(true)
+  const [showMuscleGuide] = useState(true)
   
   // 현재 점수 상태
   const [currentScore, setCurrentScore] = useState(0)
   
   // 카메라 좌우 반전 상태
   const [isMirrored, setIsMirrored] = useState(true)
+  
+  // 자동 캡처 관련 상태
+  const [capturedPhoto, setCapturedPhoto] = useState(null)
+  const [capturedAnalysis, setCapturedAnalysis] = useState(null)
+  
+  // 얼굴 위치 안내 상태
+  const [facePositionGuide, setFacePositionGuide] = useState('')
 
   // cleanup을 위한 useEffect
   useEffect(() => {
@@ -235,7 +242,11 @@ function SmileDetector({ user }) {
       }
       
       const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { width: 640, height: 480 } 
+        video: { 
+          width: { ideal: 720 },
+          height: { ideal: 1080 },
+          aspectRatio: { ideal: 2/3 }
+        } 
       })
       if (videoRef.current) {
         videoRef.current.srcObject = stream
@@ -280,6 +291,7 @@ function SmileDetector({ user }) {
 
   const handleEmotionSelect = (emotion) => {
     setEmotionBefore(emotion)
+    console.log('선택된 기분:', emotion)
     setCurrentStep('context')
   }
 
@@ -296,6 +308,9 @@ function SmileDetector({ user }) {
       return
     }
     setIsDetecting(true)
+    // 새 세션 시작 시 캡처 상태 초기화
+    setCapturedPhoto(null)
+    setCapturedAnalysis(null)
   }
 
   // 미소 감지 중지
@@ -304,6 +319,13 @@ function SmileDetector({ user }) {
     
     // 세션 저장
     if (sessionStartTime && maxScore > 0) {
+      // metrics 필드에 캡처 정보를 포함시켜 저장
+      const metricsWithCapture = {
+        ...maxScoreMetrics,
+        capturedPhoto: capturedPhoto || null,
+        capturedAnalysis: capturedAnalysis || null
+      }
+      
       const sessionData = {
         purpose: selectedPurpose,
         smile_type: smileTypes[smileContext]?.title || '미소',
@@ -312,7 +334,7 @@ function SmileDetector({ user }) {
         emotion_before: emotionBefore,
         emotion_after: emotionAfter || 'neutral',
         duration: Math.floor((Date.now() - sessionStartTime) / 1000),
-        metrics: maxScoreMetrics // 메트릭 정보 추가
+        metrics: metricsWithCapture // 캡처 정보가 포함된 메트릭
       }
       
       if (user) {
@@ -478,6 +500,42 @@ function SmileDetector({ user }) {
     return messages.slice(0, 2) // 2개로 줄여서 더 집중적으로
   }
 
+
+  // 사진 캡처 및 분석 정보 저장
+  const capturePhotoWithAnalysis = (metricsData, coaching, score) => {
+    if (!videoRef.current || !canvasRef.current) return
+    
+    const video = videoRef.current
+    const captureCanvas = document.createElement('canvas')
+    captureCanvas.width = video.videoWidth
+    captureCanvas.height = video.videoHeight
+    const captureCtx = captureCanvas.getContext('2d')
+    
+    // 이미지 그리기 (미러링 적용)
+    captureCtx.save()
+    if (isMirrored) {
+      captureCtx.translate(captureCanvas.width, 0)
+      captureCtx.scale(-1, 1)
+    }
+    captureCtx.drawImage(video, 0, 0)
+    captureCtx.restore()
+    
+    // 캡처한 이미지에는 텍스트를 포함하지 않음 (얼굴만 캡처)
+    
+    // 캡처한 이미지 저장
+    const imageData = captureCanvas.toDataURL('image/jpeg', 0.9)
+    setCapturedPhoto(imageData)
+    setCapturedAnalysis({
+      score,
+      metrics: metricsData,
+      coaching,
+      timestamp: new Date().toISOString()
+    })
+    
+    // 고정 ID를 사용하여 알림 업데이트
+    showToast(`새로운 최고 기록! ${score}점 📸`, 'success', 3000, 'high-score-toast')
+  }
+
   // 실시간 미소 감지
   const detectSmile = async () => {
     if (!videoRef.current || !canvasRef.current || !isDetecting) return
@@ -524,15 +582,6 @@ function SmileDetector({ user }) {
             setEncouragementLevel(prev => Math.min(5, prev + 0.1))
           }
           
-          if (score > maxScore && smileQuality.naturalness > 0.6) {
-            setMaxScore(score)
-            setMaxScoreMetrics({
-              confidence: Math.round(smileQuality.confidence * 100),
-              stability: Math.round(smileQuality.stability * 100),
-              naturalness: Math.round(smileQuality.naturalness * 100)
-            })
-          }
-          
           // 코칭 메시지 업데이트
           const coaching = getContextualCoaching(smileQuality, expressions, smileContext)
           setCurrentCoachingMessages(coaching)
@@ -551,6 +600,22 @@ function SmileDetector({ user }) {
             tertiary: { 
               label: smileTypes[smileContext].metrics.tertiary, 
               value: Math.round(smileQuality.naturalness * 100)
+            }
+          }
+          
+          // 최고 점수 갱신 및 캡처 - 자연스러움 조건 확인 후
+          if (score > maxScore && smileQuality.naturalness > 0.6) {
+            setMaxScore(score)
+            setMaxScoreMetrics({
+              confidence: Math.round(smileQuality.confidence * 100),
+              stability: Math.round(smileQuality.stability * 100),
+              naturalness: Math.round(smileQuality.naturalness * 100)
+            })
+            console.log('새로운 최고 점수:', score)
+            
+            // 최고 점수가 실제로 갱신될 때만 캡처
+            if (isDetecting) {
+              capturePhotoWithAnalysis(metricsData, coaching, score)
             }
           }
           
@@ -588,6 +653,38 @@ function SmileDetector({ user }) {
           const centerX = adjustedBox.x + adjustedBox.width / 2
           const centerY = adjustedBox.y + adjustedBox.height / 2
           const radius = Math.min(adjustedBox.width, adjustedBox.height) / 2 * 0.85
+          
+          // 화면 중앙 계산
+          const screenCenterX = displayWidth / 2
+          const screenCenterY = displayHeight / 2
+          
+          // 얼굴 위치 확인 (화면의 중앙 30% 영역 내에 있는지)
+          const centerThreshold = 0.15 // 화면 크기의 15%
+          const xOffset = Math.abs(centerX - screenCenterX) / displayWidth
+          const yOffset = Math.abs(centerY - screenCenterY) / displayHeight
+          
+          // 위치 안내 메시지 설정
+          if (xOffset > centerThreshold || yOffset > centerThreshold) {
+            let guide = '얼굴을 '
+            if (yOffset > centerThreshold) {
+              if (centerY < screenCenterY) guide += '아래로 '
+              else guide += '위로 '
+            }
+            if (xOffset > centerThreshold) {
+              // 거울 모드일 때는 좌우 방향을 반대로 안내
+              if (isMirrored) {
+                if (centerX < screenCenterX) guide += '왼쪽으로 '
+                else guide += '오른쪽으로 '
+              } else {
+                if (centerX < screenCenterX) guide += '오른쪽으로 '
+                else guide += '왼쪽으로 '
+              }
+            }
+            guide += '움직여주세요'
+            setFacePositionGuide(guide)
+          } else {
+            setFacePositionGuide('')
+          }
 
           // 근육 가이드가 비활성화되어 있을 때만 원형 트래킹 표시
           if (!showMuscleGuide) {
@@ -664,22 +761,51 @@ function SmileDetector({ user }) {
               // 근육명 표시
               ctx.save() // 현재 상태 저장
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
-              ctx.fillStyle = '#10b981'
               ctx.textAlign = 'center'
+              
+              // 텍스트 크기 측정
+              const text = '대관골근'
+              const textMetrics = ctx.measureText(text)
+              const textWidth = textMetrics.width
+              const textHeight = 14
+              const padding = 4
               
               // 미러 모드일 때 텍스트도 반전되므로 다시 반전시켜 정상적으로 보이게 함
               if (isMirrored) {
                 ctx.translate(leftCheek.x, leftCheek.y - 25)
                 ctx.scale(-1, 1)
-                ctx.fillText('대관골근', 0, 0)
+                
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(-textWidth/2 - padding, -textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#10b981'
+                ctx.fillText(text, 0, 0)
                 ctx.setTransform(1, 0, 0, 1, 0, 0)
                 
                 ctx.translate(rightCheek.x, rightCheek.y - 25)
                 ctx.scale(-1, 1)
-                ctx.fillText('대관골근', 0, 0)
+                
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(-textWidth/2 - padding, -textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#10b981'
+                ctx.fillText(text, 0, 0)
               } else {
-                ctx.fillText('대관골근', leftCheek.x, leftCheek.y - 25)
-                ctx.fillText('대관골근', rightCheek.x, rightCheek.y - 25)
+                // 왼쪽 대관골근
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(leftCheek.x - textWidth/2 - padding, leftCheek.y - 25 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                ctx.fillStyle = '#10b981'
+                ctx.fillText(text, leftCheek.x, leftCheek.y - 25)
+                
+                // 오른쪽 대관골근
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(rightCheek.x - textWidth/2 - padding, rightCheek.y - 25 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                ctx.fillStyle = '#10b981'
+                ctx.fillText(text, rightCheek.x, rightCheek.y - 25)
               }
               ctx.restore() // 상태 복원
               
@@ -752,16 +878,35 @@ function SmileDetector({ user }) {
               // 근육명 표시
               ctx.save()
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
-              ctx.fillStyle = '#3B82F6'
               ctx.textAlign = 'center'
               const eyeCenterX = (leftEyeInner.x + rightEyeInner.x) / 2
+              
+              // 텍스트 크기 측정
+              const eyeText = '눈둘레근'
+              const eyeTextMetrics = ctx.measureText(eyeText)
+              const eyeTextWidth = eyeTextMetrics.width
+              const textHeight = 14
+              const padding = 4
               
               if (isMirrored) {
                 ctx.translate(eyeCenterX, leftEyeOuter.y - 20)
                 ctx.scale(-1, 1)
-                ctx.fillText('눈둘레근', 0, 0)
+                
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(-eyeTextWidth/2 - padding, -textHeight/2 - padding, eyeTextWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#3B82F6'
+                ctx.fillText(eyeText, 0, 0)
               } else {
-                ctx.fillText('눈둘레근', eyeCenterX, leftEyeOuter.y - 20)
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(eyeCenterX - eyeTextWidth/2 - padding, leftEyeOuter.y - 20 - textHeight/2 - padding, eyeTextWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#3B82F6'
+                ctx.fillText(eyeText, eyeCenterX, leftEyeOuter.y - 20)
               }
               ctx.restore()
             }
@@ -809,16 +954,35 @@ function SmileDetector({ user }) {
               // 근육명 표시
               ctx.save()
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
-              ctx.fillStyle = '#8B5CF6'
               ctx.textAlign = 'center'
               const mouthCenterX = (mouthLeft.x + mouthRight.x) / 2
+              
+              // 텍스트 크기 측정
+              const mouthText = '구륜근'
+              const mouthTextMetrics = ctx.measureText(mouthText)
+              const mouthTextWidth = mouthTextMetrics.width
+              const textHeight = 14
+              const padding = 4
               
               if (isMirrored) {
                 ctx.translate(mouthCenterX, mouthBottom.y + 25)
                 ctx.scale(-1, 1)
-                ctx.fillText('구륜근', 0, 0)
+                
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(-mouthTextWidth/2 - padding, -textHeight/2 - padding, mouthTextWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#8B5CF6'
+                ctx.fillText(mouthText, 0, 0)
               } else {
-                ctx.fillText('구륜근', mouthCenterX, mouthBottom.y + 25)
+                // 흰색 배경 그리기
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                ctx.fillRect(mouthCenterX - mouthTextWidth/2 - padding, mouthBottom.y + 25 - textHeight/2 - padding, mouthTextWidth + padding*2, textHeight + padding*2)
+                
+                // 텍스트 그리기
+                ctx.fillStyle = '#8B5CF6'
+                ctx.fillText(mouthText, mouthCenterX, mouthBottom.y + 25)
               }
               ctx.restore()
               
@@ -848,6 +1012,7 @@ function SmileDetector({ user }) {
         } else {
           // 얼굴을 찾지 못했을 때도 DOM으로 표시
           setCurrentCoachingMessages(['편안하게 자리를 잡아주세요'])
+          setFacePositionGuide('화면에 얼굴이 보이도록 카메라를 조정해주세요')
         }
 
       } catch (error) {
@@ -1092,27 +1257,13 @@ function SmileDetector({ user }) {
                   </div>
                 )}
                 
-                {/* 근육 가이드 토글 버튼 - 우측 상단 */}
-                <button 
-                  className={`muscle-guide-toggle ${showMuscleGuide ? 'active' : ''}`}
-                  onClick={() => setShowMuscleGuide(!showMuscleGuide)}
-                  aria-label={showMuscleGuide ? "근육 가이드 숨기기" : "근육 가이드 보기"}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    {showMuscleGuide ? (
-                      <>
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </>
-                    ) : (
-                      <>
-                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                        <line x1="1" y1="1" x2="23" y2="23"></line>
-                      </>
-                    )}
-                  </svg>
-                  <span className="toggle-text">{showMuscleGuide ? '근육 가이드 ON' : '근육 가이드 OFF'}</span>
-                </button>
+                {/* 얼굴 위치 안내 메시지 - 카메라 화면 내부 하단 */}
+                {isDetecting && facePositionGuide && (
+                  <div className="face-position-guide">
+                    <span className="guide-icon">📍</span>
+                    <span className="guide-text">{facePositionGuide}</span>
+                  </div>
+                )}
               </div>
               
               {/* 코칭 메시지 영역 - 카메라 바로 아래 */}
@@ -1127,6 +1278,7 @@ function SmileDetector({ user }) {
                   </div>
                 </div>
               )}
+              
             </div>
 
             {/* 모바일에서는 간소화된 실시간 분석 */}
@@ -1312,10 +1464,11 @@ function SmileDetector({ user }) {
           <div className="completion-card">
             <h4>연습 완료!</h4>
             <p>오늘의 {smileTypes[smileContext]?.title} 연습이 끝났습니다.</p>
+            {console.log('완료 화면 - emotionBefore:', emotionBefore, 'emotionAfter:', emotionAfter)}
             <div className="session-summary">
               <div className="summary-item">
                 <span className="summary-label">최고 점수</span>
-                <span className="summary-value score">{maxScore}%</span>
+                <span className="summary-value score">{maxScore || 0}%</span>
               </div>
               <div className="summary-item">
                 <span className="summary-label">연습한 미소</span>
@@ -1324,12 +1477,49 @@ function SmileDetector({ user }) {
               <div className="summary-item">
                 <span className="summary-label">기분 변화</span>
                 <span className="summary-value mood-change">
-                  <span className="mood-before">{emotionBefore === 'happy' ? '좋음' : emotionBefore === 'neutral' ? '보통' : '우울'}</span>
+                  <span className="mood-before">{emotionBefore === 'happy' ? '좋음' : emotionBefore === 'neutral' ? '보통' : emotionBefore === 'sad' ? '힘듦' : ''}</span>
                   <span className="mood-arrow">→</span>
-                  <span className="mood-after">{emotionAfter === 'happy' ? '좋음' : emotionAfter === 'neutral' ? '보통' : '우울'}</span>
+                  <span className="mood-after">{emotionAfter === 'better' ? '좋음' : emotionAfter === 'same' ? '보통' : emotionAfter === 'tired' ? '피곤' : '보통'}</span>
                 </span>
               </div>
             </div>
+            
+            {/* 최고의 순간 - 캡처된 사진 표시 */}
+            {capturedPhoto && capturedAnalysis && (
+              <div className="captured-photo-section">
+                <h3 className="captured-title">최고의 순간 📸</h3>
+                <div className="captured-photo-container">
+                  <img src={capturedPhoto} alt="캡처된 미소" className="captured-photo" />
+                </div>
+                <div className="captured-photo-info">
+                  <div className="info-score">
+                    <span className="info-label">점수</span>
+                    <span className="info-value">{capturedAnalysis.score}%</span>
+                  </div>
+                  <div className="info-metrics">
+                    <div className="metric-item">
+                      <span className="metric-label">{capturedAnalysis.metrics.primary.label}</span>
+                      <span className="metric-value">{capturedAnalysis.metrics.primary.value}%</span>
+                    </div>
+                    <div className="metric-item">
+                      <span className="metric-label">{capturedAnalysis.metrics.secondary.label}</span>
+                      <span className="metric-value">{capturedAnalysis.metrics.secondary.value}%</span>
+                    </div>
+                    <div className="metric-item">
+                      <span className="metric-label">{capturedAnalysis.metrics.tertiary.label}</span>
+                      <span className="metric-value">{capturedAnalysis.metrics.tertiary.value}%</span>
+                    </div>
+                  </div>
+                  {capturedAnalysis.coaching && capturedAnalysis.coaching.length > 0 && (
+                    <div className="info-coaching">
+                      {capturedAnalysis.coaching.map((message, index) => (
+                        <p key={index} className="coaching-tip">{message}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
             
             {!user && (
               <div className="signup-prompt-box">
@@ -1339,7 +1529,7 @@ function SmileDetector({ user }) {
                 브라우저를 닫으면 모든 기록이 사라집니다.</p>
                 <p className="highlight-text">지금 회원가입하고 모든 기록을 영구 보관하세요!</p>
                 <button onClick={() => navigate('/signup')} className="signup-cta-btn">
-                  무료 회원가입하고 기록 저장하기
+                  회원가입하고 기록 저장하기
                 </button>
               </div>
             )}

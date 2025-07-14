@@ -18,6 +18,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   const [weeklyReport, setWeeklyReport] = useState(null)
   const [showWeeklyReport, setShowWeeklyReport] = useState(false)
   const [viewMode, setViewMode] = useState('list') // 'list' 또는 'calendar'
+  const [selectedCapture, setSelectedCapture] = useState(null) // 선택된 캡처 모달
 
   // 컴포넌트 로드 시 기록 불러오기
   useEffect(() => {
@@ -419,6 +420,25 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                           </span>
                         )}
                       </div>
+                      {/* 캡처된 최고의 순간 표시 */}
+                      {session.metrics?.capturedPhoto && (
+                        <div 
+                          className="session-capture"
+                          onClick={() => setSelectedCapture({
+                            photo: session.metrics.capturedPhoto,
+                            analysis: session.metrics.capturedAnalysis,
+                            date: session.date,
+                            smileType: session.smileType
+                          })}
+                        >
+                          <img 
+                            src={session.metrics.capturedPhoto} 
+                            alt="최고의 순간" 
+                            className="session-capture-thumb"
+                          />
+                          <span className="capture-label">최고의 순간</span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -427,6 +447,60 @@ function PracticeHistory({ user, onNavigateToPractice }) {
           )
         )}
       </div>
+      
+      {/* 최고의 순간 상세보기 모달 */}
+      {selectedCapture && (
+        <div className="capture-modal-overlay" onClick={() => setSelectedCapture(null)}>
+          <div className="capture-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedCapture(null)}>×</button>
+            <h3 className="modal-title">최고의 순간 📸</h3>
+            
+            <div className="modal-content">
+              <img 
+                src={selectedCapture.photo} 
+                alt="최고의 순간" 
+                className="modal-photo"
+              />
+              
+              {selectedCapture.analysis && (
+                <div className="modal-analysis">
+                  <div className="analysis-score">
+                    <span className="score-label">점수</span>
+                    <span className="score-value">{selectedCapture.analysis.score}%</span>
+                  </div>
+                  
+                  <div className="analysis-metrics">
+                    {selectedCapture.analysis.metrics && Object.entries({
+                      primary: selectedCapture.analysis.metrics.primary,
+                      secondary: selectedCapture.analysis.metrics.secondary,
+                      tertiary: selectedCapture.analysis.metrics.tertiary
+                    }).map(([key, metric]) => (
+                      <div key={key} className="metric-row">
+                        <span className="metric-label">{metric.label}</span>
+                        <span className="metric-value">{metric.value}%</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {selectedCapture.analysis.coaching && selectedCapture.analysis.coaching.length > 0 && (
+                    <div className="analysis-coaching">
+                      <h4>코칭 메시지</h4>
+                      {selectedCapture.analysis.coaching.map((message, idx) => (
+                        <p key={idx} className="coaching-message">{message}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              <div className="modal-info">
+                <span className="info-date">{selectedCapture.date}</span>
+                <span className="info-type">{selectedCapture.smileType}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
