@@ -1053,10 +1053,8 @@ function SmileDetector({ user }) {
     setCurrentSmileType('')
     setCurrentScore(0)
     
-    // 잠시 후 카메라 재시작
-    setTimeout(() => {
-      startCamera()
-    }, 100)
+    // 카메라는 practice 단계에서만 시작되도록 함
+    // startCamera() 호출 제거
   }
 
   // AI 모델 로딩 중일 때 스켈레톤 UI
