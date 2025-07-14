@@ -65,13 +65,8 @@ function SmileDetector({ user }) {
   useEffect(() => {
     return () => {
       // 컴포넌트 언마운트 시 카메라 정리
-      if (videoRef.current && videoRef.current.srcObject) {
-        const tracks = videoRef.current.srcObject.getTracks()
-        tracks.forEach(track => {
-          track.stop()
-        })
-        videoRef.current.srcObject = null
-      }
+      console.log('Component unmounting, cleaning up camera...')
+      stopCamera()
     }
   }, [])
 
@@ -283,16 +278,56 @@ function SmileDetector({ user }) {
 
   // 카메라 중지
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const tracks = videoRef.current.srcObject.getTracks()
-      tracks.forEach(track => {
-        track.stop()
-        console.log('Camera track stopped:', track.label)
-      })
-      videoRef.current.srcObject = null
-      setIsStreaming(false)
-      setIsDetecting(false)
+    console.log('Stopping camera...')
+    
+    // 감지 먼저 중지
+    setIsDetecting(false)
+    
+    try {
+      if (videoRef.current) {
+        // 비디오 일시정지
+        videoRef.current.pause()
+        
+        if (videoRef.current.srcObject) {
+          const stream = videoRef.current.srcObject
+          
+          // 모든 트랙 가져오기
+          const tracks = stream.getTracks()
+          
+          // 각 트랙을 개별적으로 중지
+          tracks.forEach(track => {
+            track.stop()
+            track.enabled = false
+            console.log('Camera track stopped:', track.label, track.readyState)
+          })
+          
+          // 스트림에서 트랙 제거
+          tracks.forEach(track => {
+            stream.removeTrack(track)
+          })
+          
+          // 비디오 요소 완전 정리
+          videoRef.current.srcObject = null
+          videoRef.current.load()
+          
+          // 모바일을 위한 추가 정리
+          videoRef.current.src = ''
+        }
+      }
+      
+      // Canvas도 정리
+      if (canvasRef.current) {
+        const ctx = canvasRef.current.getContext('2d')
+        ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+      }
+      
+    } catch (error) {
+      console.error('Error stopping camera:', error)
     }
+    
+    // 상태 업데이트
+    setIsStreaming(false)
+    console.log('Camera stopped successfully')
   }
 
   // 단계별 진행
@@ -434,25 +469,90 @@ function SmileDetector({ user }) {
     let smileType = smileTypes[context].title
     let therapeuticValue = 0
     
-    if (context === 'joy') {
-      const joyfulness = happiness * 0.8 + surprise * 0.3 - sad * 0.2 + baseScore
-      contextualScore = Math.max(0.3, Math.min(1, joyfulness))
-      therapeuticValue = contextualScore
-    } else if (context === 'social') {
-      const sociability = happiness * 0.6 + neutral * 0.3 - fear * 0.2 + baseScore
-      contextualScore = Math.max(0.3, Math.min(1, sociability))
-      therapeuticValue = contextualScore * 0.9
-    } else { // practice (자기계발)
-      const progress = happiness * 0.7 + (1 - fear) * 0.2 + baseScore
-      contextualScore = Math.max(0.3, Math.min(1, progress))
-      therapeuticValue = contextualScore * 0.85
-    }
-    
+    // 공통 지표 계산
     // 안정감: 부정적 감정이 적을수록 높음
     const comfort = Math.max(0.4, Math.min(1, 1 - (fear * 0.3 + angry * 0.2 + sad * 0.2)))
     
     // 자연스러움: 행복과 중립의 균형
     const naturalness = Math.max(0.35, Math.min(1, happiness * 0.5 + neutral * 0.2 + (1 - angry) * 0.3))
+    
+    if (context === 'joy') {
+      // 진정한 기쁨은 매우 어렵다 - 뒤센 미소 필수
+      const eyeWrinkles = surprise * 0.5 + happiness * 0.5 // 눈가 주름이 핵심
+      
+      // 진정성: 눈과 입이 함께 웃어야 함
+      const authenticity = (happiness > 0.8 && eyeWrinkles > 0.6) 
+        ? happiness * 0.7 + eyeWrinkles * 0.3 - sad * 0.5 - fear * 0.3
+        : (happiness * 0.5 + eyeWrinkles * 0.2) * 0.6 // 조건 미달시 큰 감점
+      
+      // 밝기: 과하지도 부족하지도 않은 적절한 강도
+      const optimalHappiness = 1 - Math.abs(happiness - 0.85) * 2 // 85%가 최적
+      const brightness = optimalHappiness * 0.6 + (1 - neutral) * 0.2 + (1 - sad) * 0.2
+      
+      // 감정 표현력: 진짜 기쁨은 희귀하다
+      const genuineThreshold = 0.75 // 75% 이상만 진짜로 인정
+      const emotionalExpression = happiness > genuineThreshold 
+        ? (happiness * 0.5 + eyeWrinkles * 0.4 + (1 - neutral) * 0.1) * 0.8
+        : (happiness * 0.3 + eyeWrinkles * 0.2) * 0.5 // 미달시 큰 감점
+      
+      // 3가지 지표의 평균으로 계산
+      contextualScore = (authenticity + brightness + emotionalExpression) / 3
+      
+      // 디버깅: 기쁨의 미소 계산 로그
+      console.log('기쁨의 미소 계산:', {
+        진정성: Math.round(authenticity * 100),
+        밝기: Math.round(brightness * 100),
+        감정표현력: Math.round(emotionalExpression * 100),
+        평균점수_계산전: Math.round(contextualScore * 100),
+        평균점수_최종: Math.round(Math.max(0.3, Math.min(1, contextualScore)) * 100)
+      })
+      
+      contextualScore = Math.max(0.3, Math.min(1, contextualScore))
+      therapeuticValue = contextualScore
+      
+      // 개별 점수 저장
+      var individualScores = {
+        authenticity: Math.round(Math.min(100, authenticity * 100)),
+        brightness: Math.round(Math.min(100, brightness * 100)),
+        emotionalExpression: Math.round(Math.min(100, emotionalExpression * 100))
+      }
+      
+    } else if (context === 'social') {
+      // 친화력: 따뜻하고 다가가기 쉬운 표정
+      const affinity = happiness * 0.6 + neutral * 0.2 + surprise * 0.1 - fear * 0.1 + baseScore
+      
+      // 신뢰감: 안정적이고 진실한 표정
+      const trustworthiness = comfort * 0.5 + (1 - fear) * 0.3 + (1 - angry) * 0.2 + baseScore
+      
+      // 편안함: 긴장감 없이 자연스러운 표현
+      const easiness = naturalness * 0.6 + (1 - fear) * 0.2 + neutral * 0.2 + baseScore
+      
+      // 3가지 지표의 평균으로 계산
+      contextualScore = (affinity + trustworthiness + easiness) / 3
+      contextualScore = Math.max(0.3, Math.min(1, contextualScore))
+      therapeuticValue = contextualScore * 0.9
+      
+      // 개별 점수 저장
+      var individualScores = {
+        affinity: Math.round(Math.min(100, affinity * 100)),
+        trustworthiness: Math.round(Math.min(100, trustworthiness * 100)),
+        easiness: Math.round(Math.min(100, easiness * 100))
+      }
+      
+    } else { // practice (자기계발)
+      // 자신감 지수 계산
+      const confidence = happiness * 0.6 + neutral * 0.2 + (1 - fear) * 0.2 + baseScore
+      
+      // 3가지 지표의 평균으로 전체 점수 계산
+      contextualScore = (confidence + comfort + naturalness) / 3
+      contextualScore = Math.max(0.3, Math.min(1, contextualScore))
+      therapeuticValue = contextualScore * 0.85
+      
+      // 개별 점수 저장
+      var individualScores = {
+        confidence: Math.round(Math.min(100, confidence * 100))
+      }
+    }
     const eyeEngagement = surprise * 0.6 + happiness * 0.4
     const wellness = (happiness + (1-sad) + (1-fear) + (1-angry)) / 4
     
@@ -464,7 +564,8 @@ function SmileDetector({ user }) {
       therapeuticValue: Math.min(1, therapeuticValue),
       wellness: wellness,
       comfort: comfort,
-      context: context
+      context: context,
+      individualScores: individualScores
     }
   }
 
@@ -615,19 +716,56 @@ function SmileDetector({ user }) {
           setCurrentCoachingMessages(coaching)
           setCurrentSmileType(smileQuality.type)
           
-          // 메트릭 업데이트 - 실제 분석된 값 사용
-          const metricsData = {
-            primary: { 
-              label: smileTypes[smileContext].metrics.primary, 
-              value: Math.round(smileQuality.therapeuticValue * 100)
-            },
-            secondary: { 
-              label: smileTypes[smileContext].metrics.secondary, 
-              value: Math.round(smileQuality.comfort * 100)
-            },
-            tertiary: { 
-              label: smileTypes[smileContext].metrics.tertiary, 
-              value: Math.round(smileQuality.naturalness * 100)
+          // 메트릭 업데이트 - 상황별로 올바른 값 매핑
+          let metricsData = {}
+          
+          if (smileContext === 'joy') {
+            // 기쁨의 미소: 진정성, 밝기, 감정표현력
+            metricsData = {
+              primary: { 
+                label: smileTypes[smileContext].metrics.primary, 
+                value: smileQuality.individualScores?.authenticity || Math.round(smileQuality.therapeuticValue * 100)
+              },
+              secondary: { 
+                label: smileTypes[smileContext].metrics.secondary, 
+                value: smileQuality.individualScores?.brightness || Math.round(smileQuality.comfort * 100)
+              },
+              tertiary: { 
+                label: smileTypes[smileContext].metrics.tertiary, 
+                value: smileQuality.individualScores?.emotionalExpression || Math.round(smileQuality.naturalness * 100)
+              }
+            }
+          } else if (smileContext === 'social') {
+            // 소통의 미소: 친화력, 신뢰감, 편안함
+            metricsData = {
+              primary: { 
+                label: smileTypes[smileContext].metrics.primary, 
+                value: smileQuality.individualScores?.affinity || Math.round(smileQuality.therapeuticValue * 100)
+              },
+              secondary: { 
+                label: smileTypes[smileContext].metrics.secondary, 
+                value: smileQuality.individualScores?.trustworthiness || Math.round(smileQuality.comfort * 100)
+              },
+              tertiary: { 
+                label: smileTypes[smileContext].metrics.tertiary, 
+                value: smileQuality.individualScores?.easiness || Math.round(smileQuality.naturalness * 100)
+              }
+            }
+          } else { // practice
+            // 자기계발 미소: 자신감, 안정감, 자연스러움
+            metricsData = {
+              primary: { 
+                label: smileTypes[smileContext].metrics.primary, 
+                value: smileQuality.individualScores?.confidence || Math.round(smileQuality.therapeuticValue * 100)
+              },
+              secondary: { 
+                label: smileTypes[smileContext].metrics.secondary, 
+                value: Math.round(smileQuality.comfort * 100)
+              },
+              tertiary: { 
+                label: smileTypes[smileContext].metrics.tertiary, 
+                value: Math.round(smileQuality.naturalness * 100)
+              }
             }
           }
           
@@ -1346,8 +1484,19 @@ function SmileDetector({ user }) {
             {/* 연습 그만하기 버튼 - 분석 패널 바로 아래 */}
             <div className="practice-controls">
               <button onClick={() => {
+                console.log('Stop practice button clicked')
                 stopDetection()
-                stopCamera()
+                
+                // 비디오 즉시 숨기기
+                if (videoRef.current) {
+                  videoRef.current.style.display = 'none'
+                }
+                
+                // 약간의 딜레이 후 카메라 정리
+                setTimeout(() => {
+                  stopCamera()
+                }, 100)
+                
                 setCurrentStep('feedback')
               }} className="stop-practice-btn">
                 연습 그만하기
