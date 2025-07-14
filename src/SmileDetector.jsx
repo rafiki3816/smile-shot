@@ -239,13 +239,27 @@ function SmileDetector({ user }) {
         }
       }
       
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
-          width: { ideal: 720 },
-          height: { ideal: 1080 },
-          aspectRatio: { ideal: 2/3 }
-        } 
-      })
+      // 모바일 기기 감지
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+      
+      // 모바일은 화면 비율에 맞게, 데스크톱은 2:3 비율로
+      const videoConstraints = isMobile 
+        ? { 
+            video: { 
+              facingMode: 'user',
+              width: { ideal: 1280 },
+              height: { ideal: 720 }
+            } 
+          }
+        : { 
+            video: { 
+              width: { ideal: 720 },
+              height: { ideal: 1080 },
+              aspectRatio: { ideal: 2/3 }
+            } 
+          }
+      
+      const stream = await navigator.mediaDevices.getUserMedia(videoConstraints)
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         setIsStreaming(true)
