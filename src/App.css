@@ -498,23 +498,67 @@
 }
 
 .session-summary {
-  background: rgba(16, 185, 129, 0.1);
-  padding: 20px;
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-bottom: 24px;
-  text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.session-summary div {
-  color: var(--text-primary);
+.summary-item {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.summary-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+  transform: translateX(4px);
+}
+
+.summary-label {
+  color: var(--text-secondary);
   font-size: 0.95rem;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   font-weight: 500;
 }
 
-.session-summary div:last-child {
-  border-bottom: none;
+.summary-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.summary-value.score {
+  color: var(--emerald-green);
+  font-size: 1.25rem;
+}
+
+.summary-value.smile-type {
+  color: var(--text-primary);
+}
+
+.summary-value.mood-change {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mood-before, .mood-after {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mood-arrow {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0 4px;
 }
 
 .restart-btn {
@@ -1126,7 +1170,7 @@
   pointer-events: none;
 }
 
-/* 근육 가이드 토글 버튼 */
+/* 토글 버튼 공통 스타일 */
 .muscle-guide-toggle {
   position: absolute;
   top: 16px;
@@ -1160,6 +1204,7 @@
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
+
 
 .muscle-guide-toggle svg {
   width: 16px;
@@ -3801,5 +3846,32 @@
   .action-btn {
     padding: 16px 28px;
     font-size: 15px;
+  }
+}
+
+/* 모바일 반응형 - 세션 요약 */
+@media (max-width: 768px) {
+  .session-summary {
+    gap: 10px;
+  }
+  
+  .summary-item {
+    padding: 14px 16px;
+  }
+  
+  .summary-label {
+    font-size: 0.9rem;
+  }
+  
+  .summary-value {
+    font-size: 1rem;
+  }
+  
+  .summary-value.score {
+    font-size: 1.15rem;
+  }
+  
+  .mood-before, .mood-after {
+    font-size: 0.95rem;
   }
 }

@@ -50,6 +50,9 @@ function SmileDetector({ user }) {
   
   // 현재 점수 상태
   const [currentScore, setCurrentScore] = useState(0)
+  
+  // 카메라 좌우 반전 상태
+  const [isMirrored, setIsMirrored] = useState(true)
 
   // cleanup을 위한 useEffect
   useEffect(() => {
@@ -618,10 +621,15 @@ function SmileDetector({ user }) {
             const scaleY = displayHeight / video.videoHeight
             
             // 랜드마크 포인트를 캔버스 좌표로 변환하는 함수
-            const getLandmarkPoint = (index) => ({
-              x: positions[index].x * scaleX,
-              y: positions[index].y * scaleY
-            })
+            const getLandmarkPoint = (index) => {
+              const x = positions[index].x * scaleX
+              const y = positions[index].y * scaleY
+              // 미러 모드일 때 X 좌표 반전
+              return {
+                x: isMirrored ? displayWidth - x : x,
+                y: y
+              }
+            }
             
             // 1. 대관골근(광대근) 표시 - 실제 볼 위치
             if (happiness < 0.5 || (currentCoachingMessages && currentCoachingMessages.some(msg => msg.includes('광대근')))) {
@@ -654,11 +662,26 @@ function SmileDetector({ user }) {
               ctx.fill()
               
               // 근육명 표시
+              ctx.save() // 현재 상태 저장
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
               ctx.fillStyle = '#10b981'
               ctx.textAlign = 'center'
-              ctx.fillText('대관골근', leftCheek.x, leftCheek.y - 25)
-              ctx.fillText('대관골근', rightCheek.x, rightCheek.y - 25)
+              
+              // 미러 모드일 때 텍스트도 반전되므로 다시 반전시켜 정상적으로 보이게 함
+              if (isMirrored) {
+                ctx.translate(leftCheek.x, leftCheek.y - 25)
+                ctx.scale(-1, 1)
+                ctx.fillText('대관골근', 0, 0)
+                ctx.setTransform(1, 0, 0, 1, 0, 0)
+                
+                ctx.translate(rightCheek.x, rightCheek.y - 25)
+                ctx.scale(-1, 1)
+                ctx.fillText('대관골근', 0, 0)
+              } else {
+                ctx.fillText('대관골근', leftCheek.x, leftCheek.y - 25)
+                ctx.fillText('대관골근', rightCheek.x, rightCheek.y - 25)
+              }
+              ctx.restore() // 상태 복원
               
               // 움직임 가이드 화살표
               ctx.strokeStyle = '#10b981'
@@ -727,11 +750,20 @@ function SmileDetector({ user }) {
               ctx.setLineDash([])
               
               // 근육명 표시
+              ctx.save()
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
               ctx.fillStyle = '#3B82F6'
               ctx.textAlign = 'center'
               const eyeCenterX = (leftEyeInner.x + rightEyeInner.x) / 2
-              ctx.fillText('눈둘레근', eyeCenterX, leftEyeOuter.y - 20)
+              
+              if (isMirrored) {
+                ctx.translate(eyeCenterX, leftEyeOuter.y - 20)
+                ctx.scale(-1, 1)
+                ctx.fillText('눈둘레근', 0, 0)
+              } else {
+                ctx.fillText('눈둘레근', eyeCenterX, leftEyeOuter.y - 20)
+              }
+              ctx.restore()
             }
             
             // 3. 구륜근(입둘레근) 표시 - 실제 입 주위
@@ -775,10 +807,20 @@ function SmileDetector({ user }) {
               ctx.setLineDash([])
               
               // 근육명 표시
+              ctx.save()
               ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
               ctx.fillStyle = '#8B5CF6'
               ctx.textAlign = 'center'
-              ctx.fillText('구륜근', (mouthLeft.x + mouthRight.x) / 2, mouthBottom.y + 25)
+              const mouthCenterX = (mouthLeft.x + mouthRight.x) / 2
+              
+              if (isMirrored) {
+                ctx.translate(mouthCenterX, mouthBottom.y + 25)
+                ctx.scale(-1, 1)
+                ctx.fillText('구륜근', 0, 0)
+              } else {
+                ctx.fillText('구륜근', mouthCenterX, mouthBottom.y + 25)
+              }
+              ctx.restore()
               
               // 움직임 가이드 화살표
               ctx.strokeStyle = '#8B5CF6'
@@ -1024,7 +1066,10 @@ function SmileDetector({ user }) {
                   ref={videoRef} 
                   autoPlay 
                   playsInline 
-                  style={{ width: '100%' }}
+                  style={{ 
+                    width: '100%',
+                    transform: isMirrored ? 'scaleX(-1)' : 'scaleX(1)' 
+                  }}
                 />
                 <canvas 
                   ref={canvasRef}
@@ -1033,7 +1078,8 @@ function SmileDetector({ user }) {
                     top: 0, 
                     left: 0,
                     width: '100%',
-                    height: '100%'
+                    height: '100%',
+                    transform: isMirrored ? 'scaleX(-1)' : 'scaleX(1)'
                   }}
                 />
                 
@@ -1267,9 +1313,22 @@ function SmileDetector({ user }) {
             <h4>연습 완료!</h4>
             <p>오늘의 {smileTypes[smileContext]?.title} 연습이 끝났습니다.</p>
             <div className="session-summary">
-              <div>최고 점수: {maxScore}%</div>
-              <div>연습한 미소: {smileTypes[smileContext]?.title}</div>
-              <div>기분 변화: {emotionBefore} → {emotionAfter}</div>
+              <div className="summary-item">
+                <span className="summary-label">최고 점수</span>
+                <span className="summary-value score">{maxScore}%</span>
+              </div>
+              <div className="summary-item">
+                <span className="summary-label">연습한 미소</span>
+                <span className="summary-value smile-type">{smileTypes[smileContext]?.title}</span>
+              </div>
+              <div className="summary-item">
+                <span className="summary-label">기분 변화</span>
+                <span className="summary-value mood-change">
+                  <span className="mood-before">{emotionBefore === 'happy' ? '좋음' : emotionBefore === 'neutral' ? '보통' : '우울'}</span>
+                  <span className="mood-arrow">→</span>
+                  <span className="mood-after">{emotionAfter === 'happy' ? '좋음' : emotionAfter === 'neutral' ? '보통' : '우울'}</span>
+                </span>
+              </div>
             </div>
             
             {!user && (

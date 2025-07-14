@@ -122,16 +122,6 @@ function Login() {
               </button>
             </form>
 
-            <div className="auth-divider">
-              <span>또는</span>
-            </div>
-
-            <div className="guest-option">
-              <Link to="/" className="guest-link">
-                게스트로 체험하기 (하루 1회)
-              </Link>
-            </div>
-
             <div className="auth-footer">
               <p>계정이 없으신가요?</p>
               <Link to="/signup" className="auth-link">회원가입</Link>
