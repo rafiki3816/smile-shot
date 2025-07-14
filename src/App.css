@@ -610,7 +610,7 @@
   }
   
   .purpose-btn {
-    padding: 20px;
+    padding: 16px 12px;
     text-align: center;
     width: 100%;
   }
@@ -2158,7 +2158,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 /* 반응형 디자인 */
 @media (max-width: 600px) {
   #root {
-    padding: 16px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2166,8 +2166,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .app-header {
-    margin-bottom: 32px;
-    padding: 24px 16px;
+    margin-bottom: 20px;
+    padding: 12px 8px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -2185,16 +2185,16 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .tab-menu {
-    margin-bottom: 32px;
-    padding: 0 16px;
+    margin-bottom: 20px;
+    padding: 0 8px;
     width: 100%;
     display: flex;
     justify-content: center;
   }
   
   .main-content {
-    padding: 24px;
-    width: calc(100% - 32px);
+    padding: 12px;
+    width: calc(100% - 16px);
     margin: 0 auto;
   }
   
@@ -2809,11 +2809,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 @media (max-width: 360px) {
   .coaching-messages-area {
-    padding: 16px;
+    padding: 8px 6px;
   }
   
   .coaching-message {
-    padding: 12px 16px;
+    padding: 8px 10px;
   }
   
   .coaching-message.primary {
@@ -3491,7 +3491,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .video-container {
     aspect-ratio: 2/3 !important;
-    width: 90vw;
+    width: calc(100vw - 16px);
     max-width: 360px;
     margin: 0 auto;
     height: auto !important;
@@ -3503,13 +3503,18 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coaching-messages-area {
-    padding: 12px 16px;
+    padding: 10px 8px;
     min-height: 70px;
   }
   
   .coaching-message {
-    padding: 10px 16px;
+    padding: 10px 12px;
     font-size: 14px;
+  }
+  
+  .step-panel {
+    padding: 16px;
+    margin: 0 8px;
   }
   
   .coaching-message.primary {
@@ -3522,7 +3527,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .practice-main-content {
-    padding: 0 12px;
+    padding: 0 6px;
     gap: 8px;
     overflow-y: visible;
     width: 100%;
@@ -3532,6 +3537,16 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .practice-bottom-section {
     padding: 12px;
+  }
+  
+  .practice-history {
+    padding: 8px;
+  }
+  
+  .progress-section,
+  .today-stats {
+    padding: 16px;
+    margin-bottom: 12px;
   }
   
   /* 하단 버튼 간격 조정 */
@@ -3573,13 +3588,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 /* 작은 디바이스 (iPhone SE 등) */
 @media (max-width: 375px) {
   .video-container {
-    max-width: 280px;
+    width: calc(100vw - 12px);
+    max-width: 320px;
     aspect-ratio: 2/3 !important;
   }
   
   .ios-analysis-panel.mobile-compact {
-    padding: 12px;
-    margin: 6px 0;
+    padding: 10px 8px;
+    margin: 4px 0;
   }
   
   .ios-metric-item.compact {
@@ -3873,13 +3889,22 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coach-main-message {
-    padding: 20px;
+    padding: 12px;
+  }
+  
+  .coaching-section {
+    padding: 12px;
+    margin-bottom: 12px;
   }
   
   .technical-tips li,
   .muscle-exercises li {
     font-size: 0.9rem;
-    padding: 10px 14px;
+    padding: 8px 10px;
+  }
+  
+  .coaching-card {
+    padding: 12px;
   }
   
   .action-btn {
