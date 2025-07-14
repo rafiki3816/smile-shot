@@ -2739,6 +2739,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-bottom: none;
   box-shadow: none;
   margin-bottom: -4px; /* 간격 제거 */
+  aspect-ratio: 2/3; /* 비율 유지 */
 }
 
 /* 코칭 메시지 영역 */
@@ -3388,19 +3389,21 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 140px); /* 헤더와 상단 여백 제외 */
+  height: auto;
   width: 100%;
   margin: 0 auto;
 }
 
 .practice-main-content {
-  flex: 1;
-  overflow-y: auto;
+  flex: 0 1 auto;
+  overflow-y: visible;
   padding: 0 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
   align-items: center;
+  height: auto;
 }
 
 
@@ -3484,11 +3487,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .video-container {
-    height: auto;
-    aspect-ratio: 2/3;
-    max-height: 50vh;
-    width: 100%;
+    aspect-ratio: 2/3 !important;
+    width: 90vw;
+    max-width: 360px;
     margin: 0 auto;
+    height: auto !important;
+    min-height: 0;
   }
   
   .video-container video {
@@ -3510,16 +3514,17 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .practice-layout {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
+    height: auto;
   }
   
   .practice-main-content {
     padding: 0 12px;
     gap: 8px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-y: visible;
     width: 100%;
     align-items: center;
+    height: auto;
   }
   
   .practice-bottom-section {
@@ -3563,9 +3568,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 /* 작은 디바이스 (iPhone SE 등) */
-@media (max-width: 360px) {
+@media (max-width: 375px) {
   .video-container {
-    max-height: 35vh;
+    max-width: 280px;
+    aspect-ratio: 2/3 !important;
   }
   
   .ios-analysis-panel.mobile-compact {
@@ -3595,7 +3601,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .practice-layout {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
+    height: auto;
   }
 }
 

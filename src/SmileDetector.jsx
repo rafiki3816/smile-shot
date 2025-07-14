@@ -242,26 +242,29 @@ function SmileDetector({ user }) {
       // 모바일 기기 감지
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
       
-      // 모바일은 화면 비율에 맞게, 데스크톱은 2:3 비율로
-      const videoConstraints = isMobile 
-        ? { 
-            video: { 
-              facingMode: 'user',
-              width: { ideal: 1280 },
-              height: { ideal: 720 }
-            } 
-          }
-        : { 
-            video: { 
-              width: { ideal: 720 },
-              height: { ideal: 1080 },
-              aspectRatio: { ideal: 2/3 }
-            } 
-          }
+      // 모바일과 데스크톱 모두 2:3 비율로 통일
+      const videoConstraints = { 
+        video: { 
+          facingMode: 'user',
+          width: { ideal: 720 },
+          height: { ideal: 1080 },
+          aspectRatio: { ideal: 2/3 }
+        } 
+      }
       
       const stream = await navigator.mediaDevices.getUserMedia(videoConstraints)
       if (videoRef.current) {
         videoRef.current.srcObject = stream
+        
+        // 비디오가 로드되면 실제 크기 확인
+        videoRef.current.onloadedmetadata = () => {
+          console.log('실제 비디오 크기:', {
+            videoWidth: videoRef.current.videoWidth,
+            videoHeight: videoRef.current.videoHeight,
+            aspectRatio: videoRef.current.videoWidth / videoRef.current.videoHeight
+          })
+        }
+        
         setIsStreaming(true)
         setShowCameraPermission(false)
         setCameraPermissionDenied(false)
@@ -568,6 +571,15 @@ function SmileDetector({ user }) {
     const displayHeight = video.offsetHeight
     canvas.width = displayWidth
     canvas.height = displayHeight
+    
+    // 디버깅용 로그
+    console.log('Canvas/Video 크기:', {
+      displayWidth,
+      displayHeight,
+      videoWidth: video.videoWidth,
+      videoHeight: video.videoHeight,
+      aspectRatio: displayWidth / displayHeight
+    })
 
     const ctx = canvas.getContext('2d')
     
@@ -1247,6 +1259,8 @@ function SmileDetector({ user }) {
                   playsInline 
                   style={{ 
                     width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
                     transform: isMirrored ? 'scaleX(-1)' : 'scaleX(1)' 
                   }}
                 />
