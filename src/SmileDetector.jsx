@@ -249,6 +249,8 @@ function SmileDetector({ user }) {
       
       const stream = await navigator.mediaDevices.getUserMedia(videoConstraints)
       if (videoRef.current) {
+        // 비디오 요소 표시 (이전에 숨겨진 경우를 위해)
+        videoRef.current.style.display = 'block'
         videoRef.current.srcObject = stream
         
         // 비디오가 로드되면 실제 크기 확인
@@ -263,6 +265,11 @@ function SmileDetector({ user }) {
         setIsStreaming(true)
         setShowCameraPermission(false)
         setCameraPermissionDenied(false)
+      }
+      
+      // 캔버스도 표시
+      if (canvasRef.current) {
+        canvasRef.current.style.display = 'block'
       }
     } catch (error) {
       console.error('카메라 접근 오류:', error)
@@ -285,6 +292,9 @@ function SmileDetector({ user }) {
     
     try {
       if (videoRef.current) {
+        // 비디오 요소 즉시 숨기기 (모바일 대응)
+        videoRef.current.style.display = 'none'
+        
         // 비디오 일시정지
         videoRef.current.pause()
         
@@ -296,22 +306,38 @@ function SmileDetector({ user }) {
           
           // 각 트랙을 개별적으로 중지
           tracks.forEach(track => {
-            track.stop()
-            track.enabled = false
-            console.log('Camera track stopped:', track.label, track.readyState)
+            try {
+              track.stop()
+              track.enabled = false
+              console.log('Camera track stopped:', track.label, track.readyState)
+            } catch (e) {
+              console.error('Error stopping track:', e)
+            }
           })
           
           // 스트림에서 트랙 제거
           tracks.forEach(track => {
-            stream.removeTrack(track)
+            try {
+              stream.removeTrack(track)
+            } catch (e) {
+              console.error('Error removing track:', e)
+            }
           })
           
           // 비디오 요소 완전 정리
           videoRef.current.srcObject = null
-          videoRef.current.load()
           
           // 모바일을 위한 추가 정리
           videoRef.current.src = ''
+          videoRef.current.removeAttribute('src')
+          videoRef.current.removeAttribute('srcObject')
+          
+          // 모바일 브라우저를 위한 강제 정리
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.load()
+            }
+          }, 100)
         }
       }
       
@@ -319,6 +345,8 @@ function SmileDetector({ user }) {
       if (canvasRef.current) {
         const ctx = canvasRef.current.getContext('2d')
         ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+        // 캔버스도 숨기기
+        canvasRef.current.style.display = 'none'
       }
       
     } catch (error) {
@@ -1495,15 +1523,8 @@ function SmileDetector({ user }) {
                 console.log('Stop practice button clicked')
                 stopDetection()
                 
-                // 비디오 즉시 숨기기
-                if (videoRef.current) {
-                  videoRef.current.style.display = 'none'
-                }
-                
-                // 약간의 딜레이 후 카메라 정리
-                setTimeout(() => {
-                  stopCamera()
-                }, 100)
+                // 카메라 즉시 정리 (stopCamera가 비디오 숨김 처리도 함)
+                stopCamera()
                 
                 setCurrentStep('feedback')
               }} className="stop-practice-btn">
