@@ -883,6 +883,11 @@ function SmileDetector({ user }) {
             const scaleX = displayWidth / video.videoWidth
             const scaleY = displayHeight / video.videoHeight
             
+            // 얼굴 크기에 비례한 AR 가이드 크기 계산
+            const faceWidth = adjustedBox.width
+            const faceHeight = adjustedBox.height
+            const faceScale = Math.min(faceWidth, faceHeight) / 200 // 기준값 200px
+            
             // 랜드마크 포인트를 캔버스 좌표로 변환하는 함수
             const getLandmarkPoint = (index) => {
               const x = positions[index].x * scaleX
@@ -905,36 +910,37 @@ function SmileDetector({ user }) {
               ctx.strokeStyle = '#10b981'
               ctx.lineWidth = 2
               
-              // 왼쪽 광대근 점
+              // 왼쪽 광대근 점 (얼굴 크기에 비례)
               ctx.beginPath()
-              ctx.arc(leftCheek.x, leftCheek.y, 8, 0, 2 * Math.PI)
+              ctx.arc(leftCheek.x, leftCheek.y, 8 * faceScale, 0, 2 * Math.PI)
               ctx.fill()
               
-              // 오른쪽 광대근 점
+              // 오른쪽 광대근 점 (얼굴 크기에 비례)
               ctx.beginPath()
-              ctx.arc(rightCheek.x, rightCheek.y, 8, 0, 2 * Math.PI)
+              ctx.arc(rightCheek.x, rightCheek.y, 8 * faceScale, 0, 2 * Math.PI)
               ctx.fill()
               
-              // 광대근 영역 표시 (반투명)
+              // 광대근 영역 표시 (반투명, 얼굴 크기에 비례)
               ctx.fillStyle = '#10b98130'
               ctx.beginPath()
-              ctx.ellipse(leftCheek.x, leftCheek.y, 25, 20, -15 * Math.PI / 180, 0, 2 * Math.PI)
+              ctx.ellipse(leftCheek.x, leftCheek.y, 25 * faceScale, 20 * faceScale, -15 * Math.PI / 180, 0, 2 * Math.PI)
               ctx.fill()
               ctx.beginPath()
-              ctx.ellipse(rightCheek.x, rightCheek.y, 25, 20, 15 * Math.PI / 180, 0, 2 * Math.PI)
+              ctx.ellipse(rightCheek.x, rightCheek.y, 25 * faceScale, 20 * faceScale, 15 * Math.PI / 180, 0, 2 * Math.PI)
               ctx.fill()
               
               // 근육명 표시
               ctx.save() // 현재 상태 저장
-              ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
+              const fontSize = Math.max(11, Math.min(16, 11 * faceScale))
+              ctx.font = `${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
               
               // 텍스트 크기 측정
               const text = '대관골근'
               const textMetrics = ctx.measureText(text)
               const textWidth = textMetrics.width
-              const textHeight = 14
-              const padding = 4
+              const textHeight = fontSize * 1.3
+              const padding = 4 * faceScale
               
               // 미러 모드일 때 텍스트도 반전되므로 다시 반전시켜 정상적으로 보이게 함
               if (isMirrored) {
@@ -1005,26 +1011,26 @@ function SmileDetector({ user }) {
               ctx.fillStyle = '#3B82F6'
               ctx.strokeStyle = '#3B82F6'
               
-              // 주요 포인트에 점 표시
+              // 주요 포인트에 점 표시 (얼굴 크기에 비례)
               const eyePoints = [leftEyeOuter, leftEyeBottom, rightEyeOuter, rightEyeBottom]
               eyePoints.forEach(point => {
                 ctx.beginPath()
-                ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI)
+                ctx.arc(point.x, point.y, 5 * faceScale, 0, 2 * Math.PI)
                 ctx.fill()
               })
               
-              // 눈둘레근 영역 표시
+              // 눈둘레근 영역 표시 (얼굴 크기에 비례)
               ctx.strokeStyle = '#3B82F660'
-              ctx.lineWidth = 2
-              ctx.setLineDash([4, 2])
+              ctx.lineWidth = 2 * faceScale
+              ctx.setLineDash([4 * faceScale, 2 * faceScale])
               
               // 왼쪽 눈 주위
               ctx.beginPath()
               ctx.ellipse(
                 (leftEyeOuter.x + leftEyeInner.x) / 2,
                 (leftEyeOuter.y + leftEyeBottom.y) / 2,
-                Math.abs(leftEyeInner.x - leftEyeOuter.x) / 2 + 10,
-                15,
+                Math.abs(leftEyeInner.x - leftEyeOuter.x) / 2 + 10 * faceScale,
+                15 * faceScale,
                 0, 0, 2 * Math.PI
               )
               ctx.stroke()
@@ -1034,8 +1040,8 @@ function SmileDetector({ user }) {
               ctx.ellipse(
                 (rightEyeOuter.x + rightEyeInner.x) / 2,
                 (rightEyeOuter.y + rightEyeBottom.y) / 2,
-                Math.abs(rightEyeOuter.x - rightEyeInner.x) / 2 + 10,
-                15,
+                Math.abs(rightEyeOuter.x - rightEyeInner.x) / 2 + 10 * faceScale,
+                15 * faceScale,
                 0, 0, 2 * Math.PI
               )
               ctx.stroke()
@@ -1043,7 +1049,8 @@ function SmileDetector({ user }) {
               
               // 근육명 표시
               ctx.save()
-              ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
+              const eyeFontSize = Math.max(11, Math.min(16, 11 * faceScale))
+              ctx.font = `${eyeFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
               const eyeCenterX = (leftEyeInner.x + rightEyeInner.x) / 2
               
@@ -1051,8 +1058,8 @@ function SmileDetector({ user }) {
               const eyeText = '눈둘레근'
               const eyeTextMetrics = ctx.measureText(eyeText)
               const eyeTextWidth = eyeTextMetrics.width
-              const textHeight = 14
-              const padding = 4
+              const eyeTextHeight = eyeFontSize * 1.3
+              const eyePadding = 4 * faceScale
               
               if (isMirrored) {
                 ctx.translate(eyeCenterX, leftEyeOuter.y - 20)
@@ -1060,7 +1067,7 @@ function SmileDetector({ user }) {
                 
                 // 흰색 배경 그리기
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(-eyeTextWidth/2 - padding, -textHeight/2 - padding, eyeTextWidth + padding*2, textHeight + padding*2)
+                ctx.fillRect(-eyeTextWidth/2 - eyePadding, -eyeTextHeight/2 - eyePadding, eyeTextWidth + eyePadding*2, eyeTextHeight + eyePadding*2)
                 
                 // 텍스트 그리기
                 ctx.fillStyle = '#3B82F6'
@@ -1068,7 +1075,7 @@ function SmileDetector({ user }) {
               } else {
                 // 흰색 배경 그리기
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(eyeCenterX - eyeTextWidth/2 - padding, leftEyeOuter.y - 20 - textHeight/2 - padding, eyeTextWidth + padding*2, textHeight + padding*2)
+                ctx.fillRect(eyeCenterX - eyeTextWidth/2 - eyePadding, leftEyeOuter.y - 20 - eyeTextHeight/2 - eyePadding, eyeTextWidth + eyePadding*2, eyeTextHeight + eyePadding*2)
                 
                 // 텍스트 그리기
                 ctx.fillStyle = '#3B82F6'
@@ -1097,21 +1104,21 @@ function SmileDetector({ user }) {
               
               mouthPoints.forEach(point => {
                 ctx.beginPath()
-                ctx.arc(point.x, point.y, 6, 0, 2 * Math.PI)
+                ctx.arc(point.x, point.y, 6 * faceScale, 0, 2 * Math.PI)
                 ctx.fill()
               })
               
-              // 구륜근 영역 표시 (반투명)
+              // 구륜근 영역 표시 (반투명, 얼굴 크기에 비례)
               ctx.strokeStyle = '#8B5CF660'
-              ctx.lineWidth = 3
-              ctx.setLineDash([5, 3])
+              ctx.lineWidth = 3 * faceScale
+              ctx.setLineDash([5 * faceScale, 3 * faceScale])
               
               ctx.beginPath()
               ctx.ellipse(
                 (mouthLeft.x + mouthRight.x) / 2,
                 (mouthTop.y + mouthBottom.y) / 2,
-                Math.abs(mouthRight.x - mouthLeft.x) / 2 + 15,
-                Math.abs(mouthBottom.y - mouthTop.y) / 2 + 10,
+                Math.abs(mouthRight.x - mouthLeft.x) / 2 + 15 * faceScale,
+                Math.abs(mouthBottom.y - mouthTop.y) / 2 + 10 * faceScale,
                 0, 0, 2 * Math.PI
               )
               ctx.stroke()
@@ -1119,7 +1126,8 @@ function SmileDetector({ user }) {
               
               // 근육명 표시
               ctx.save()
-              ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif'
+              const mouthFontSize = Math.max(11, Math.min(16, 11 * faceScale))
+              ctx.font = `${mouthFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
               const mouthCenterX = (mouthLeft.x + mouthRight.x) / 2
               
@@ -1127,8 +1135,8 @@ function SmileDetector({ user }) {
               const mouthText = '구륜근'
               const mouthTextMetrics = ctx.measureText(mouthText)
               const mouthTextWidth = mouthTextMetrics.width
-              const textHeight = 14
-              const padding = 4
+              const mouthTextHeight = mouthFontSize * 1.3
+              const mouthPadding = 4 * faceScale
               
               if (isMirrored) {
                 ctx.translate(mouthCenterX, mouthBottom.y + 25)
@@ -1136,7 +1144,7 @@ function SmileDetector({ user }) {
                 
                 // 흰색 배경 그리기
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(-mouthTextWidth/2 - padding, -textHeight/2 - padding, mouthTextWidth + padding*2, textHeight + padding*2)
+                ctx.fillRect(-mouthTextWidth/2 - mouthPadding, -mouthTextHeight/2 - mouthPadding, mouthTextWidth + mouthPadding*2, mouthTextHeight + mouthPadding*2)
                 
                 // 텍스트 그리기
                 ctx.fillStyle = '#8B5CF6'
@@ -1144,7 +1152,7 @@ function SmileDetector({ user }) {
               } else {
                 // 흰색 배경 그리기
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(mouthCenterX - mouthTextWidth/2 - padding, mouthBottom.y + 25 - textHeight/2 - padding, mouthTextWidth + padding*2, textHeight + padding*2)
+                ctx.fillRect(mouthCenterX - mouthTextWidth/2 - mouthPadding, mouthBottom.y + 25 - mouthTextHeight/2 - mouthPadding, mouthTextWidth + mouthPadding*2, mouthTextHeight + mouthPadding*2)
                 
                 // 텍스트 그리기
                 ctx.fillStyle = '#8B5CF6'
@@ -1152,21 +1160,21 @@ function SmileDetector({ user }) {
               }
               ctx.restore()
               
-              // 움직임 가이드 화살표
+              // 움직임 가이드 화살표 (얼굴 크기에 비례)
               ctx.strokeStyle = '#8B5CF6'
-              ctx.lineWidth = 2
-              ctx.setLineDash([3, 3])
+              ctx.lineWidth = 2 * faceScale
+              ctx.setLineDash([3 * faceScale, 3 * faceScale])
               
               // 왼쪽 입꼬리
               ctx.beginPath()
               ctx.moveTo(mouthLeft.x, mouthLeft.y)
-              ctx.lineTo(mouthLeft.x - 15, mouthLeft.y - 10)
+              ctx.lineTo(mouthLeft.x - 15 * faceScale, mouthLeft.y - 10 * faceScale)
               ctx.stroke()
               
               // 오른쪽 입꼬리
               ctx.beginPath()
               ctx.moveTo(mouthRight.x, mouthRight.y)
-              ctx.lineTo(mouthRight.x + 15, mouthRight.y - 10)
+              ctx.lineTo(mouthRight.x + 15 * faceScale, mouthRight.y - 10 * faceScale)
               ctx.stroke()
               
               ctx.setLineDash([])
@@ -1722,8 +1730,8 @@ function SmileDetector({ user }) {
       {showLoginPrompt && (
         <div className="login-prompt-overlay">
           <div className="login-prompt-modal">
-            <h3>무료 체험이 종료되었어요</h3>
-            <p>무료 연습 10회를 모두 사용하셨습니다.</p>
+            <h3>비회원 체험이 종료되었어요</h3>
+            <p>비회원 연습 10회를 모두 사용하셨습니다.</p>
             <p>계속 연습하려면 로그인해주세요!</p>
             <div className="prompt-buttons">
               <button onClick={() => navigate('/login', { state: { from: '/app', message: '계속 연습하려면 로그인해주세요' } })} className="login-prompt-btn">
