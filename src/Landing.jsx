@@ -43,7 +43,7 @@ function Landing() {
       <div className="landing-content">
         <div className="landing-header">
           <h1 className="landing-title">SmileShot</h1>
-          <p className="landing-subtitle">아름다운 미소를 만들어 보세요!</p>
+          <p className="landing-subtitle">Smile 연습으로 기분을 Up 하세요!</p>
         </div>
 
         <div className="landing-features">
