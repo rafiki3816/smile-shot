@@ -72,7 +72,7 @@ function Landing() {
             회원가입
           </Link>
           <button onClick={handleFreeSession} className="action-btn free">
-            무료로 체험하기 (10회 제공)
+            미소 연습 시작하기 (비회원)
           </button>
         </div>
 
