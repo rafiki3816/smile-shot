@@ -930,7 +930,7 @@ function SmileDetector({ user }) {
             }
             
             // 1. 대관골근(광대근) 표시 - 실제 볼 위치
-            if (happiness < 0.5 || (currentCoachingMessages && currentCoachingMessages.some(msg => msg.includes('광대근')))) {
+            if (happiness < 0.5 || (currentCoachingMessages && currentCoachingMessages.some(msg => msg.includes(t('zygomaticMuscle'))))) {
               // 왼쪽 광대근 (랜드마크 1-3 영역)
               const leftCheek = getLandmarkPoint(2)
               const rightCheek = getLandmarkPoint(14)

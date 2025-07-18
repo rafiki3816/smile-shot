@@ -279,7 +279,29 @@ export const translations = {
     centerYourFace: "얼굴을 중앙에 위치시켜주세요",
     capturedSmile: "캡처된 미소",
     smile: "미소",
-    member: "회원"
+    member: "회원",
+    
+    // PracticeHistory
+    comparedToLastWeek: "지난주 대비 {{change}}% {{trend}}",
+    improved: "향상",
+    declined: "하락",
+    weeklyReport: "주간 리포트",
+    hide: "접기",
+    show: "보기",
+    good: "좋음",
+    fair: "양호",
+    average: "보통",
+    todaysPracticeStats: "오늘의 연습 통계",
+    practiceCount: "연습 횟수",
+    highestScore: "최고 점수",
+    averageScore: "평균 점수",
+    totalPracticeTime: "총 연습 시간",
+    recordsNotSavedInGuestMode: "비로그인 상태에서는 기록이 저장되지 않습니다",
+    freeSignup: "무료 회원가입",
+    todaysPersonalizedAdvice: "오늘의 맞춤 조언",
+    todaysMuscleExercise: "오늘의 근육 운동",
+    todaysRecord: "오늘의 기록",
+    practiceInTempMode: "현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다."
   },
   
   en: {
@@ -548,7 +570,29 @@ export const translations = {
     centerYourFace: "Center your face",
     capturedSmile: "Captured smile",
     smile: "Smile",
-    member: "Member"
+    member: "Member",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% compared to last week",
+    improved: "Improved",
+    declined: "Declined",
+    weeklyReport: "Weekly Report",
+    hide: "Hide",
+    show: "Show",
+    good: "Good",
+    fair: "Fair",
+    average: "Average",
+    todaysPracticeStats: "Today's Practice Stats",
+    practiceCount: "Practice Count",
+    highestScore: "Highest Score",
+    averageScore: "Average Score",
+    totalPracticeTime: "Total Practice Time",
+    recordsNotSavedInGuestMode: "Records are not saved in guest mode",
+    freeSignup: "Free Sign Up",
+    todaysPersonalizedAdvice: "Today's Personalized Advice",
+    todaysMuscleExercise: "Today's Muscle Exercise",
+    todaysRecord: "Today's Record",
+    practiceInTempMode: "Currently practicing in temporary mode. All records will be lost when you close the browser."
   },
   
   ja: {

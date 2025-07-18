@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { practiceDB } from './supabaseClient'
 import { generateCoachingAdvice, generateWeeklyReport, getRandomTip } from './utils/coachingEngine'
 import Calendar from './Calendar'
+import { useLanguage } from './contexts/LanguageContext'
 
 function PracticeHistory({ user, onNavigateToPractice }) {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
   const [todayStats, setTodayStats] = useState({
@@ -219,7 +221,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                 {weeklyProgress.trend === 'up' ? '↑' : '↓'}
               </span>
               <span className="trend-text">
-                지난주 대비 {Math.abs(weeklyProgress.change)}% {weeklyProgress.trend === 'up' ? '향상' : '하락'}
+                {t('comparedToLastWeek', { change: Math.abs(weeklyProgress.change), trend: weeklyProgress.trend === 'up' ? t('improved') : t('declined') })}
               </span>
             </div>
           )}
@@ -228,23 +230,23 @@ function PracticeHistory({ user, onNavigateToPractice }) {
 
       {/* 오늘의 통계 */}
       <div className="today-stats">
-        <h3>오늘의 연습 통계</h3>
+        <h3>{t('todaysPracticeStats')}</h3>
         <div className="stats-grid">
           <div className="stat-item">
             <span className="stat-number">{todayStats.sessions}</span>
-            <span className="stat-label">연습 횟수</span>
+            <span className="stat-label">{t('practiceCount')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-number">{todayStats.maxScore}%</span>
-            <span className="stat-label">최고 점수</span>
+            <span className="stat-label">{t('highestScore')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-number">{todayStats.avgScore}%</span>
-            <span className="stat-label">평균 점수</span>
+            <span className="stat-label">{t('averageScore')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-number">{formatDuration(todayStats.totalTime)}</span>
-            <span className="stat-label">총 연습 시간</span>
+            <span className="stat-label">{t('totalPracticeTime')}</span>
           </div>
         </div>
       </div>
@@ -253,10 +255,10 @@ function PracticeHistory({ user, onNavigateToPractice }) {
       {!user && (
         <div className="premium-banner">
           <div className="banner-content">
-            <h3>⚠️ 비로그인 상태에서는 기록이 저장되지 않습니다</h3>
-            <p className="warning-text">현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다.</p>
+            <h3>⚠️ {t('recordsNotSavedInGuestMode')}</h3>
+            <p className="warning-text">{t('practiceInTempMode')}</p>
             <button onClick={() => navigate('/signup')} className="cta-button">
-              무료 회원가입
+              {t('freeSignup')}
             </button>
           </div>
         </div>
@@ -269,7 +271,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             onClick={() => setShowWeeklyReport(!showWeeklyReport)}
             className="report-toggle"
           >
-            주간 리포트 {showWeeklyReport ? '접기' : '보기'}
+            {t('weeklyReport')} {showWeeklyReport ? t('hide') : t('show')}
           </button>
           {showWeeklyReport && (
             <div className="weekly-report-content">
@@ -301,7 +303,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
 
       {/* 전문 코칭 시스템 */}
       <div className="coaching-section professional">
-        <h3>오늘의 맞춤 조언</h3>
+        <h3>{t('todaysPersonalizedAdvice')}</h3>
         {coachingAdvice && (
           <div className={`coaching-card ${coachingAdvice.category}`}>
             <div className="coach-main-message">
@@ -323,7 +325,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             {/* 근육 운동 가이드 */}
             {coachingAdvice.exercises.length > 0 && (
               <div className="muscle-exercises">
-                <h4>오늘의 근육 운동</h4>
+                <h4>{t('todaysMuscleExercise')}</h4>
                 <ul>
                   {coachingAdvice.exercises.map((exercise, idx) => (
                     <li key={idx}>{exercise}</li>
@@ -410,7 +412,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             ) : (
               <div key={today} className="date-group">
                 <h4 className="date-header">
-                  오늘의 기록
+                  {t('todaysRecord')}
                 </h4>
                 <div className="sessions-list">
                   {todaySessions.map(session => (
@@ -424,9 +426,9 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                         <span className="duration">{formatDuration(session.duration)}</span>
                         {session.emotionBefore && (
                           <span className="mood-change">
-                            {session.emotionBefore === 'happy' ? '좋음' : session.emotionBefore === 'neutral' ? '보통' : '힘듦'} 
+                            {session.emotionBefore === 'happy' ? t('emotionGood') : session.emotionBefore === 'neutral' ? t('emotionNeutral') : t('emotionTired')} 
                             → 
-                            {session.maxScore >= 80 ? '좋음' : session.maxScore >= 50 ? '양호' : '보통'}
+                            {session.maxScore >= 80 ? t('good') : session.maxScore >= 50 ? t('fair') : t('average')}
                           </span>
                         )}
                       </div>
@@ -479,13 +481,13 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                   <div className="date-stats">
                     <div className="stat-item">
                       <span className="stat-number">{selectedDate.sessions.length}</span>
-                      <span className="stat-label">연습 횟수</span>
+                      <span className="stat-label">{t('practiceCount')}</span>
                     </div>
                     <div className="stat-item">
                       <span className="stat-number">
                         {Math.max(...selectedDate.sessions.map(s => s.maxScore))}%
                       </span>
-                      <span className="stat-label">최고 점수</span>
+                      <span className="stat-label">{t('highestScore')}</span>
                     </div>
                     <div className="stat-item">
                       <span className="stat-number">
@@ -494,7 +496,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                           selectedDate.sessions.length
                         )}%
                       </span>
-                      <span className="stat-label">평균 점수</span>
+                      <span className="stat-label">{t('averageScore')}</span>
                     </div>
                     <div className="stat-item">
                       <span className="stat-number">
@@ -502,7 +504,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                           selectedDate.sessions.reduce((sum, s) => sum + s.duration, 0)
                         )}
                       </span>
-                      <span className="stat-label">총 연습 시간</span>
+                      <span className="stat-label">{t('totalPracticeTime')}</span>
                     </div>
                   </div>
               
@@ -553,8 +555,8 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                       <span className="session-time">{session.time}</span>
                     </div>
                     <div className="session-metrics">
-                      <span>최고 점수: {session.maxScore}%</span>
-                      <span>평균 점수: {session.avgScore}%</span>
+                      <span>{t('highestScore')}: {session.maxScore}%</span>
+                      <span>{t('averageScore')}: {session.avgScore}%</span>
                       <span>연습 시간: {formatDuration(session.duration)}</span>
                     </div>
                     {session.context && (
