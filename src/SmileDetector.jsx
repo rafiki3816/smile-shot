@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import * as faceapi from 'face-api.js'
 import { practiceDB } from './supabaseClient'
 import { useToast, ToastContainer } from './Toast'
+import { useLanguage } from './contexts/LanguageContext'
 
 function SmileDetector({ user }) {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
   const { toasts, showToast, removeToast } = useToast()
@@ -40,9 +42,9 @@ function SmileDetector({ user }) {
   
   // 분석 메트릭 상태
   const [metrics, setMetrics] = useState({
-    primary: { label: '자신감 지수', value: 30 },
-    secondary: { label: '안정감', value: 40 },
-    tertiary: { label: '자연스러움', value: 35 }
+    primary: { label: t('practiceMetricsPrimary'), value: 30 },
+    secondary: { label: t('practiceMetricsSecondary'), value: 40 },
+    tertiary: { label: t('practiceMetricsTertiary'), value: 35 }
   })
   
   // AR 근육 가이드 표시 상태
@@ -73,77 +75,77 @@ function SmileDetector({ user }) {
   // 미소 타입별 정보 - 전문적 근육 가이드 추가
   const smileTypes = {
     practice: {
-      title: "자기계발 미소",
-      subtitle: "나를 위한 연습",
+      title: t('practiceSmileTitle'),
+      subtitle: t('practiceSmileSubtitle'),
       characteristics: [
-        "편안하고 안정적인 표정",
-        "과하지 않은 자연스러운 정도", 
-        "자신감이 느껴지는 미소"
+        t('practiceSmileChar1'),
+        t('practiceSmileChar2'), 
+        t('practiceSmileChar3')
       ],
-      situations: "면접, 발표, 자기 사진 촬영에 적합해요",
-      coaching: "너무 억지로 웃지 마세요. 자연스럽고 차분하게",
+      situations: t('practiceSmileSituations'),
+      coaching: t('practiceSmileCoaching'),
       metrics: {
-        primary: "자신감 지수",
-        secondary: "안정감",
-        tertiary: "자연스러움"
+        primary: t('practiceMetricsPrimary'),
+        secondary: t('practiceMetricsSecondary'),
+        tertiary: t('practiceMetricsTertiary')
       },
       muscleGuide: {
-        primary: "대관골근(광대근) - 입꼬리를 위로 올리는 주요 근육",
-        secondary: "눈둘레근 - 진정한 미소의 핵심, 눈가 주름 생성",
+        primary: t('practiceMusclePrimary'),
+        secondary: t('practiceMuscleSecondary'),
         tips: [
-          "광대뼈 아래 근육을 부드럽게 수축",
-          "눈과 입이 함께 움직이도록 연습",
-          "거울을 보며 대칭성 확인"
+          t('practiceMuscleTip1'),
+          t('practiceMuscleTip2'),
+          t('practiceMuscleTip3')
         ]
       }
     },
     social: {
-      title: "소통의 미소", 
-      subtitle: "따뜻한 마음 전달",
+      title: t('socialSmileTitle'), 
+      subtitle: t('socialSmileSubtitle'),
       characteristics: [
-        "따뜻하고 친근한 느낌",
-        "상대방에게 편안함을 주는 정도",
-        "신뢰감을 전달하는 미소"
+        t('socialSmileChar1'),
+        t('socialSmileChar2'),
+        t('socialSmileChar3')
       ],
-      situations: "고객 응대, 회의, 인사 상황에 적합해요",
-      coaching: "상대방이 편안해할 만큼 따뜻하게",
+      situations: t('socialSmileSituations'),
+      coaching: t('socialSmileCoaching'),
       metrics: {
-        primary: "친화력",
-        secondary: "신뢰감", 
-        tertiary: "편안함"
+        primary: t('socialMetricsPrimary'),
+        secondary: t('socialMetricsSecondary'), 
+        tertiary: t('socialMetricsTertiary')
       },
       muscleGuide: {
-        primary: "입꼬리올림근 - 입꼬리를 45도 각도로 올림",
-        secondary: "협골소근 - 부드러운 볼 움직임 담당",
+        primary: t('socialMusclePrimary'),
+        secondary: t('socialMuscleSecondary'),
         tips: [
-          "입꼬리를 귀 방향으로 살짝 당기기",
-          "과도한 치아 노출 자제",
-          "눈빛에 따뜻함 담기"
+          t('socialMuscleTip1'),
+          t('socialMuscleTip2'),
+          t('socialMuscleTip3')
         ]
       }
     },
     joy: {
-      title: "기쁨의 미소",
-      subtitle: "진심 어린 행복", 
+      title: t('joySmileTitle'),
+      subtitle: t('joySmileSubtitle'), 
       characteristics: [
-        "진심에서 우러나는 밝은 표정",
-        "눈가 주름까지 자연스럽게",
-        "감정이 풍부하게 표현되는 미소"
+        t('joySmileChar1'),
+        t('joySmileChar2'),
+        t('joySmileChar3')
       ],
-      situations: "축하, 감사, 기쁜 소식 전달에 적합해요",
-      coaching: "정말 기쁜 마음이 얼굴에 드러나도록",
+      situations: t('joySmileSituations'),
+      coaching: t('joySmileCoaching'),
       metrics: {
-        primary: "진정성",
-        secondary: "밝기",
-        tertiary: "감정 표현력"
+        primary: t('joyMetricsPrimary'),
+        secondary: t('joyMetricsSecondary'),
+        tertiary: t('joyMetricsTertiary')
       },
       muscleGuide: {
-        primary: "대관골근 + 눈둘레근 - 뒤센 미소의 핵심 조합",
-        secondary: "입꼬리내림근 억제 - 자연스러운 상승 표현",
+        primary: t('joyMusclePrimary'),
+        secondary: t('joyMuscleSecondary'),
         tips: [
-          "볼 전체가 올라가도록 광대근 활성화",
-          "눈가에 자연스러운 주름 형성",
-          "진정한 기쁨은 눈에서 시작됩니다"
+          t('joyMuscleTip1'),
+          t('joyMuscleTip2'),
+          t('joyMuscleTip3')
         ]
       }
     }
@@ -153,7 +155,7 @@ function SmileDetector({ user }) {
   useEffect(() => {
     const loadModels = async () => {
       try {
-        console.log('미소 트레이닝 시스템 로드 중...')
+        console.log(t('systemLoading'))
         
         const MODEL_URL = window.location.origin + '/models'
         
@@ -162,7 +164,7 @@ function SmileDetector({ user }) {
         await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL)
         
         setIsModelLoaded(true)
-        console.log('미소 트레이닝 시스템 준비 완료!')
+        console.log(t('systemReady'))
       } catch (error) {
         console.error('시스템 로드 실패:', error)
       }
@@ -1273,7 +1275,7 @@ function SmileDetector({ user }) {
             <div className="skeleton-button"></div>
             <div className="skeleton-button"></div>
           </div>
-          <p className="loading-text">미소 트레이닝 시스템 준비 중...</p>
+          <p className="loading-text">{t('systemLoading')}</p>
         </div>
       </div>
     )
@@ -1294,7 +1296,7 @@ function SmileDetector({ user }) {
       {/* 무료 체험 표시 */}
       {freeSessionsRemaining !== null && (
         <div className="ios-free-session-badge">
-          <span className="ios-badge-text">남은 무료 체험: <span className="ios-badge-count">{freeSessionsRemaining}/10</span></span>
+          <span className="ios-badge-text">{t('freeTrialRemaining')}: <span className="ios-badge-count">{freeSessionsRemaining}/10</span></span>
         </div>
       )}
       
@@ -1314,28 +1316,28 @@ function SmileDetector({ user }) {
       {/* Step 1: 목적 선택 */}
       {currentStep === 'purpose' && (
         <div className="step-panel">
-          <h4>어떤 목적으로 미소 연습을 하시나요?</h4>
+          <h4>{t('purposeQuestion')}</h4>
           <div className="purpose-buttons">
             <button 
               onClick={() => handlePurposeSelect('confidence')}
               className="purpose-btn"
             >
-              <div className="purpose-title">자신감 향상을 위해</div>
-              <div className="purpose-desc">면접, 발표, 자기 PR</div>
+              <div className="purpose-title">{t('confidenceTitle')}</div>
+              <div className="purpose-desc">{t('confidenceDesc')}</div>
             </button>
             <button 
               onClick={() => handlePurposeSelect('relationship')}
               className="purpose-btn"
             >
-              <div className="purpose-title">관계 개선을 위해</div>
-              <div className="purpose-desc">고객 응대, 회의, 인사</div>
+              <div className="purpose-title">{t('relationshipTitle')}</div>
+              <div className="purpose-desc">{t('relationshipDesc')}</div>
             </button>
             <button 
               onClick={() => handlePurposeSelect('happiness')}
               className="purpose-btn"
             >
-              <div className="purpose-title">진정한 행복 표현을 위해</div>
-              <div className="purpose-desc">축하, 감사, 기쁜 순간</div>
+              <div className="purpose-title">{t('happinessTitle')}</div>
+              <div className="purpose-desc">{t('happinessDesc')}</div>
             </button>
           </div>
         </div>
@@ -1344,28 +1346,28 @@ function SmileDetector({ user }) {
       {/* Step 2: 감정 체크 */}
       {currentStep === 'emotion' && (
         <div className="step-panel">
-          <h4>연습 전 기분을 알려주세요</h4>
+          <h4>{t('emotionBefore')}</h4>
           <div className="emotion-buttons">
             <button 
               onClick={() => handleEmotionSelect('happy')} 
               className="emotion-btn"
               data-emotion="happy"
             >
-              좋음
+              {t('emotionGood')}
             </button>
             <button 
               onClick={() => handleEmotionSelect('neutral')} 
               className="emotion-btn"
               data-emotion="neutral"
             >
-              보통
+              {t('emotionNeutral')}
             </button>
             <button 
               onClick={() => handleEmotionSelect('sad')} 
               className="emotion-btn"
               data-emotion="sad"
             >
-              힘듦
+              {t('emotionTired')}
             </button>
           </div>
         </div>
@@ -1379,7 +1381,7 @@ function SmileDetector({ user }) {
             <p className="smile-subtitle">{smileTypes[smileContext].subtitle}</p>
             
             <div className="characteristics">
-              <h5>이런 특징을 가져요:</h5>
+              <h5>{t('characteristics')}:</h5>
               <ul>
                 {smileTypes[smileContext].characteristics.map((char, index) => (
                   <li key={index}>{char}</li>
@@ -1394,16 +1396,16 @@ function SmileDetector({ user }) {
             {/* 근육 가이드 추가 */}
             {smileTypes[smileContext].muscleGuide && (
               <div className="muscle-guide-section">
-                <h5>사용하는 얼굴 근육:</h5>
+                <h5>{t('facialMuscles')}:</h5>
                 <div className="muscle-info">
                   <div className="muscle-primary">
-                    <strong>주요 근육:</strong> {smileTypes[smileContext].muscleGuide.primary}
+                    <strong>{t('primaryMuscle')}:</strong> {smileTypes[smileContext].muscleGuide.primary}
                   </div>
                   <div className="muscle-secondary">
-                    <strong>보조 근육:</strong> {smileTypes[smileContext].muscleGuide.secondary}
+                    <strong>{t('secondaryMuscle')}:</strong> {smileTypes[smileContext].muscleGuide.secondary}
                   </div>
                   <div className="muscle-tips">
-                    <strong>연습 팁:</strong>
+                    <strong>{t('practiceTips')}:</strong>
                     <ul>
                       {smileTypes[smileContext].muscleGuide.tips.map((tip, index) => (
                         <li key={index}>{tip}</li>
@@ -1415,7 +1417,7 @@ function SmileDetector({ user }) {
             )}
             
             <button onClick={handleContextConfirm} className="confirm-btn">
-              이 미소로 연습하기
+{t('practiceWithThisSmile')}
             </button>
           </div>
         </div>
@@ -1455,7 +1457,7 @@ function SmileDetector({ user }) {
                   <div className="score-display-overlay">
                     <div className="score-value">{currentScore}%</div>
                     <div className="score-divider">·</div>
-                    <div className="score-type">{currentSmileType || '분석 중'}</div>
+                    <div className="score-type">{currentSmileType || t('analyzing')}</div>
                   </div>
                 )}
                 
@@ -1487,7 +1489,7 @@ function SmileDetector({ user }) {
             {isDetecting && smileContext && (
               <div className="ios-analysis-panel mobile-compact">
                 <div className="ios-analysis-header">
-                  <h3 className="ios-analysis-title">실시간 분석</h3>
+                  <h3 className="ios-analysis-title">{t('realtimeAnalysis')}</h3>
                 </div>
                 
                 <ul className="ios-metrics-list compact">
@@ -1528,7 +1530,7 @@ function SmileDetector({ user }) {
                 
                 setCurrentStep('feedback')
               }} className="stop-practice-btn">
-                연습 그만하기
+{t('stopPractice')}
               </button>
             </div>
           </div>
@@ -1544,26 +1546,26 @@ function SmileDetector({ user }) {
                     <rect x="20" y="10" width="8" height="4" rx="2" fill="#007AFF"/>
                   </svg>
                 </div>
-                <h3>카메라 사용 권한이 필요해요</h3>
-                <p>SmileShot이 실시간으로 미소를 분석하려면<br/>카메라 접근 권한이 필요합니다.</p>
+                <h3>{t('cameraPermissionNeeded')}</h3>
+                <p>{t('cameraPermissionDescription')}</p>
                 <div className="permission-info">
                   <div className="info-item">
                     <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M2 8L6 12L14 4" stroke="#34C759" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>미소 분석에만 사용됩니다</span>
+                    <span>{t('onlyForSmileAnalysis')}</span>
                   </div>
                   <div className="info-item">
                     <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M2 8L6 12L14 4" stroke="#34C759" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>사진이나 영상은 저장되지 않습니다</span>
+                    <span>{t('noPhotoVideoSaved')}</span>
                   </div>
                   <div className="info-item">
                     <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M2 8L6 12L14 4" stroke="#34C759" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>언제든지 중지할 수 있습니다</span>
+                    <span>{t('canStopAnytime')}</span>
                   </div>
                 </div>
                 <div className="permission-buttons">
@@ -1571,12 +1573,12 @@ function SmileDetector({ user }) {
                     setShowCameraPermission(false)
                     startCamera()
                   }}>
-                    카메라 허용하기
+{t('allowCamera')}
                   </button>
                   <button className="permission-cancel" onClick={() => {
                     setShowCameraPermission(false)
                   }}>
-                    나중에
+{t('later')}
                   </button>
                 </div>
               </div>
@@ -1625,7 +1627,7 @@ function SmileDetector({ user }) {
       {/* Step 5: 연습 후 피드백 */}
       {currentStep === 'feedback' && (
         <div className="step-panel">
-          <h4>연습 후 기분은 어떠세요?</h4>
+          <h4>{t('emotionAfter')}</h4>
           <div className="emotion-buttons">
             <button 
               onClick={() => {
@@ -1636,7 +1638,7 @@ function SmileDetector({ user }) {
               className="emotion-btn"
               data-emotion="happy"
             >
-              더 좋아짐
+{t('emotionBetter')}
             </button>
             <button 
               onClick={() => {
@@ -1647,7 +1649,7 @@ function SmileDetector({ user }) {
               className="emotion-btn"
               data-emotion="neutral"
             >
-              비슷함
+{t('emotionSame')}
             </button>
             <button 
               onClick={() => {
@@ -1658,7 +1660,7 @@ function SmileDetector({ user }) {
               className="emotion-btn"
               data-emotion="sad"
             >
-              조금 피곤함
+{t('emotionLittleTired')}
             </button>
           </div>
         </div>
@@ -1668,24 +1670,24 @@ function SmileDetector({ user }) {
       {currentStep === 'complete' && (
         <div className="step-panel">
           <div className="completion-card">
-            <h4>연습 완료!</h4>
-            <p>오늘의 {smileTypes[smileContext]?.title} 연습이 끝났습니다.</p>
+            <h4>{t('practiceComplete')}</h4>
+            <p>{t('practiceCompleteDesc', { smileType: smileTypes[smileContext]?.title })}</p>
             {console.log('완료 화면 - emotionBefore:', emotionBefore, 'emotionAfter:', emotionAfter)}
             <div className="session-summary">
               <div className="summary-item">
-                <span className="summary-label">최고 점수</span>
+                <span className="summary-label">{t('maxScore')}</span>
                 <span className="summary-value score">{maxScore || 0}%</span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">연습한 미소</span>
+                <span className="summary-label">{t('practiceSmileType')}</span>
                 <span className="summary-value smile-type">{smileTypes[smileContext]?.title}</span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">기분 변화</span>
+                <span className="summary-label">{t('moodChange')}</span>
                 <span className="summary-value mood-change">
-                  <span className="mood-before">{emotionBefore === 'happy' ? '좋음' : emotionBefore === 'neutral' ? '보통' : emotionBefore === 'sad' ? '힘듦' : ''}</span>
+                  <span className="mood-before">{emotionBefore === 'happy' ? t('emotionGood') : emotionBefore === 'neutral' ? t('emotionNeutral') : emotionBefore === 'sad' ? t('emotionTired') : ''}</span>
                   <span className="mood-arrow">→</span>
-                  <span className="mood-after">{emotionAfter === 'better' ? '좋음' : emotionAfter === 'same' ? '보통' : emotionAfter === 'tired' ? '피곤' : '보통'}</span>
+                  <span className="mood-after">{emotionAfter === 'better' ? t('emotionGood') : emotionAfter === 'same' ? t('emotionNeutral') : emotionAfter === 'tired' ? t('emotionTired') : t('emotionNeutral')}</span>
                 </span>
               </div>
             </div>
@@ -1693,13 +1695,13 @@ function SmileDetector({ user }) {
             {/* 최고의 순간 - 캡처된 사진 표시 */}
             {capturedPhoto && capturedAnalysis && (
               <div className="captured-photo-section">
-                <h3 className="captured-title">최고의 순간 📸</h3>
+                <h3 className="captured-title">{t('bestMoment')} 📸</h3>
                 <div className="captured-photo-container">
-                  <img src={capturedPhoto} alt="캡처된 미소" className="captured-photo" />
+                  <img src={capturedPhoto} alt={t('capturedSmile')} className="captured-photo" />
                 </div>
                 <div className="captured-photo-info">
                   <div className="info-score">
-                    <span className="info-label">점수</span>
+                    <span className="info-label">{t('score')}</span>
                     <span className="info-value">{capturedAnalysis.score}%</span>
                   </div>
                   <div className="info-metrics">
@@ -1730,18 +1732,17 @@ function SmileDetector({ user }) {
             {!user && (
               <div className="signup-prompt-box">
                 <div className="warning-icon">⚠️</div>
-                <h4>기록이 저장되지 않았습니다</h4>
-                <p>비로그인 상태에서는 연습 기록이 임시로만 저장됩니다.<br/>
-                브라우저를 닫으면 모든 기록이 사라집니다.</p>
-                <p className="highlight-text">지금 회원가입하고 모든 기록을 영구 보관하세요!</p>
+                <h4>{t('recordNotSaved')}</h4>
+                <p>{t('temporaryRecord')}</p>
+                <p className="highlight-text">{t('signupToPermanentSave')}</p>
                 <button onClick={() => navigate('/signup')} className="signup-cta-btn">
-                  회원가입하고 기록 저장하기
+{t('signupAndSaveRecord')}
                 </button>
               </div>
             )}
             
             <button onClick={resetGuide} className="restart-btn">
-              다른 미소 연습하기
+{t('practiceOtherSmile')}
             </button>
           </div>
         </div>
@@ -1751,31 +1752,31 @@ function SmileDetector({ user }) {
       {showLoginPrompt && (
         <div className="login-prompt-overlay">
           <div className="login-prompt-modal">
-            <h3>비회원 체험이 종료되었어요</h3>
-            <p>비회원 연습 10회를 모두 사용하셨습니다.</p>
-            <p>계속 연습하려면 로그인해주세요!</p>
+            <h3>{t('freeTrialEnded')}</h3>
+            <p>{t('freeTrialEndedDesc')}</p>
+            <p>{t('loginToContinue')}</p>
             <div className="prompt-buttons">
-              <button onClick={() => navigate('/login', { state: { from: '/app', message: '계속 연습하려면 로그인해주세요' } })} className="login-prompt-btn">
-                로그인
+              <button onClick={() => navigate('/login', { state: { from: '/app', message: t('loginToContinue') } })} className="login-prompt-btn">
+                {t('login')}
               </button>
               <button onClick={() => navigate('/signup')} className="signup-prompt-btn">
-                회원가입
+{t('signup')}
               </button>
             </div>
             <button onClick={() => {
               localStorage.removeItem('allowFreeSession')
               navigate('/')
             }} className="close-prompt">
-              처음으로 돌아가기
+{t('backToHome')}
             </button>
           </div>
         </div>
       )}
 
       <div className="status">
-        <p>트레이닝 시스템: {isModelLoaded ? '준비됨' : '로딩 중...'}</p>
-        <p>카메라: {isStreaming ? '활성' : '비활성'}</p>
-        <p>미소 분석: {isDetecting ? '분석 중' : '대기 중'}</p>
+        <p>{t('trainingSystem')}: {isModelLoaded ? t('systemReady') : t('systemLoading')}</p>
+        <p>{t('camera')}: {isStreaming ? t('active') : t('inactive')}</p>
+        <p>{t('smileAnalysis')}: {isDetecting ? t('analyzing') : t('waiting')}</p>
       </div>
     </div>
   )

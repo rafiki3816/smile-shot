@@ -5,6 +5,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999997;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .back-button {
@@ -158,6 +175,9 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  min-height: 100px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .purpose-btn::after {
@@ -741,7 +761,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 .app-header h1 {
@@ -927,7 +947,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding: 20px 32px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 400px;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
@@ -955,7 +975,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 .practice-section h3 {
@@ -984,7 +1004,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   gap: 24px;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 /* Professional Emotion Check Panel */

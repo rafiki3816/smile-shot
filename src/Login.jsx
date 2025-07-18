@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { auth } from './supabaseClient'
+import { useLanguage } from './contexts/LanguageContext'
+import LanguageSelector from './components/LanguageSelector'
 import './Auth.css'
 
 function Login() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -29,13 +32,13 @@ function Login() {
     const newErrors = {}
     
     if (!formData.email) {
-      newErrors.email = '이메일을 입력해주세요'
+      newErrors.email = t('emailRequired')
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = '올바른 이메일 형식이 아닙니다'
+      newErrors.email = t('emailInvalid')
     }
     
     if (!formData.password) {
-      newErrors.password = '비밀번호를 입력해주세요'
+      newErrors.password = t('passwordRequired')
     }
     
     setErrors(newErrors)
@@ -56,7 +59,7 @@ function Login() {
       
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          setErrors({ general: '이메일 또는 비밀번호가 올바르지 않습니다' })
+          setErrors({ general: t('loginInvalid') })
         } else {
           setErrors({ general: error.message })
         }
@@ -66,7 +69,7 @@ function Login() {
         navigate(redirectTo)
       }
     } catch (error) {
-      setErrors({ general: '로그인 중 오류가 발생했습니다.' })
+      setErrors({ general: t('loginError') })
     } finally {
       setLoading(false)
     }
@@ -74,12 +77,17 @@ function Login() {
 
   return (
     <div className="auth-container">
+      {/* 상단 센터 언어 선택 버튼 */}
+      <div className="auth-language-selector">
+        <LanguageSelector />
+      </div>
+      
       <div className="auth-card">
         <div className="auth-form-container">
             <div className="auth-header">
               <h1>SmileShot</h1>
-              <h2>로그인</h2>
-              <p>다시 만나서 반가워요!</p>
+              <h2>{t('loginTitle')}</h2>
+              <p>{t('loginWelcome')}</p>
             </div>
 
             {message && (
@@ -97,7 +105,7 @@ function Login() {
                 <input
                   type="email"
                   name="email"
-                  placeholder="이메일"
+                  placeholder={t('emailPlaceholder')}
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
@@ -109,7 +117,7 @@ function Login() {
                 <input
                   type="password"
                   name="password"
-                  placeholder="비밀번호"
+                  placeholder={t('passwordPlaceholder')}
                   value={formData.password}
                   onChange={handleChange}
                   className={errors.password ? 'error' : ''}
@@ -118,17 +126,17 @@ function Login() {
               </div>
               
               <button type="submit" className="auth-submit" disabled={loading}>
-                {loading ? '로그인 중...' : '로그인'}
+                {loading ? t('loginButtonLoading') : t('loginButton')}
               </button>
             </form>
 
             <div className="auth-footer">
-              <p>계정이 없으신가요?</p>
-              <Link to="/signup" className="auth-link">회원가입</Link>
+              <p>{t('noAccount')}</p>
+              <Link to="/signup" className="auth-link">{t('signup')}</Link>
             </div>
 
         <div className="auth-home">
-          <Link to="/" className="home-link">← 홈으로 돌아가기</Link>
+          <Link to="/" className="home-link">← {t('backToHome')}</Link>
         </div>
         </div>
       </div>

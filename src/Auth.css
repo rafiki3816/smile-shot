@@ -11,6 +11,28 @@
   overflow: hidden;
 }
 
+/* 상단 센터 언어 선택 버튼 */
+.auth-language-selector {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* 모바일 반응형 - 언어 선택 버튼 */
+@media (max-width: 768px) {
+  .auth-language-selector {
+    top: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .auth-language-selector {
+    top: 12px;
+  }
+}
+
 /* 부드러운 배경 패턴 */
 .auth-container::before {
   content: '';

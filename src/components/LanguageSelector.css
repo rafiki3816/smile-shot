@@ -1,0 +1,141 @@
+.language-selector {
+  position: relative;
+  display: inline-block;
+  z-index: 999998;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 24px;
+  background: #e6e6e6;
+  border: 1px solid #bbb;
+  border-radius: 13px;
+  color: #333;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  outline: none;
+}
+
+.language-button:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.language-button:hover {
+  background: #d9d9d9;
+  border-color: #aaa;
+}
+
+.language-flag {
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.language-code {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.chevron {
+  transition: transform 0.2s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  min-width: 180px;
+  z-index: 999999;
+  overflow: hidden;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #333;
+  font-size: 14px;
+}
+
+.language-option:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.language-option.active {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.language-option .language-flag {
+  font-size: 27px;
+}
+
+.language-option .language-name {
+  font-weight: 500;
+}
+
+/* 다크 모드 대응 */
+@media (prefers-color-scheme: dark) {
+  .language-dropdown {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .language-option {
+    color: #e5e7eb;
+  }
+  
+  .language-option:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .language-option.active {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .language-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .language-flag {
+    font-size: 14px;
+  }
+  
+  .language-dropdown {
+    min-width: 160px;
+  }
+  
+  .language-option {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}

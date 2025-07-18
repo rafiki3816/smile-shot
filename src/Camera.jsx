@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
+import { useLanguage } from './contexts/LanguageContext'
 
 function Camera() {
+  const { t } = useLanguage()
   const videoRef = useRef(null)
   const [isStreaming, setIsStreaming] = useState(false)
 
@@ -13,7 +15,7 @@ function Camera() {
       }
     } catch (error) {
       console.error('카메라 접근 오류:', error)
-      alert('카메라에 접근할 수 없습니다.')
+      alert(t('cameraAccessError'))
     }
   }
 
@@ -35,10 +37,10 @@ function Camera() {
       />
       <div className="camera-controls">
         <button onClick={startCamera} disabled={isStreaming}>
-          카메라 시작
+          {t('startCamera')}
         </button>
         <button onClick={stopCamera} disabled={!isStreaming}>
-          카메라 중지
+          {t('stopCamera')}
         </button>
       </div>
     </div>

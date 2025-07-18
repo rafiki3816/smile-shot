@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useLanguage } from './contexts/LanguageContext'
 import './Calendar.css'
 
 function Calendar({ sessions, onDateClick }) {
+  const { t } = useLanguage()
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(null)
   
@@ -69,7 +71,7 @@ function Calendar({ sessions, onDateClick }) {
     setCurrentDate(new Date())
   }
   
-  const weekDays = ['일', '월', '화', '수', '목', '금', '토']
+  const weekDays = [t('sunday'), t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), t('saturday')]
   const days = getDaysInMonth()
   
   // 오늘 날짜 확인
@@ -83,11 +85,11 @@ function Calendar({ sessions, onDateClick }) {
       <div className="calendar-header">
         <div className="calendar-month-row">
           <button onClick={() => navigateMonth(-1)} className="nav-button">‹</button>
-          <h3 className="calendar-month-title">{currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월</h3>
+          <h3 className="calendar-month-title">{currentDate.getFullYear()}{t('yearSuffix')} {currentDate.getMonth() + 1}{t('monthSuffix')}</h3>
           <button onClick={() => navigateMonth(1)} className="nav-button">›</button>
         </div>
         <div className="calendar-controls">
-          <button onClick={goToToday} className="today-button">오늘</button>
+          <button onClick={goToToday} className="today-button">{t('today')}</button>
         </div>
       </div>
       
