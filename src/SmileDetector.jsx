@@ -82,7 +82,7 @@ function SmileDetector({ user }) {
         t('practiceSmileChar2'), 
         t('practiceSmileChar3')
       ],
-      situations: t('practiceSmileSituations'),
+      situations: t('practiceSmileSituation'),
       coaching: t('practiceSmileCoaching'),
       metrics: {
         primary: t('practiceMetricsPrimary'),
@@ -107,7 +107,7 @@ function SmileDetector({ user }) {
         t('socialSmileChar2'),
         t('socialSmileChar3')
       ],
-      situations: t('socialSmileSituations'),
+      situations: t('socialSmileSituation'),
       coaching: t('socialSmileCoaching'),
       metrics: {
         primary: t('socialMetricsPrimary'),
@@ -132,7 +132,7 @@ function SmileDetector({ user }) {
         t('joySmileChar2'),
         t('joySmileChar3')
       ],
-      situations: t('joySmileSituations'),
+      situations: t('joySmileSituation'),
       coaching: t('joySmileCoaching'),
       metrics: {
         primary: t('joyMetricsPrimary'),
