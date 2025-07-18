@@ -53,7 +53,7 @@ function MainApp() {
       setUser(session?.user || null)
       if (session?.user) {
         // 사용자 메타데이터에서 이름 가져오기
-        const name = session.user.user_metadata?.name || session.user.email?.split('@')[0] || '회원'
+        const name = session.user.user_metadata?.name || session.user.email?.split('@')[0] || t('member')
         setUserName(name)
       }
     })
@@ -62,7 +62,7 @@ function MainApp() {
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null)
       if (session?.user) {
-        const name = session.user.user_metadata?.name || session.user.email?.split('@')[0] || '회원'
+        const name = session.user.user_metadata?.name || session.user.email?.split('@')[0] || t('member')
         setUserName(name)
       }
     })

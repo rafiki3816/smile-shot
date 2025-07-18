@@ -412,7 +412,7 @@ function SmileDetector({ user }) {
       
       const sessionData = {
         purpose: selectedPurpose,
-        smile_type: smileTypes[smileContext]?.title || '미소',
+        smile_type: smileTypes[smileContext]?.title || t('smile'),
         max_score: maxScore,
         context: smileContext,
         emotion_before: emotionBefore,

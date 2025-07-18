@@ -277,7 +277,9 @@ export const translations = {
     
     // 기타
     centerYourFace: "얼굴을 중앙에 위치시켜주세요",
-    capturedSmile: "캡처된 미소"
+    capturedSmile: "캡처된 미소",
+    smile: "미소",
+    member: "회원"
   },
   
   en: {
@@ -544,7 +546,9 @@ export const translations = {
     
     // Others
     centerYourFace: "Center your face",
-    capturedSmile: "Captured smile"
+    capturedSmile: "Captured smile",
+    smile: "Smile",
+    member: "Member"
   },
   
   ja: {
