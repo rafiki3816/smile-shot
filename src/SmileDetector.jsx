@@ -1742,7 +1742,7 @@ function SmileDetector({ user }) {
             )}
             
             <button onClick={resetGuide} className="restart-btn">
-{t('practiceOtherSmile')}
+{t('tryOtherSmile')}
             </button>
           </div>
         </div>

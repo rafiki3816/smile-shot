@@ -101,6 +101,7 @@ export const translations = {
     practiceSmileChar2: "과하지 않은 자연스러운 정도",
     practiceSmileChar3: "자신감이 느껴지는 미소",
     practiceSmileSituation: "면접, 발표, 자기 사진 촬영에 적합해요",
+    practiceSmileSituations: "면접, 발표, 자기 사진 촬영에 적합해요",
     practiceSmileCoaching: "너무 억지로 웃지 마세요. 자연스럽고 차분하게",
     
     socialSmileTitle: "소통의 미소",
@@ -109,6 +110,7 @@ export const translations = {
     socialSmileChar2: "상대방에게 편안함을 주는 정도",
     socialSmileChar3: "신뢰감을 전달하는 미소",
     socialSmileSituation: "고객 응대, 회의, 인사 상황에 적합해요",
+    socialSmileSituations: "고객 응대, 회의, 인사 상황에 적합해요",
     socialSmileCoaching: "상대방이 편안해할 만큼 따뜻하게",
     
     joySmileTitle: "기쁨의 미소",
@@ -117,12 +119,17 @@ export const translations = {
     joySmileChar2: "눈가 주름까지 자연스럽게",
     joySmileChar3: "감정이 풍부하게 표현되는 미소",
     joySmileSituation: "축하, 감사, 기쁜 소식 전달에 적합해요",
+    joySmileSituations: "축하, 감사, 기쁜 소식 전달에 적합해요",
     joySmileCoaching: "정말 기쁜 마음이 얼굴에 드러나도록",
     
     // 근육 가이드
+    characteristics: "특징",
+    facialMuscles: "얼굴 근육",
     primaryMuscle: "주요 근육",
     secondaryMuscle: "보조 근육",
     muscleTips: "연습 팁",
+    practiceTips: "연습 팁",
+    practiceWithThisSmile: "이 미소로 연습하기",
     practiceMusclePrimary: "대관골근(광대근) - 입꼬리를 위로 올리는 주요 근육",
     practiceMuscleSecondary: "눈둘레근 - 진정한 미소의 핵심, 눈가 주름 생성",
     practiceMuscleTip1: "광대뼈 아래 근육을 부드럽게 수축",
@@ -151,6 +158,17 @@ export const translations = {
     authenticity: "진정성",
     brightness: "밝기",
     emotionalExpression: "감정 표현력",
+    
+    // 미소별 메트릭스
+    practiceMetricsPrimary: "자신감",
+    practiceMetricsSecondary: "안정감",
+    practiceMetricsTertiary: "자연스러움",
+    socialMetricsPrimary: "친화력",
+    socialMetricsSecondary: "신뢰감",
+    socialMetricsTertiary: "편안함",
+    joyMetricsPrimary: "진정성",
+    joyMetricsSecondary: "밝기",
+    joyMetricsTertiary: "감정 표현력",
     
     // 코칭 메시지
     coachingZygomaticus: "광대근(대관골근)을 위로 올려주세요",
@@ -316,9 +334,13 @@ export const translations = {
     joySmileCoaching: "Let your genuine joy show on your face",
     
     // Muscle Guide
+    characteristics: "Characteristics",
+    facialMuscles: "Facial Muscles",
     primaryMuscle: "Primary Muscle",
     secondaryMuscle: "Secondary Muscle",
     muscleTips: "Practice Tips",
+    practiceTips: "Practice Tips",
+    practiceWithThisSmile: "Practice with this smile",
     practiceMusclePrimary: "Zygomaticus Major - Main muscle that lifts the corners of the mouth",
     practiceMuscleSecondary: "Orbicularis Oculi - Key to genuine smile, creates crow's feet",
     practiceMuscleTip1: "Gently contract the muscle below the cheekbone",

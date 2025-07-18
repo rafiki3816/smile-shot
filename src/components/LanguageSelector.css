@@ -8,16 +8,17 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  padding: 13px 24px;
+  padding: 16px 20px;
   background: #e6e6e6;
   border: 1px solid #bbb;
-  border-radius: 13px;
+  border-radius: 12px;
   color: #333;
-  font-size: 22px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
   outline: none;
+  height: 42px;
 }
 
 .language-button:focus {
@@ -32,14 +33,14 @@
 }
 
 .language-flag {
-  font-size: 38px;
+  font-size: 24px;
   display: flex;
   align-items: center;
 }
 
 .language-code {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.5px;
 }
 
@@ -122,11 +123,16 @@
 /* 모바일 대응 */
 @media (max-width: 768px) {
   .language-button {
-    padding: 6px 10px;
-    font-size: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    height: 37px;
   }
   
   .language-flag {
+    font-size: 20px;
+  }
+  
+  .language-code {
     font-size: 14px;
   }
   

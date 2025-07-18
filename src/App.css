@@ -48,8 +48,8 @@
 
 /* 원형 뒤로가기 버튼 */
 .back-button-circle {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
@@ -95,8 +95,11 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
+  border-radius: 12px;
   letter-spacing: -0.01em;
+  height: 42px;
+  display: flex;
+  align-items: center;
 }
 
 /* 모바일 반응형 - 헤더 */
@@ -117,6 +120,7 @@
   .user-name {
     font-size: 14px;
     padding: 8px 16px;
+    height: 37px;
   }
 }
 
@@ -131,7 +135,7 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.06);
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   position: relative;
   animation: fade-in 0.6s ease-out;
   display: flex;
@@ -155,12 +159,13 @@
 
 /* 목적 선택 버튼 */
 .purpose-buttons {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
   width: 100%;
   margin: 0 auto;
   max-width: 600px;
+  align-items: center;
 }
 
 .purpose-btn {
@@ -666,12 +671,15 @@
 
 @media (min-width: 768px) {
   .purpose-buttons {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 100%;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    justify-items: center;
   }
   
   .purpose-btn {
     text-align: left;
+    max-width: 350px;
   }
 }/* SmileShot Professional Liquid Glass Design */
 /* 메인 컬러: 블랙, 서브 컬러: 에메랄드 그린 */
@@ -1198,6 +1206,26 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  -webkit-border-radius: 20px;
+  -webkit-transform: translateZ(0); /* Safari 렌더링 최적화 */
+  transform: translateZ(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 모바일에서 1:1 정사각형 */
+@media (max-width: 768px) {
+  .video-container {
+    aspect-ratio: 1 !important;
+    width: min(calc(100vw - 32px), 360px);
+    height: min(calc(100vw - 32px), 360px);
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0); /* 하드웨어 가속 */
+  }
 }
 
 .video-container::before {
@@ -1215,8 +1243,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   width: 100%;
   height: 100%;
   display: block;
-  border-radius: 19px;
+  border-radius: inherit; /* 부모의 border-radius 상속 */
   object-fit: cover;
+  -webkit-border-radius: inherit; /* Safari 호환성 */
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* Safari 렌더링 문제 해결 */
+  margin: 0 auto;
 }
 
 .video-container canvas {
@@ -1225,8 +1256,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 19px;
+  border-radius: inherit; /* 부모의 border-radius 상속 */
   pointer-events: none;
+  -webkit-border-radius: inherit;
 }
 
 /* 점수 표시 오버레이 - 좌측 상단 */
@@ -2195,8 +2227,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .back-button-circle {
-    width: 36px;
-    height: 36px;
+    width: 37px;
+    height: 37px;
   }
   
   .back-button-circle svg {
@@ -2754,15 +2786,29 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-radius: 20px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 코칭 메시지가 있을 때 비디오 컨테이너 */
 .video-coaching-wrapper .video-container {
-  border-radius: 0;
+  border-radius: 20px 20px 0 0; /* 상단만 라운드 */
   border-bottom: none;
   box-shadow: none;
   margin-bottom: -4px; /* 간격 제거 */
   aspect-ratio: 2/3; /* 비율 유지 */
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 모바일에서 코칭 래퍼의 비디오도 1:1로 */
+@media (max-width: 768px) {
+  .video-coaching-wrapper .video-container {
+    aspect-ratio: 1/1;
+  }
 }
 
 /* 코칭 메시지 영역 */
@@ -2774,6 +2820,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding: 16px 20px 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.03);
   min-height: 80px;
+  border-radius: 0 0 20px 20px; /* 하단만 라운드 */
 }
 
 .coaching-messages {
@@ -3420,7 +3467,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .practice-main-content {
   flex: 0 1 auto;
   overflow-y: visible;
-  padding: 0 16px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -3510,11 +3557,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .video-container {
-    aspect-ratio: 2/3 !important;
-    width: calc(100vw - 16px);
+    aspect-ratio: 1 !important;
+    width: calc(100vw - 32px);
     max-width: 360px;
     margin: 0 auto;
-    height: auto !important;
+    height: calc(100vw - 32px) !important;
+    max-height: 360px !important;
     min-height: 0;
   }
   
@@ -3547,7 +3595,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .practice-main-content {
-    padding: 0 6px;
+    padding: 0;
     gap: 8px;
     overflow-y: visible;
     width: 100%;
@@ -3608,9 +3656,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 /* 작은 디바이스 (iPhone SE 등) */
 @media (max-width: 375px) {
   .video-container {
-    width: calc(100vw - 12px);
+    width: calc(100vw - 32px);
     max-width: 320px;
-    aspect-ratio: 2/3 !important;
+    height: calc(100vw - 32px) !important;
+    max-height: 320px !important;
+    aspect-ratio: 1 !important;
+    margin: 0 auto;
   }
   
   .ios-analysis-panel.mobile-compact {
