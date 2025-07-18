@@ -166,7 +166,7 @@ function SmileDetector({ user }) {
         setIsModelLoaded(true)
         console.log(t('systemReady'))
       } catch (error) {
-        console.error('시스템 로드 실패:', error)
+        console.error(t('systemLoadError'), error)
       }
     }
     
@@ -278,9 +278,9 @@ function SmileDetector({ user }) {
       if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
         setCameraPermissionDenied(true)
       } else if (error.name === 'NotFoundError') {
-        showToast('카메라를 찾을 수 없습니다. 카메라가 연결되어 있는지 확인해주세요.', 'error')
+        showToast(t('cameraNotFound'), 'error')
       } else {
-        showToast('카메라 접근 중 오류가 발생했습니다.', 'error')
+        showToast(t('cameraAccessError'), 'error')
       }
     }
   }
@@ -388,7 +388,7 @@ function SmileDetector({ user }) {
   // 미소 감지 시작
   const startDetection = () => {
     if (!isModelLoaded || !isStreaming) {
-      showToast('먼저 카메라를 시작해주세요!', 'warning')
+      showToast(t('startCameraFirst'), 'warning')
       return
     }
     setIsDetecting(true)
@@ -442,9 +442,9 @@ function SmileDetector({ user }) {
           setFreeSessionCount(newCount)
           const remaining = 10 - newCount
           if (remaining > 0) {
-            showToast(`무료 체험 ${newCount}회 완료! (남은 횟수: ${remaining}회)`, 'info', 3000)
+            showToast(t('freeTrialCompleted', { count: newCount, remaining }), 'info', 3000)
           } else {
-            showToast('무료 체험 10회를 모두 사용하셨습니다!', 'info', 3000)
+            showToast(t('freeTrialAllUsed'), 'info', 3000)
           }
         }
       }
@@ -472,14 +472,14 @@ function SmileDetector({ user }) {
           details: error.details,
           hint: error.hint
         })
-        showToast(`연습 기록 저장 실패: ${error.message}`, 'error', 5000)
+        showToast(t('practiceRecordSaveFailed', { error: error.message }), 'error', 5000)
       } else {
         console.log('저장 성공:', data) // 디버깅용
-        showToast('연습 기록이 저장되었습니다!', 'success', 3000)
+        showToast(t('practiceRecordSaved'), 'success', 3000)
       }
     } catch (error) {
       console.error('세션 저장 중 예외 오류:', error)
-      showToast(`저장 중 오류: ${error.message}`, 'error', 5000)
+      showToast(t('savingError', { error: error.message }), 'error', 5000)
     }
   }
 
@@ -612,38 +612,38 @@ function SmileDetector({ user }) {
     
     // 주요 가이드 메시지
     if (happiness < 0.3) {
-      messages.push('광대근(대관골근)을 위로 올려주세요')
+      messages.push(t('liftZygomaticus'))
     } else if (happiness > 0.7) {
-      messages.push('자연스러운 표정을 유지하고 있습니다')
+      messages.push(t('maintainingNaturalExpression'))
     }
     
     // 눈 주변 근육 가이드
     if (smileQuality.eyeEngagement < 0.3 && happiness > 0.4) {
-      messages.push('눈둘레근을 함께 사용해 눈가 주름을 만들어보세요')
+      messages.push(t('useOrbicularisOculi'))
     } else if (smileQuality.eyeEngagement > 0.6) {
-      messages.push('뒤센 미소가 잘 나타나고 있어요')
+      messages.push(t('duchenneSmilesShowing'))
     }
     
     // 입 주변 근육 가이드
     if (neutral > 0.5) {
-      messages.push('입꼬리 올림근을 더 활성화해보세요')
+      messages.push(t('activateLevatorAnguliOris'))
     } else if (happiness > 0.6 && neutral < 0.2) {
-      messages.push('구륜근의 긴장을 살짝 풀어주세요')
+      messages.push(t('relaxOrbicularisOris'))
     }
     
     // 전체적인 균형
     if (fear > 0.2) {
-      messages.push('이마와 눈썹 사이 근육을 이완시켜주세요')
+      messages.push(t('relaxForeheadMuscles'))
     }
     
     // 상황별 전문 조언
     if (context === 'practice') {
       if (happiness < 0.4) {
-        messages.push('협골 대근과 소근을 동시에 수축시켜보세요')
+        messages.push(t('contractZygomaticusMajorMinor'))
       }
     } else if (context === 'social') {
       if (neutral > happiness) {
-        messages.push('입꼬리를 45도 각도로 부드럽게 올려주세요')
+        messages.push(t('liftCornersToFortyFive'))
       }
     }
     
@@ -683,7 +683,7 @@ function SmileDetector({ user }) {
     })
     
     // 고정 ID를 사용하여 알림 업데이트
-    showToast(`새로운 최고 기록! ${score}점 📸`, 'success', 3000, 'high-score-toast')
+    showToast(t('newHighScore', { score }) + ' 📸', 'success', 3000, 'high-score-toast')
   }
 
   // 실시간 미소 감지
@@ -861,22 +861,22 @@ function SmileDetector({ user }) {
           
           // 위치 안내 메시지 설정
           if (xOffset > centerThreshold || yOffset > centerThreshold) {
-            let guide = '얼굴을 '
+            let guide = t('moveFace') + ' '
             if (yOffset > centerThreshold) {
-              if (centerY < screenCenterY) guide += '아래로 '
-              else guide += '위로 '
+              if (centerY < screenCenterY) guide += t('down') + ' '
+              else guide += t('up') + ' '
             }
             if (xOffset > centerThreshold) {
               // 거울 모드일 때는 좌우 방향을 반대로 안내
               if (isMirrored) {
-                if (centerX < screenCenterX) guide += '왼쪽으로 '
-                else guide += '오른쪽으로 '
+                if (centerX < screenCenterX) guide += t('left') + ' '
+                else guide += t('right') + ' '
               } else {
-                if (centerX < screenCenterX) guide += '오른쪽으로 '
-                else guide += '왼쪽으로 '
+                if (centerX < screenCenterX) guide += t('right') + ' '
+                else guide += t('left') + ' '
               }
             }
-            guide += '움직여주세요'
+            guide = guide.trim()
             setFacePositionGuide(guide)
           } else {
             setFacePositionGuide('')
@@ -966,7 +966,7 @@ function SmileDetector({ user }) {
               ctx.textAlign = 'center'
               
               // 텍스트 크기 측정
-              const text = '대관골근'
+              const text = t('zygomaticMuscle')
               const textMetrics = ctx.measureText(text)
               const textWidth = textMetrics.width
               const textHeight = fontSize * 1.3
@@ -1085,7 +1085,7 @@ function SmileDetector({ user }) {
               const eyeCenterX = (leftEyeInner.x + rightEyeInner.x) / 2
               
               // 텍스트 크기 측정
-              const eyeText = '눈둘레근'
+              const eyeText = t('orbicularisOculi')
               const eyeTextMetrics = ctx.measureText(eyeText)
               const eyeTextWidth = eyeTextMetrics.width
               const eyeTextHeight = eyeFontSize * 1.3
@@ -1162,7 +1162,7 @@ function SmileDetector({ user }) {
               const mouthCenterX = (mouthLeft.x + mouthRight.x) / 2
               
               // 텍스트 크기 측정
-              const mouthText = '구륜근'
+              const mouthText = t('orbicularisOris')
               const mouthTextMetrics = ctx.measureText(mouthText)
               const mouthTextWidth = mouthTextMetrics.width
               const mouthTextHeight = mouthFontSize * 1.3
@@ -1215,8 +1215,8 @@ function SmileDetector({ user }) {
 
         } else {
           // 얼굴을 찾지 못했을 때도 DOM으로 표시
-          setCurrentCoachingMessages(['편안하게 자리를 잡아주세요'])
-          setFacePositionGuide('화면에 얼굴이 보이도록 카메라를 조정해주세요')
+          setCurrentCoachingMessages([t('getComfortable')])
+          setFacePositionGuide(t('adjustCameraToShowFace'))
         }
 
       } catch (error) {
@@ -1595,14 +1595,14 @@ function SmileDetector({ user }) {
                     <path d="M16 16L32 32M32 16L16 32" stroke="#FF3B30" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
                 </div>
-                <h3>카메라 권한이 차단되었어요</h3>
-                <p>브라우저 설정에서 카메라 권한을 허용해주세요.</p>
+                <h3>{t('cameraPermissionBlocked')}</h3>
+                <p>{t('cameraPermissionBlockedMessage')}</p>
                 <div className="permission-guide">
-                  <h4>권한 허용 방법:</h4>
+                  <h4>{t('howToAllowPermission')}:</h4>
                   <ol>
-                    <li>브라우저 주소창 왼쪽의 자물쇠 아이콘을 클릭하세요</li>
-                    <li>"카메라" 옵션을 찾아 "허용"으로 변경하세요</li>
-                    <li>페이지를 새로고침하세요</li>
+                    <li>{t('clickLockIcon')}</li>
+                    <li>{t('changeCameraToAllow')}</li>
+                    <li>{t('refreshPage')}</li>
                   </ol>
                 </div>
                 <div className="permission-buttons">
@@ -1610,12 +1610,12 @@ function SmileDetector({ user }) {
                     setCameraPermissionDenied(false)
                     window.location.reload()
                   }}>
-                    새로고침
+                    {t('refresh')}
                   </button>
                   <button className="permission-cancel" onClick={() => {
                     setCameraPermissionDenied(false)
                   }}>
-                    닫기
+                    {t('close')}
                   </button>
                 </div>
               </div>

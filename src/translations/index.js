@@ -210,7 +210,74 @@ export const translations = {
     // 공통
     loading: "로딩 중...",
     error: "오류가 발생했습니다",
-    success: "성공했습니다"
+    success: "성공했습니다",
+    
+    // 시스템 메시지
+    systemLoadError: "시스템 로드 실패:",
+    startCameraFirst: "먼저 카메라를 시작해주세요!",
+    cameraNotFound: "카메라를 찾을 수 없습니다. 카메라가 연결되어 있는지 확인해주세요.",
+    cameraAccessError: "카메라 접근 중 오류가 발생했습니다.",
+    
+    // 코칭 메시지
+    liftZygomaticus: "광대근(대관골근)을 위로 올려주세요",
+    maintainingNaturalExpression: "자연스러운 표정을 유지하고 있습니다",
+    useOrbicularisOculi: "눈둘레근을 함께 사용해 눈가 주름을 만들어보세요",
+    duchenneSmilesShowing: "뒤센 미소가 잘 나타나고 있어요",
+    activateLevatorAnguliOris: "입꼬리 올림근을 더 활성화해보세요",
+    relaxOrbicularisOris: "구륜근의 긴장을 살짝 풀어주세요",
+    relaxForeheadMuscles: "이마와 눈썹 사이 근육을 이완시켜주세요",
+    contractZygomaticusMajorMinor: "협골 대근과 소근을 동시에 수축시켜보세요",
+    liftCornersToFortyFive: "입꼬리를 45도 각도로 부드럽게 올려주세요",
+    getComfortable: "편안하게 자리를 잡아주세요",
+    adjustCameraToShowFace: "화면에 얼굴이 보이도록 카메라를 조정해주세요",
+    
+    // 얼굴 위치 안내
+    moveFace: "얼굴을",
+    down: "아래로",
+    up: "위로",
+    left: "왼쪽으로",
+    right: "오른쪽으로",
+    
+    // 근육 이름
+    zygomaticMuscle: "대관골근",
+    orbicularisOculi: "눈둘레근",
+    orbicularisOris: "구륜근",
+    
+    // 카메라 권한
+    cameraPermissionRequired: "카메라 권한이 필요합니다.",
+    cameraPermissionMessage: "카메라를 사용하려면 권한을 허용해주세요.",
+    requestCameraPermission: "카메라 권한 요청",
+    cameraPermissionDenied: "카메라 권한이 거부되었습니다.",
+    cameraPermissionDeniedMessage: "브라우저 설정에서 카메라 권한을 허용해주세요.",
+    cameraPermissionBlocked: "카메라 권한이 차단되었어요",
+    cameraPermissionBlockedMessage: "브라우저 설정에서 카메라 권한을 허용해주세요.",
+    howToAllowPermission: "권한 허용 방법",
+    clickLockIcon: "브라우저 주소창 왼쪽의 자물쇠 아이콘을 클릭하세요",
+    changeCameraToAllow: '"카메라" 옵션을 찾아 "허용"으로 변경하세요',
+    refreshPage: "페이지를 새로고침하세요",
+    refresh: "새로고침",
+    close: "닫기",
+    cameraPermissionNeeded: "카메라 권한이 필요합니다",
+    cameraPermissionDescription: "미소 분석을 위해 카메라 접근이 필요합니다",
+    onlyForSmileAnalysis: "오직 미소 분석에만 사용됩니다",
+    noPhotoVideoSaved: "사진/영상은 저장되지 않습니다",
+    canStopAnytime: "언제든 중단할 수 있습니다",
+    allowCamera: "카메라 권한 허용",
+    later: "나중에",
+    
+    // 무료 체험
+    freeTrialCompleted: "무료 체험 {{count}}회 완료! (남은 횟수: {{remaining}}회)",
+    freeTrialAllUsed: "무료 체험 10회를 모두 사용하셨습니다!",
+    
+    // 저장 관련
+    practiceRecordSaved: "연습 기록이 저장되었습니다!",
+    practiceRecordSaveFailed: "연습 기록 저장 실패: {{error}}",
+    savingError: "저장 중 오류: {{error}}",
+    newHighScore: "새로운 최고 기록! {{score}}점",
+    
+    // 기타
+    centerYourFace: "얼굴을 중앙에 위치시켜주세요",
+    capturedSmile: "캡처된 미소"
   },
   
   en: {
@@ -410,7 +477,74 @@ export const translations = {
     // Common
     loading: "Loading...",
     error: "An error occurred",
-    success: "Success"
+    success: "Success",
+    
+    // System messages
+    systemLoadError: "System load failed:",
+    startCameraFirst: "Please start the camera first!",
+    cameraNotFound: "Camera not found. Please check if camera is connected.",
+    cameraAccessError: "Error accessing camera.",
+    
+    // Coaching messages
+    liftZygomaticus: "Lift your zygomaticus major muscle",
+    maintainingNaturalExpression: "Maintaining natural expression",
+    useOrbicularisOculi: "Engage orbicularis oculi to create crow's feet",
+    duchenneSmilesShowing: "Duchenne smile is showing well",
+    activateLevatorAnguliOris: "Activate levator anguli oris more",
+    relaxOrbicularisOris: "Slightly relax orbicularis oris",
+    relaxForeheadMuscles: "Relax muscles between forehead and eyebrows",
+    contractZygomaticusMajorMinor: "Contract both zygomaticus major and minor",
+    liftCornersToFortyFive: "Gently lift corners to 45 degrees",
+    getComfortable: "Get comfortable",
+    adjustCameraToShowFace: "Adjust camera to show your face",
+    
+    // Face position guide
+    moveFace: "Move face",
+    down: "down",
+    up: "up",
+    left: "left",
+    right: "right",
+    
+    // Muscle names
+    zygomaticMuscle: "Zygomaticus",
+    orbicularisOculi: "Orbicularis oculi",
+    orbicularisOris: "Orbicularis oris",
+    
+    // Camera permissions
+    cameraPermissionRequired: "Camera permission required.",
+    cameraPermissionMessage: "Please allow camera access to use this feature.",
+    requestCameraPermission: "Request Camera Permission",
+    cameraPermissionDenied: "Camera permission denied.",
+    cameraPermissionDeniedMessage: "Please allow camera permission in browser settings.",
+    cameraPermissionBlocked: "Camera permission blocked",
+    cameraPermissionBlockedMessage: "Please allow camera permission in browser settings.",
+    howToAllowPermission: "How to allow permission",
+    clickLockIcon: "Click the lock icon in the browser address bar",
+    changeCameraToAllow: 'Find "Camera" option and change to "Allow"',
+    refreshPage: "Refresh the page",
+    refresh: "Refresh",
+    close: "Close",
+    cameraPermissionNeeded: "Camera permission needed",
+    cameraPermissionDescription: "Camera access is needed for smile analysis",
+    onlyForSmileAnalysis: "Used only for smile analysis",
+    noPhotoVideoSaved: "No photos/videos are saved",
+    canStopAnytime: "You can stop anytime",
+    allowCamera: "Allow Camera",
+    later: "Later",
+    
+    // Free trial
+    freeTrialCompleted: "Free trial {{count}} completed! (Remaining: {{remaining}})",
+    freeTrialAllUsed: "You've used all 10 free trial sessions!",
+    
+    // Save related
+    practiceRecordSaved: "Practice record saved!",
+    practiceRecordSaveFailed: "Failed to save practice record: {{error}}",
+    savingError: "Error saving: {{error}}",
+    newHighScore: "New high score! {{score}} points",
+    
+    // Others
+    centerYourFace: "Center your face",
+    capturedSmile: "Captured smile"
   },
   
   ja: {
