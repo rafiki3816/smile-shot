@@ -73,7 +73,7 @@ function SmileDetector({ user }) {
   }, [])
 
   // 미소 타입별 정보 - 전문적 근육 가이드 추가
-  const smileTypes = {
+  const getSmileTypes = () => ({
     practice: {
       title: t('practiceSmileTitle'),
       subtitle: t('practiceSmileSubtitle'),
@@ -149,7 +149,9 @@ function SmileDetector({ user }) {
         ]
       }
     }
-  }
+  })
+  
+  const smileTypes = getSmileTypes()
 
   // AI 모델 로드 및 무료 세션 확인
   useEffect(() => {

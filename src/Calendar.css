@@ -2,18 +2,21 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   border-radius: 20px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: 800px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .calendar-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 6px;
-  gap: 2px;
+  margin-bottom: 16px;
+  gap: 8px;
 }
 
 .calendar-month-row {
@@ -26,11 +29,12 @@
 
 .calendar-month-title {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #1a1a1a;
   text-align: center;
   flex: 1;
+  white-space: nowrap;
 }
 
 .calendar-controls {
@@ -40,14 +44,12 @@
 }
 
 .today-button {
-  width: 36px;
-  height: 36px;
-  padding: 0;
+  padding: 8px 16px;
   border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 50%;
+  border-radius: 20px;
   background: rgba(16, 185, 129, 0.05);
   color: #10b981;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
@@ -91,16 +93,17 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
+  gap: 8px;
   padding: 0;
+  max-width: 100%;
 }
 
 .calendar-weekday {
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #9ca3af;
-  padding: 10px 0;
+  padding: 8px 0;
   letter-spacing: 0.5px;
 }
 
@@ -114,20 +117,34 @@
   transition: all 0.2s ease;
   position: relative;
   border-radius: 50%;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #374151;
   background: transparent;
+  min-height: 36px;
+  min-width: 36px;
+  max-width: 48px;
+  max-height: 48px;
 }
 
-.calendar-day:hover:not(.other-month) {
+.calendar-day:hover:not(.other-month):not(.today) {
   background: #f3f4f6;
   transform: scale(1.05);
 }
 
-/* 다른 달 날짜 - 숨김 처리 */
+.calendar-day:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+.calendar-day:focus:not(.today) {
+  background: #f3f4f6;
+}
+
+/* 다른 달 날짜 - 희미하게 표시 */
 .calendar-day.other-month {
-  visibility: hidden;
+  opacity: 0.3;
   cursor: default;
+  pointer-events: none;
 }
 
 /* 오늘 날짜 - 강조 */
@@ -161,44 +178,91 @@
 }
 
 /* 선택된 날짜 */
-.calendar-day.selected {
+.calendar-day.selected:not(.today) {
   background: rgba(16, 185, 129, 0.1);
   color: #10b981;
   font-weight: 600;
   border: 2px solid #10b981;
 }
 
+.calendar-day.selected.today {
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3), 0 0 0 2px #10b981;
+}
+
 .day-number {
   font-size: 0.95rem;
 }
 
-/* 기록 표시기 - 심플한 점으로만 */
-.session-indicator {
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: #10b981;
-  border-radius: 50%;
-}
 
 /* 모바일 반응형 */
 @media (max-width: 600px) {
   .calendar-container {
-    padding: 16px;
+    padding: 12px;
   }
   
   .calendar-grid {
-    gap: 8px;
+    gap: 4px;
   }
   
   .calendar-day {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    min-height: 32px;
+    min-width: 32px;
+    max-width: 40px;
+    max-height: 40px;
   }
   
   .calendar-weekday {
+    font-size: 0.7rem;
+    padding: 6px 0;
+  }
+  
+  .calendar-month-title {
+    font-size: 1rem;
+  }
+  
+  .today-button {
+    padding: 6px 12px;
     font-size: 0.75rem;
+  }
+  
+  .nav-button {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+/* 아주 작은 화면용 */
+@media (max-width: 400px) {
+  .calendar-container {
+    padding: 8px;
+  }
+  
+  .calendar-grid {
+    gap: 2px;
+  }
+  
+  .calendar-day {
+    font-size: 0.75rem;
+    min-height: 28px;
+    min-width: 28px;
+    max-width: 36px;
+    max-height: 36px;
+  }
+  
+  .calendar-weekday {
+    font-size: 0.65rem;
+    padding: 4px 0;
+  }
+  
+  .calendar-month-title {
+    font-size: 0.9rem;
+  }
+  
+  .today-button {
+    padding: 4px 8px;
+    font-size: 0.7rem;
   }
 }

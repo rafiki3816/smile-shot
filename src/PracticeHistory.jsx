@@ -7,7 +7,24 @@ import { useLanguage } from './contexts/LanguageContext'
 
 function PracticeHistory({ user, onNavigateToPractice }) {
   const navigate = useNavigate()
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
+  
+  // 언어별 로케일 매핑
+  const getLocale = () => {
+    const localeMap = {
+      ko: 'ko-KR',
+      en: 'en-US', 
+      ja: 'ja-JP',
+      zh: 'zh-CN',
+      es: 'es-ES',
+      fr: 'fr-FR',
+      de: 'de-DE',
+      it: 'it-IT',
+      pt: 'pt-PT',
+      ru: 'ru-RU'
+    }
+    return localeMap[currentLanguage] || 'ko-KR'
+  }
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
   const [todayStats, setTodayStats] = useState({
@@ -31,7 +48,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   // 코칭 조언 생성
   useEffect(() => {
     if (history.length > 0 || todayStats.sessions === 0) {
-      const advice = generateCoachingAdvice(history, todayStats)
+      const advice = generateCoachingAdvice(history, todayStats, currentLanguage)
       setCoachingAdvice(advice)
       
       // 주간 리포트 생성 (일요일이거나 7일 이상 연습한 경우)
@@ -42,7 +59,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
       }).length >= 7
       
       if (today === 0 || hasWeekOfData) {
-        const report = generateWeeklyReport(history)
+        const report = generateWeeklyReport(history, currentLanguage)
         setWeeklyReport(report)
       }
     }
@@ -61,7 +78,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
           const formattedHistory = data.map(session => ({
             id: session.id,
             date: new Date(session.created_at).toISOString().split('T')[0],
-            time: new Date(session.created_at).toLocaleTimeString('ko-KR'),
+            time: new Date(session.created_at).toLocaleTimeString(getLocale()),
             maxScore: session.max_score,
             avgScore: session.avg_score || session.max_score,
             duration: session.duration,
@@ -74,7 +91,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
           calculateTodayStats(formattedHistory)
         }
       } catch (error) {
-        console.error('기록 불러오기 오류:', error)
+        console.error(t('loadingHistoryError'), error)
       }
     } else {
       // 비로그인 사용자는 localStorage에서 임시 데이터 불러오기
@@ -103,7 +120,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
     const newSession = {
       id: Date.now(),
       date: today,
-      time: now.toLocaleTimeString('ko-KR'),
+      time: now.toLocaleTimeString(getLocale()),
       maxScore,
       avgScore,
       duration, // 초 단위
@@ -155,7 +172,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   const formatDuration = (seconds) => {
     const minutes = Math.floor(seconds / 60)
     const remainingSeconds = seconds % 60
-    return `${minutes}분 ${remainingSeconds}초`
+    return t('durationFormat', { minutes, seconds: remainingSeconds })
   }
 
   // 기록 삭제
@@ -167,7 +184,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
 
   // 전체 기록 삭제
   const clearAllHistory = () => {
-    if (confirm('모든 연습 기록을 삭제하시겠습니까?')) {
+    if (confirm(t('deleteAllRecordsConfirm'))) {
       saveHistory([])
       setTodayStats({ sessions: 0, maxScore: 0, avgScore: 0, totalTime: 0 })
     }
@@ -209,10 +226,10 @@ function PracticeHistory({ user, onNavigateToPractice }) {
     <div className="practice-history">
       {/* 진행 상황 시각화 */}
       <div className="progress-section">
-        <h3>나의 성장 그래프</h3>
+        <h3>{t('myGrowthGraph')}</h3>
         <div className="progress-summary">
           <div className="current-average">
-            <span className="average-label">이번 주 평균</span>
+            <span className="average-label">{t('thisWeekAverage')}</span>
             <span className="average-score">{weeklyProgress.current}%</span>
           </div>
           {weeklyProgress.change !== 0 && (
@@ -278,7 +295,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               <h4>{weeklyReport.summary}</h4>
               {weeklyReport.achievements.length > 0 && (
                 <div className="achievements">
-                  <h5>이번 주 성과</h5>
+                  <h5>{t('thisWeekAchievements')}</h5>
                   <ul>
                     {weeklyReport.achievements.map((achievement, idx) => (
                       <li key={idx}>{achievement}</li>
@@ -288,7 +305,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               )}
               {weeklyReport.nextWeekGoals.length > 0 && (
                 <div className="next-goals">
-                  <h5>다음 주 목표</h5>
+                  <h5>{t('nextWeekGoals')}</h5>
                   <ul>
                     {weeklyReport.nextWeekGoals.map((goal, idx) => (
                       <li key={idx}>{goal}</li>
@@ -313,7 +330,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             {/* 기술적 조언 */}
             {coachingAdvice.technicalTips.length > 0 && (
               <div className="technical-tips">
-                <h4>개선 포인트</h4>
+                <h4>{t('improvementPoints')}</h4>
                 <ul>
                   {coachingAdvice.technicalTips.map((tip, idx) => (
                     <li key={idx}>{tip}</li>
@@ -336,7 +353,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             
             {/* 다음 목표 */}
             <div className="next-goal">
-              <h4>다음 목표</h4>
+              <h4>{t('nextGoal')}</h4>
               <p>{coachingAdvice.nextGoal}</p>
             </div>
             
@@ -352,13 +369,13 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             
             <div className="suggested-actions">
               <button onClick={onNavigateToPractice || (() => navigate('/app'))} className="action-btn primary">
-                연습 시작하기
+                {t('startPractice')}
               </button>
               <button onClick={() => {
-                const newTip = getRandomTip()
+                const newTip = getRandomTip(currentLanguage)
                 setCoachingAdvice({...coachingAdvice, motivationalQuote: newTip})
               }} className="action-btn secondary">
-                다른 조언 보기
+                {t('viewOtherAdvice')}
               </button>
             </div>
           </div>
@@ -368,19 +385,19 @@ function PracticeHistory({ user, onNavigateToPractice }) {
       {/* 날짜별 기록 */}
       <div className="history-list">
         <div className="history-header">
-          <h3>연습 기록</h3>
+          <h3>{t('practiceRecord')}</h3>
           <div className="view-toggle">
             <button 
               className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
               onClick={() => setViewMode('list')}
             >
-              오늘
+              {t('today')}
             </button>
             <button 
               className={`view-btn ${viewMode === 'calendar' ? 'active' : ''}`}
               onClick={() => setViewMode('calendar')}
             >
-              다이어리
+              {t('diary')}
             </button>
           </div>
         </div>
@@ -408,7 +425,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
             const today = new Date().toISOString().split('T')[0]
             const todaySessions = groupedHistory[today] || []
             return todaySessions.length === 0 ? (
-              <p className="no-history">오늘은 아직 연습 기록이 없습니다.</p>
+              <p className="no-history">{t('noPracticeRecordToday')}</p>
             ) : (
               <div key={today} className="date-group">
                 <h4 className="date-header">
@@ -418,7 +435,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                   {todaySessions.map(session => (
                     <div key={session.id} className="session-card">
                       <div className="session-header">
-                        <span className="session-type">{session.smileType || '미소 연습'}</span>
+                        <span className="session-type">{session.smileType || t('smilePractice')}</span>
                         <span className="session-score">{session.maxScore}%</span>
                       </div>
                       <div className="session-details">
@@ -445,10 +462,10 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                         >
                           <img 
                             src={session.metrics.capturedPhoto} 
-                            alt="최고의 순간" 
+                            alt={t('bestMomentAlt')} 
                             className="session-capture-thumb"
                           />
-                          <span className="capture-label">최고의 순간</span>
+                          <span className="capture-label">{t('bestMoment')}</span>
                         </div>
                       )}
                     </div>
@@ -466,7 +483,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
           <div className="date-detail-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setSelectedDate(null)}>×</button>
             <h3 className="modal-title">
-              {new Date(selectedDate.date).toLocaleDateString('ko-KR', {
+              {new Date(selectedDate.date).toLocaleDateString(getLocale(), {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -511,7 +528,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               {/* 최고의 순간 사진들 */}
               {selectedDate.sessions.some(s => s.metrics?.capturedPhoto) && (
                 <div className="date-captures">
-                  <h4>최고의 순간들 📸</h4>
+                  <h4>{t('bestMoments')} 📸</h4>
                   <div className="captures-grid">
                     {selectedDate.sessions
                       .filter(s => s.metrics?.capturedPhoto)
@@ -531,7 +548,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                         >
                           <img 
                             src={session.metrics.capturedPhoto} 
-                            alt="최고의 순간" 
+                            alt={t('bestMomentAlt')} 
                             className="capture-thumb"
                           />
                           <div className="capture-info">
@@ -547,7 +564,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               
               {/* 세션별 상세 정보 */}
               <div className="date-sessions">
-                <h4>연습 세션 상세</h4>
+                <h4>{t('practiceSessionDetails')}</h4>
                 {selectedDate.sessions.map(session => (
                   <div key={session.id} className="session-detail">
                     <div className="session-header">
@@ -557,11 +574,11 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                     <div className="session-metrics">
                       <span>{t('highestScore')}: {session.maxScore}%</span>
                       <span>{t('averageScore')}: {session.avgScore}%</span>
-                      <span>연습 시간: {formatDuration(session.duration)}</span>
+                      <span>{t('practiceTime')}: {formatDuration(session.duration)}</span>
                     </div>
                     {session.context && (
                       <div className="session-context">
-                        <span>연습 상황: {session.context}</span>
+                        <span>{t('practiceContext')}: {session.context}</span>
                       </div>
                     )}
                   </div>
@@ -570,7 +587,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                 </>
               ) : (
                 <div className="no-sessions-message">
-                  <p>이 날은 연습 기록이 없습니다.</p>
+                  <p>{t('noPracticeRecordThisDay')}</p>
                 </div>
               )}
             </div>
@@ -583,19 +600,19 @@ function PracticeHistory({ user, onNavigateToPractice }) {
         <div className="capture-modal-overlay" onClick={() => setSelectedCapture(null)}>
           <div className="capture-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setSelectedCapture(null)}>×</button>
-            <h3 className="modal-title">최고의 순간 📸</h3>
+            <h3 className="modal-title">{t('bestMoment')} 📸</h3>
             
             <div className="modal-content">
               <img 
                 src={selectedCapture.photo} 
-                alt="최고의 순간" 
+                alt={t('bestMomentAlt')} 
                 className="modal-photo"
               />
               
               {selectedCapture.analysis && (
                 <div className="modal-analysis">
                   <div className="analysis-score">
-                    <span className="score-label">점수</span>
+                    <span className="score-label">{t('score')}</span>
                     <span className="score-value">{selectedCapture.analysis.score}%</span>
                   </div>
                   
@@ -614,7 +631,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                   
                   {selectedCapture.analysis.coaching && selectedCapture.analysis.coaching.length > 0 && (
                     <div className="analysis-coaching">
-                      <h4>코칭 메시지</h4>
+                      <h4>{t('coachingMessage')}</h4>
                       {selectedCapture.analysis.coaching.map((message, idx) => (
                         <p key={idx} className="coaching-message">{message}</p>
                       ))}

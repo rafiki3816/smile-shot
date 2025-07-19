@@ -183,6 +183,93 @@ export const translations = {
     coachingPosition: "편안하게 자리를 잡아주세요",
     coachingCamera: "화면에 얼굴이 보이도록 카메라를 조정해주세요",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}}일 연속 연습 중이에요! 오늘도 이어가세요.",
+    coachingConsistentUser: "꾸준히 연습해온 당신, 오늘도 멋진 미소를 만들어봐요!",
+    coachingWelcomeBack: "일주일만에 돌아오셨네요! 다시 시작하는 것이 중요합니다.",
+    coachingFirstPractice: "오늘 첫 연습을 시작해보세요! 작은 시작이 큰 변화를 만듭니다.",
+    coachingExcellent: "훌륭해요! 오늘 평균 {{score}}점을 달성했습니다. 전문가 수준에 도달했어요!",
+    coachingGoodProgress: "좋은 진전이에요! {{focus}} 평균 {{score}}점을 기록했습니다.",
+    coachingFastGrowth: "성장 속도가 빨라요!",
+    coachingSteadyProgress: "꾸준히 발전하고 있어요.",
+    coachingGoodStart: "좋은 시작이에요! 긴장을 풀고 편안하게 연습해보세요.",
+    
+    // Coaching tips
+    coachingTipRelax: "편안한 자세로 시작하세요",
+    coachingTipMirror: "거울을 보며 자연스럽게 미소 지어보세요",
+    coachingTipBreathe: "깊은 호흡으로 긴장을 풀어주세요",
+    coachingTipAngles: "다양한 각도에서 연습해보세요",
+    coachingTipEmotion: "감정을 더 깊이 느끼며 미소 지어보세요",
+    coachingTipRealWorld: "이제 실전에서 자신있게 사용해보세요",
+    coachingTipEyesAndMouth: "눈과 입이 함께 웃도록 신경써보세요",
+    coachingTipHold3Seconds: "미소를 3초 이상 자연스럽게 유지해보세요",
+    coachingTipVariety: "다양한 감정을 담아 연습해보세요",
+    coachingTipObserve: "거울을 보며 표정을 관찰해보세요",
+    coachingTipStartSmall: "작은 미소부터 시작해서 점점 크게 웃어보세요",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "입꼬리 올리기: 입꼬리를 귀 방향으로 올려 5초 유지, 10회 반복",
+    exerciseBeginnerCheekPuff: "볼 부풀리기: 볼을 최대한 부풀렸다가 천천히 빼기, 5회 반복",
+    exerciseBeginnerLipPurse: "입술 오므리기: '오' 모양으로 입술을 오므렸다가 '이' 모양으로 펴기, 10회",
+    exerciseIntermediateAsymmetric: "비대칭 미소: 한쪽 입꼬리만 올려 3초 유지, 양쪽 각 10회",
+    exerciseIntermediateEyeSmile: "눈 미소: 입은 그대로 두고 눈으로만 웃기, 10초 유지 5회",
+    exerciseAdvancedMicroControl: "미세 조절: 10단계로 나누어 미소 강도 조절하기",
+    exerciseAdvancedEmotionSwitch: "감정 전환: 무표정 → 미소 → 크게 웃기 → 미소, 부드럽게 전환",
+    
+    // Goals
+    goalTodayPractice: "오늘 5분만 투자해서 3회 연습해보세요",
+    goal14Days: "7일 연속 달성! 이제 14일 도전해보세요",
+    goalDaily: "매일 꾸준히 연습해서 마스터가 되어보세요",
+    goalNextScore: "다음 목표는 {{score}}점입니다",
+    goal70Points: "편안한 마음으로 70점을 목표로 해보세요",
+    goalContinueStreak: "연속 기록을 이어가세요",
+    goalDailyPractice: "매일 연습하기",
+    goalNewSmileType: "새로운 미소 타입 도전하기",
+    goalIncrease5Points: "평균 점수 5점 올리기",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "오전 시간에 연습하면 좋아요",
+    recommendedTimeAfternoon: "오후 시간에 연습하면 좋아요",
+    recommendedTimeEvening: "저녁 시간에 연습하면 좋아요",
+    recommendedTimeGeneral: "하루 중 편한 시간에 연습하면 좋아요",
+    recommendedTimeShort: "짧은 시간이라도 매일 연습하세요",
+    recommendedTimeStressFree: "스트레스 없는 시간에 5분씩 연습하세요",
+    
+    // Motivational quotes
+    motivationalQuote1: "미소는 당신이 착용할 수 있는 가장 아름다운 것입니다.",
+    motivationalQuote2: "완벽한 연습이 완벽을 만듭니다. 당신은 이미 전문가입니다!",
+    motivationalQuote3: "발전하는 모습이 보여요. 조금만 더 하면 목표 달성!",
+    motivationalQuote4: "모든 전문가도 초보자였습니다. 꾸준함이 답입니다.",
+    
+    // Practice tips
+    practiceTip1: "눈으로도 웃어보세요. 진짜 미소는 눈에서 시작됩니다.",
+    practiceTip2: "깊게 숨을 쉬고 어깨의 긴장을 풀어보세요.",
+    practiceTip3: "행복했던 순간을 떠올리며 미소 지어보세요.",
+    practiceTip4: "거울 속 자신과 눈을 마주치며 연습해보세요.",
+    practiceTip5: "입꼬리를 살짝 올리는 것부터 시작해보세요.",
+    practiceTip6: "미소는 얼굴 전체가 함께 움직이는 것입니다.",
+    practiceTip7: "자연스러운 미소는 천천히 피어납니다.",
+    practiceTip8: "편안한 마음이 아름다운 미소를 만듭니다.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "거울을 보며 눈을 마주치는 연습을 해보세요. 자신감은 눈빛에서 시작됩니다.",
+    metricAdviceStabilityLow: "천천히 심호흡하고, 얼굴 근육을 이완시킨 후 미소를 지어보세요.",
+    metricAdviceNaturalnessLow: "행복했던 순간을 떠올리며 미소 지어보세요. 감정이 먼저, 표정이 따라옵니다.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "이번 주는 연습을 하지 않으셨네요. 다시 시작해볼까요?",
+    weeklyReportSummary: "이번 주 {{count}}회 연습, 평균 {{score}}점",
+    achievement7Days: "7일 연속 연습 달성! 🎉",
+    achievementGrowth: "{{rate}}% 성장했어요!",
+    improvement5Days: "주 5회 이상 연습을 목표로 해보세요",
+    
+    // Practice History headings
+    thisWeekAchievements: "이번 주 성과",
+    nextWeekGoals: "다음 주 목표",
+    improvementPoints: "개선 포인트",
+    nextGoal: "다음 목표",
+    todaysMuscleExercise: "오늘의 근육 운동",
+    
     // 얼굴 위치 안내
     facePositionDown: "아래로",
     facePositionUp: "위로",
@@ -301,7 +388,43 @@ export const translations = {
     todaysPersonalizedAdvice: "오늘의 맞춤 조언",
     todaysMuscleExercise: "오늘의 근육 운동",
     todaysRecord: "오늘의 기록",
-    practiceInTempMode: "현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다."
+    practiceInTempMode: "현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다.",
+    myGrowthGraph: "나의 성장 그래프",
+    thisWeekAverage: "이번 주 평균",
+    thisWeekAchievements: "이번 주 성과",
+    nextWeekGoals: "다음 주 목표",
+    improvementPoints: "개선 포인트",
+    nextGoal: "다음 목표",
+    startPractice: "연습 시작하기",
+    viewOtherAdvice: "다른 조언 보기",
+    practiceRecord: "연습 기록",
+    today: "오늘",
+    diary: "일기",
+    noPracticeRecordToday: "오늘은 연습 기록이 없습니다",
+    smilePractice: "미소 연습",
+    bestMoment: "최고의 순간",
+    bestMoments: "최고의 순간들",
+    practiceSessionDetails: "연습 세션 상세",
+    practiceTime: "연습 시간",
+    practiceContext: "연습 상황",
+    noPracticeRecordThisDay: "이날은 연습 기록이 없습니다",
+    score: "점수",
+    coachingMessage: "코칭 메시지",
+    durationFormat: "{{minutes}}분 {{seconds}}초",
+    loadingHistoryError: "기록 불러오기 오류",
+    deleteAllRecordsConfirm: "모든 연습 기록을 삭제하시겠습니까?",
+    bestMomentAlt: "최고의 순간",
+    
+    // Date/Calendar
+    yearSuffix: "년",
+    monthSuffix: "월",
+    sunday: "일",
+    monday: "월",
+    tuesday: "화",
+    wednesday: "수",
+    thursday: "목",
+    friday: "금",
+    saturday: "토"
   },
   
   en: {
@@ -474,6 +597,93 @@ export const translations = {
     coachingPosition: "Please get into a comfortable position",
     coachingCamera: "Please adjust your camera so your face is visible on screen",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} days of consecutive practice! Keep it up today.",
+    coachingConsistentUser: "You've been practicing consistently! Let's create another beautiful smile today!",
+    coachingWelcomeBack: "Welcome back after a week! Starting again is what matters.",
+    coachingFirstPractice: "Start your first practice today! Small beginnings lead to big changes.",
+    coachingExcellent: "Excellent! You achieved an average of {{score}} points today. You've reached expert level!",
+    coachingGoodProgress: "Good progress! You recorded an average of {{score}} points for {{focus}}.",
+    coachingFastGrowth: "Your growth is accelerating!",
+    coachingSteadyProgress: "You're making steady progress.",
+    coachingGoodStart: "Great start! Relax and practice comfortably.",
+    
+    // Coaching tips
+    coachingTipRelax: "Start with a relaxed posture",
+    coachingTipMirror: "Practice naturally while looking in the mirror",
+    coachingTipBreathe: "Release tension with deep breathing",
+    coachingTipAngles: "Practice from various angles",
+    coachingTipEmotion: "Smile with deeper emotion",
+    coachingTipRealWorld: "Now use it confidently in real situations",
+    coachingTipEyesAndMouth: "Focus on smiling with both eyes and mouth",
+    coachingTipHold3Seconds: "Hold your smile naturally for at least 3 seconds",
+    coachingTipVariety: "Practice with various emotions",
+    coachingTipObserve: "Observe your expression in the mirror",
+    coachingTipStartSmall: "Start with a small smile and gradually make it bigger",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Lip corner lift: Lift corners toward ears, hold 5 seconds, repeat 10 times",
+    exerciseBeginnerCheekPuff: "Cheek puff: Puff cheeks fully then slowly release, repeat 5 times",
+    exerciseBeginnerLipPurse: "Lip purse: Purse lips in 'O' shape then spread to 'E' shape, 10 times",
+    exerciseIntermediateAsymmetric: "Asymmetric smile: Lift one corner, hold 3 seconds, 10 times each side",
+    exerciseIntermediateEyeSmile: "Eye smile: Keep mouth still and smile with eyes only, hold 10 seconds, 5 times",
+    exerciseAdvancedMicroControl: "Micro control: Adjust smile intensity in 10 gradual steps",
+    exerciseAdvancedEmotionSwitch: "Emotion switch: Neutral → smile → big smile → smile, smooth transitions",
+    
+    // Goals
+    goalTodayPractice: "Invest just 5 minutes today for 3 practice sessions",
+    goal14Days: "7 days achieved! Now challenge yourself to 14 days",
+    goalDaily: "Practice daily to become a master",
+    goalNextScore: "Your next goal is {{score}} points",
+    goal70Points: "Aim for 70 points with a relaxed mindset",
+    goalContinueStreak: "Continue your streak",
+    goalDailyPractice: "Practice daily",
+    goalNewSmileType: "Try a new smile type",
+    goalIncrease5Points: "Increase average score by 5 points",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "Morning practice is beneficial",
+    recommendedTimeAfternoon: "Afternoon practice is beneficial",
+    recommendedTimeEvening: "Evening practice is beneficial",
+    recommendedTimeGeneral: "Practice at any comfortable time of day",
+    recommendedTimeShort: "Practice daily, even for short periods",
+    recommendedTimeStressFree: "Practice for 5 minutes during stress-free times",
+    
+    // Motivational quotes
+    motivationalQuote1: "A smile is the most beautiful thing you can wear.",
+    motivationalQuote2: "Perfect practice makes perfect. You're already an expert!",
+    motivationalQuote3: "Your progress is showing. Just a bit more to reach your goal!",
+    motivationalQuote4: "Every expert was once a beginner. Consistency is key.",
+    
+    // Practice tips
+    practiceTip1: "Smile with your eyes too. Real smiles start in the eyes.",
+    practiceTip2: "Take deep breaths and release shoulder tension.",
+    practiceTip3: "Smile while recalling happy moments.",
+    practiceTip4: "Practice while making eye contact with yourself in the mirror.",
+    practiceTip5: "Start by slightly lifting the corners of your mouth.",
+    practiceTip6: "A smile involves the entire face moving together.",
+    practiceTip7: "Natural smiles bloom slowly.",
+    practiceTip8: "A relaxed mind creates beautiful smiles.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Practice making eye contact in the mirror. Confidence starts in the eyes.",
+    metricAdviceStabilityLow: "Breathe slowly, relax facial muscles, then smile.",
+    metricAdviceNaturalnessLow: "Smile while recalling happy moments. Emotion comes first, expression follows.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "You didn't practice this week. Shall we start again?",
+    weeklyReportSummary: "This week: {{count}} practices, average {{score}} points",
+    achievement7Days: "7 consecutive days achieved! 🎉",
+    achievementGrowth: "You've grown {{rate}}%!",
+    improvement5Days: "Aim to practice at least 5 times a week",
+    
+    // Practice History headings
+    thisWeekAchievements: "This Week's Achievements",
+    nextWeekGoals: "Next Week's Goals",
+    improvementPoints: "Improvement Points",
+    nextGoal: "Next Goal",
+    todaysMuscleExercise: "Today's Muscle Exercise",
+    
     // Face Position Guide
     facePositionDown: "downward",
     facePositionUp: "upward",
@@ -592,7 +802,43 @@ export const translations = {
     todaysPersonalizedAdvice: "Today's Personalized Advice",
     todaysMuscleExercise: "Today's Muscle Exercise",
     todaysRecord: "Today's Record",
-    practiceInTempMode: "Currently practicing in temporary mode. All records will be lost when you close the browser."
+    practiceInTempMode: "Currently practicing in temporary mode. All records will be lost when you close the browser.",
+    myGrowthGraph: "My Growth Graph",
+    thisWeekAverage: "This Week's Average",
+    thisWeekAchievements: "This Week's Achievements",
+    nextWeekGoals: "Next Week's Goals",
+    improvementPoints: "Improvement Points",
+    nextGoal: "Next Goal",
+    startPractice: "Start Practice",
+    viewOtherAdvice: "View Other Advice",
+    practiceRecord: "Practice Record",
+    today: "Today",
+    diary: "Diary",
+    noPracticeRecordToday: "No practice record today",
+    smilePractice: "Smile Practice",
+    bestMoment: "Best Moment",
+    bestMoments: "Best Moments",
+    practiceSessionDetails: "Practice Session Details",
+    practiceTime: "Practice Time",
+    practiceContext: "Practice Context",
+    noPracticeRecordThisDay: "No practice record this day",
+    score: "Score",
+    coachingMessage: "Coaching Message",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Error loading history",
+    deleteAllRecordsConfirm: "Are you sure you want to delete all practice records?",
+    bestMomentAlt: "Best moment",
+    
+    // Date/Calendar
+    yearSuffix: "year",
+    monthSuffix: "month",
+    sunday: "Sun",
+    monday: "Mon",
+    tuesday: "Tue",
+    wednesday: "Wed",
+    thursday: "Thu",
+    friday: "Fri",
+    saturday: "Sat"
   },
   
   ja: {
@@ -761,6 +1007,93 @@ export const translations = {
     coachingPosition: "楽な姿勢でお座りください",
     coachingCamera: "画面に顔が映るようにカメラを調整してください",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}}日連続練習中です！今日も続けましょう。",
+    coachingConsistentUser: "継続的に練習してきたあなた、今日も素敵な笑顔を作りましょう！",
+    coachingWelcomeBack: "一週間ぶりですね！再び始めることが大切です。",
+    coachingFirstPractice: "今日初めての練習を始めましょう！小さな始まりが大きな変化を生みます。",
+    coachingExcellent: "素晴らしい！今日は平均{{score}}点を達成しました。エキスパートレベルに到達しました！",
+    coachingGoodProgress: "良い進歩です！{{focus}}で平均{{score}}点を記録しました。",
+    coachingFastGrowth: "成長が加速しています！",
+    coachingSteadyProgress: "着実に進歩しています。",
+    coachingGoodStart: "良いスタートです！リラックスして快適に練習しましょう。",
+    
+    // Coaching tips
+    coachingTipRelax: "リラックスした姿勢から始めましょう",
+    coachingTipMirror: "鏡を見ながら自然に笑顔を作りましょう",
+    coachingTipBreathe: "深呼吸で緊張をほぐしましょう",
+    coachingTipAngles: "様々な角度から練習しましょう",
+    coachingTipEmotion: "より深い感情を込めて笑顔を作りましょう",
+    coachingTipRealWorld: "実際の場面で自信を持って使いましょう",
+    coachingTipEyesAndMouth: "目と口が一緒に笑うように意識しましょう",
+    coachingTipHold3Seconds: "笑顔を3秒以上自然に保ちましょう",
+    coachingTipVariety: "様々な感情を込めて練習しましょう",
+    coachingTipObserve: "鏡で表情を観察しましょう",
+    coachingTipStartSmall: "小さな笑顔から始めて徐々に大きくしましょう",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "口角上げ：口角を耳に向けて上げ、5秒保持、10回繰り返し",
+    exerciseBeginnerCheekPuff: "頬膨らまし：頬を最大限膨らませてゆっくり戻す、5回繰り返し",
+    exerciseBeginnerLipPurse: "唇すぼめ：'お'の形に唇をすぼめて'い'の形に広げる、10回",
+    exerciseIntermediateAsymmetric: "非対称笑顔：片側の口角だけ上げて3秒保持、各側10回",
+    exerciseIntermediateEyeSmile: "目の笑顔：口はそのままで目だけで笑う、10秒保持5回",
+    exerciseAdvancedMicroControl: "微細コントロール：10段階で笑顔の強度を調整",
+    exerciseAdvancedEmotionSwitch: "感情切り替え：無表情→笑顔→大笑い→笑顔、スムーズに切り替え",
+    
+    // Goals
+    goalTodayPractice: "今日は5分だけ投資して3回練習しましょう",
+    goal14Days: "7日達成！次は14日に挑戦しましょう",
+    goalDaily: "毎日練習してマスターになりましょう",
+    goalNextScore: "次の目標は{{score}}点です",
+    goal70Points: "リラックスして70点を目指しましょう",
+    goalContinueStreak: "連続記録を続けましょう",
+    goalDailyPractice: "毎日練習する",
+    goalNewSmileType: "新しい笑顔タイプに挑戦",
+    goalIncrease5Points: "平均スコアを5点上げる",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "朝の練習が効果的です",
+    recommendedTimeAfternoon: "午後の練習が効果的です",
+    recommendedTimeEvening: "夕方の練習が効果的です",
+    recommendedTimeGeneral: "一日の中で都合の良い時間に練習しましょう",
+    recommendedTimeShort: "短時間でも毎日練習しましょう",
+    recommendedTimeStressFree: "ストレスのない時間に5分間練習しましょう",
+    
+    // Motivational quotes
+    motivationalQuote1: "笑顔はあなたが身に着けることができる最も美しいものです。",
+    motivationalQuote2: "完璧な練習が完璧を作ります。あなたはすでにエキスパートです！",
+    motivationalQuote3: "進歩が見えています。もう少しで目標達成です！",
+    motivationalQuote4: "すべてのエキスパートもかつては初心者でした。継続が鍵です。",
+    
+    // Practice tips
+    practiceTip1: "目でも笑いましょう。本物の笑顔は目から始まります。",
+    practiceTip2: "深呼吸をして肩の緊張をほぐしましょう。",
+    practiceTip3: "幸せだった瞬間を思い出しながら笑顔を作りましょう。",
+    practiceTip4: "鏡の中の自分と目を合わせながら練習しましょう。",
+    practiceTip5: "口角を少し上げることから始めましょう。",
+    practiceTip6: "笑顔は顔全体が一緒に動くものです。",
+    practiceTip7: "自然な笑顔はゆっくりと咲きます。",
+    practiceTip8: "リラックスした心が美しい笑顔を作ります。",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "鏡を見ながらアイコンタクトの練習をしましょう。自信は目から始まります。",
+    metricAdviceStabilityLow: "ゆっくり呼吸し、顔の筋肉をリラックスさせてから笑顔を作りましょう。",
+    metricAdviceNaturalnessLow: "幸せだった瞬間を思い出しながら笑顔を作りましょう。感情が先、表情が後です。",
+    
+    // Weekly report
+    weeklyReportNoPractice: "今週は練習しませんでした。もう一度始めましょうか？",
+    weeklyReportSummary: "今週：{{count}}回練習、平均{{score}}点",
+    achievement7Days: "7日連続達成！🎉",
+    achievementGrowth: "{{rate}}%成長しました！",
+    improvement5Days: "週5回以上の練習を目指しましょう",
+    
+    // Practice History headings
+    thisWeekAchievements: "今週の成果",
+    nextWeekGoals: "来週の目標",
+    improvementPoints: "改善ポイント",
+    nextGoal: "次の目標",
+    todaysMuscleExercise: "今日の筋肉運動",
+    
     // 顔位置ガイド
     facePositionDown: "下に",
     facePositionUp: "上に",
@@ -784,6 +1117,64 @@ export const translations = {
     recordWarning: "ゲストモードでは練習記録が一時的にのみ保存されます。\nブラウザを閉じるとすべての記録が失われます。",
     signupToSave: "今すぐ会員登録してすべての記録を永久保存しましょう！",
     signupAndSave: "会員登録して記録を保存",
+    
+    // PracticeHistory
+    comparedToLastWeek: "先週と比較して{{change}}% {{trend}}",
+    improved: "向上",
+    declined: "低下",
+    weeklyReport: "週間レポート",
+    hide: "非表示",
+    show: "表示",
+    good: "良好",
+    fair: "普通",
+    average: "平均",
+    todaysPracticeStats: "今日の練習統計",
+    practiceCount: "練習回数",
+    highestScore: "最高スコア",
+    averageScore: "平均スコア",
+    totalPracticeTime: "総練習時間",
+    recordsNotSavedInGuestMode: "ゲストモードでは記録は保存されません",
+    freeSignup: "無料会員登録",
+    todaysPersonalizedAdvice: "今日のパーソナライズアドバイス",
+    todaysMuscleExercise: "今日の筋肉エクササイズ",
+    todaysRecord: "今日の記録",
+    practiceInTempMode: "現在一時モードで練習中です。ブラウザを閉じるとすべての記録が失われます。",
+    myGrowthGraph: "私の成長グラフ",
+    thisWeekAverage: "今週の平均",
+    thisWeekAchievements: "今週の成果",
+    nextWeekGoals: "来週の目標",
+    improvementPoints: "改善ポイント",
+    nextGoal: "次の目標",
+    startPractice: "練習を開始",
+    viewOtherAdvice: "他のアドバイスを見る",
+    practiceRecord: "練習記録",
+    today: "今日",
+    diary: "日記",
+    noPracticeRecordToday: "今日は練習記録がありません",
+    smilePractice: "笑顔練習",
+    bestMoment: "最高の瞬間",
+    bestMoments: "最高の瞬間たち",
+    practiceSessionDetails: "練習セッション詳細",
+    practiceTime: "練習時間",
+    practiceContext: "練習状況",
+    noPracticeRecordThisDay: "この日は練習記録がありません",
+    score: "スコア",
+    coachingMessage: "コーチングメッセージ",
+    durationFormat: "{{minutes}}分 {{seconds}}秒",
+    loadingHistoryError: "履歴の読み込みエラー",
+    deleteAllRecordsConfirm: "すべての練習記録を削除しますか？",
+    bestMomentAlt: "最高の瞬間",
+    
+    // Date/Calendar
+    yearSuffix: "年",
+    monthSuffix: "月",
+    sunday: "日",
+    monday: "月",
+    tuesday: "火",
+    wednesday: "水",
+    thursday: "木",
+    friday: "金",
+    saturday: "土",
     
     // 共通
     loading: "読み込み中...",
@@ -957,6 +1348,93 @@ export const translations = {
     coachingPosition: "请保持舒适的姿势",
     coachingCamera: "请调整摄像头，使您的脸部在屏幕上可见",
     
+    // Main coaching messages
+    coachingStreakMessage: "连续{{days}}天练习中！今天也继续努力吧。",
+    coachingConsistentUser: "一直坚持练习的您，今天也创造美丽的微笑吧！",
+    coachingWelcomeBack: "一周后回来了！重新开始才是最重要的。",
+    coachingFirstPractice: "今天开始您的第一次练习吧！小小的开始会带来巨大的改变。",
+    coachingExcellent: "太棒了！今天平均得分{{score}}分。您已达到专家水平！",
+    coachingGoodProgress: "进步很好！{{focus}}平均得分{{score}}分。",
+    coachingFastGrowth: "您的成长速度很快！",
+    coachingSteadyProgress: "您正在稳步进步。",
+    coachingGoodStart: "好的开始！放松心情舒适地练习吧。",
+    
+    // Coaching tips
+    coachingTipRelax: "以放松的姿势开始",
+    coachingTipMirror: "对着镜子自然地微笑",
+    coachingTipBreathe: "通过深呼吸放松紧张",
+    coachingTipAngles: "从不同角度练习",
+    coachingTipEmotion: "带着更深的情感微笑",
+    coachingTipRealWorld: "现在可以自信地在实际场景中使用",
+    coachingTipEyesAndMouth: "注意让眼睛和嘴巴一起微笑",
+    coachingTipHold3Seconds: "自然地保持微笑至少3秒",
+    coachingTipVariety: "练习各种不同的情绪",
+    coachingTipObserve: "在镜子里观察你的表情",
+    coachingTipStartSmall: "从小微笑开始，逐渐加大",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "嘴角上扬：将嘴角向耳朵方向上扬，保持5秒，重复10次",
+    exerciseBeginnerCheekPuff: "鼓腮：将腮帮子充分鼓起然后缓慢放气，重复5次",
+    exerciseBeginnerLipPurse: "嘴唇收紧：将嘴唇收成'O'形然后展开成'E'形，10次",
+    exerciseIntermediateAsymmetric: "不对称微笑：一侧嘴角上扬，保持3秒，每侧10次",
+    exerciseIntermediateEyeSmile: "眼部微笑：嘴保持不动，只用眼睛微笑，保持10秒，5次",
+    exerciseAdvancedMicroControl: "微控制：分成10个等级调节微笑强度",
+    exerciseAdvancedEmotionSwitch: "情绪切换：无表情→微笑→大笑→微笑，平滑过渡",
+    
+    // Goals
+    goalTodayPractice: "今天只需投入5分钟练习3次",
+    goal14Days: "7天达成！现在挑戔14天吧",
+    goalDaily: "每天练习成为大师",
+    goalNextScore: "下一个目标是{{score}}分",
+    goal70Points: "以放松的心态目标是70分",
+    goalContinueStreak: "继续保持连续记录",
+    goalDailyPractice: "每天练习",
+    goalNewSmileType: "尝试新的微笑类型",
+    goalIncrease5Points: "平均分数提高5分",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "早晨练习效果好",
+    recommendedTimeAfternoon: "下午练习效果好",
+    recommendedTimeEvening: "晚上练习效果好",
+    recommendedTimeGeneral: "在一天中任何方便的时间练习",
+    recommendedTimeShort: "即使时间短也要每天练习",
+    recommendedTimeStressFree: "在无压力的时间练习5分钟",
+    
+    // Motivational quotes
+    motivationalQuote1: "微笑是您能够佩戴的最美丽的东西。",
+    motivationalQuote2: "完美的练习造就完美。您已经是专家了！",
+    motivationalQuote3: "您的进步很明显。再加把劲就能达到目标！",
+    motivationalQuote4: "每个专家都曾是初学者。坚持是关键。",
+    
+    // Practice tips
+    practiceTip1: "用眼睛也要微笑。真正的微笑从眼睛开始。",
+    practiceTip2: "深呼吸并放松肩膀的紧张。",
+    practiceTip3: "回忆快乐时刻时微笑。",
+    practiceTip4: "对着镜子与自己进行眼神接触练习。",
+    practiceTip5: "从轻轻上扬嘴角开始。",
+    practiceTip6: "微笑涉及整个脸部的运动。",
+    practiceTip7: "自然的微笑是慢慢绽放的。",
+    practiceTip8: "放松的心情创造美丽的微笑。",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "对着镜子练习眼神接触。自信从眼神开始。",
+    metricAdviceStabilityLow: "慢慢呼吸，放松面部肌肉，然后微笑。",
+    metricAdviceNaturalnessLow: "回忆快乐时刻时微笑。情绪先行，表情随后。",
+    
+    // Weekly report
+    weeklyReportNoPractice: "本周您没有练习。要重新开始吗？",
+    weeklyReportSummary: "本周：{{count}}次练习，平均{{score}}分",
+    achievement7Days: "7天连续达成！🎉",
+    achievementGrowth: "您成长了{{rate}}%！",
+    improvement5Days: "目标是每周至少练习5次",
+    
+    // Practice History headings
+    thisWeekAchievements: "本周成就",
+    nextWeekGoals: "下周目标",
+    improvementPoints: "改进点",
+    nextGoal: "下一个目标",
+    todaysMuscleExercise: "今天的肌肉运动",
+    
     // 面部位置指南
     facePositionDown: "向下",
     facePositionUp: "向上",
@@ -980,6 +1458,64 @@ export const translations = {
     recordWarning: "在访客模式下，练习记录仅临时保存。\n关闭浏览器后所有记录将丢失。",
     signupToSave: "立即注册，永久保存所有记录！",
     signupAndSave: "注册并保存记录",
+    
+    // PracticeHistory
+    comparedToLastWeek: "与上周相比{{trend}}{{change}}%",
+    improved: "提升",
+    declined: "下降",
+    weeklyReport: "周报告",
+    hide: "隐藏",
+    show: "显示",
+    good: "良好",
+    fair: "一般",
+    average: "平均",
+    todaysPracticeStats: "今日练习统计",
+    practiceCount: "练习次数",
+    highestScore: "最高分数",
+    averageScore: "平均分数",
+    totalPracticeTime: "总练习时间",
+    recordsNotSavedInGuestMode: "访客模式下不保存记录",
+    freeSignup: "免费注册",
+    todaysPersonalizedAdvice: "今日个性化建议",
+    todaysMuscleExercise: "今日肌肉锻炼",
+    todaysRecord: "今日记录",
+    practiceInTempMode: "当前为临时模式练习。关闭浏览器后所有记录将丢失。",
+    myGrowthGraph: "我的成长图表",
+    thisWeekAverage: "本周平均",
+    thisWeekAchievements: "本周成就",
+    nextWeekGoals: "下周目标",
+    improvementPoints: "改进要点",
+    nextGoal: "下一个目标",
+    startPractice: "开始练习",
+    viewOtherAdvice: "查看其他建议",
+    practiceRecord: "练习记录",
+    today: "今天",
+    diary: "日记",
+    noPracticeRecordToday: "今天没有练习记录",
+    smilePractice: "微笑练习",
+    bestMoment: "最佳时刻",
+    bestMoments: "最佳时刻",
+    practiceSessionDetails: "练习环节详情",
+    practiceTime: "练习时间",
+    practiceContext: "练习情境",
+    noPracticeRecordThisDay: "这天没有练习记录",
+    score: "分数",
+    coachingMessage: "指导信息",
+    durationFormat: "{{minutes}}分 {{seconds}}秒",
+    loadingHistoryError: "加载历史记录错误",
+    deleteAllRecordsConfirm: "您确定要删除所有练习记录吗？",
+    bestMomentAlt: "最佳时刻",
+    
+    // Date/Calendar
+    yearSuffix: "年",
+    monthSuffix: "月",
+    sunday: "日",
+    monday: "一",
+    tuesday: "二",
+    wednesday: "三",
+    thursday: "四",
+    friday: "五",
+    saturday: "六",
     
     // 通用
     loading: "加载中...",
@@ -1153,6 +1689,93 @@ export const translations = {
     coachingPosition: "Por favor ponte en una posición cómoda",
     coachingCamera: "Por favor ajusta tu cámara para que tu rostro sea visible en pantalla",
     
+    // Main coaching messages
+    coachingStreakMessage: "¡{{days}} días de práctica consecutiva! Continúa hoy también.",
+    coachingConsistentUser: "¡Has estado practicando consistentemente! ¡Creemos otra hermosa sonrisa hoy!",
+    coachingWelcomeBack: "¡Bienvenido de vuelta después de una semana! Lo importante es volver a empezar.",
+    coachingFirstPractice: "¡Comienza tu primera práctica hoy! Los pequeños comienzos llevan a grandes cambios.",
+    coachingExcellent: "¡Excelente! Lograste un promedio de {{score}} puntos hoy. ¡Has alcanzado el nivel experto!",
+    coachingGoodProgress: "¡Buen progreso! Registraste un promedio de {{score}} puntos en {{focus}}.",
+    coachingFastGrowth: "¡Tu crecimiento se está acelerando!",
+    coachingSteadyProgress: "Estás progresando constantemente.",
+    coachingGoodStart: "¡Buen comienzo! Relájate y practica cómodamente.",
+    
+    // Coaching tips
+    coachingTipRelax: "Comienza con una postura relajada",
+    coachingTipMirror: "Practica naturalmente mirándote al espejo",
+    coachingTipBreathe: "Libera la tensión con respiración profunda",
+    coachingTipAngles: "Practica desde varios ángulos",
+    coachingTipEmotion: "Sonríe con emoción más profunda",
+    coachingTipRealWorld: "Ahora úsalo con confianza en situaciones reales",
+    coachingTipEyesAndMouth: "Enfócate en sonreír con ojos y boca",
+    coachingTipHold3Seconds: "Mantén tu sonrisa naturalmente por al menos 3 segundos",
+    coachingTipVariety: "Practica con varias emociones",
+    coachingTipObserve: "Observa tu expresión en el espejo",
+    coachingTipStartSmall: "Comienza con una sonrisa pequeña y hazla gradualmente más grande",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Elevación de comisuras: Levanta las comisuras hacia las orejas, mantén 5 segundos, repite 10 veces",
+    exerciseBeginnerCheekPuff: "Inflar mejillas: Infla las mejillas completamente y suelta lentamente, repite 5 veces",
+    exerciseBeginnerLipPurse: "Fruncir labios: Frunce los labios en forma de 'O' luego extiende a forma de 'E', 10 veces",
+    exerciseIntermediateAsymmetric: "Sonrisa asimétrica: Levanta una comisura, mantén 3 segundos, 10 veces cada lado",
+    exerciseIntermediateEyeSmile: "Sonrisa con ojos: Mantén la boca quieta y sonríe solo con los ojos, mantén 10 segundos, 5 veces",
+    exerciseAdvancedMicroControl: "Micro control: Ajusta la intensidad de la sonrisa en 10 pasos graduales",
+    exerciseAdvancedEmotionSwitch: "Cambio de emoción: Neutral → sonrisa → gran sonrisa → sonrisa, transiciones suaves",
+    
+    // Goals
+    goalTodayPractice: "Invierte solo 5 minutos hoy para 3 sesiones de práctica",
+    goal14Days: "¡7 días logrados! Ahora desafíate a 14 días",
+    goalDaily: "Practica diariamente para convertirte en maestro",
+    goalNextScore: "Tu próxima meta es {{score}} puntos",
+    goal70Points: "Apunta a 70 puntos con una mentalidad relajada",
+    goalContinueStreak: "Continúa tu racha",
+    goalDailyPractice: "Practicar diariamente",
+    goalNewSmileType: "Prueba un nuevo tipo de sonrisa",
+    goalIncrease5Points: "Aumenta el puntaje promedio en 5 puntos",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "La práctica matutina es beneficiosa",
+    recommendedTimeAfternoon: "La práctica vespertina es beneficiosa",
+    recommendedTimeEvening: "La práctica nocturna es beneficiosa",
+    recommendedTimeGeneral: "Practica en cualquier momento cómodo del día",
+    recommendedTimeShort: "Practica diariamente, incluso por períodos cortos",
+    recommendedTimeStressFree: "Practica 5 minutos durante momentos sin estrés",
+    
+    // Motivational quotes
+    motivationalQuote1: "Una sonrisa es lo más hermoso que puedes usar.",
+    motivationalQuote2: "La práctica perfecta hace la perfección. ¡Ya eres un experto!",
+    motivationalQuote3: "Tu progreso se nota. ¡Solo un poco más para alcanzar tu meta!",
+    motivationalQuote4: "Todo experto fue alguna vez principiante. La consistencia es clave.",
+    
+    // Practice tips
+    practiceTip1: "Sonríe también con los ojos. Las sonrisas reales comienzan en los ojos.",
+    practiceTip2: "Respira profundo y libera la tensión de los hombros.",
+    practiceTip3: "Sonríe mientras recuerdas momentos felices.",
+    practiceTip4: "Practica haciendo contacto visual contigo mismo en el espejo.",
+    practiceTip5: "Comienza levantando ligeramente las comisuras de la boca.",
+    practiceTip6: "Una sonrisa involucra el movimiento de toda la cara.",
+    practiceTip7: "Las sonrisas naturales florecen lentamente.",
+    practiceTip8: "Una mente relajada crea sonrisas hermosas.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Practica hacer contacto visual en el espejo. La confianza comienza en los ojos.",
+    metricAdviceStabilityLow: "Respira lentamente, relaja los músculos faciales, luego sonríe.",
+    metricAdviceNaturalnessLow: "Sonríe mientras recuerdas momentos felices. La emoción viene primero, la expresión sigue.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "No practicaste esta semana. ¿Empezamos de nuevo?",
+    weeklyReportSummary: "Esta semana: {{count}} prácticas, promedio {{score}} puntos",
+    achievement7Days: "¡7 días consecutivos logrados! 🎉",
+    achievementGrowth: "¡Has crecido {{rate}}%!",
+    improvement5Days: "Apunta a practicar al menos 5 veces por semana",
+    
+    // Practice History headings
+    thisWeekAchievements: "Logros de Esta Semana",
+    nextWeekGoals: "Metas de la Próxima Semana",
+    improvementPoints: "Puntos de Mejora",
+    nextGoal: "Próxima Meta",
+    todaysMuscleExercise: "Ejercicio Muscular de Hoy",
+    
     // Guía de Posición Facial
     facePositionDown: "hacia abajo",
     facePositionUp: "hacia arriba",
@@ -1176,6 +1799,64 @@ export const translations = {
     recordWarning: "En modo invitado, los registros de práctica se guardan temporalmente.\nTodos los registros se perderán cuando cierres el navegador.",
     signupToSave: "¡Regístrate ahora para guardar permanentemente todos tus registros!",
     signupAndSave: "Registrarse y guardar registros",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% comparado con la semana pasada",
+    improved: "Mejorado",
+    declined: "Disminuido",
+    weeklyReport: "Informe Semanal",
+    hide: "Ocultar",
+    show: "Mostrar",
+    good: "Bueno",
+    fair: "Regular",
+    average: "Promedio",
+    todaysPracticeStats: "Estadísticas de Práctica de Hoy",
+    practiceCount: "Conteo de Prácticas",
+    highestScore: "Puntuación Más Alta",
+    averageScore: "Puntuación Promedio",
+    totalPracticeTime: "Tiempo Total de Práctica",
+    recordsNotSavedInGuestMode: "Los registros no se guardan en modo invitado",
+    freeSignup: "Registro Gratuito",
+    todaysPersonalizedAdvice: "Consejo Personalizado de Hoy",
+    todaysMuscleExercise: "Ejercicio Muscular de Hoy",
+    todaysRecord: "Registro de Hoy",
+    practiceInTempMode: "Actualmente practicando en modo temporal. Todos los registros se perderán al cerrar el navegador.",
+    myGrowthGraph: "Mi Gráfico de Crecimiento",
+    thisWeekAverage: "Promedio de Esta Semana",
+    thisWeekAchievements: "Logros de Esta Semana",
+    nextWeekGoals: "Objetivos de la Próxima Semana",
+    improvementPoints: "Puntos de Mejora",
+    nextGoal: "Próximo Objetivo",
+    startPractice: "Comenzar Práctica",
+    viewOtherAdvice: "Ver Otros Consejos",
+    practiceRecord: "Registro de Práctica",
+    today: "Hoy",
+    diary: "Diario",
+    noPracticeRecordToday: "No hay registro de práctica hoy",
+    smilePractice: "Práctica de Sonrisa",
+    bestMoment: "Mejor Momento",
+    bestMoments: "Mejores Momentos",
+    practiceSessionDetails: "Detalles de la Sesión de Práctica",
+    practiceTime: "Tiempo de Práctica",
+    practiceContext: "Contexto de Práctica",
+    noPracticeRecordThisDay: "No hay registro de práctica este día",
+    score: "Puntuación",
+    coachingMessage: "Mensaje de Entrenamiento",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Error al cargar el historial",
+    deleteAllRecordsConfirm: "¿Está seguro de que desea eliminar todos los registros de práctica?",
+    bestMomentAlt: "Mejor momento",
+    
+    // Date/Calendar
+    yearSuffix: "año",
+    monthSuffix: "mes",
+    sunday: "Dom",
+    monday: "Lun",
+    tuesday: "Mar",
+    wednesday: "Mié",
+    thursday: "Jue",
+    friday: "Vie",
+    saturday: "Sáb",
     
     // Común
     loading: "Cargando...",
@@ -1349,6 +2030,93 @@ export const translations = {
     coachingPosition: "Veuillez vous mettre dans une position confortable",
     coachingCamera: "Veuillez ajuster votre caméra pour que votre visage soit visible à l'écran",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} jours de pratique consécutive ! Continuez aujourd'hui aussi.",
+    coachingConsistentUser: "Vous avez pratiqué de manière constante ! Créons un autre beau sourire aujourd'hui !",
+    coachingWelcomeBack: "Bienvenue après une semaine ! L'important est de recommencer.",
+    coachingFirstPractice: "Commencez votre première pratique aujourd'hui ! Les petits débuts mènent à de grands changements.",
+    coachingExcellent: "Excellent ! Vous avez atteint une moyenne de {{score}} points aujourd'hui. Vous avez atteint le niveau expert !",
+    coachingGoodProgress: "Bon progrès ! Vous avez enregistré une moyenne de {{score}} points pour {{focus}}.",
+    coachingFastGrowth: "Votre croissance s'accélère !",
+    coachingSteadyProgress: "Vous progressez régulièrement.",
+    coachingGoodStart: "Bon début ! Détendez-vous et pratiquez confortablement.",
+    
+    // Coaching tips
+    coachingTipRelax: "Commencez avec une posture détendue",
+    coachingTipMirror: "Pratiquez naturellement en vous regardant dans le miroir",
+    coachingTipBreathe: "Relâchez la tension avec une respiration profonde",
+    coachingTipAngles: "Pratiquez sous différents angles",
+    coachingTipEmotion: "Souriez avec une émotion plus profonde",
+    coachingTipRealWorld: "Utilisez-le maintenant avec confiance dans des situations réelles",
+    coachingTipEyesAndMouth: "Concentrez-vous sur le sourire avec les yeux et la bouche",
+    coachingTipHold3Seconds: "Maintenez votre sourire naturellement pendant au moins 3 secondes",
+    coachingTipVariety: "Pratiquez avec diverses émotions",
+    coachingTipObserve: "Observez votre expression dans le miroir",
+    coachingTipStartSmall: "Commencez par un petit sourire et agrandissez-le progressivement",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Lever des commissures : Levez les commissures vers les oreilles, maintenez 5 secondes, répétez 10 fois",
+    exerciseBeginnerCheekPuff: "Gonfler les joues : Gonflez complètement les joues puis relâchez lentement, répétez 5 fois",
+    exerciseBeginnerLipPurse: "Pincer les lèvres : Pincez les lèvres en 'O' puis étendez en 'E', 10 fois",
+    exerciseIntermediateAsymmetric: "Sourire asymétrique : Levez une commissure, maintenez 3 secondes, 10 fois de chaque côté",
+    exerciseIntermediateEyeSmile: "Sourire des yeux : Gardez la bouche immobile et souriez seulement avec les yeux, maintenez 10 secondes, 5 fois",
+    exerciseAdvancedMicroControl: "Micro contrôle : Ajustez l'intensité du sourire en 10 étapes graduelles",
+    exerciseAdvancedEmotionSwitch: "Changement d'émotion : Neutre → sourire → grand sourire → sourire, transitions fluides",
+    
+    // Goals
+    goalTodayPractice: "Investissez seulement 5 minutes aujourd'hui pour 3 séances de pratique",
+    goal14Days: "7 jours accomplis ! Maintenant défiez-vous à 14 jours",
+    goalDaily: "Pratiquez quotidiennement pour devenir un maître",
+    goalNextScore: "Votre prochain objectif est {{score}} points",
+    goal70Points: "Visez 70 points avec un état d'esprit détendu",
+    goalContinueStreak: "Continuez votre série",
+    goalDailyPractice: "Pratiquer quotidiennement",
+    goalNewSmileType: "Essayez un nouveau type de sourire",
+    goalIncrease5Points: "Augmentez le score moyen de 5 points",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "La pratique matinale est bénéfique",
+    recommendedTimeAfternoon: "La pratique de l'après-midi est bénéfique",
+    recommendedTimeEvening: "La pratique du soir est bénéfique",
+    recommendedTimeGeneral: "Pratiquez à tout moment confortable de la journée",
+    recommendedTimeShort: "Pratiquez quotidiennement, même pour de courtes périodes",
+    recommendedTimeStressFree: "Pratiquez 5 minutes pendant les moments sans stress",
+    
+    // Motivational quotes
+    motivationalQuote1: "Un sourire est la plus belle chose que vous puissiez porter.",
+    motivationalQuote2: "La pratique parfaite rend parfait. Vous êtes déjà un expert !",
+    motivationalQuote3: "Vos progrès sont visibles. Encore un peu pour atteindre votre objectif !",
+    motivationalQuote4: "Tout expert a été un débutant. La constance est la clé.",
+    
+    // Practice tips
+    practiceTip1: "Souriez aussi avec vos yeux. Les vrais sourires commencent dans les yeux.",
+    practiceTip2: "Respirez profondément et relâchez la tension des épaules.",
+    practiceTip3: "Souriez en vous rappelant des moments heureux.",
+    practiceTip4: "Pratiquez en établissant un contact visuel avec vous-même dans le miroir.",
+    practiceTip5: "Commencez par lever légèrement les commissures de la bouche.",
+    practiceTip6: "Un sourire implique le mouvement de tout le visage.",
+    practiceTip7: "Les sourires naturels s'épanouissent lentement.",
+    practiceTip8: "Un esprit détendu crée de beaux sourires.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Pratiquez le contact visuel dans le miroir. La confiance commence dans les yeux.",
+    metricAdviceStabilityLow: "Respirez lentement, détendez les muscles du visage, puis souriez.",
+    metricAdviceNaturalnessLow: "Souriez en vous rappelant des moments heureux. L'émotion vient d'abord, l'expression suit.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "Vous n'avez pas pratiqué cette semaine. On recommence ?",
+    weeklyReportSummary: "Cette semaine : {{count}} pratiques, moyenne {{score}} points",
+    achievement7Days: "7 jours consécutifs accomplis ! 🎉",
+    achievementGrowth: "Vous avez progressé de {{rate}}% !",
+    improvement5Days: "Visez à pratiquer au moins 5 fois par semaine",
+    
+    // Practice History headings
+    thisWeekAchievements: "Réalisations de Cette Semaine",
+    nextWeekGoals: "Objectifs de la Semaine Prochaine",
+    improvementPoints: "Points d'Amélioration",
+    nextGoal: "Prochain Objectif",
+    todaysMuscleExercise: "Exercice Musculaire du Jour",
+    
     // Guide de Position du Visage
     facePositionDown: "vers le bas",
     facePositionUp: "vers le haut",
@@ -1372,6 +2140,64 @@ export const translations = {
     recordWarning: "En mode invité, les enregistrements de pratique sont sauvegardés temporairement.\nTous les enregistrements seront perdus quand vous fermerez le navigateur.",
     signupToSave: "Inscrivez-vous maintenant pour sauvegarder définitivement tous vos enregistrements !",
     signupAndSave: "S'inscrire et sauvegarder les enregistrements",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% par rapport à la semaine dernière",
+    improved: "Amélioré",
+    declined: "Diminué",
+    weeklyReport: "Rapport Hebdomadaire",
+    hide: "Masquer",
+    show: "Afficher",
+    good: "Bon",
+    fair: "Correct",
+    average: "Moyenne",
+    todaysPracticeStats: "Statistiques de Pratique d'Aujourd'hui",
+    practiceCount: "Nombre de Pratiques",
+    highestScore: "Meilleur Score",
+    averageScore: "Score Moyen",
+    totalPracticeTime: "Temps Total de Pratique",
+    recordsNotSavedInGuestMode: "Les enregistrements ne sont pas sauvegardés en mode invité",
+    freeSignup: "Inscription Gratuite",
+    todaysPersonalizedAdvice: "Conseil Personnalisé du Jour",
+    todaysMuscleExercise: "Exercice Musculaire du Jour",
+    todaysRecord: "Enregistrement du Jour",
+    practiceInTempMode: "Pratique actuellement en mode temporaire. Tous les enregistrements seront perdus à la fermeture du navigateur.",
+    myGrowthGraph: "Mon Graphique de Croissance",
+    thisWeekAverage: "Moyenne de Cette Semaine",
+    thisWeekAchievements: "Réalisations de Cette Semaine",
+    nextWeekGoals: "Objectifs de la Semaine Prochaine",
+    improvementPoints: "Points d'Amélioration",
+    nextGoal: "Prochain Objectif",
+    startPractice: "Commencer la Pratique",
+    viewOtherAdvice: "Voir D'autres Conseils",
+    practiceRecord: "Enregistrement de Pratique",
+    today: "Aujourd'hui",
+    diary: "Journal",
+    noPracticeRecordToday: "Aucun enregistrement de pratique aujourd'hui",
+    smilePractice: "Pratique du Sourire",
+    bestMoment: "Meilleur Moment",
+    bestMoments: "Meilleurs Moments",
+    practiceSessionDetails: "Détails de la Session de Pratique",
+    practiceTime: "Temps de Pratique",
+    practiceContext: "Contexte de Pratique",
+    noPracticeRecordThisDay: "Aucun enregistrement de pratique ce jour",
+    score: "Score",
+    coachingMessage: "Message de Coaching",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Erreur de chargement de l'historique",
+    deleteAllRecordsConfirm: "Êtes-vous sûr de vouloir supprimer tous les enregistrements de pratique?",
+    bestMomentAlt: "Meilleur moment",
+    
+    // Date/Calendar
+    yearSuffix: "année",
+    monthSuffix: "mois",
+    sunday: "Dim",
+    monday: "Lun",
+    tuesday: "Mar",
+    wednesday: "Mer",
+    thursday: "Jeu",
+    friday: "Ven",
+    saturday: "Sam",
     
     // Commun
     loading: "Chargement...",
@@ -1545,6 +2371,93 @@ export const translations = {
     coachingPosition: "Bitte bringen Sie sich in eine bequeme Position",
     coachingCamera: "Bitte stellen Sie Ihre Kamera so ein, dass Ihr Gesicht auf dem Bildschirm sichtbar ist",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} Tage aufeinanderfolgendes Üben! Machen Sie heute weiter.",
+    coachingConsistentUser: "Sie haben konsequent geübt! Lassen Sie uns heute ein weiteres schönes Lächeln schaffen!",
+    coachingWelcomeBack: "Willkommen zurück nach einer Woche! Wichtig ist, wieder anzufangen.",
+    coachingFirstPractice: "Beginnen Sie heute Ihre erste Übung! Kleine Anfänge führen zu großen Veränderungen.",
+    coachingExcellent: "Ausgezeichnet! Sie haben heute durchschnittlich {{score}} Punkte erreicht. Sie haben das Expertenniveau erreicht!",
+    coachingGoodProgress: "Guter Fortschritt! Sie haben durchschnittlich {{score}} Punkte für {{focus}} erreicht.",
+    coachingFastGrowth: "Ihr Wachstum beschleunigt sich!",
+    coachingSteadyProgress: "Sie machen stetige Fortschritte.",
+    coachingGoodStart: "Guter Start! Entspannen Sie sich und üben Sie bequem.",
+    
+    // Coaching tips
+    coachingTipRelax: "Beginnen Sie mit einer entspannten Haltung",
+    coachingTipMirror: "Üben Sie natürlich, während Sie in den Spiegel schauen",
+    coachingTipBreathe: "Lösen Sie Spannungen mit tiefer Atmung",
+    coachingTipAngles: "Üben Sie aus verschiedenen Winkeln",
+    coachingTipEmotion: "Lächeln Sie mit tieferer Emotion",
+    coachingTipRealWorld: "Verwenden Sie es jetzt selbstbewusst in realen Situationen",
+    coachingTipEyesAndMouth: "Konzentrieren Sie sich darauf, mit Augen und Mund zu lächeln",
+    coachingTipHold3Seconds: "Halten Sie Ihr Lächeln mindestens 3 Sekunden natürlich",
+    coachingTipVariety: "Üben Sie mit verschiedenen Emotionen",
+    coachingTipObserve: "Beobachten Sie Ihren Ausdruck im Spiegel",
+    coachingTipStartSmall: "Beginnen Sie mit einem kleinen Lächeln und machen Sie es allmählich größer",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Mundwinkel heben: Heben Sie die Mundwinkel zu den Ohren, 5 Sekunden halten, 10 Mal wiederholen",
+    exerciseBeginnerCheekPuff: "Wangen aufblasen: Wangen vollständig aufblasen und langsam loslassen, 5 Mal wiederholen",
+    exerciseBeginnerLipPurse: "Lippen spitzen: Lippen zu 'O' formen, dann zu 'E' spreizen, 10 Mal",
+    exerciseIntermediateAsymmetric: "Asymmetrisches Lächeln: Einen Mundwinkel heben, 3 Sekunden halten, 10 Mal jede Seite",
+    exerciseIntermediateEyeSmile: "Augenlächeln: Mund stillhalten und nur mit den Augen lächeln, 10 Sekunden halten, 5 Mal",
+    exerciseAdvancedMicroControl: "Mikrokontrolle: Lächelintensität in 10 Stufen anpassen",
+    exerciseAdvancedEmotionSwitch: "Emotionswechsel: Neutral → Lächeln → großes Lächeln → Lächeln, sanfte Übergänge",
+    
+    // Goals
+    goalTodayPractice: "Investieren Sie heute nur 5 Minuten für 3 Übungseinheiten",
+    goal14Days: "7 Tage geschafft! Fordern Sie sich jetzt zu 14 Tagen heraus",
+    goalDaily: "Üben Sie täglich, um ein Meister zu werden",
+    goalNextScore: "Ihr nächstes Ziel sind {{score}} Punkte",
+    goal70Points: "Zielen Sie mit entspannter Einstellung auf 70 Punkte",
+    goalContinueStreak: "Setzen Sie Ihre Serie fort",
+    goalDailyPractice: "Täglich üben",
+    goalNewSmileType: "Probieren Sie einen neuen Lächeltyp aus",
+    goalIncrease5Points: "Durchschnittspunktzahl um 5 Punkte erhöhen",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "Morgenübungen sind vorteilhaft",
+    recommendedTimeAfternoon: "Nachmittagsübungen sind vorteilhaft",
+    recommendedTimeEvening: "Abendübungen sind vorteilhaft",
+    recommendedTimeGeneral: "Üben Sie zu jeder angenehmen Tageszeit",
+    recommendedTimeShort: "Üben Sie täglich, auch für kurze Zeiträume",
+    recommendedTimeStressFree: "Üben Sie 5 Minuten in stressfreien Zeiten",
+    
+    // Motivational quotes
+    motivationalQuote1: "Ein Lächeln ist das Schönste, was Sie tragen können.",
+    motivationalQuote2: "Perfekte Übung macht perfekt. Sie sind bereits ein Experte!",
+    motivationalQuote3: "Ihre Fortschritte sind sichtbar. Nur noch ein bisschen bis zum Ziel!",
+    motivationalQuote4: "Jeder Experte war einmal Anfänger. Beständigkeit ist der Schlüssel.",
+    
+    // Practice tips
+    practiceTip1: "Lächeln Sie auch mit Ihren Augen. Echte Lächeln beginnen in den Augen.",
+    practiceTip2: "Atmen Sie tief ein und lösen Sie die Schulterspannung.",
+    practiceTip3: "Lächeln Sie, während Sie an glückliche Momente denken.",
+    practiceTip4: "Üben Sie Augenkontakt mit sich selbst im Spiegel.",
+    practiceTip5: "Beginnen Sie damit, die Mundwinkel leicht anzuheben.",
+    practiceTip6: "Ein Lächeln beinhaltet die Bewegung des gesamten Gesichts.",
+    practiceTip7: "Natürliche Lächeln erblühen langsam.",
+    practiceTip8: "Ein entspannter Geist schafft schöne Lächeln.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Üben Sie Augenkontakt im Spiegel. Selbstvertrauen beginnt in den Augen.",
+    metricAdviceStabilityLow: "Atmen Sie langsam, entspannen Sie die Gesichtsmuskulatur, dann lächeln Sie.",
+    metricAdviceNaturalnessLow: "Lächeln Sie, während Sie an glückliche Momente denken. Emotion kommt zuerst, Ausdruck folgt.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "Sie haben diese Woche nicht geübt. Sollen wir wieder anfangen?",
+    weeklyReportSummary: "Diese Woche: {{count}} Übungen, durchschnittlich {{score}} Punkte",
+    achievement7Days: "7 aufeinanderfolgende Tage geschafft! 🎉",
+    achievementGrowth: "Sie sind um {{rate}}% gewachsen!",
+    improvement5Days: "Zielen Sie darauf ab, mindestens 5 Mal pro Woche zu üben",
+    
+    // Practice History headings
+    thisWeekAchievements: "Erfolge dieser Woche",
+    nextWeekGoals: "Ziele für nächste Woche",
+    improvementPoints: "Verbesserungspunkte",
+    nextGoal: "Nächstes Ziel",
+    todaysMuscleExercise: "Heutige Muskelübung",
+    
     // Gesichtspositions-Leitfaden
     facePositionDown: "nach unten",
     facePositionUp: "nach oben",
@@ -1568,6 +2481,64 @@ export const translations = {
     recordWarning: "Im Gastmodus werden Übungsaufzeichnungen nur temporär gespeichert.\nAlle Aufzeichnungen gehen verloren, wenn Sie den Browser schließen.",
     signupToSave: "Melden Sie sich jetzt an, um alle Ihre Aufzeichnungen dauerhaft zu speichern!",
     signupAndSave: "Anmelden und Aufzeichnungen speichern",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% im Vergleich zur letzten Woche",
+    improved: "Verbessert",
+    declined: "Verschlechtert",
+    weeklyReport: "Wochenbericht",
+    hide: "Ausblenden",
+    show: "Anzeigen",
+    good: "Gut",
+    fair: "Befriedigend",
+    average: "Durchschnitt",
+    todaysPracticeStats: "Heutige Übungsstatistik",
+    practiceCount: "Übungsanzahl",
+    highestScore: "Höchstpunktzahl",
+    averageScore: "Durchschnittspunktzahl",
+    totalPracticeTime: "Gesamte Übungszeit",
+    recordsNotSavedInGuestMode: "Aufzeichnungen werden im Gastmodus nicht gespeichert",
+    freeSignup: "Kostenlose Anmeldung",
+    todaysPersonalizedAdvice: "Heutiger personalisierter Rat",
+    todaysMuscleExercise: "Heutige Muskelübung",
+    todaysRecord: "Heutige Aufzeichnung",
+    practiceInTempMode: "Derzeit im temporären Modus üben. Alle Aufzeichnungen gehen beim Schließen des Browsers verloren.",
+    myGrowthGraph: "Mein Wachstumsdiagramm",
+    thisWeekAverage: "Durchschnitt dieser Woche",
+    thisWeekAchievements: "Erfolge dieser Woche",
+    nextWeekGoals: "Ziele für nächste Woche",
+    improvementPoints: "Verbesserungspunkte",
+    nextGoal: "Nächstes Ziel",
+    startPractice: "Übung starten",
+    viewOtherAdvice: "Andere Ratschläge anzeigen",
+    practiceRecord: "Übungsaufzeichnung",
+    today: "Heute",
+    diary: "Tagebuch",
+    noPracticeRecordToday: "Heute keine Übungsaufzeichnung",
+    smilePractice: "Lächelübung",
+    bestMoment: "Bester Moment",
+    bestMoments: "Beste Momente",
+    practiceSessionDetails: "Details der Übungssitzung",
+    practiceTime: "Übungszeit",
+    practiceContext: "Übungskontext",
+    noPracticeRecordThisDay: "An diesem Tag keine Übungsaufzeichnung",
+    score: "Punktzahl",
+    coachingMessage: "Coaching-Nachricht",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Fehler beim Laden der Historie",
+    deleteAllRecordsConfirm: "Sind Sie sicher, dass Sie alle Übungsaufzeichnungen löschen möchten?",
+    bestMomentAlt: "Bester Moment",
+    
+    // Date/Calendar
+    yearSuffix: "Jahr",
+    monthSuffix: "Monat",
+    sunday: "So",
+    monday: "Mo",
+    tuesday: "Di",
+    wednesday: "Mi",
+    thursday: "Do",
+    friday: "Fr",
+    saturday: "Sa",
     
     // Allgemein
     loading: "Laden...",
@@ -1741,6 +2712,93 @@ export const translations = {
     coachingPosition: "Per favore mettiti in una posizione comoda",
     coachingCamera: "Per favore regola la tua telecamera in modo che il tuo volto sia visibile sullo schermo",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} giorni di pratica consecutiva! Continua anche oggi.",
+    coachingConsistentUser: "Hai praticato costantemente! Creiamo un altro bellissimo sorriso oggi!",
+    coachingWelcomeBack: "Bentornato dopo una settimana! L'importante è ricominciare.",
+    coachingFirstPractice: "Inizia la tua prima pratica oggi! I piccoli inizi portano a grandi cambiamenti.",
+    coachingExcellent: "Eccellente! Hai raggiunto una media di {{score}} punti oggi. Hai raggiunto il livello esperto!",
+    coachingGoodProgress: "Buoni progressi! Hai registrato una media di {{score}} punti per {{focus}}.",
+    coachingFastGrowth: "La tua crescita sta accelerando!",
+    coachingSteadyProgress: "Stai facendo progressi costanti.",
+    coachingGoodStart: "Buon inizio! Rilassati e pratica comodamente.",
+    
+    // Coaching tips
+    coachingTipRelax: "Inizia con una postura rilassata",
+    coachingTipMirror: "Pratica naturalmente guardandoti allo specchio",
+    coachingTipBreathe: "Rilascia la tensione con respiri profondi",
+    coachingTipAngles: "Pratica da varie angolazioni",
+    coachingTipEmotion: "Sorridi con emozione più profonda",
+    coachingTipRealWorld: "Ora usalo con fiducia in situazioni reali",
+    coachingTipEyesAndMouth: "Concentrati sul sorridere con occhi e bocca",
+    coachingTipHold3Seconds: "Mantieni il tuo sorriso naturalmente per almeno 3 secondi",
+    coachingTipVariety: "Pratica con varie emozioni",
+    coachingTipObserve: "Osserva la tua espressione allo specchio",
+    coachingTipStartSmall: "Inizia con un piccolo sorriso e rendilo gradualmente più grande",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Solleva angoli bocca: Solleva gli angoli verso le orecchie, mantieni 5 secondi, ripeti 10 volte",
+    exerciseBeginnerCheekPuff: "Gonfia guance: Gonfia completamente le guance poi rilascia lentamente, ripeti 5 volte",
+    exerciseBeginnerLipPurse: "Stringi labbra: Stringi le labbra a 'O' poi allarga a 'E', 10 volte",
+    exerciseIntermediateAsymmetric: "Sorriso asimmetrico: Solleva un angolo, mantieni 3 secondi, 10 volte per lato",
+    exerciseIntermediateEyeSmile: "Sorriso con occhi: Tieni ferma la bocca e sorridi solo con gli occhi, mantieni 10 secondi, 5 volte",
+    exerciseAdvancedMicroControl: "Micro controllo: Regola l'intensità del sorriso in 10 gradini",
+    exerciseAdvancedEmotionSwitch: "Cambio emozione: Neutro → sorriso → grande sorriso → sorriso, transizioni fluide",
+    
+    // Goals
+    goalTodayPractice: "Investi solo 5 minuti oggi per 3 sessioni di pratica",
+    goal14Days: "7 giorni raggiunti! Ora sfidati a 14 giorni",
+    goalDaily: "Pratica quotidianamente per diventare un maestro",
+    goalNextScore: "Il tuo prossimo obiettivo è {{score}} punti",
+    goal70Points: "Punta a 70 punti con una mentalità rilassata",
+    goalContinueStreak: "Continua la tua serie",
+    goalDailyPractice: "Praticare quotidianamente",
+    goalNewSmileType: "Prova un nuovo tipo di sorriso",
+    goalIncrease5Points: "Aumenta il punteggio medio di 5 punti",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "La pratica mattutina è benefica",
+    recommendedTimeAfternoon: "La pratica pomeridiana è benefica",
+    recommendedTimeEvening: "La pratica serale è benefica",
+    recommendedTimeGeneral: "Pratica in qualsiasi momento comodo della giornata",
+    recommendedTimeShort: "Pratica quotidianamente, anche per brevi periodi",
+    recommendedTimeStressFree: "Pratica 5 minuti durante i momenti senza stress",
+    
+    // Motivational quotes
+    motivationalQuote1: "Un sorriso è la cosa più bella che puoi indossare.",
+    motivationalQuote2: "La pratica perfetta rende perfetti. Sei già un esperto!",
+    motivationalQuote3: "I tuoi progressi sono visibili. Solo un po' di più per raggiungere l'obiettivo!",
+    motivationalQuote4: "Ogni esperto è stato un principiante. La costanza è la chiave.",
+    
+    // Practice tips
+    practiceTip1: "Sorridi anche con gli occhi. I veri sorrisi iniziano negli occhi.",
+    practiceTip2: "Fai respiri profondi e rilascia la tensione delle spalle.",
+    practiceTip3: "Sorridi mentre ricordi momenti felici.",
+    practiceTip4: "Pratica il contatto visivo con te stesso allo specchio.",
+    practiceTip5: "Inizia sollevando leggermente gli angoli della bocca.",
+    practiceTip6: "Un sorriso coinvolge il movimento di tutto il viso.",
+    practiceTip7: "I sorrisi naturali sbocciano lentamente.",
+    practiceTip8: "Una mente rilassata crea bellissimi sorrisi.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Pratica il contatto visivo allo specchio. La fiducia inizia negli occhi.",
+    metricAdviceStabilityLow: "Respira lentamente, rilassa i muscoli facciali, poi sorridi.",
+    metricAdviceNaturalnessLow: "Sorridi mentre ricordi momenti felici. L'emozione viene prima, l'espressione segue.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "Non hai praticato questa settimana. Ricominciamo?",
+    weeklyReportSummary: "Questa settimana: {{count}} pratiche, media {{score}} punti",
+    achievement7Days: "7 giorni consecutivi raggiunti! 🎉",
+    achievementGrowth: "Sei cresciuto del {{rate}}%!",
+    improvement5Days: "Punta a praticare almeno 5 volte a settimana",
+    
+    // Practice History headings
+    thisWeekAchievements: "Risultati di Questa Settimana",
+    nextWeekGoals: "Obiettivi della Prossima Settimana",
+    improvementPoints: "Punti di Miglioramento",
+    nextGoal: "Prossimo Obiettivo",
+    todaysMuscleExercise: "Esercizio Muscolare di Oggi",
+    
     // Guida alla Posizione del Volto
     facePositionDown: "verso il basso",
     facePositionUp: "verso l'alto",
@@ -1764,6 +2822,64 @@ export const translations = {
     recordWarning: "In modalità ospite, le registrazioni della pratica vengono salvate temporaneamente.\nTutte le registrazioni andranno perse quando chiuderai il browser.",
     signupToSave: "Registrati ora per salvare permanentemente tutte le tue registrazioni!",
     signupAndSave: "Registrarsi e salvare le registrazioni",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% rispetto alla settimana scorsa",
+    improved: "Migliorato",
+    declined: "Diminuito",
+    weeklyReport: "Rapporto Settimanale",
+    hide: "Nascondi",
+    show: "Mostra",
+    good: "Buono",
+    fair: "Discreto",
+    average: "Media",
+    todaysPracticeStats: "Statistiche di Pratica di Oggi",
+    practiceCount: "Conteggio Pratiche",
+    highestScore: "Punteggio Più Alto",
+    averageScore: "Punteggio Medio",
+    totalPracticeTime: "Tempo Totale di Pratica",
+    recordsNotSavedInGuestMode: "Le registrazioni non vengono salvate in modalità ospite",
+    freeSignup: "Registrazione Gratuita",
+    todaysPersonalizedAdvice: "Consiglio Personalizzato di Oggi",
+    todaysMuscleExercise: "Esercizio Muscolare di Oggi",
+    todaysRecord: "Registrazione di Oggi",
+    practiceInTempMode: "Attualmente in pratica in modalità temporanea. Tutte le registrazioni andranno perse alla chiusura del browser.",
+    myGrowthGraph: "Il Mio Grafico di Crescita",
+    thisWeekAverage: "Media di Questa Settimana",
+    thisWeekAchievements: "Risultati di Questa Settimana",
+    nextWeekGoals: "Obiettivi della Prossima Settimana",
+    improvementPoints: "Punti di Miglioramento",
+    nextGoal: "Prossimo Obiettivo",
+    startPractice: "Inizia Pratica",
+    viewOtherAdvice: "Visualizza Altri Consigli",
+    practiceRecord: "Registro di Pratica",
+    today: "Oggi",
+    diary: "Diario",
+    noPracticeRecordToday: "Nessun registro di pratica oggi",
+    smilePractice: "Pratica del Sorriso",
+    bestMoment: "Momento Migliore",
+    bestMoments: "Momenti Migliori",
+    practiceSessionDetails: "Dettagli della Sessione di Pratica",
+    practiceTime: "Tempo di Pratica",
+    practiceContext: "Contesto di Pratica",
+    noPracticeRecordThisDay: "Nessun registro di pratica questo giorno",
+    score: "Punteggio",
+    coachingMessage: "Messaggio di Coaching",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Errore nel caricamento della cronologia",
+    deleteAllRecordsConfirm: "Sei sicuro di voler eliminare tutte le registrazioni di pratica?",
+    bestMomentAlt: "Momento migliore",
+    
+    // Date/Calendar
+    yearSuffix: "anno",
+    monthSuffix: "mese",
+    sunday: "Dom",
+    monday: "Lun",
+    tuesday: "Mar",
+    wednesday: "Mer",
+    thursday: "Gio",
+    friday: "Ven",
+    saturday: "Sab",
     
     // Comune
     loading: "Caricamento...",
@@ -1937,6 +3053,93 @@ export const translations = {
     coachingPosition: "Por favor, coloque-se em uma posição confortável",
     coachingCamera: "Por favor, ajuste sua câmera para que seu rosto seja visível na tela",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} dias de prática consecutiva! Continue hoje também.",
+    coachingConsistentUser: "Você tem praticado consistentemente! Vamos criar outro lindo sorriso hoje!",
+    coachingWelcomeBack: "Bem-vindo de volta após uma semana! O importante é recomeçar.",
+    coachingFirstPractice: "Comece sua primeira prática hoje! Pequenos começos levam a grandes mudanças.",
+    coachingExcellent: "Excelente! Você alcançou uma média de {{score}} pontos hoje. Você atingiu o nível expert!",
+    coachingGoodProgress: "Bom progresso! Você registrou uma média de {{score}} pontos para {{focus}}.",
+    coachingFastGrowth: "Seu crescimento está acelerando!",
+    coachingSteadyProgress: "Você está progredindo constantemente.",
+    coachingGoodStart: "Bom começo! Relaxe e pratique confortavelmente.",
+    
+    // Coaching tips
+    coachingTipRelax: "Comece com uma postura relaxada",
+    coachingTipMirror: "Pratique naturalmente olhando-se no espelho",
+    coachingTipBreathe: "Libere a tensão com respiração profunda",
+    coachingTipAngles: "Pratique de vários ângulos",
+    coachingTipEmotion: "Sorria com emoção mais profunda",
+    coachingTipRealWorld: "Agora use com confiança em situações reais",
+    coachingTipEyesAndMouth: "Concentre-se em sorrir com olhos e boca",
+    coachingTipHold3Seconds: "Mantenha seu sorriso naturalmente por pelo menos 3 segundos",
+    coachingTipVariety: "Pratique com várias emoções",
+    coachingTipObserve: "Observe sua expressão no espelho",
+    coachingTipStartSmall: "Comece com um pequeno sorriso e torne-o gradualmente maior",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Levantar cantos da boca: Levante os cantos em direção às orelhas, segure 5 segundos, repita 10 vezes",
+    exerciseBeginnerCheekPuff: "Inflar bochechas: Infle completamente as bochechas e solte lentamente, repita 5 vezes",
+    exerciseBeginnerLipPurse: "Franzir lábios: Franza os lábios em 'O' depois estenda para 'E', 10 vezes",
+    exerciseIntermediateAsymmetric: "Sorriso assimétrico: Levante um canto, segure 3 segundos, 10 vezes cada lado",
+    exerciseIntermediateEyeSmile: "Sorriso com olhos: Mantenha a boca parada e sorria apenas com os olhos, segure 10 segundos, 5 vezes",
+    exerciseAdvancedMicroControl: "Micro controle: Ajuste a intensidade do sorriso em 10 níveis graduais",
+    exerciseAdvancedEmotionSwitch: "Mudança de emoção: Neutro → sorriso → grande sorriso → sorriso, transições suaves",
+    
+    // Goals
+    goalTodayPractice: "Invista apenas 5 minutos hoje para 3 sessões de prática",
+    goal14Days: "7 dias alcançados! Agora desafie-se a 14 dias",
+    goalDaily: "Pratique diariamente para se tornar um mestre",
+    goalNextScore: "Sua próxima meta é {{score}} pontos",
+    goal70Points: "Mire em 70 pontos com uma mentalidade relaxada",
+    goalContinueStreak: "Continue sua sequência",
+    goalDailyPractice: "Praticar diariamente",
+    goalNewSmileType: "Experimente um novo tipo de sorriso",
+    goalIncrease5Points: "Aumente a pontuação média em 5 pontos",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "A prática matinal é benéfica",
+    recommendedTimeAfternoon: "A prática vespertina é benéfica",
+    recommendedTimeEvening: "A prática noturna é benéfica",
+    recommendedTimeGeneral: "Pratique em qualquer momento confortável do dia",
+    recommendedTimeShort: "Pratique diariamente, mesmo por períodos curtos",
+    recommendedTimeStressFree: "Pratique 5 minutos durante momentos sem estresse",
+    
+    // Motivational quotes
+    motivationalQuote1: "Um sorriso é a coisa mais bonita que você pode usar.",
+    motivationalQuote2: "A prática perfeita torna perfeito. Você já é um expert!",
+    motivationalQuote3: "Seu progresso é visível. Só mais um pouco para alcançar sua meta!",
+    motivationalQuote4: "Todo expert já foi iniciante. A consistência é a chave.",
+    
+    // Practice tips
+    practiceTip1: "Sorria também com os olhos. Sorrisos verdadeiros começam nos olhos.",
+    practiceTip2: "Respire fundo e libere a tensão dos ombros.",
+    practiceTip3: "Sorria enquanto lembra de momentos felizes.",
+    practiceTip4: "Pratique o contato visual consigo mesmo no espelho.",
+    practiceTip5: "Comece levantando levemente os cantos da boca.",
+    practiceTip6: "Um sorriso envolve o movimento de todo o rosto.",
+    practiceTip7: "Sorrisos naturais desabrocham lentamente.",
+    practiceTip8: "Uma mente relaxada cria belos sorrisos.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Pratique o contato visual no espelho. A confiança começa nos olhos.",
+    metricAdviceStabilityLow: "Respire lentamente, relaxe os músculos faciais, depois sorria.",
+    metricAdviceNaturalnessLow: "Sorria enquanto lembra de momentos felizes. A emoção vem primeiro, a expressão segue.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "Você não praticou esta semana. Vamos recomeçar?",
+    weeklyReportSummary: "Esta semana: {{count}} práticas, média {{score}} pontos",
+    achievement7Days: "7 dias consecutivos alcançados! 🎉",
+    achievementGrowth: "Você cresceu {{rate}}%!",
+    improvement5Days: "Mire praticar pelo menos 5 vezes por semana",
+    
+    // Practice History headings
+    thisWeekAchievements: "Conquistas Desta Semana",
+    nextWeekGoals: "Metas da Próxima Semana",
+    improvementPoints: "Pontos de Melhoria",
+    nextGoal: "Próxima Meta",
+    todaysMuscleExercise: "Exercício Muscular de Hoje",
+    
     // Guia de Posição do Rosto
     facePositionDown: "para baixo",
     facePositionUp: "para cima",
@@ -1960,6 +3163,64 @@ export const translations = {
     recordWarning: "No modo convidado, os registros de prática são salvos temporariamente.\nTodos os registros serão perdidos quando você fechar o navegador.",
     signupToSave: "Cadastre-se agora para salvar permanentemente todos os seus registros!",
     signupAndSave: "Cadastrar e salvar registros",
+    
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% comparado com a semana passada",
+    improved: "Melhorado",
+    declined: "Diminuído",
+    weeklyReport: "Relatório Semanal",
+    hide: "Ocultar",
+    show: "Mostrar",
+    good: "Bom",
+    fair: "Regular",
+    average: "Média",
+    todaysPracticeStats: "Estatísticas de Prática de Hoje",
+    practiceCount: "Contagem de Práticas",
+    highestScore: "Pontuação Mais Alta",
+    averageScore: "Pontuação Média",
+    totalPracticeTime: "Tempo Total de Prática",
+    recordsNotSavedInGuestMode: "Os registros não são salvos no modo convidado",
+    freeSignup: "Cadastro Gratuito",
+    todaysPersonalizedAdvice: "Conselho Personalizado de Hoje",
+    todaysMuscleExercise: "Exercício Muscular de Hoje",
+    todaysRecord: "Registro de Hoje",
+    practiceInTempMode: "Atualmente praticando em modo temporário. Todos os registros serão perdidos ao fechar o navegador.",
+    myGrowthGraph: "Meu Gráfico de Crescimento",
+    thisWeekAverage: "Média Desta Semana",
+    thisWeekAchievements: "Conquistas Desta Semana",
+    nextWeekGoals: "Objetivos da Próxima Semana",
+    improvementPoints: "Pontos de Melhoria",
+    nextGoal: "Próximo Objetivo",
+    startPractice: "Iniciar Prática",
+    viewOtherAdvice: "Ver Outros Conselhos",
+    practiceRecord: "Registro de Prática",
+    today: "Hoje",
+    diary: "Diário",
+    noPracticeRecordToday: "Nenhum registro de prática hoje",
+    smilePractice: "Prática de Sorriso",
+    bestMoment: "Melhor Momento",
+    bestMoments: "Melhores Momentos",
+    practiceSessionDetails: "Detalhes da Sessão de Prática",
+    practiceTime: "Tempo de Prática",
+    practiceContext: "Contexto de Prática",
+    noPracticeRecordThisDay: "Nenhum registro de prática neste dia",
+    score: "Pontuação",
+    coachingMessage: "Mensagem de Coaching",
+    durationFormat: "{{minutes}}m {{seconds}}s",
+    loadingHistoryError: "Erro ao carregar histórico",
+    deleteAllRecordsConfirm: "Tem certeza de que deseja excluir todos os registros de prática?",
+    bestMomentAlt: "Melhor momento",
+    
+    // Date/Calendar
+    yearSuffix: "ano",
+    monthSuffix: "mês",
+    sunday: "Dom",
+    monday: "Seg",
+    tuesday: "Ter",
+    wednesday: "Qua",
+    thursday: "Qui",
+    friday: "Sex",
+    saturday: "Sáb",
     
     // Comum
     loading: "Carregando...",
@@ -2133,6 +3394,93 @@ export const translations = {
     coachingPosition: "Пожалуйста, примите удобное положение",
     coachingCamera: "Пожалуйста, отрегулируйте камеру так, чтобы ваше лицо было видно на экране",
     
+    // Main coaching messages
+    coachingStreakMessage: "{{days}} дней подряд практики! Продолжайте и сегодня.",
+    coachingConsistentUser: "Вы практиковались последовательно! Давайте создадим ещё одну прекрасную улыбку сегодня!",
+    coachingWelcomeBack: "С возвращением через неделю! Важно начать снова.",
+    coachingFirstPractice: "Начните свою первую практику сегодня! Маленькие начинания ведут к большим изменениям.",
+    coachingExcellent: "Отлично! Вы достигли среднего результата {{score}} баллов сегодня. Вы достигли экспертного уровня!",
+    coachingGoodProgress: "Хороший прогресс! Вы зарегистрировали средний результат {{score}} баллов для {{focus}}.",
+    coachingFastGrowth: "Ваш рост ускоряется!",
+    coachingSteadyProgress: "Вы стабильно прогрессируете.",
+    coachingGoodStart: "Хорошее начало! Расслабьтесь и практикуйтесь комфортно.",
+    
+    // Coaching tips
+    coachingTipRelax: "Начните с расслабленной позы",
+    coachingTipMirror: "Практикуйтесь естественно, глядя в зеркало",
+    coachingTipBreathe: "Снимите напряжение глубоким дыханием",
+    coachingTipAngles: "Практикуйтесь под разными углами",
+    coachingTipEmotion: "Улыбайтесь с более глубокой эмоцией",
+    coachingTipRealWorld: "Теперь используйте это уверенно в реальных ситуациях",
+    coachingTipEyesAndMouth: "Сосредоточьтесь на улыбке глазами и ртом",
+    coachingTipHold3Seconds: "Удерживайте улыбку естественно не менее 3 секунд",
+    coachingTipVariety: "Практикуйтесь с различными эмоциями",
+    coachingTipObserve: "Наблюдайте за своим выражением в зеркале",
+    coachingTipStartSmall: "Начните с маленькой улыбки и постепенно делайте её больше",
+    
+    // Exercises
+    exerciseBeginnerLipCorner: "Подъём уголков губ: Поднимите уголки к ушам, удерживайте 5 секунд, повторите 10 раз",
+    exerciseBeginnerCheekPuff: "Надувание щёк: Полностью надуйте щёки, затем медленно выпустите воздух, повторите 5 раз",
+    exerciseBeginnerLipPurse: "Сжатие губ: Сожмите губы в 'О', затем растяните в 'И', 10 раз",
+    exerciseIntermediateAsymmetric: "Асимметричная улыбка: Поднимите один уголок, удерживайте 3 секунды, 10 раз с каждой стороны",
+    exerciseIntermediateEyeSmile: "Улыбка глазами: Держите рот неподвижным и улыбайтесь только глазами, удерживайте 10 секунд, 5 раз",
+    exerciseAdvancedMicroControl: "Микроконтроль: Регулируйте интенсивность улыбки на 10 уровнях",
+    exerciseAdvancedEmotionSwitch: "Переключение эмоций: Нейтральное → улыбка → широкая улыбка → улыбка, плавные переходы",
+    
+    // Goals
+    goalTodayPractice: "Инвестируйте всего 5 минут сегодня для 3 сессий практики",
+    goal14Days: "7 дней достигнуто! Теперь бросьте вызов на 14 дней",
+    goalDaily: "Практикуйтесь ежедневно, чтобы стать мастером",
+    goalNextScore: "Ваша следующая цель - {{score}} баллов",
+    goal70Points: "Стремитесь к 70 баллам с расслабленным настроем",
+    goalContinueStreak: "Продолжайте свою серию",
+    goalDailyPractice: "Практиковаться ежедневно",
+    goalNewSmileType: "Попробуйте новый тип улыбки",
+    goalIncrease5Points: "Увеличить средний балл на 5 очков",
+    
+    // Practice time recommendations
+    recommendedTimeMorning: "Утренняя практика полезна",
+    recommendedTimeAfternoon: "Дневная практика полезна",
+    recommendedTimeEvening: "Вечерняя практика полезна",
+    recommendedTimeGeneral: "Практикуйтесь в любое удобное время дня",
+    recommendedTimeShort: "Практикуйтесь ежедневно, даже недолго",
+    recommendedTimeStressFree: "Практикуйтесь 5 минут в моменты без стресса",
+    
+    // Motivational quotes
+    motivationalQuote1: "Улыбка - самая красивая вещь, которую вы можете носить.",
+    motivationalQuote2: "Совершенная практика делает совершенным. Вы уже эксперт!",
+    motivationalQuote3: "Ваш прогресс виден. Ещё чуть-чуть до достижения цели!",
+    motivationalQuote4: "Каждый эксперт когда-то был новичком. Постоянство - ключ.",
+    
+    // Practice tips
+    practiceTip1: "Улыбайтесь и глазами. Настоящая улыбка начинается с глаз.",
+    practiceTip2: "Глубоко вдохните и расслабьте плечи.",
+    practiceTip3: "Улыбайтесь, вспоминая счастливые моменты.",
+    practiceTip4: "Практикуйте зрительный контакт с собой в зеркале.",
+    practiceTip5: "Начните с лёгкого поднятия уголков рта.",
+    practiceTip6: "Улыбка включает движение всего лица.",
+    practiceTip7: "Естественная улыбка расцветает медленно.",
+    practiceTip8: "Расслабленный ум создаёт красивые улыбки.",
+    
+    // Metric advice
+    metricAdviceConfidenceLow: "Практикуйте зрительный контакт в зеркале. Уверенность начинается с глаз.",
+    metricAdviceStabilityLow: "Медленно дышите, расслабьте мышцы лица, затем улыбнитесь.",
+    metricAdviceNaturalnessLow: "Улыбайтесь, вспоминая счастливые моменты. Эмоция первична, выражение следует.",
+    
+    // Weekly report
+    weeklyReportNoPractice: "Вы не практиковались на этой неделе. Начнём снова?",
+    weeklyReportSummary: "На этой неделе: {{count}} практик, средний результат {{score}} баллов",
+    achievement7Days: "7 дней подряд достигнуто! 🎉",
+    achievementGrowth: "Вы выросли на {{rate}}%!",
+    improvement5Days: "Стремитесь практиковаться не менее 5 раз в неделю",
+    
+    // Practice History headings
+    thisWeekAchievements: "Достижения этой недели",
+    nextWeekGoals: "Цели на следующую неделю",
+    improvementPoints: "Точки улучшения",
+    nextGoal: "Следующая цель",
+    todaysMuscleExercise: "Сегодняшнее упражнение для мышц",
+    
     // Руководство по Положению Лица
     facePositionDown: "вниз",
     facePositionUp: "вверх",
@@ -2157,6 +3505,64 @@ export const translations = {
     signupToSave: "Зарегистрируйтесь сейчас, чтобы навсегда сохранить все ваши записи!",
     signupAndSave: "Зарегистрироваться и сохранить записи",
     
+    // PracticeHistory
+    comparedToLastWeek: "{{trend}} {{change}}% по сравнению с прошлой неделей",
+    improved: "Улучшено",
+    declined: "Снижено",
+    weeklyReport: "Недельный Отчет",
+    hide: "Скрыть",
+    show: "Показать",
+    good: "Хорошо",
+    fair: "Удовлетворительно",
+    average: "Среднее",
+    todaysPracticeStats: "Статистика Практики на Сегодня",
+    practiceCount: "Количество Практик",
+    highestScore: "Наивысший Балл",
+    averageScore: "Средний Балл",
+    totalPracticeTime: "Общее Время Практики",
+    recordsNotSavedInGuestMode: "Записи не сохраняются в гостевом режиме",
+    freeSignup: "Бесплатная Регистрация",
+    todaysPersonalizedAdvice: "Персонализированный Совет на Сегодня",
+    todaysMuscleExercise: "Мышечное Упражнение на Сегодня",
+    todaysRecord: "Запись на Сегодня",
+    practiceInTempMode: "Сейчас практикуете во временном режиме. Все записи будут потеряны при закрытии браузера.",
+    myGrowthGraph: "Мой График Роста",
+    thisWeekAverage: "Среднее за Эту Неделю",
+    thisWeekAchievements: "Достижения Этой Недели",
+    nextWeekGoals: "Цели на Следующую Неделю",
+    improvementPoints: "Пункты для Улучшения",
+    nextGoal: "Следующая Цель",
+    startPractice: "Начать Практику",
+    viewOtherAdvice: "Посмотреть Другие Советы",
+    practiceRecord: "Запись Практики",
+    today: "Сегодня",
+    diary: "Дневник",
+    noPracticeRecordToday: "Сегодня нет записи о практике",
+    smilePractice: "Практика Улыбки",
+    bestMoment: "Лучший Момент",
+    bestMoments: "Лучшие Моменты",
+    practiceSessionDetails: "Детали Сессии Практики",
+    practiceTime: "Время Практики",
+    practiceContext: "Контекст Практики",
+    noPracticeRecordThisDay: "В этот день нет записи о практике",
+    score: "Балл",
+    coachingMessage: "Сообщение Тренера",
+    durationFormat: "{{minutes}}м {{seconds}}с",
+    loadingHistoryError: "Ошибка загрузки истории",
+    deleteAllRecordsConfirm: "Вы уверены, что хотите удалить все записи практики?",
+    bestMomentAlt: "Лучший момент",
+    
+    // Date/Calendar
+    yearSuffix: "год",
+    monthSuffix: "месяц",
+    sunday: "Вс",
+    monday: "Пн",
+    tuesday: "Вт",
+    wednesday: "Ср",
+    thursday: "Чт",
+    friday: "Пт",
+    saturday: "Сб",
+    
     // Общее
     loading: "Загрузка...",
     error: "Произошла ошибка",
@@ -2177,6 +3583,13 @@ export const languages = [
   { code: 'ru', name: 'Русский', flag: '🇷🇺' }
 ];
 
-export const getTranslation = (key, language = 'ko') => {
-  return translations[language]?.[key] || translations.ko[key] || key;
+export const getTranslation = (key, language = 'ko', params = {}) => {
+  let translation = translations[language]?.[key] || translations.ko[key] || key;
+  
+  // Replace parameters in the translation string
+  Object.keys(params).forEach(param => {
+    translation = translation.replace(new RegExp(`{{${param}}}`, 'g'), params[param]);
+  });
+  
+  return translation;
 };

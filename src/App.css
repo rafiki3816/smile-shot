@@ -1985,7 +1985,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   width: 100%;
-  max-width: 400px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .history-list h3 {

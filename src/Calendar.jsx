@@ -85,7 +85,11 @@ function Calendar({ sessions, onDateClick }) {
       <div className="calendar-header">
         <div className="calendar-month-row">
           <button onClick={() => navigateMonth(-1)} className="nav-button">‹</button>
-          <h3 className="calendar-month-title">{currentDate.getFullYear()}{t('yearSuffix')} {currentDate.getMonth() + 1}{t('monthSuffix')}</h3>
+          <h3 className="calendar-month-title">
+            {currentDate.getFullYear()}{t('yearSuffix') === 'year' ? ' ' : ''}{t('yearSuffix')} 
+            {t('yearSuffix') === 'year' ? '/ ' : ' '}
+            {currentDate.getMonth() + 1}{t('monthSuffix') === 'month' ? ' ' : ''}{t('monthSuffix')}
+          </h3>
           <button onClick={() => navigateMonth(1)} className="nav-button">›</button>
         </div>
         <div className="calendar-controls">
@@ -108,17 +112,28 @@ function Calendar({ sessions, onDateClick }) {
             <div
               key={index}
               className={`calendar-day ${day.isCurrentMonth ? '' : 'other-month'} ${isToday(day.fullDate) ? 'today' : ''} ${hasSession ? 'has-session' : ''} ${selectedDate?.toDateString() === day.fullDate.toDateString() ? 'selected' : ''}`}
+              role="button"
+              tabIndex={day.isCurrentMonth ? 0 : -1}
+              aria-label={`${day.fullDate.getFullYear()}년 ${day.fullDate.getMonth() + 1}월 ${day.date}일${hasSession ? ', 연습 기록 있음' : ''}${isToday(day.fullDate) ? ', 오늘' : ''}`}
               onClick={() => {
-                setSelectedDate(day.fullDate)
-                if (onDateClick) {
-                  onDateClick(day.fullDate)
+                if (day.isCurrentMonth) {
+                  setSelectedDate(day.fullDate)
+                  if (onDateClick) {
+                    onDateClick(day.fullDate)
+                  }
+                }
+              }}
+              onKeyDown={(e) => {
+                if ((e.key === 'Enter' || e.key === ' ') && day.isCurrentMonth) {
+                  e.preventDefault()
+                  setSelectedDate(day.fullDate)
+                  if (onDateClick) {
+                    onDateClick(day.fullDate)
+                  }
                 }
               }}
             >
               <div className="day-number">{day.date}</div>
-              {hasSession && (
-                <div className="session-indicator"></div>
-              )}
             </div>
           )
         })}
