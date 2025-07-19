@@ -477,7 +477,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                             photo: session.metrics.capturedPhoto,
                             analysis: session.metrics.capturedAnalysis,
                             date: session.date,
-                            smileType: getSmileTypeName(session.smileType)
+                            smileType: session.smileType
                           })}
                         >
                           <img 
@@ -561,7 +561,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                               photo: session.metrics.capturedPhoto,
                               analysis: session.metrics.capturedAnalysis,
                               date: session.date,
-                              smileType: getSmileTypeName(session.smileType)
+                              smileType: session.smileType
                             })
                             setSelectedDate(null)
                           }}
@@ -588,7 +588,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                 {selectedDate.sessions.map(session => (
                   <div key={session.id} className="session-detail">
                     <div className="session-header">
-                      <span className="session-type">{session.smileType || t('smilePractice')}</span>
+                      <span className="session-type">{getSmileTypeName(session.smileType)}</span>
                       <span className="session-time">{session.time}</span>
                     </div>
                     <div className="session-metrics">
