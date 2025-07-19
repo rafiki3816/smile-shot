@@ -414,7 +414,7 @@ function SmileDetector({ user }) {
       
       const sessionData = {
         purpose: selectedPurpose,
-        smile_type: smileTypes[smileContext]?.title || t('smile'),
+        smile_type: smileContext || 'practice',
         max_score: maxScore,
         context: smileContext,
         emotion_before: emotionBefore,

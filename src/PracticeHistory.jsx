@@ -25,6 +25,26 @@ function PracticeHistory({ user, onNavigateToPractice }) {
     }
     return localeMap[currentLanguage] || 'ko-KR'
   }
+
+  // 미소 타입 번역
+  const getSmileTypeName = (smileType) => {
+    if (!smileType) return t('smilePractice')
+    
+    // 새로운 키 방식 (practice, social, joy)
+    if (['practice', 'social', 'joy'].includes(smileType)) {
+      return t(`${smileType}SmileTitle`)
+    }
+    
+    // 기존 한국어 텍스트 매핑 (하위 호환성)
+    const legacyMapping = {
+      '자기계발 미소': t('practiceSmileTitle'),
+      '소통의 미소': t('socialSmileTitle'),
+      '기쁨의 미소': t('joySmileTitle'),
+      '미소 연습': t('smilePractice')
+    }
+    
+    return legacyMapping[smileType] || smileType
+  }
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
   const [todayStats, setTodayStats] = useState({
@@ -63,7 +83,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
         setWeeklyReport(report)
       }
     }
-  }, [history, todayStats])
+  }, [history, todayStats, currentLanguage])
 
   // 기록 불러오기
   const loadHistory = async () => {
@@ -435,7 +455,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                   {todaySessions.map(session => (
                     <div key={session.id} className="session-card">
                       <div className="session-header">
-                        <span className="session-type">{session.smileType || t('smilePractice')}</span>
+                        <span className="session-type">{getSmileTypeName(session.smileType)}</span>
                         <span className="session-score">{session.maxScore}%</span>
                       </div>
                       <div className="session-details">
@@ -457,7 +477,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                             photo: session.metrics.capturedPhoto,
                             analysis: session.metrics.capturedAnalysis,
                             date: session.date,
-                            smileType: session.smileType
+                            smileType: getSmileTypeName(session.smileType)
                           })}
                         >
                           <img 
@@ -541,7 +561,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                               photo: session.metrics.capturedPhoto,
                               analysis: session.metrics.capturedAnalysis,
                               date: session.date,
-                              smileType: session.smileType
+                              smileType: getSmileTypeName(session.smileType)
                             })
                             setSelectedDate(null)
                           }}
@@ -568,7 +588,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
                 {selectedDate.sessions.map(session => (
                   <div key={session.id} className="session-detail">
                     <div className="session-header">
-                      <span className="session-type">{session.smileType || '미소 연습'}</span>
+                      <span className="session-type">{session.smileType || t('smilePractice')}</span>
                       <span className="session-time">{session.time}</span>
                     </div>
                     <div className="session-metrics">
@@ -642,7 +662,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
               
               <div className="modal-info">
                 <span className="info-date">{selectedCapture.date}</span>
-                <span className="info-type">{selectedCapture.smileType}</span>
+                <span className="info-type">{getSmileTypeName(selectedCapture.smileType)}</span>
               </div>
             </div>
           </div>

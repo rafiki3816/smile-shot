@@ -962,6 +962,10 @@ export const translations = {
     joySmileCoaching: "本当に嬉しい気持ちを顔に表現してください",
     
     // 筋肉ガイド
+    characteristics: "特徴",
+    facialMuscles: "顔の筋肉",
+    practiceTips: "練習のコツ",
+    practiceWithThisSmile: "この笑顔で練習する",
     primaryMuscle: "主要筋肉",
     secondaryMuscle: "補助筋肉",
     muscleTips: "練習のコツ",
@@ -1303,6 +1307,10 @@ export const translations = {
     joySmileCoaching: "让真正的快乐在脸上显现",
     
     // 肌肉指南
+    characteristics: "特征",
+    facialMuscles: "面部肌肉",
+    practiceTips: "练习技巧",
+    practiceWithThisSmile: "用这个微笑练习",
     primaryMuscle: "主要肌肉",
     secondaryMuscle: "辅助肌肉",
     muscleTips: "练习技巧",
@@ -1644,6 +1652,10 @@ export const translations = {
     joySmileCoaching: "Deja que tu alegría genuina se muestre en tu rostro",
     
     // Guía de Músculos
+    characteristics: "Características",
+    facialMuscles: "Músculos Faciales",
+    practiceTips: "Consejos de Práctica",
+    practiceWithThisSmile: "Practica con esta sonrisa",
     primaryMuscle: "Músculo Principal",
     secondaryMuscle: "Músculo Secundario",
     muscleTips: "Consejos de Práctica",
@@ -1985,6 +1997,10 @@ export const translations = {
     joySmileCoaching: "Laissez votre joie authentique apparaître sur votre visage",
     
     // Guide des Muscles
+    characteristics: "Caractéristiques",
+    facialMuscles: "Muscles Faciaux",
+    practiceTips: "Conseils de Pratique",
+    practiceWithThisSmile: "Pratiquez avec ce sourire",
     primaryMuscle: "Muscle Principal",
     secondaryMuscle: "Muscle Secondaire",
     muscleTips: "Conseils de Pratique",
@@ -2326,6 +2342,10 @@ export const translations = {
     joySmileCoaching: "Lassen Sie Ihre echte Freude in Ihrem Gesicht erscheinen",
     
     // Muskel-Leitfaden
+    characteristics: "Eigenschaften",
+    facialMuscles: "Gesichtsmuskeln",
+    practiceTips: "Übungstipps",
+    practiceWithThisSmile: "Mit diesem Lächeln üben",
     primaryMuscle: "Hauptmuskel",
     secondaryMuscle: "Hilfsmuskel",
     muscleTips: "Übungstipps",
@@ -2667,6 +2687,10 @@ export const translations = {
     joySmileCoaching: "Lascia che la tua gioia autentica appaia sul tuo volto",
     
     // Guida ai Muscoli
+    characteristics: "Caratteristiche",
+    facialMuscles: "Muscoli Facciali",
+    practiceTips: "Consigli per la Pratica",
+    practiceWithThisSmile: "Pratica con questo sorriso",
     primaryMuscle: "Muscolo Principale",
     secondaryMuscle: "Muscolo Secondario",
     muscleTips: "Consigli per la Pratica",
@@ -3008,6 +3032,10 @@ export const translations = {
     joySmileCoaching: "Deixe sua alegria genuína aparecer em seu rosto",
     
     // Guia dos Músculos
+    characteristics: "Características",
+    facialMuscles: "Músculos Faciais",
+    practiceTips: "Dicas de Prática",
+    practiceWithThisSmile: "Pratique com este sorriso",
     primaryMuscle: "Músculo Principal",
     secondaryMuscle: "Músculo Secundário",
     muscleTips: "Dicas de Prática",
@@ -3349,6 +3377,10 @@ export const translations = {
     joySmileCoaching: "Пусть ваша подлинная радость появится на лице",
     
     // Руководство по Мышцам
+    characteristics: "Характеристики",
+    facialMuscles: "Лицевые Мышцы",
+    practiceTips: "Советы по Практике",
+    practiceWithThisSmile: "Практикуйтесь с этой улыбкой",
     primaryMuscle: "Основная Мышца",
     secondaryMuscle: "Вспомогательная Мышца",
     muscleTips: "Советы по Практике",
