@@ -353,6 +353,7 @@ export const translations = {
     later: "나중에",
     
     // 무료 체험
+    freeTrialRemaining: "무료 체험 남은 횟수",
     freeTrialCompleted: "무료 체험 {{count}}회 완료! (남은 횟수: {{remaining}}회)",
     freeTrialAllUsed: "무료 체험 10회를 모두 사용하셨습니다!",
     
@@ -767,6 +768,7 @@ export const translations = {
     later: "Later",
     
     // Free trial
+    freeTrialRemaining: "Free Trial Remaining",
     freeTrialCompleted: "Free trial {{count}} completed! (Remaining: {{remaining}})",
     freeTrialAllUsed: "You've used all 10 free trial sessions!",
     
@@ -1183,7 +1185,12 @@ export const translations = {
     // 共通
     loading: "読み込み中...",
     error: "エラーが発生しました",
-    success: "成功しました"
+    success: "成功しました",
+    
+    // 無料体験
+    freeTrialRemaining: "無料体験残り回数",
+    freeTrialCompleted: "無料体験{{count}}回完了！（残り：{{remaining}}回）",
+    freeTrialAllUsed: "無料体験10回をすべて使用しました！"
   },
   
   zh: {
@@ -1528,7 +1535,12 @@ export const translations = {
     // 通用
     loading: "加载中...",
     error: "发生错误",
-    success: "成功"
+    success: "成功",
+    
+    // 免费试用
+    freeTrialRemaining: "免费试用剩余次数",
+    freeTrialCompleted: "免费试用{{count}}次完成！（剩余：{{remaining}}次）",
+    freeTrialAllUsed: "您已使用完所有10次免费试用！"
   },
   
   es: {
@@ -1873,7 +1885,12 @@ export const translations = {
     // Común
     loading: "Cargando...",
     error: "Ocurrió un error",
-    success: "Éxito"
+    success: "Éxito",
+    
+    // Prueba gratuita
+    freeTrialRemaining: "Pruebas gratuitas restantes",
+    freeTrialCompleted: "¡Prueba gratuita {{count}} completada! (Restantes: {{remaining}})",
+    freeTrialAllUsed: "¡Has usado las 10 pruebas gratuitas!"
   },
   
   fr: {
@@ -2218,7 +2235,12 @@ export const translations = {
     // Commun
     loading: "Chargement...",
     error: "Une erreur s'est produite",
-    success: "Succès"
+    success: "Succès",
+    
+    // Essai gratuit
+    freeTrialRemaining: "Essais gratuits restants",
+    freeTrialCompleted: "Essai gratuit {{count}} terminé ! (Restants : {{remaining}})",
+    freeTrialAllUsed: "Vous avez utilisé les 10 essais gratuits !"
   },
   
   de: {
@@ -2563,7 +2585,12 @@ export const translations = {
     // Allgemein
     loading: "Laden...",
     error: "Ein Fehler ist aufgetreten",
-    success: "Erfolg"
+    success: "Erfolg",
+    
+    // Kostenlose Testversion
+    freeTrialRemaining: "Verbleibende kostenlose Tests",
+    freeTrialCompleted: "Kostenloser Test {{count}} abgeschlossen! (Verbleibend: {{remaining}})",
+    freeTrialAllUsed: "Sie haben alle 10 kostenlosen Tests verwendet!"
   },
   
   it: {
@@ -2908,7 +2935,12 @@ export const translations = {
     // Comune
     loading: "Caricamento...",
     error: "Si è verificato un errore",
-    success: "Successo"
+    success: "Successo",
+    
+    // Prova gratuita
+    freeTrialRemaining: "Prove gratuite rimanenti",
+    freeTrialCompleted: "Prova gratuita {{count}} completata! (Rimanenti: {{remaining}})",
+    freeTrialAllUsed: "Hai utilizzato tutte le 10 prove gratuite!"
   },
   
   pt: {
@@ -3253,7 +3285,12 @@ export const translations = {
     // Comum
     loading: "Carregando...",
     error: "Ocorreu um erro",
-    success: "Sucesso"
+    success: "Sucesso",
+    
+    // Teste gratuito
+    freeTrialRemaining: "Testes gratuitos restantes",
+    freeTrialCompleted: "Teste gratuito {{count}} concluído! (Restantes: {{remaining}})",
+    freeTrialAllUsed: "Você usou todos os 10 testes gratuitos!"
   },
   
   ru: {
@@ -3598,7 +3635,12 @@ export const translations = {
     // Общее
     loading: "Загрузка...",
     error: "Произошла ошибка",
-    success: "Успех"
+    success: "Успех",
+    
+    // Бесплатная пробная версия
+    freeTrialRemaining: "Осталось бесплатных попыток",
+    freeTrialCompleted: "Бесплатная попытка {{count}} завершена! (Осталось: {{remaining}})",
+    freeTrialAllUsed: "Вы использовали все 10 бесплатных попыток!"
   }
 };
 
