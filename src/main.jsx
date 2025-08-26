@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { LanguageProvider } from './contexts/LanguageContext.jsx'
 import './index.css'
+import './styles/design-tokens.css'
+import './styles/colors.css'
+import './styles/accessibility.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(

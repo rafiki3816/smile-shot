@@ -14,7 +14,7 @@ import { getTranslation } from '../translations'
  * @returns {Object} Coaching advice object
  */
 export function generateCoachingAdvice(history, todayStats, language = 'ko') {
-  const t = (key, params) => getTranslation(key, language, params)
+  // const t = (key, params) => getTranslation(key, language, params)
   const analysis = analyzeUserPattern(history)
   
   // 1. No practice today

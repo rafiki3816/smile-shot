@@ -6,8 +6,11 @@ import SignUp from './SignUp'
 import Login from './Login'
 import Landing from './Landing'
 import LanguageSelector from './components/LanguageSelector'
-import { useLanguage } from './contexts/LanguageContext'
+import { useLanguage } from './hooks/useLanguage'
 import { auth, supabase } from './supabaseClient'
+import ScreenReaderAnnouncer from './components/ScreenReaderAnnouncer'
+import { announcePageChange } from './utils/announcerUtils'
+import PWAInstallPrompt from './components/PWAInstallPrompt'
 import './App.css'
 
 // 보호된 라우트 컴포넌트
@@ -72,6 +75,38 @@ function MainApp() {
     }
   }, [])
 
+  // Keyboard navigation for tabs
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Arrow keys for tab navigation
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const tabs = ['practice', 'history']
+        const currentIndex = tabs.indexOf(currentTab)
+        let newIndex
+        
+        if (e.key === 'ArrowLeft') {
+          newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1
+        } else {
+          newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0
+        }
+        
+        setCurrentTab(tabs[newIndex])
+        setSmileDetectorKey(prev => prev + 1)
+        
+        // Focus the new tab
+        setTimeout(() => {
+          document.getElementById(`${tabs[newIndex]}-tab`)?.focus()
+        }, 0)
+        
+        // Announce tab change
+        announcePageChange(tabs[newIndex] === 'practice' ? t('practice') : t('history'))
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [currentTab, t])
+
   const handleLogout = async () => {
     setSmileDetectorKey(prev => prev + 1) // 카메라 정리
     await auth.signOut()
@@ -80,6 +115,8 @@ function MainApp() {
 
   return (
     <div className="app-container">
+      <ScreenReaderAnnouncer />
+      <PWAInstallPrompt />
       {/* 상단 헤더 */}
       <div className="app-header">
         <button onClick={() => {
@@ -99,13 +136,18 @@ function MainApp() {
       </div>
 
       {/* 탭 메뉴 */}
-      <div className="tab-menu">
+      <div className="tab-menu" role="tablist">
         <button 
           className={`tab-button ${currentTab === 'practice' ? 'active' : ''}`}
           onClick={() => {
             setCurrentTab('practice')
             setSmileDetectorKey(prev => prev + 1) // 컴포넌트 리마운트
           }}
+          role="tab"
+          aria-selected={currentTab === 'practice'}
+          aria-controls="practice-panel"
+          id="practice-tab"
+          aria-label={t('practiceTab')}
         >
           {t('practice')}
         </button>
@@ -115,6 +157,11 @@ function MainApp() {
             setCurrentTab('history')
             setSmileDetectorKey(prev => prev + 1) // 컴포넌트 리마운트
           }}
+          role="tab"
+          aria-selected={currentTab === 'history'}
+          aria-controls="history-panel"
+          id="history-tab"
+          aria-label={t('historyTab')}
         >
           {t('history')}
         </button>
@@ -122,7 +169,7 @@ function MainApp() {
       </div>
 
       {/* 탭 내용 */}
-      <div className="tab-content">
+      <main id={currentTab === 'practice' ? 'practice-panel' : 'history-panel'} className="tab-content" role="tabpanel" aria-labelledby={currentTab === 'practice' ? 'practice-tab' : 'history-tab'} tabIndex="-1">
         {currentTab === 'practice' ? (
           <div className="main-content">
             <div className="practice-section">
@@ -137,7 +184,7 @@ function MainApp() {
             setSmileDetectorKey(prev => prev + 1) // 컴포넌트 리마운트
           }} />
         )}
-      </div>
+      </main>
       
       {/* 하단 로그아웃 버튼 */}
       {user && (
@@ -145,6 +192,7 @@ function MainApp() {
           <button 
             className="logout-btn"
             onClick={handleLogout}
+            aria-label={t('logoutFromAccount')}
           >
             {t('logout')}
           </button>

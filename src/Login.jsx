@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { auth } from './supabaseClient'
-import { useLanguage } from './contexts/LanguageContext'
+import { useLanguage } from './hooks/useLanguage'
 import LanguageSelector from './components/LanguageSelector'
 import './Auth.css'
 
@@ -68,7 +68,7 @@ function Login() {
         const redirectTo = location.state?.from || '/app'
         navigate(redirectTo)
       }
-    } catch (error) {
+    } catch {  
       setErrors({ general: t('loginError') })
     } finally {
       setLoading(false)
@@ -109,8 +109,11 @@ function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
+                  aria-label={t('email')}
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
-                {errors.email && <span className="error-message">{errors.email}</span>}
+                {errors.email && <span id="email-error" className="error-message" role="alert">{errors.email}</span>}
               </div>
               
               <div className="form-group">
@@ -121,22 +124,25 @@ function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   className={errors.password ? 'error' : ''}
+                  aria-label={t('password')}
+                  aria-invalid={errors.password ? 'true' : 'false'}
+                  aria-describedby={errors.password ? 'password-error' : undefined}
                 />
-                {errors.password && <span className="error-message">{errors.password}</span>}
+                {errors.password && <span id="password-error" className="error-message" role="alert">{errors.password}</span>}
               </div>
               
-              <button type="submit" className="auth-submit" disabled={loading}>
+              <button type="submit" className="auth-submit" disabled={loading} aria-label={loading ? t('loginInProgress') : t('login')} aria-busy={loading}>
                 {loading ? t('loginButtonLoading') : t('loginButton')}
               </button>
             </form>
 
             <div className="auth-footer">
               <p>{t('noAccount')}</p>
-              <Link to="/signup" className="auth-link">{t('signup')}</Link>
+              <Link to="/signup" className="auth-link" aria-label={t('goToSignupPage')}>{t('signup')}</Link>
             </div>
 
         <div className="auth-home">
-          <Link to="/" className="home-link">← {t('backToHome')}</Link>
+          <Link to="/" className="home-link" aria-label={t('returnToHomePage')}>← {t('backToHome')}</Link>
         </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { useLanguage } from './contexts/LanguageContext'
+import { useState } from 'react'
+import { useLanguage } from './hooks/useLanguage'
 import './Calendar.css'
 
 function Calendar({ sessions, onDateClick }) {

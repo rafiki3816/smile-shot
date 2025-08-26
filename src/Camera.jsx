@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from 'react'
-import { useLanguage } from './contexts/LanguageContext'
+import { useRef, useState } from 'react'
+import { useLanguage } from './hooks/useLanguage'
 
 function Camera() {
   const { t } = useLanguage()

@@ -2,8 +2,10 @@ import { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as faceapi from 'face-api.js'
 import { practiceDB } from './supabaseClient'
-import { useToast, ToastContainer } from './Toast'
-import { useLanguage } from './contexts/LanguageContext'
+import { ToastContainer } from './Toast'
+import { useToast } from './utils/toastUtils'
+import { useLanguage } from './hooks/useLanguage'
+import { announceError, announceCoaching } from './utils/announcerUtils'
 
 function SmileDetector({ user }) {
   const navigate = useNavigate()
@@ -54,7 +56,7 @@ function SmileDetector({ user }) {
   const [currentScore, setCurrentScore] = useState(0)
   
   // 카메라 좌우 반전 상태
-  const [isMirrored, setIsMirrored] = useState(true)
+  const [isMirrored] = useState(true)
   
   // 자동 캡처 관련 상태
   const [capturedPhoto, setCapturedPhoto] = useState(null)
@@ -159,7 +161,7 @@ function SmileDetector({ user }) {
       try {
         console.log(t('systemLoading'))
         
-        const MODEL_URL = window.location.origin + '/models'
+        const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.13/model'
         
         await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL)
         await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL)
@@ -233,13 +235,13 @@ function SmileDetector({ user }) {
             setCameraPermissionDenied(true)
             return
           }
-        } catch (e) {
+        } catch {
           // permissions API를 지원하지 않는 브라우저는 그냥 진행
         }
       }
       
       // 모바일 기기 감지
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+      // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
       
       // 모바일과 데스크톱 모두 2:3 비율로 통일
       const videoConstraints = { 
@@ -281,8 +283,10 @@ function SmileDetector({ user }) {
         setCameraPermissionDenied(true)
       } else if (error.name === 'NotFoundError') {
         showToast(t('cameraNotFound'), 'error')
+        announceError(t('cameraNotFound'))
       } else {
         showToast(t('cameraAccessError'), 'error')
+        announceError(t('cameraAccessError'))
       }
     }
   }
@@ -475,6 +479,7 @@ function SmileDetector({ user }) {
           hint: error.hint
         })
         showToast(t('practiceRecordSaveFailed', { error: error.message }), 'error', 5000)
+        announceError(t('practiceRecordSaveFailed', { error: error.message }))
       } else {
         console.log('저장 성공:', data) // 디버깅용
         showToast(t('practiceRecordSaved'), 'success', 3000)
@@ -550,38 +555,41 @@ function SmileDetector({ user }) {
       }
       
     } else if (context === 'social') {
-      // 친화력: 따뜻하고 다가가기 쉬운 표정
-      const affinity = happiness * 0.6 + neutral * 0.2 + surprise * 0.1 - fear * 0.1 + baseScore
+      // 친화력: 따뜻하고 다가가기 쉬운 표정 (baseScore 제거, 가중치 조정)
+      const affinity = happiness * 0.5 + neutral * 0.15 + surprise * 0.05 - fear * 0.2 + baseScore * 0.5
       
-      // 신뢰감: 안정적이고 진실한 표정
-      const trustworthiness = comfort * 0.5 + (1 - fear) * 0.3 + (1 - angry) * 0.2 + baseScore
+      // 신뢰감: 안정적이고 진실한 표정 (더 엄격한 기준)
+      const trustworthiness = comfort * 0.4 + (1 - fear) * 0.25 + (1 - angry) * 0.15 + naturalness * 0.2 + baseScore * 0.5
       
-      // 편안함: 긴장감 없이 자연스러운 표현
-      const easiness = naturalness * 0.6 + (1 - fear) * 0.2 + neutral * 0.2 + baseScore
+      // 편안함: 긴장감 없이 자연스러운 표현 (더 까다로운 기준)
+      const easiness = naturalness * 0.5 + (1 - fear) * 0.15 + neutral * 0.15 + comfort * 0.2 + baseScore * 0.5
       
       // 3가지 지표의 평균으로 계산
       contextualScore = (affinity + trustworthiness + easiness) / 3
-      contextualScore = Math.max(0.3, Math.min(1, contextualScore))
-      therapeuticValue = contextualScore * 0.9
+      contextualScore = Math.max(0.2, Math.min(1, contextualScore)) // 최소값도 0.3에서 0.2로 낮춤
+      therapeuticValue = contextualScore * 0.85 // 0.9에서 0.85로 낮춤
       
       // 개별 점수 저장
-      var individualScores = {
+      individualScores = {
         affinity: Math.round(Math.min(100, affinity * 100)),
         trustworthiness: Math.round(Math.min(100, trustworthiness * 100)),
         easiness: Math.round(Math.min(100, easiness * 100))
       }
       
     } else { // practice (자기계발)
-      // 자신감 지수 계산
-      const confidence = happiness * 0.6 + neutral * 0.2 + (1 - fear) * 0.2 + baseScore
+      // 자신감 지수 계산 (더 엄격한 기준)
+      const confidence = happiness * 0.5 + neutral * 0.15 + (1 - fear) * 0.15 + naturalness * 0.2 + baseScore * 0.5
+      
+      // 진정성 지수 추가 (자기계발에는 진정성이 중요)
+      const authenticity = naturalness * 0.4 + comfort * 0.3 + (1 - neutral) * 0.3
       
       // 3가지 지표의 평균으로 전체 점수 계산
-      contextualScore = (confidence + comfort + naturalness) / 3
-      contextualScore = Math.max(0.3, Math.min(1, contextualScore))
-      therapeuticValue = contextualScore * 0.85
+      contextualScore = (confidence + comfort * 0.8 + authenticity) / 3
+      contextualScore = Math.max(0.2, Math.min(1, contextualScore)) // 최소값 0.2로 낮춤
+      therapeuticValue = contextualScore * 0.8 // 0.85에서 0.8로 낮춤
       
       // 개별 점수 저장
-      var individualScores = {
+      individualScores = {
         confidence: Math.round(Math.min(100, confidence * 100))
       }
     }
@@ -746,6 +754,11 @@ function SmileDetector({ user }) {
           // 코칭 메시지 업데이트
           const coaching = getContextualCoaching(smileQuality, expressions, smileContext)
           setCurrentCoachingMessages(coaching)
+          
+          // Announce first coaching message if changed
+          if (coaching.length > 0 && coaching[0] !== currentCoachingMessages[0]) {
+            announceCoaching(coaching[0])
+          }
           setCurrentSmileType(smileQuality.type)
           
           // 메트릭 업데이트 - 상황별로 올바른 값 매핑
@@ -856,33 +869,34 @@ function SmileDetector({ user }) {
           const screenCenterX = displayWidth / 2
           const screenCenterY = displayHeight / 2
           
-          // 얼굴 위치 확인 (화면의 중앙 30% 영역 내에 있는지)
-          const centerThreshold = 0.15 // 화면 크기의 15%
+          // 얼굴 위치 확인 (화면의 중앙 60% 영역 내에 있는지)
+          const centerThreshold = 0.30 // 화면 크기의 30%
           const xOffset = Math.abs(centerX - screenCenterX) / displayWidth
           const yOffset = Math.abs(centerY - screenCenterY) / displayHeight
           
-          // 위치 안내 메시지 설정
-          if (xOffset > centerThreshold || yOffset > centerThreshold) {
-            let guide = t('moveFace') + ' '
-            if (yOffset > centerThreshold) {
-              if (centerY < screenCenterY) guide += t('down') + ' '
-              else guide += t('up') + ' '
-            }
-            if (xOffset > centerThreshold) {
-              // 거울 모드일 때는 좌우 방향을 반대로 안내
-              if (isMirrored) {
-                if (centerX < screenCenterX) guide += t('left') + ' '
-                else guide += t('right') + ' '
-              } else {
-                if (centerX < screenCenterX) guide += t('right') + ' '
-                else guide += t('left') + ' '
-              }
-            }
-            guide = guide.trim()
-            setFacePositionGuide(guide)
-          } else {
-            setFacePositionGuide('')
-          }
+          // 위치 안내 메시지 비활성화 - 미소 지을 때 위치가 변하므로
+          // if (xOffset > centerThreshold || yOffset > centerThreshold) {
+          //   let guide = t('moveFace') + ' '
+          //   if (yOffset > centerThreshold) {
+          //     if (centerY < screenCenterY) guide += t('down') + ' '
+          //     else guide += t('up') + ' '
+          //   }
+          //   if (xOffset > centerThreshold) {
+          //     // 거울 모드일 때는 좌우 방향을 반대로 안내
+          //     if (isMirrored) {
+          //       if (centerX < screenCenterX) guide += t('left') + ' '
+          //       else guide += t('right') + ' '
+          //     } else {
+          //       if (centerX < screenCenterX) guide += t('right') + ' '
+          //       else guide += t('left') + ' '
+          //     }
+          //   }
+          //   guide = guide.trim()
+          //   setFacePositionGuide(guide)
+          // } else {
+          //   setFacePositionGuide('')
+          // }
+          setFacePositionGuide('') // 항상 빈 문자열로 설정
 
           // 근육 가이드가 비활성화되어 있을 때만 원형 트래킹 표시
           if (!showMuscleGuide) {
@@ -942,74 +956,82 @@ function SmileDetector({ user }) {
               ctx.strokeStyle = '#10b981'
               ctx.lineWidth = 2
               
-              // 왼쪽 광대근 점 (얼굴 크기에 비례)
+              // 왼쪽 광대근 점
               ctx.beginPath()
-              ctx.arc(leftCheek.x, leftCheek.y, 8 * faceScale, 0, 2 * Math.PI)
+              ctx.arc(leftCheek.x, leftCheek.y, 8, 0, 2 * Math.PI)
               ctx.fill()
+              ctx.strokeStyle = '#ffffff'
+              ctx.lineWidth = 2
+              ctx.stroke()
               
-              // 오른쪽 광대근 점 (얼굴 크기에 비례)
+              // 오른쪽 광대근 점
               ctx.beginPath()
-              ctx.arc(rightCheek.x, rightCheek.y, 8 * faceScale, 0, 2 * Math.PI)
+              ctx.arc(rightCheek.x, rightCheek.y, 8, 0, 2 * Math.PI)
               ctx.fill()
+              ctx.stroke()
               
-              // 광대근 영역 표시 (반투명, 얼굴 크기에 비례)
+              // 광대근 영역 표시 (반투명)
               ctx.fillStyle = '#10b98130'
               ctx.beginPath()
-              ctx.ellipse(leftCheek.x, leftCheek.y, 25 * faceScale, 20 * faceScale, -15 * Math.PI / 180, 0, 2 * Math.PI)
+              ctx.ellipse(leftCheek.x, leftCheek.y, 25, 20, -15 * Math.PI / 180, 0, 2 * Math.PI)
               ctx.fill()
               ctx.beginPath()
-              ctx.ellipse(rightCheek.x, rightCheek.y, 25 * faceScale, 20 * faceScale, 15 * Math.PI / 180, 0, 2 * Math.PI)
+              ctx.ellipse(rightCheek.x, rightCheek.y, 25, 20, 15 * Math.PI / 180, 0, 2 * Math.PI)
               ctx.fill()
               
               // 근육명 표시
               ctx.save() // 현재 상태 저장
-              const fontSize = Math.max(11, Math.min(16, 11 * faceScale))
-              ctx.font = `${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
+              const fontSize = 14 // 고정 크기로 가독성 향상
+              ctx.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
+              ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+              ctx.shadowBlur = 2
+              ctx.shadowOffsetX = 1
+              ctx.shadowOffsetY = 1
               
               // 텍스트 크기 측정
               const text = t('zygomaticMuscle')
               const textMetrics = ctx.measureText(text)
               const textWidth = textMetrics.width
               const textHeight = fontSize * 1.3
-              const padding = 4 * faceScale
+              const padding = 6 // 고정 패딩
               
               // 미러 모드일 때 텍스트도 반전되므로 다시 반전시켜 정상적으로 보이게 함
               if (isMirrored) {
                 ctx.translate(leftCheek.x, leftCheek.y - 25)
                 ctx.scale(-1, 1)
                 
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
                 ctx.fillRect(-textWidth/2 - padding, -textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#10b981'
+                ctx.fillStyle = '#ffffff'
                 ctx.fillText(text, 0, 0)
                 ctx.setTransform(1, 0, 0, 1, 0, 0)
                 
                 ctx.translate(rightCheek.x, rightCheek.y - 25)
                 ctx.scale(-1, 1)
                 
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
                 ctx.fillRect(-textWidth/2 - padding, -textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#10b981'
+                ctx.fillStyle = '#ffffff'
                 ctx.fillText(text, 0, 0)
               } else {
                 // 왼쪽 대관골근
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(leftCheek.x - textWidth/2 - padding, leftCheek.y - 25 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
-                ctx.fillStyle = '#10b981'
-                ctx.fillText(text, leftCheek.x, leftCheek.y - 25)
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+                ctx.fillRect(leftCheek.x - textWidth/2 - padding, leftCheek.y - 30 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                ctx.fillStyle = '#ffffff'
+                ctx.fillText(text, leftCheek.x, leftCheek.y - 30)
                 
                 // 오른쪽 대관골근
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(rightCheek.x - textWidth/2 - padding, rightCheek.y - 25 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
-                ctx.fillStyle = '#10b981'
-                ctx.fillText(text, rightCheek.x, rightCheek.y - 25)
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+                ctx.fillRect(rightCheek.x - textWidth/2 - padding, rightCheek.y - 30 - textHeight/2 - padding, textWidth + padding*2, textHeight + padding*2)
+                ctx.fillStyle = '#ffffff'
+                ctx.fillText(text, rightCheek.x, rightCheek.y - 30)
               }
               ctx.restore() // 상태 복원
               
@@ -1072,8 +1094,8 @@ function SmileDetector({ user }) {
               ctx.ellipse(
                 (rightEyeOuter.x + rightEyeInner.x) / 2,
                 (rightEyeOuter.y + rightEyeBottom.y) / 2,
-                Math.abs(rightEyeOuter.x - rightEyeInner.x) / 2 + 10 * faceScale,
-                15 * faceScale,
+                Math.abs(rightEyeOuter.x - rightEyeInner.x) / 2 + 10,
+                15,
                 0, 0, 2 * Math.PI
               )
               ctx.stroke()
@@ -1081,9 +1103,13 @@ function SmileDetector({ user }) {
               
               // 근육명 표시
               ctx.save()
-              const eyeFontSize = Math.max(11, Math.min(16, 11 * faceScale))
-              ctx.font = `${eyeFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
+              const eyeFontSize = 14 // 고정 크기
+              ctx.font = `bold ${eyeFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
+              ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+              ctx.shadowBlur = 2
+              ctx.shadowOffsetX = 1
+              ctx.shadowOffsetY = 1
               const eyeCenterX = (leftEyeInner.x + rightEyeInner.x) / 2
               
               // 텍스트 크기 측정
@@ -1091,27 +1117,27 @@ function SmileDetector({ user }) {
               const eyeTextMetrics = ctx.measureText(eyeText)
               const eyeTextWidth = eyeTextMetrics.width
               const eyeTextHeight = eyeFontSize * 1.3
-              const eyePadding = 4 * faceScale
+              const eyePadding = 6 // 고정 패딩
               
               if (isMirrored) {
                 ctx.translate(eyeCenterX, leftEyeOuter.y - 20)
                 ctx.scale(-1, 1)
                 
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
                 ctx.fillRect(-eyeTextWidth/2 - eyePadding, -eyeTextHeight/2 - eyePadding, eyeTextWidth + eyePadding*2, eyeTextHeight + eyePadding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#3B82F6'
+                ctx.fillStyle = '#ffffff'
                 ctx.fillText(eyeText, 0, 0)
               } else {
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(eyeCenterX - eyeTextWidth/2 - eyePadding, leftEyeOuter.y - 20 - eyeTextHeight/2 - eyePadding, eyeTextWidth + eyePadding*2, eyeTextHeight + eyePadding*2)
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+                ctx.fillRect(eyeCenterX - eyeTextWidth/2 - eyePadding, leftEyeOuter.y - 25 - eyeTextHeight/2 - eyePadding, eyeTextWidth + eyePadding*2, eyeTextHeight + eyePadding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#3B82F6'
-                ctx.fillText(eyeText, eyeCenterX, leftEyeOuter.y - 20)
+                ctx.fillStyle = '#ffffff'
+                ctx.fillText(eyeText, eyeCenterX, leftEyeOuter.y - 25)
               }
               ctx.restore()
             }
@@ -1136,21 +1162,24 @@ function SmileDetector({ user }) {
               
               mouthPoints.forEach(point => {
                 ctx.beginPath()
-                ctx.arc(point.x, point.y, 6 * faceScale, 0, 2 * Math.PI)
+                ctx.arc(point.x, point.y, 6, 0, 2 * Math.PI)
                 ctx.fill()
+                ctx.strokeStyle = '#ffffff'
+                ctx.lineWidth = 1.5
+                ctx.stroke()
               })
               
-              // 구륜근 영역 표시 (반투명, 얼굴 크기에 비례)
+              // 구륜근 영역 표시 (반투명)
               ctx.strokeStyle = '#8B5CF660'
-              ctx.lineWidth = 3 * faceScale
-              ctx.setLineDash([5 * faceScale, 3 * faceScale])
+              ctx.lineWidth = 2.5
+              ctx.setLineDash([5, 3])
               
               ctx.beginPath()
               ctx.ellipse(
                 (mouthLeft.x + mouthRight.x) / 2,
                 (mouthTop.y + mouthBottom.y) / 2,
-                Math.abs(mouthRight.x - mouthLeft.x) / 2 + 15 * faceScale,
-                Math.abs(mouthBottom.y - mouthTop.y) / 2 + 10 * faceScale,
+                Math.abs(mouthRight.x - mouthLeft.x) / 2 + 15,
+                Math.abs(mouthBottom.y - mouthTop.y) / 2 + 10,
                 0, 0, 2 * Math.PI
               )
               ctx.stroke()
@@ -1158,9 +1187,13 @@ function SmileDetector({ user }) {
               
               // 근육명 표시
               ctx.save()
-              const mouthFontSize = Math.max(11, Math.min(16, 11 * faceScale))
-              ctx.font = `${mouthFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
+              const mouthFontSize = 14 // 고정 크기
+              ctx.font = `bold ${mouthFontSize}px -apple-system, BlinkMacSystemFont, sans-serif`
               ctx.textAlign = 'center'
+              ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+              ctx.shadowBlur = 2
+              ctx.shadowOffsetX = 1
+              ctx.shadowOffsetY = 1
               const mouthCenterX = (mouthLeft.x + mouthRight.x) / 2
               
               // 텍스트 크기 측정
@@ -1168,45 +1201,45 @@ function SmileDetector({ user }) {
               const mouthTextMetrics = ctx.measureText(mouthText)
               const mouthTextWidth = mouthTextMetrics.width
               const mouthTextHeight = mouthFontSize * 1.3
-              const mouthPadding = 4 * faceScale
+              const mouthPadding = 6 // 고정 패딩
               
               if (isMirrored) {
                 ctx.translate(mouthCenterX, mouthBottom.y + 25)
                 ctx.scale(-1, 1)
                 
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
                 ctx.fillRect(-mouthTextWidth/2 - mouthPadding, -mouthTextHeight/2 - mouthPadding, mouthTextWidth + mouthPadding*2, mouthTextHeight + mouthPadding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#8B5CF6'
+                ctx.fillStyle = '#ffffff'
                 ctx.fillText(mouthText, 0, 0)
               } else {
-                // 흰색 배경 그리기
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-                ctx.fillRect(mouthCenterX - mouthTextWidth/2 - mouthPadding, mouthBottom.y + 25 - mouthTextHeight/2 - mouthPadding, mouthTextWidth + mouthPadding*2, mouthTextHeight + mouthPadding*2)
+                // 검은색 배경 그리기
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+                ctx.fillRect(mouthCenterX - mouthTextWidth/2 - mouthPadding, mouthBottom.y + 30 - mouthTextHeight/2 - mouthPadding, mouthTextWidth + mouthPadding*2, mouthTextHeight + mouthPadding*2)
                 
                 // 텍스트 그리기
-                ctx.fillStyle = '#8B5CF6'
-                ctx.fillText(mouthText, mouthCenterX, mouthBottom.y + 25)
+                ctx.fillStyle = '#ffffff'
+                ctx.fillText(mouthText, mouthCenterX, mouthBottom.y + 30)
               }
               ctx.restore()
               
-              // 움직임 가이드 화살표 (얼굴 크기에 비례)
+              // 움직임 가이드 화살표
               ctx.strokeStyle = '#8B5CF6'
-              ctx.lineWidth = 2 * faceScale
-              ctx.setLineDash([3 * faceScale, 3 * faceScale])
+              ctx.lineWidth = 2
+              ctx.setLineDash([3, 3])
               
               // 왼쪽 입꼬리
               ctx.beginPath()
               ctx.moveTo(mouthLeft.x, mouthLeft.y)
-              ctx.lineTo(mouthLeft.x - 15 * faceScale, mouthLeft.y - 10 * faceScale)
+              ctx.lineTo(mouthLeft.x - 15, mouthLeft.y - 10)
               ctx.stroke()
               
               // 오른쪽 입꼬리
               ctx.beginPath()
               ctx.moveTo(mouthRight.x, mouthRight.y)
-              ctx.lineTo(mouthRight.x + 15 * faceScale, mouthRight.y - 10 * faceScale)
+              ctx.lineTo(mouthRight.x + 15, mouthRight.y - 10)
               ctx.stroke()
               
               ctx.setLineDash([])
@@ -1218,7 +1251,10 @@ function SmileDetector({ user }) {
         } else {
           // 얼굴을 찾지 못했을 때도 DOM으로 표시
           setCurrentCoachingMessages([t('getComfortable')])
-          setFacePositionGuide(t('adjustCameraToShowFace'))
+          // 얼굴이 감지되지 않을 때만 가이드 설정
+          if (facePositionGuide === '') {
+            setFacePositionGuide(t('adjustCameraToShowFace'))
+          }
         }
 
       } catch (error) {
@@ -1681,7 +1717,7 @@ function SmileDetector({ user }) {
                 <span className="summary-value score">{maxScore || 0}%</span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">{t('practiceSmileType')}</span>
+                <span className="summary-label">{t('practiceType')}</span>
                 <span className="summary-value smile-type">{smileTypes[smileContext]?.title}</span>
               </div>
               <div className="summary-item">

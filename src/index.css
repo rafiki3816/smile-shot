@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-normal);
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,12 +14,12 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  font-weight: var(--font-medium);
+  color: var(--link-color);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--link-hover);
 }
 
 body {
@@ -27,42 +27,36 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f5f5f5;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border-radius: var(--radius-lg);
+  border: var(--border-1) solid transparent;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--primary-500);
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--duration-200) var(--ease-in-out);
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--primary-600);
+  box-shadow: var(--shadow-md);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* Light mode styles are handled by the design system */

@@ -1,15 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { getTranslation } from '../translations';
-
-const LanguageContext = createContext();
-
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
-};
+import { LanguageContext } from './languageContextDefinition';
 
 export const LanguageProvider = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState('ko');

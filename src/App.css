@@ -1,6 +1,6 @@
 /* 상단 헤더 */
 .app-header {
-  padding: 20px;
+  padding: var(--space-5);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,34 +15,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999997;
+  z-index: var(--z-tooltip);
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .back-button {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #333;
-  padding: 10px 20px;
-  border-radius: 10px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 500;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .back-button:hover {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.2);
-  color: #000;
+  background: var(--gray-100);
+  border-color: var(--gray-300);
+  color: var(--gray-900);
   transform: translateX(-5px);
 }
 
@@ -53,22 +53,22 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #666;
+  transition: all var(--duration-300) var(--ease-in-out);
+  color: var(--text-secondary);
   padding: 0;
 }
 
 .back-button-circle:hover {
   background: rgba(255, 255, 255, 1);
   transform: translateX(-3px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  color: #333;
+  box-shadow: var(--shadow-md);
+  color: var(--gray-700);
 }
 
 .back-button-circle:active {
@@ -88,14 +88,14 @@
 }
 
 .user-name {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  color: #1a1a1a;
-  padding: 10px 20px;
+  color: var(--gray-900);
+  padding: var(--space-2) var(--space-5);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
   letter-spacing: -0.01em;
   height: 42px;
   display: flex;
@@ -105,7 +105,7 @@
 /* 모바일 반응형 - 헤더 */
 @media (max-width: 768px) {
   .app-header {
-    padding: 15px;
+    padding: var(--space-4);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -114,11 +114,11 @@
   
   .back-button {
     padding: 8px 16px;
-    font-size: 13px;
+    font-size: var(--text-xs);
   }
   
   .user-name {
-    font-size: 14px;
+    font-size: var(--text-sm);
     padding: 8px 16px;
     height: 37px;
   }
@@ -129,11 +129,11 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: clamp(24px, 4vw, 32px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 0 auto;
   text-align: center;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
   width: 100%;
   max-width: 1200px;
   position: relative;
@@ -171,32 +171,20 @@
 .purpose-btn {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 20px 32px;
-  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  padding: var(--space-5) var(--space-8);
+  border-radius: var(--radius-3xl);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   text-align: left;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   min-height: 100px;
   width: 100%;
   max-width: 400px;
 }
 
-.purpose-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--emerald-green);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
 
 .purpose-btn::before {
   content: '';
@@ -206,7 +194,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.08), transparent);
-  transition: left 0.6s ease;
+  transition: left var(--duration-500) var(--ease-out);
 }
 
 .purpose-btn:hover::before {
@@ -220,9 +208,6 @@
   background: rgba(255, 255, 255, 0.95);
 }
 
-.purpose-btn:hover::after {
-  transform: scaleX(1);
-}
 
 .purpose-btn:hover .purpose-title {
   color: var(--emerald-green);
@@ -237,14 +222,14 @@
   font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 8px;
-  transition: color 0.3s ease;
+  transition: color var(--duration-300) var(--ease-out);
 }
 
 .purpose-desc {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.4;
-  transition: color 0.3s ease;
+  transition: color var(--duration-300) var(--ease-out);
 }
 
 /* 미소 정보 카드 */
@@ -310,7 +295,7 @@
 .situations {
   background: rgba(16, 185, 129, 0.1);
   padding: 16px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   margin-bottom: 24px;
 }
 
@@ -326,11 +311,11 @@
 .muscle-guide-section {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 16px;
-  padding: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5);
   margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .muscle-guide-section h5 {
@@ -352,9 +337,9 @@
 
 .muscle-primary,
 .muscle-secondary {
-  padding: 12px 16px;
+  padding: var(--space-3) var(--space-4);
   background: rgba(16, 185, 129, 0.05);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   font-size: 0.9rem;
   line-height: 1.5;
   color: #111827 !important;
@@ -392,7 +377,7 @@
 }
 
 .muscle-tips li {
-  color: #4b5563 !important;
+  color: var(--text-secondary) !important;
   font-size: 0.85rem;
   padding: 6px 0;
   padding-left: 20px;
@@ -410,15 +395,15 @@
 }
 
 .confirm-btn {
-  background: #10b981;
+  background: var(--primary-500);
   color: #fff;
   border: none;
-  padding: 18px 36px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   width: 100%;
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
   letter-spacing: -0.01em;
@@ -436,10 +421,10 @@
   backdrop-filter: blur(20px);
   color: var(--text-primary);
   padding: clamp(20px, 4vw, 28px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 0;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
   width: 100%;
   position: relative;
 }
@@ -468,15 +453,15 @@
   gap: 16px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  padding: 16px 20px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-200);
+  transition: all var(--duration-300) var(--ease-out);
 }
 
 .contextual-metrics .metric-item:hover {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
 .contextual-metrics .metric-label {
@@ -548,18 +533,18 @@
 }
 
 .summary-item {
-  background: rgba(0, 0, 0, 0.04);
-  padding: 16px 20px;
-  border-radius: 12px;
+  background: var(--gray-50);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-xl);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.2s;
+  transition: all var(--duration-200);
   width: 100%;
 }
 
 .summary-item:hover {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--gray-100);
   transform: translateX(4px);
 }
 
@@ -604,14 +589,14 @@
 .restart-btn {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: #10b981;
+  color: var(--primary-500);
   border: 1px solid rgba(16, 185, 129, 0.2);
-  padding: 18px 36px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   width: 100%;
   letter-spacing: -0.01em;
   position: relative;
@@ -744,7 +729,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: var(--space-5);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   background: #f5f5f5;
   position: relative;
@@ -756,12 +741,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   width: 100%;
   max-width: 1200px;
   position: relative;
-  z-index: 1;
+  z-index: var(--z-10);
   min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .practice-section {
@@ -816,27 +802,18 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   position: relative;
 }
 
-.tab-menu::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.06);
-}
 
 .tab-button {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   color: var(--text-primary);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 16px 32px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
   font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   position: relative;
   overflow: hidden;
   min-width: 140px;
@@ -866,7 +843,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
-  transition: left 0.6s ease;
+  transition: left var(--duration-500) var(--ease-out);
 }
 
 .tab-button:hover::before {
@@ -889,16 +866,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   position: relative;
 }
 
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--emerald-green);
-  border-radius: 3px 3px 0 0;
-}
 
 /* 로그아웃 버튼 스타일 - 탭 메뉴에서 제거 */
 
@@ -917,12 +884,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .logout-btn {
   width: 100%;
   max-width: 400px;
-  padding: 18px 36px;
-  border-radius: 16px;
-  font-size: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
+  font-size: var(--text-base);
   font-weight: 600;
   text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   cursor: pointer;
   letter-spacing: -0.01em;
   position: relative;
@@ -930,7 +897,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   /* 에메랄드 그린 톤다운 스타일 */
   background: rgba(16, 185, 129, 0.08);
-  color: #10b981;
+  color: var(--primary-500);
   border: 1px solid rgba(16, 185, 129, 0.2);
   box-shadow: 0 2px 12px rgba(16, 185, 129, 0.1);
 }
@@ -951,13 +918,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .main-content {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px 32px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-3xl);
+  padding: var(--space-5) var(--space-8);
+  box-shadow: var(--shadow-md);
   margin: 0 auto;
   max-width: 400px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1019,12 +986,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .emotion-check-panel {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  padding: 20px 32px;
-  border-radius: 20px;
+  padding: var(--space-5) var(--space-8);
+  border-radius: var(--radius-3xl);
   margin: 0 0 24px 0;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
   width: 100%;
   position: relative;
 }
@@ -1060,13 +1027,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .emotion-btn {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 18px 36px;
-  border-radius: 16px;
-  font-size: 16px;
-  color: #1a1a1a;
+  border: 1px solid var(--gray-200);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
+  font-size: var(--text-base);
+  color: var(--gray-900);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   position: relative;
   overflow: hidden;
   font-weight: 600;
@@ -1075,7 +1042,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   justify-content: center;
   gap: 8px;
   letter-spacing: -0.01em;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .emotion-btn::before {
@@ -1110,12 +1077,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   backdrop-filter: blur(20px);
   color: var(--text-primary);
   padding: clamp(24px, 4vw, 32px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 0;
   text-align: center;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-lg);
 }
 
 .smile-context-panel h4 {
@@ -1149,13 +1116,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .context-btn {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: #1a1a1a;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 18px 36px;
-  border-radius: 16px;
+  color: var(--gray-900);
+  border: 1px solid var(--gray-200);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 16px;
+  transition: all var(--duration-300) var(--ease-in-out);
+  font-size: var(--text-base);
   position: relative;
   overflow: hidden;
   font-weight: 600;
@@ -1164,7 +1131,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   justify-content: center;
   gap: 8px;
   letter-spacing: -0.01em;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .context-btn::before {
@@ -1200,7 +1167,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   max-width: 480px;
   aspect-ratio: 2/3;
   margin: 0 auto;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -1236,7 +1203,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   right: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--emerald-green), transparent);
-  z-index: 1;
+  z-index: var(--z-10);
 }
 
 .video-container video {
@@ -1270,14 +1237,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: 6px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-sm);
   z-index: 10;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
 }
 
 .score-display-overlay:hover {
@@ -1287,9 +1254,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .score-value {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  color: #10b981;
+  color: var(--primary-500);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -1318,10 +1285,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   backdrop-filter: blur(20px);
   color: var(--text-primary);
   padding: clamp(24px, 4vw, 32px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 0;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
   width: 100%;
   position: relative;
 }
@@ -1360,15 +1327,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   gap: 16px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  padding: 16px 20px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-200);
+  transition: all var(--duration-300) var(--ease-out);
 }
 
 .wellness-metrics .metric-item:hover {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
 .wellness-metrics .metric-label {
@@ -1438,10 +1405,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: clamp(24px, 4vw, 32px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 0;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
   width: 100%;
   position: relative;
 }
@@ -1521,14 +1488,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .controls button {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: #1a1a1a;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 18px 36px;
-  border-radius: 16px;
+  color: var(--gray-900);
+  border: 1px solid var(--gray-200);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1536,7 +1503,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   justify-content: center;
   gap: 8px;
   letter-spacing: -0.01em;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .controls button::before {
@@ -1574,11 +1541,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(15px);
   padding: 20px 24px;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   text-align: center;
   width: 100%;
   margin: 0;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -1607,7 +1574,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .practice-history {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1616,12 +1583,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .today-stats {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: #1a1a1a;
+  color: var(--gray-900);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin-bottom: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 400px;
 }
@@ -1648,11 +1615,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  padding: 20px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: var(--space-5);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--gray-200);
+  transition: all var(--duration-300) var(--ease-in-out);
+  box-shadow: var(--shadow-md);
 }
 
 .stat-item:hover {
@@ -1680,10 +1647,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin-bottom: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 400px;
 }
@@ -1726,7 +1693,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-weight: 500;
 }
 
@@ -1749,10 +1716,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin-bottom: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 400px;
 }
@@ -1774,8 +1741,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .badge {
   text-align: center;
   padding: 24px 16px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-2xl);
+  transition: all var(--duration-300) var(--ease-out);
   position: relative;
 }
 
@@ -1816,7 +1783,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .premium-banner {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(14, 165, 233, 0.05));
   border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   padding: 40px;
   margin: 24px 0;
   text-align: center;
@@ -1853,12 +1820,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: var(--emerald-green);
   color: white;
   border: none;
-  padding: 18px 36px;
-  border-radius: 16px;
-  font-size: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
+  font-size: var(--text-base);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
 }
 
@@ -1873,10 +1840,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin: 24px 0;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 400px;
 }
@@ -1896,7 +1863,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coach-message {
   background: rgba(16, 185, 129, 0.05);
   padding: 24px;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   margin-bottom: 24px;
 }
 
@@ -1914,13 +1881,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .action-btn {
-  padding: 18px 36px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 16px;
+  transition: all var(--duration-300) var(--ease-in-out);
+  font-size: var(--text-base);
 }
 
 .action-btn.primary {
@@ -1962,8 +1929,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-radius: 6px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
-  color: #666;
+  transition: all var(--duration-200);
+  color: var(--text-secondary);
 }
 
 .view-btn:hover {
@@ -1972,7 +1939,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .view-btn.active {
   background: white;
-  color: #333;
+  color: var(--gray-700);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -1980,10 +1947,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin-top: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
   width: 100%;
   max-width: 900px;
   margin-left: auto;
@@ -2027,19 +1994,19 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .session-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 16px;
+  padding: var(--space-5);
+  border-radius: var(--radius-2xl);
   border: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
 }
 
 .session-card:hover {
   background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
 /* 캡처된 순간 썸네일 */
@@ -2050,13 +2017,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   gap: 12px;
   padding: 12px;
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--duration-200);
 }
 
 .session-capture:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--gray-50);
   transform: scale(1.02);
 }
 
@@ -2162,7 +2129,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.85rem;
-  transition: all 0.3s ease;
+  transition: all var(--duration-300) var(--ease-out);
 }
 
 .delete-button:hover {
@@ -2180,10 +2147,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .test-button, .clear-button {
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--duration-300) var(--ease-out);
   border: none;
 }
 
@@ -2355,19 +2322,19 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-3xl);
   padding: 48px 40px;
   max-width: 480px;
   width: 90%;
   text-align: center;
   position: relative;
   animation: slideUp 0.3s ease;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .login-prompt-modal h3 {
-  color: #1a1a1a;
+  color: var(--gray-900);
   font-size: 24px;
   margin-bottom: 16px;
   font-weight: 700;
@@ -2376,10 +2343,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .login-prompt-modal p {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 12px;
   line-height: 1.6;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 400;
 }
 
@@ -2391,20 +2358,20 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .login-prompt-btn, .signup-prompt-btn {
-  padding: 18px 36px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   border: none;
-  font-size: 16px;
+  font-size: var(--text-base);
   letter-spacing: -0.01em;
   position: relative;
   overflow: hidden;
 }
 
 .login-prompt-btn {
-  background: #10b981;
+  background: var(--primary-500);
   color: #fff;
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
 }
@@ -2419,7 +2386,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1a1a1a;
+  color: var(--gray-900);
 }
 
 .signup-prompt-btn:hover {
@@ -2433,10 +2400,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   margin-top: 24px;
   background: none;
   border: none;
-  color: #666;
-  font-size: 14px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
   padding: 8px 16px;
   border-radius: 8px;
   text-decoration: none;
@@ -2447,7 +2414,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .close-prompt:hover {
-  color: #1a1a1a;
+  color: var(--gray-900);
   background: rgba(0, 0, 0, 0.05);
   transform: translateX(-5px);
 }
@@ -2484,32 +2451,32 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-3xl);
   padding: 32px;
   margin: 32px 0;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   text-align: center;
 }
 
 .signup-prompt-box p {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 24px;
   line-height: 1.6;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 400;
 }
 
 .signup-cta-btn {
-  background: #10b981;
+  background: var(--primary-500);
   color: #fff;
   border: none;
-  padding: 18px 36px;
-  border-radius: 16px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   letter-spacing: -0.01em;
   position: relative;
   overflow: hidden;
@@ -2561,7 +2528,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .skeleton-card {
   padding: 32px;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   margin-bottom: 24px;
 }
 
@@ -2584,14 +2551,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .skeleton-button {
   height: 48px;
   width: 100%;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
 }
 
 .loading-text {
   text-align: center;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 24px;
-  font-size: 14px;
+  font-size: var(--text-sm);
 }
 
 /* 토스트 메시지 */
@@ -2610,8 +2577,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
   padding: 16px 24px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -2620,7 +2587,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   min-width: 300px;
   max-width: 500px;
   pointer-events: auto;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
 }
 
 .toast-enter {
@@ -2667,7 +2634,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .toast-message {
   flex: 1;
   font-size: 15px;
-  color: #1a1a1a;
+  color: var(--gray-900);
   line-height: 1.5;
 }
 
@@ -2676,7 +2643,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .toast-success .toast-icon {
-  color: #10b981;
+  color: var(--primary-500);
 }
 
 .toast-error {
@@ -2728,7 +2695,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding: 6px 12px;
   display: inline-flex;
   align-items: center;
-  font-size: 13px;
+  font-size: var(--text-xs);
   margin-bottom: 16px;
 }
 
@@ -2766,17 +2733,17 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   height: 8px;
   border-radius: 50%;
   background: #e0e0e0;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
 }
 
 .step-dot.active {
-  background: #10b981;
+  background: var(--primary-500);
   width: 24px;
   border-radius: 4px;
 }
 
 .step-dot.completed {
-  background: #10b981;
+  background: var(--primary-500);
 }
 
 /* 비디오와 코칭 메시지 래퍼 */
@@ -2785,7 +2752,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   max-width: 480px;
   margin: 0 auto;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.98);
   display: flex;
@@ -2834,10 +2801,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coaching-message {
   text-align: center;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-weight: 600;
   line-height: 1.5;
-  transition: all 0.3s ease;
+  transition: all var(--duration-300) var(--ease-out);
   word-wrap: break-word;
   white-space: normal;
 }
@@ -2860,7 +2827,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 @media (max-width: 600px) {
   .coaching-messages-area {
     margin: 16px auto 0;
-    padding: 20px;
+    padding: var(--space-5);
   }
   
   .coaching-message {
@@ -2868,11 +2835,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coaching-message.primary {
-    font-size: 16px;
+    font-size: var(--text-base);
   }
   
   .coaching-message.secondary {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 }
 
@@ -2890,7 +2857,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coaching-message.secondary {
-    font-size: 13px;
+    font-size: var(--text-xs);
   }
 }
 
@@ -2899,13 +2866,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   padding: clamp(24px, 4vw, 32px);
   margin: 16px auto;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
   position: relative;
 }
 
@@ -2959,10 +2926,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
-  padding: 16px 20px;
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
   margin-bottom: 12px;
-  transition: all 0.3s ease;
+  transition: all var(--duration-300) var(--ease-out);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -3045,7 +3012,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .ios-footer-message {
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: #8E8E93;
   text-align: center;
   line-height: 18px;
@@ -3058,10 +3025,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   position: absolute;
   top: -8px;
   right: 20px;
-  background: #10b981;
+  background: var(--primary-500);
   color: white;
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 12px;
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
@@ -3074,7 +3041,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   gap: 24px;
   padding: 24px;
   background: rgba(16, 185, 129, 0.05);
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   border: 1px solid rgba(16, 185, 129, 0.1);
 }
 
@@ -3102,14 +3069,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: block;
   font-size: 32px;
   font-weight: 700;
-  color: #10b981;
+  color: var(--primary-500);
   line-height: 1;
 }
 
 .score-label {
   display: block;
   font-size: 12px;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
@@ -3120,13 +3087,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .current-type {
   font-size: 18px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--gray-900);
   margin: 0 0 8px 0;
 }
 
 .score-feedback {
-  font-size: 16px;
-  color: #666;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -3169,7 +3136,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 @media (max-width: 360px) {
   .analysis-panel-new {
-    padding: 20px;
+    padding: var(--space-5);
   }
   
   .analysis-title {
@@ -3177,7 +3144,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .metric-label {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
   
   .metric-percentage {
@@ -3236,7 +3203,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .camera-permission-modal p {
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: #8E8E93;
   line-height: 18px;
   margin: 0 0 24px 0;
@@ -3253,7 +3220,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: #000;
   letter-spacing: -0.08px;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
@@ -3322,7 +3289,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .permission-guide h4 {
-  font-size: 13px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: #000;
   margin: 0 0 8px 0;
@@ -3333,7 +3300,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .permission-guide ol {
   margin: 0;
   padding-left: 20px;
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: #3C3C43;
   letter-spacing: -0.08px;
   line-height: 18px;
@@ -3433,15 +3400,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   width: 100%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  color: #1a1a1a;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 18px 36px;
-  border-radius: 16px;
+  color: var(--gray-900);
+  border: 1px solid var(--gray-200);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition: all var(--duration-300) var(--ease-in-out);
+  box-shadow: var(--shadow-md);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
 }
 
@@ -3490,7 +3457,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .ios-analysis-panel.mobile-compact .ios-analysis-title {
-  font-size: 16px;
+  font-size: var(--text-base);
   margin: 0;
 }
 
@@ -3512,7 +3479,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .ios-metric-item.compact .ios-metric-label {
-  font-size: 13px;
+  font-size: var(--text-xs);
 }
 
 .ios-metric-item.compact .ios-metric-value {
@@ -3551,7 +3518,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   .video-coaching-wrapper {
     max-width: 100%;
     margin: 0 auto;
-    border-radius: 16px;
+    border-radius: var(--radius-2xl);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -3579,7 +3546,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .coaching-message {
     padding: 10px 12px;
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
   
   .step-panel {
@@ -3627,7 +3594,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .controls button {
-    padding: 12px 16px;
+    padding: var(--space-3) var(--space-4);
     font-size: 15px;
     flex: 1;
   }
@@ -3681,7 +3648,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .ios-metric-item.compact .ios-metric-value {
-    font-size: 16px;
+    font-size: var(--text-base);
   }
   
   .score-display.compact {
@@ -3689,7 +3656,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .score-display.compact h3 {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
   
   .practice-layout {
@@ -3702,7 +3669,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coaching-section.professional {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
   backdrop-filter: blur(30px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
@@ -3730,7 +3697,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coach-main-message {
   background: rgba(16, 185, 129, 0.08);
   padding: 28px;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   margin-bottom: 28px;
   position: relative;
 }
@@ -3771,15 +3738,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .technical-tips li,
 .muscle-exercises li {
-  padding: 12px 16px;
+  padding: var(--space-3) var(--space-4);
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   margin-bottom: 8px;
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
   border-left: 3px solid transparent;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
 }
 
 .technical-tips li:hover {
@@ -3794,8 +3761,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .next-goal {
   background: linear-gradient(135deg, rgba(254, 240, 138, 0.1) 0%, rgba(254, 249, 195, 0.1) 100%);
-  padding: 20px;
-  border-radius: 12px;
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
   border: 1px solid rgba(251, 191, 36, 0.2);
 }
 
@@ -3809,7 +3776,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   text-align: center;
   padding: 16px;
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   margin-bottom: 20px;
 }
 
@@ -3875,8 +3842,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 /* 주간 리포트 스타일 */
 .weekly-report-banner {
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  padding: 20px;
-  border-radius: 16px;
+  padding: var(--space-5);
+  border-radius: var(--radius-2xl);
   margin-bottom: 24px;
   border: 1px solid rgba(59, 130, 246, 0.2);
   width: 100%;
@@ -3887,7 +3854,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
@@ -3896,7 +3863,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
 }
 
 .report-toggle:hover {
@@ -3906,9 +3873,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .weekly-report-content {
   margin-top: 20px;
-  padding: 20px;
+  padding: var(--space-5);
   background: white;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
 }
 
 .weekly-report-content h4 {
@@ -3944,7 +3911,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #10b981;
+  color: var(--primary-500);
   font-weight: bold;
 }
 
@@ -4026,11 +3993,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 /* 캡처된 사진 섹션 */
 .captured-photo-section {
   margin-top: 24px;
-  padding: 20px;
+  padding: var(--space-5);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-200);
 }
 
 .captured-title {
@@ -4050,7 +4017,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .captured-photo {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -4067,9 +4034,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  padding: 12px 16px;
+  padding: var(--space-3) var(--space-4);
   background: rgba(16, 185, 129, 0.08);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   width: 100%;  /* 전체 너비 사용 */
 }
 
@@ -4116,7 +4083,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   margin-top: 16px;
   padding: 16px;
   background: rgba(59, 130, 246, 0.06);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   border-left: 3px solid rgba(59, 130, 246, 0.4);
 }
 
@@ -4171,7 +4138,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   padding: 12px 24px;
   display: flex;
   align-items: center;
@@ -4231,12 +4198,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: var(--space-5);
 }
 
 .capture-modal {
   background: white;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
@@ -4256,17 +4223,17 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-300) var(--ease-in-out);
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  color: var(--text-secondary);
   font-weight: 400;
   padding: 0;
   flex-shrink: 0;
@@ -4275,8 +4242,8 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .modal-close:hover {
   background: rgba(255, 255, 255, 1);
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  color: #333;
+  box-shadow: var(--shadow-md);
+  color: var(--gray-700);
 }
 
 .modal-title {
@@ -4295,15 +4262,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .modal-photo {
   width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-bottom: 24px;
 }
 
 .modal-analysis {
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5);
   margin-bottom: 20px;
 }
 
@@ -4311,9 +4278,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: var(--space-4) var(--space-5);
   background: rgba(16, 185, 129, 0.1);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   margin-bottom: 16px;
 }
 
@@ -4340,9 +4307,9 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: var(--space-3) var(--space-4);
   background: white;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .metric-label {
@@ -4400,7 +4367,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .analysis-score {
-    padding: 12px 16px;
+    padding: var(--space-3) var(--space-4);
   }
   
   .score-value {
@@ -4421,12 +4388,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: var(--space-5);
 }
 
 .date-detail-modal {
   background: white;
-  border-radius: 20px;
+  border-radius: var(--radius-3xl);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   max-width: 600px;
   width: 100%;
@@ -4442,7 +4409,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding: 60px 20px 20px;
   margin: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #333;
+  color: var(--gray-700);
   font-size: 1.1rem;
   white-space: nowrap;
   overflow: hidden;
@@ -4466,7 +4433,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .date-stats .stat-item {
   background: var(--bg-subtle);
   padding: 16px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   text-align: center;
 }
 
@@ -4502,7 +4469,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .capture-item {
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
@@ -4546,7 +4513,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .session-detail {
   background: var(--bg-subtle);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   padding: 16px;
   margin-bottom: 12px;
 }

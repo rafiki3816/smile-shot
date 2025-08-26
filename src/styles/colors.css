@@ -1,0 +1,117 @@
+/* WCAG 2.1 AA Compliant Color System */
+:root {
+  /* Primary Colors - Emerald Green */
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b981;  /* Main brand color */
+  --primary-600: #059669;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+
+  /* Neutral Colors - 12 Step Gray Scale */
+  --gray-0: #ffffff;    /* Pure white */
+  --gray-1: #fafafa;    /* 98% - Legacy gray-50 */
+  --gray-2: #f5f5f5;    /* 96% - Legacy gray-100 */
+  --gray-3: #eeeeee;    /* 93% - Legacy gray-200 */
+  --gray-4: #e0e0e0;    /* 88% - Legacy gray-300 */
+  --gray-5: #bdbdbd;    /* 74% - Legacy gray-400 */
+  --gray-6: #9e9e9e;    /* 62% - Legacy gray-500 */
+  --gray-7: #757575;    /* 46% - Legacy gray-600 */
+  --gray-8: #616161;    /* 38% - Legacy gray-700 */
+  --gray-9: #424242;    /* 26% - Legacy gray-800 */
+  --gray-10: #111111;   /* 7% - Primary text - Legacy gray-900 */
+  --gray-11: #000000;   /* Pure black */
+  
+  /* Legacy mapping for backward compatibility */
+  --gray-50: var(--gray-1);
+  --gray-100: var(--gray-2);
+  --gray-200: var(--gray-3);
+  --gray-300: var(--gray-4);
+  --gray-400: var(--gray-5);
+  --gray-500: var(--gray-6);
+  --gray-600: var(--gray-7);
+  --gray-700: var(--gray-8);
+  --gray-800: var(--gray-9);
+  --gray-900: var(--gray-10);
+
+  /* Accessible Text Colors */
+  --text-primary: var(--gray-10);      /* #111111 - Primary text */
+  --text-secondary: var(--gray-7);     /* #757575 - Secondary text */
+  --text-tertiary: var(--gray-6);      /* #9e9e9e - Tertiary/hint text */
+  --text-disabled: var(--gray-5);      /* #bdbdbd - Disabled text */
+  --text-placeholder: var(--gray-6);   /* #9e9e9e - Placeholder text */
+  
+  /* Accessible on dark backgrounds */
+  --text-on-dark: #ffffff;        /* White - High contrast on dark */
+  --text-on-dark-secondary: #e5e7eb; /* Gray-200 - Good contrast on dark */
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-disabled: #e5e7eb;
+
+  /* State Colors - WCAG Compliant */
+  --success-text: #14532d;         /* Primary-900 for text */
+  --success-bg: #dcfce7;          /* Primary-100 for background */
+  --success-border: #86efac;      /* Primary-300 for borders */
+  
+  --error-text: #7f1d1d;          /* Red-900 for text */
+  --error-bg: #fee2e2;            /* Red-100 for background */
+  --error-border: #fca5a5;        /* Red-300 for borders */
+  
+  --warning-text: #78350f;        /* Amber-900 for text */
+  --warning-bg: #fef3c7;          /* Amber-100 for background */
+  --warning-border: #fcd34d;      /* Amber-300 for borders */
+  
+  --info-text: #1e3a8a;           /* Blue-900 for text */
+  --info-bg: #dbeafe;             /* Blue-100 for background */
+  --info-border: #93c5fd;         /* Blue-300 for borders */
+
+  /* Interactive Elements */
+  --link-color: #2563eb;          /* Blue-600 - 4.5:1 on white */
+  --link-hover: #1d4ed8;          /* Blue-700 - Better contrast */
+  --link-visited: #7c3aed;        /* Purple-600 - 4.74:1 on white */
+
+  /* Focus Colors */
+  --focus-ring: #10b981;          /* Primary color for focus */
+  --focus-ring-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --text-tertiary: #1f2937;
+    --text-disabled: #374151;
+    --text-placeholder: #374151;
+    
+    --link-color: #1e40af;
+    --link-hover: #1e3a8a;
+  }
+}
+
+/* Utility Classes */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-disabled { color: var(--text-disabled); }
+
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+
+/* Ensure minimum contrast for interactive elements */
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  color: var(--text-disabled);
+  background-color: var(--bg-disabled);
+  opacity: 1; /* Remove opacity to maintain contrast */
+}

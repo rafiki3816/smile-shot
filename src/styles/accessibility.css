@@ -1,0 +1,102 @@
+/* Keyboard Navigation and Focus Styles */
+
+/* Remove default outline and add custom focus styles */
+*:focus {
+  outline: none;
+}
+
+/* Custom focus styles for all interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="option"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #10b981;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast focus for dark backgrounds */
+.dark-bg button:focus-visible,
+.dark-bg a:focus-visible {
+  outline-color: #34d399;
+}
+
+/* Focus styles for form inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Error state focus */
+input.error:focus-visible,
+textarea.error:focus-visible {
+  outline-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Tab focus indicator */
+.tab-button:focus-visible {
+  outline: 3px solid #10b981;
+  outline-offset: -3px;
+  z-index: 10;
+}
+
+/* Language selector focus */
+.language-button:focus-visible,
+.language-option:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: -2px;
+}
+
+
+/* Focus trap container */
+[data-focus-trap="true"] {
+  position: relative;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible polyfill for older browsers */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline-width: 4px;
+  }
+}

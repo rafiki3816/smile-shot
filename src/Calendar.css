@@ -1,11 +1,11 @@
 .calendar-container {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  margin: 0 auto 20px auto;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
+  margin: 0 auto var(--space-5) auto;
+  border: var(--border-1) solid rgba(0, 0, 0, 0.06);
   max-width: 800px;
   width: 100%;
   overflow: hidden;
@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
-  gap: 8px;
+  margin-bottom: var(--space-4);
+  gap: var(--space-2);
 }
 
 .calendar-month-row {
@@ -24,14 +24,14 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .calendar-month-title {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
   text-align: center;
   flex: 1;
   white-space: nowrap;
@@ -44,23 +44,23 @@
 }
 
 .today-button {
-  padding: 8px 16px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 20px;
-  background: rgba(16, 185, 129, 0.05);
-  color: #10b981;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-1) solid var(--success-border);
+  border-radius: var(--radius-2xl);
+  background: var(--success-bg);
+  color: var(--primary-500);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--duration-300);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .today-button:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
+  background: var(--primary-100);
+  border-color: var(--primary-300);
   transform: translateY(-1px);
 }
 
@@ -70,30 +70,30 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: var(--border-1) solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #666;
+  transition: all var(--duration-300) var(--ease-in-out);
+  color: var(--text-tertiary);
   padding: 0;
-  font-size: 1rem;
+  font-size: var(--text-base);
 }
 
 .nav-button:hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--bg-primary);
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  color: #333;
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
 }
 
 /* 캘린더 그리드 - 깔끔하고 일정한 간격 */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: var(--space-2);
   padding: 0;
   max-width: 100%;
 }
@@ -102,7 +102,7 @@
   text-align: center;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   padding: 8px 0;
   letter-spacing: 0.5px;
 }
@@ -142,7 +142,8 @@
 
 /* 다른 달 날짜 - 희미하게 표시 */
 .calendar-day.other-month {
-  opacity: 0.3;
+  opacity: 0.6;
+  color: var(--text-disabled);
   cursor: default;
   pointer-events: none;
 }

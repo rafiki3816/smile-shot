@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from './supabaseClient'
-import { useLanguage } from './contexts/LanguageContext'
+import { useLanguage } from './hooks/useLanguage'
 import LanguageSelector from './components/LanguageSelector'
 import './Auth.css'
 
@@ -88,7 +88,7 @@ function SignUp() {
         // 이메일 인증이 비활성화되어 있으므로 바로 앱으로 이동
         navigate('/app')
       }
-    } catch (error) {
+    } catch {
       setErrors({ general: t('signupError') })
     } finally {
       setLoading(false)
@@ -123,8 +123,11 @@ function SignUp() {
               value={formData.name}
               onChange={handleChange}
               className={errors.name ? 'error' : ''}
+              aria-label={t('fullName')}
+              aria-invalid={errors.name ? 'true' : 'false'}
+              aria-describedby={errors.name ? 'name-error' : undefined}
             />
-            {errors.name && <span className="error-message">{errors.name}</span>}
+            {errors.name && <span id="name-error" className="error-message" role="alert">{errors.name}</span>}
           </div>
           
           <div className="form-group">
@@ -135,8 +138,11 @@ function SignUp() {
               value={formData.email}
               onChange={handleChange}
               className={errors.email ? 'error' : ''}
+              aria-label={t('email')}
+              aria-invalid={errors.email ? 'true' : 'false'}
+              aria-describedby={errors.email ? 'email-error' : undefined}
             />
-            {errors.email && <span className="error-message">{errors.email}</span>}
+            {errors.email && <span id="email-error" className="error-message" role="alert">{errors.email}</span>}
           </div>
           
           <div className="form-group">
@@ -147,8 +153,11 @@ function SignUp() {
               value={formData.password}
               onChange={handleChange}
               className={errors.password ? 'error' : ''}
+              aria-label={t('password')}
+              aria-invalid={errors.password ? 'true' : 'false'}
+              aria-describedby={errors.password ? 'password-error' : undefined}
             />
-            {errors.password && <span className="error-message">{errors.password}</span>}
+            {errors.password && <span id="password-error" className="error-message" role="alert">{errors.password}</span>}
           </div>
           
           <div className="form-group">
@@ -159,11 +168,14 @@ function SignUp() {
               value={formData.confirmPassword}
               onChange={handleChange}
               className={errors.confirmPassword ? 'error' : ''}
+              aria-label={t('confirmPassword')}
+              aria-invalid={errors.confirmPassword ? 'true' : 'false'}
+              aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
             />
-            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+            {errors.confirmPassword && <span id="confirmPassword-error" className="error-message" role="alert">{errors.confirmPassword}</span>}
           </div>
           
-          <button type="submit" className="auth-submit" disabled={loading}>
+          <button type="submit" className="auth-submit" disabled={loading} aria-label={loading ? t('loginInProgress') : t('signup')} aria-busy={loading}>
             {loading ? t('signupButtonLoading') : t('signupButton')}
           </button>
         </form>

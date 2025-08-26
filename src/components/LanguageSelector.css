@@ -1,21 +1,21 @@
 .language-selector {
   position: relative;
   display: inline-block;
-  z-index: 999998;
+  z-index: var(--z-dropdown);
 }
 
 .language-button {
   display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 16px 20px;
-  background: #e6e6e6;
-  border: 1px solid #bbb;
-  border-radius: 12px;
-  color: #333;
-  font-size: 16px;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--gray-200);
+  border: var(--border-1) solid var(--gray-400);
+  border-radius: var(--radius-xl);
+  color: var(--text-primary);
+  font-size: var(--text-base);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--duration-200) var(--ease-out);
   backdrop-filter: blur(10px);
   outline: none;
   height: 42px;
@@ -23,29 +23,29 @@
 
 .language-button:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  border-color: var(--primary-500);
+  box-shadow: var(--shadow-focus);
 }
 
 .language-button:hover {
-  background: #d9d9d9;
-  border-color: #aaa;
+  background: var(--gray-300);
+  border-color: var(--gray-500);
 }
 
 .language-flag {
-  font-size: 24px;
+  font-size: var(--text-2xl);
   display: flex;
   align-items: center;
 }
 
 .language-code {
   font-weight: 500;
-  font-size: 16px;
+  font-size: var(--text-base);
   letter-spacing: 0.5px;
 }
 
 .chevron {
-  transition: transform 0.2s ease;
+  transition: transform var(--duration-200) var(--ease-out);
 }
 
 .chevron.open {
@@ -56,43 +56,43 @@
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 4px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-top: var(--space-1);
+  background: var(--bg-primary);
+  border: var(--border-1) solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
   backdrop-filter: blur(10px);
   min-width: 180px;
-  z-index: 999999;
+  z-index: var(--z-dropdown);
   overflow: hidden;
 }
 
 .language-option {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
   width: 100%;
-  padding: 11px 14px;
+  padding: var(--space-3) var(--space-4);
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  color: #333;
-  font-size: 14px;
+  transition: background-color var(--duration-200) var(--ease-out);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
 }
 
 .language-option:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--gray-100);
 }
 
 .language-option.active {
-  background-color: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
+  background-color: var(--info-bg);
+  color: var(--link-color);
 }
 
 .language-option .language-flag {
-  font-size: 27px;
+  font-size: var(--text-3xl);
 }
 
 .language-option .language-name {
@@ -102,38 +102,38 @@
 /* 다크 모드 대응 */
 @media (prefers-color-scheme: dark) {
   .language-dropdown {
-    background: rgba(31, 41, 55, 0.95);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--gray-900);
+    border-color: var(--gray-700);
   }
   
   .language-option {
-    color: #e5e7eb;
+    color: var(--gray-100);
   }
   
   .language-option:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--gray-800);
   }
   
   .language-option.active {
-    background-color: rgba(59, 130, 246, 0.2);
-    color: #60a5fa;
+    background-color: var(--info-bg);
+    color: var(--link-color);
   }
 }
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
   .language-button {
-    padding: 12px 14px;
-    font-size: 14px;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
     height: 37px;
   }
   
   .language-flag {
-    font-size: 20px;
+    font-size: var(--text-xl);
   }
   
   .language-code {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
   
   .language-dropdown {
@@ -141,7 +141,7 @@
   }
   
   .language-option {
-    padding: 10px 14px;
-    font-size: 13px;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
   }
 }

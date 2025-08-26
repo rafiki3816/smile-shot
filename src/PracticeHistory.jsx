@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { practiceDB } from './supabaseClient'
 import { generateCoachingAdvice, generateWeeklyReport, getRandomTip } from './utils/coachingEngine'
 import Calendar from './Calendar'
-import { useLanguage } from './contexts/LanguageContext'
+import { useLanguage } from './hooks/useLanguage'
 
 function PracticeHistory({ user, onNavigateToPractice }) {
   const navigate = useNavigate()
@@ -46,7 +46,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
     return legacyMapping[smileType] || smileType
   }
   const [history, setHistory] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [, setLoading] = useState(true)
   const [todayStats, setTodayStats] = useState({
     sessions: 0,
     maxScore: 0,
@@ -133,6 +133,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   }
 
   // 새 연습 세션 기록 추가
+  // eslint-disable-next-line no-unused-vars
   const addPracticeSession = (maxScore, avgScore, duration) => {
     const today = new Date().toISOString().split('T')[0] // YYYY-MM-DD 형식
     const now = new Date()
@@ -196,6 +197,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   }
 
   // 기록 삭제
+  // eslint-disable-next-line no-unused-vars
   const deleteSession = (sessionId) => {
     const updatedHistory = history.filter(session => session.id !== sessionId)
     saveHistory(updatedHistory)
@@ -203,6 +205,7 @@ function PracticeHistory({ user, onNavigateToPractice }) {
   }
 
   // 전체 기록 삭제
+  // eslint-disable-next-line no-unused-vars
   const clearAllHistory = () => {
     if (confirm(t('deleteAllRecordsConfirm'))) {
       saveHistory([])
@@ -670,15 +673,6 @@ function PracticeHistory({ user, onNavigateToPractice }) {
       )}
     </div>
   )
-}
-
-// 외부에서 사용할 수 있도록 함수 export
-export const addPracticeRecord = (maxScore, avgScore, duration) => {
-  // 이 함수는 SmileDetector에서 호출할 예정
-  const event = new CustomEvent('addPracticeRecord', {
-    detail: { maxScore, avgScore, duration }
-  })
-  window.dispatchEvent(event)
 }
 
 export default PracticeHistory

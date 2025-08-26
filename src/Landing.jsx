@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from './supabaseClient'
 import LanguageSelector from './components/LanguageSelector'
-import { useLanguage } from './contexts/LanguageContext'
+import { useLanguage } from './hooks/useLanguage'
 import './Landing.css'
 
 function Landing() {
