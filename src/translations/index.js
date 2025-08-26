@@ -25,7 +25,7 @@ export const translations = {
     feature2Description: "매일의 연습 기록과 성장 과정을 한눈에 확인",
     feature3Title: "맞춤형 코칭",
     feature3Description: "목적에 맞는 미소 연습과 개인화된 피드백",
-    freeTrialButton: "미소 연습 시작하기 (비회원)",
+    freeTrialButton: "시작하기 (비회원)",
     
     // 로그인/회원가입
     loginTitle: "로그인",
@@ -493,7 +493,7 @@ export const translations = {
     feature2Description: "Track your daily practice records and growth at a glance",
     feature3Title: "Personalized Coaching",
     feature3Description: "Customized smile practice and personalized feedback for your goals",
-    freeTrialButton: "Start Smile Practice (Guest)",
+    freeTrialButton: "Start (Guest)",
     
     // Login/Signup
     loginTitle: "Login",
@@ -947,7 +947,7 @@ export const translations = {
     feature2Description: "毎日の練習記録と成長過程を一目で確認",
     feature3Title: "カスタマイズされたコーチング",
     feature3Description: "目的に合わせた笑顔の練習と個人化されたフィードバック",
-    freeTrialButton: "笑顔の練習を始める（非会員）",
+    freeTrialButton: "始める（非会員）",
     
     // ログイン/サインアップ
     loginTitle: "ログイン",
@@ -1322,7 +1322,7 @@ export const translations = {
     feature2Description: "一目了然地查看每日练习记录和成长过程",
     feature3Title: "个性化指导",
     feature3Description: "针对目标的微笑练习和个性化反馈",
-    freeTrialButton: "开始微笑练习（非会员）",
+    freeTrialButton: "开始（非会员）",
     
     // 登录/注册
     loginTitle: "登录",
@@ -1701,7 +1701,7 @@ export const translations = {
     feature2Description: "Rastrea tus registros de práctica diaria y crecimiento de un vistazo",
     feature3Title: "Entrenamiento personalizado",
     feature3Description: "Práctica de sonrisa personalizada y retroalimentación personalizada para tus objetivos",
-    freeTrialButton: "Comenzar práctica de sonrisa (Invitado)",
+    freeTrialButton: "Comenzar (Invitado)",
     
     // Inicio de sesión/Registro
     loginTitle: "Iniciar sesión",
@@ -2080,7 +2080,7 @@ export const translations = {
     feature2Description: "Suivez vos enregistrements de pratique quotidienne et votre croissance en un coup d'œil",
     feature3Title: "Coaching personnalisé",
     feature3Description: "Pratique du sourire personnalisée et retour personnalisé pour vos objectifs",
-    freeTrialButton: "Commencer la pratique du sourire (Invité)",
+    freeTrialButton: "Commencer (Invité)",
     
     // Connexion/Inscription
     loginTitle: "Connexion",
@@ -2459,7 +2459,7 @@ export const translations = {
     feature2Description: "Verfolgen Sie Ihre täglichen Übungsaufzeichnungen und Ihr Wachstum auf einen Blick",
     feature3Title: "Personalisiertes Coaching",
     feature3Description: "Angepasste Lächeln-Übung und personalisiertes Feedback für Ihre Ziele",
-    freeTrialButton: "Lächeln-Übung beginnen (Gast)",
+    freeTrialButton: "Beginnen (Gast)",
     
     // Anmelden/Registrieren
     loginTitle: "Anmelden",
@@ -2838,7 +2838,7 @@ export const translations = {
     feature2Description: "Tieni traccia dei tuoi record di pratica quotidiana e della crescita a colpo d'occhio",
     feature3Title: "Coaching personalizzato",
     feature3Description: "Pratica del sorriso personalizzata e feedback personalizzato per i tuoi obiettivi",
-    freeTrialButton: "Inizia la pratica del sorriso (Ospite)",
+    freeTrialButton: "Inizia (Ospite)",
     
     // Accesso/Registrazione
     loginTitle: "Accedi",
@@ -3217,7 +3217,7 @@ export const translations = {
     feature2Description: "Acompanhe seus registros de prática diária e crescimento rapidamente",
     feature3Title: "Coaching personalizado",
     feature3Description: "Prática de sorriso personalizada e feedback personalizado para seus objetivos",
-    freeTrialButton: "Começar prática do sorriso (Convidado)",
+    freeTrialButton: "Começar (Convidado)",
     
     // Login/Cadastro
     loginTitle: "Entrar",
@@ -3596,7 +3596,7 @@ export const translations = {
     feature2Description: "Отслеживайте свои ежедневные записи практики и рост с первого взгляда",
     feature3Title: "Персонализированный коучинг",
     feature3Description: "Персонализированная практика улыбки и персонализированная обратная связь для ваших целей",
-    freeTrialButton: "Начать практику улыбки (Гость)",
+    freeTrialButton: "Начать (Гость)",
     
     // Вход/Регистрация
     loginTitle: "Войти",

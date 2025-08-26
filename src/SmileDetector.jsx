@@ -180,7 +180,7 @@ function SmileDetector({ user }) {
         const allowFreeSession = localStorage.getItem('allowFreeSession') === 'true'
         const usedCount = parseInt(localStorage.getItem('freeSessionCount') || '0')
         
-        // 무료 체험을 선택했고, 10회 미만 사용했다면 허용
+        // 무료 체험을 선택했고, 3회 미만 사용했다면 허용
         if (allowFreeSession) {
           setFreeSessionCount(usedCount)
         }
@@ -203,8 +203,8 @@ function SmileDetector({ user }) {
   // practice 단계 진입 시 카메라 자동 시작
   useEffect(() => {
     if (currentStep === 'practice' && !isStreaming) {
-      // 비로그인 사용자가 10회 이상 무료 세션을 사용한 경우
-      if (!user && freeSessionCount >= 10) {
+      // 비로그인 사용자가 3회 이상 무료 세션을 사용한 경우
+      if (!user && freeSessionCount >= 3) {
         setShowLoginPrompt(true)
         setCurrentStep('purpose') // 초기 단계로 되돌림
         return
@@ -1269,8 +1269,8 @@ function SmileDetector({ user }) {
 
   // 다시 시작
   const resetGuide = () => {
-    // 비로그인 사용자가 10회 이상 무료 세션을 사용한 경우
-    if (!user && freeSessionCount >= 10) {
+    // 비로그인 사용자가 3회 이상 무료 세션을 사용한 경우
+    if (!user && freeSessionCount >= 3) {
       setShowLoginPrompt(true)
       return
     }
@@ -1322,7 +1322,7 @@ function SmileDetector({ user }) {
   // 무료 체험 남은 횟수 계산
   const getFreeSessionsRemaining = () => {
     if (user) return null // 로그인 사용자는 표시 안함
-    return Math.max(0, 10 - freeSessionCount)
+    return Math.max(0, 3 - freeSessionCount)
   }
 
   const freeSessionsRemaining = getFreeSessionsRemaining()
