@@ -6,6 +6,7 @@ import { ToastContainer } from './Toast'
 import { useToast } from './utils/toastUtils'
 import { useLanguage } from './hooks/useLanguage'
 import { announceError, announceCoaching } from './utils/announcerUtils'
+import { FREE_TRIAL_LIMIT } from './config/constants'
 
 function SmileDetector({ user }) {
   const navigate = useNavigate()
@@ -204,7 +205,7 @@ function SmileDetector({ user }) {
   useEffect(() => {
     if (currentStep === 'practice' && !isStreaming) {
       // 비로그인 사용자가 3회 이상 무료 세션을 사용한 경우
-      if (!user && freeSessionCount >= 3) {
+      if (!user && freeSessionCount >= FREE_TRIAL_LIMIT) {
         setShowLoginPrompt(true)
         setCurrentStep('purpose') // 초기 단계로 되돌림
         return
@@ -1322,7 +1323,7 @@ function SmileDetector({ user }) {
   // 무료 체험 남은 횟수 계산
   const getFreeSessionsRemaining = () => {
     if (user) return null // 로그인 사용자는 표시 안함
-    return Math.max(0, 3 - freeSessionCount)
+    return Math.max(0, FREE_TRIAL_LIMIT - freeSessionCount)
   }
 
   const freeSessionsRemaining = getFreeSessionsRemaining()
@@ -1334,7 +1335,7 @@ function SmileDetector({ user }) {
       {/* 무료 체험 표시 */}
       {freeSessionsRemaining !== null && (
         <div className="ios-free-session-badge">
-          <span className="ios-badge-text">{t('freeTrialRemaining')}: <span className="ios-badge-count">{freeSessionsRemaining}/10</span></span>
+          <span className="ios-badge-text">{t('freeTrialRemaining')}: <span className="ios-badge-count">{freeSessionsRemaining}/{FREE_TRIAL_LIMIT}</span></span>
         </div>
       )}
       
