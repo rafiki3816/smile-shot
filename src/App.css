@@ -3745,8 +3745,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
-  border-left: 3px solid transparent;
   transition: all var(--duration-300);
+}
+
+.technical-tips li {
+  border-left: 3px solid transparent;
 }
 
 .technical-tips li:hover {
@@ -3755,7 +3758,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .muscle-exercises li:hover {
-  border-left-color: #8b5cf6;
   background: rgba(139, 92, 246, 0.05);
 }
 
