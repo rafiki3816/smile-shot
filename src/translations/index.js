@@ -426,6 +426,7 @@ export const translations = {
     recordsNotSavedInGuestMode: "비로그인 상태에서는 기록이 저장되지 않습니다",
     freeSignup: "무료 회원가입",
     todaysPersonalizedAdvice: "오늘의 맞춤 조언",
+    todaysMuscleExercise: "오늘의 근육 운동",
     todaysMuscleExerciseTitle: "오늘의 근육 운동",
     todaysRecord: "오늘의 기록",
     practiceInTempMode: "현재 임시 모드로 연습 중입니다. 브라우저를 닫으면 모든 기록이 사라집니다.",
@@ -880,6 +881,7 @@ export const translations = {
     recordsNotSavedInGuestMode: "Records are not saved in guest mode",
     freeSignup: "Free Sign Up",
     todaysPersonalizedAdvice: "Today's Personalized Advice",
+    todaysMuscleExercise: "Today's Muscle Exercise",
     todaysMuscleExerciseTitle: "Today's Muscle Exercise",
     todaysRecord: "Today's Record",
     practiceInTempMode: "Currently practicing in temporary mode. All records will be lost when you close the browser.",
@@ -1221,6 +1223,7 @@ export const translations = {
     recordsNotSavedInGuestMode: "ゲストモードでは記録は保存されません",
     freeSignup: "無料会員登録",
     todaysPersonalizedAdvice: "今日のパーソナライズアドバイス",
+    todaysMuscleExercise: "今日の筋肉エクササイズ",
     todaysMuscleExerciseTitle: "今日の筋肉エクササイズ",
     todaysRecord: "今日の記録",
     practiceInTempMode: "現在一時モードで練習中です。ブラウザを閉じるとすべての記録が失われます。",
@@ -1596,6 +1599,7 @@ export const translations = {
     recordsNotSavedInGuestMode: "访客模式下不保存记录",
     freeSignup: "免费注册",
     todaysPersonalizedAdvice: "今日个性化建议",
+    todaysMuscleExercise: "今日肌肉锻炼",
     todaysMuscleExerciseTitle: "今日肌肉锻炼",
     todaysRecord: "今日记录",
     practiceInTempMode: "当前为临时模式练习。关闭浏览器后所有记录将丢失。",
@@ -1930,6 +1934,7 @@ export const translations = {
     nextWeekGoalsReport: "Metas de la Próxima Semana",
     improvementPointsReport: "Puntos de Mejora",
     nextGoalReport: "Próxima Meta",
+    todaysMuscleExercise: "Ejercicio Muscular de Hoy",
     todaysMuscleExerciseTitle: "Ejercicio Muscular de Hoy",
     
     // Guía de Posición Facial
@@ -2309,6 +2314,7 @@ export const translations = {
     nextWeekGoalsReport: "Objectifs de la Semaine Prochaine",
     improvementPointsReport: "Points d'Amélioration",
     nextGoalReport: "Prochain Objectif",
+    todaysMuscleExercise: "Exercice Musculaire du Jour",
     todaysMuscleExerciseTitle: "Exercice Musculaire du Jour",
     
     // Guide de Position du Visage
@@ -2688,6 +2694,7 @@ export const translations = {
     nextWeekGoalsReport: "Ziele für nächste Woche",
     improvementPointsReport: "Verbesserungspunkte",
     nextGoalReport: "Nächstes Ziel",
+    todaysMuscleExercise: "Heutige Muskelübung",
     todaysMuscleExerciseTitle: "Heutige Muskelübung",
     
     // Gesichtspositions-Leitfaden
@@ -3067,6 +3074,7 @@ export const translations = {
     nextWeekGoalsReport: "Obiettivi della Prossima Settimana",
     improvementPointsReport: "Punti di Miglioramento",
     nextGoalReport: "Prossimo Obiettivo",
+    todaysMuscleExercise: "Esercizio Muscolare di Oggi",
     todaysMuscleExerciseTitle: "Esercizio Muscolare di Oggi",
     
     // Guida alla Posizione del Volto
@@ -3446,6 +3454,7 @@ export const translations = {
     nextWeekGoalsReport: "Metas da Próxima Semana",
     improvementPointsReport: "Pontos de Melhoria",
     nextGoalReport: "Próxima Meta",
+    todaysMuscleExercise: "Exercício Muscular de Hoje",
     todaysMuscleExerciseTitle: "Exercício Muscular de Hoje",
     
     // Guia de Posição do Rosto
@@ -3825,6 +3834,7 @@ export const translations = {
     nextWeekGoalsReport: "Цели на следующую неделю",
     improvementPointsReport: "Точки улучшения",
     nextGoalReport: "Следующая цель",
+    todaysMuscleExercise: "Сегодняшнее упражнение для мышц",
     todaysMuscleExerciseTitle: "Сегодняшнее упражнение для мышц",
     
     // Руководство по Положению Лица
