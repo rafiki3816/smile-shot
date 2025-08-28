@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
+import { PWA_CONFIG } from '../config/constants';
 import './PWAInstallPrompt.css';
 
 const PWAInstallPrompt = () => {
@@ -27,8 +28,8 @@ const PWAInstallPrompt = () => {
       const installPromptShown = localStorage.getItem('installPromptShown');
       const pageViews = parseInt(localStorage.getItem('pageViews') || '0');
       
-      if (!installPromptShown && pageViews >= 3) {
-        setTimeout(() => setShowPrompt(true), 30000);
+      if (!installPromptShown && pageViews >= PWA_CONFIG.INSTALL_PROMPT_PAGE_VIEWS) {
+        setTimeout(() => setShowPrompt(true), PWA_CONFIG.INSTALL_PROMPT_DELAY);
       }
     };
 

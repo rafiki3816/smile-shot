@@ -56,6 +56,10 @@ function SmileDetector({ user }) {
   // 현재 점수 상태
   const [currentScore, setCurrentScore] = useState(0)
   
+  // 연속 연습 일수 (Streak)
+  const [practiceStreak, setPracticeStreak] = useState(0)
+  const [lastPracticeDate, setLastPracticeDate] = useState(null)
+  
   // 카메라 좌우 반전 상태
   const [isMirrored] = useState(true)
   
@@ -63,8 +67,6 @@ function SmileDetector({ user }) {
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [capturedAnalysis, setCapturedAnalysis] = useState(null)
   
-  // 얼굴 위치 안내 상태
-  const [facePositionGuide, setFacePositionGuide] = useState('')
 
   // cleanup을 위한 useEffect
   useEffect(() => {
@@ -200,6 +202,47 @@ function SmileDetector({ user }) {
       detectSmile()
     }
   }, [isDetecting, isModelLoaded, isStreaming])
+  
+  
+  // 연속 연습 일수 계산
+  useEffect(() => {
+    const loadStreakData = async () => {
+      try {
+        const savedStreak = localStorage.getItem('practiceStreak')
+        const savedLastDate = localStorage.getItem('lastPracticeDate')
+        
+        if (savedStreak) setPracticeStreak(parseInt(savedStreak))
+        if (savedLastDate) setLastPracticeDate(savedLastDate)
+        
+        // 오늘 연습했는지 확인
+        const today = new Date().toDateString()
+        if (savedLastDate !== today && isDetecting) {
+          const yesterday = new Date()
+          yesterday.setDate(yesterday.getDate() - 1)
+          
+          if (savedLastDate === yesterday.toDateString()) {
+            // 연속 일수 증가
+            const newStreak = (parseInt(savedStreak) || 0) + 1
+            setPracticeStreak(newStreak)
+            localStorage.setItem('practiceStreak', newStreak.toString())
+          } else if (savedLastDate !== today) {
+            // 연속이 끊김
+            setPracticeStreak(1)
+            localStorage.setItem('practiceStreak', '1')
+          }
+          
+          localStorage.setItem('lastPracticeDate', today)
+          setLastPracticeDate(today)
+        }
+      } catch (error) {
+        console.error('Streak 데이터 로드 실패:', error)
+      }
+    }
+    
+    if (user || freeSessionCount > 0) {
+      loadStreakData()
+    }
+  }, [isDetecting, user, freeSessionCount])
 
   // practice 단계 진입 시 카메라 자동 시작
   useEffect(() => {
@@ -214,16 +257,16 @@ function SmileDetector({ user }) {
     }
   }, [currentStep, user, freeSessionCount])
 
-  // 카메라가 켜지면 자동으로 분석 시작
-  useEffect(() => {
-    if (isStreaming && isModelLoaded && currentStep === 'practice' && !isDetecting) {
-      // 약간의 딜레이를 주어 사용자가 준비할 시간을 줌
-      const timer = setTimeout(() => {
-        startDetection()
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [isStreaming, isModelLoaded, currentStep])
+  // 카메라가 켜지면 자동으로 분석 시작 (주석 처리 - 수동 시작으로 변경)
+  // useEffect(() => {
+  //   if (isStreaming && isModelLoaded && currentStep === 'practice' && !isDetecting) {
+  //     // 약간의 딜레이를 주어 사용자가 준비할 시간을 줌
+  //     const timer = setTimeout(() => {
+  //       startDetection()
+  //     }, 1000)
+  //     return () => clearTimeout(timer)
+  //   }
+  // }, [isStreaming, isModelLoaded, currentStep])
 
   // 카메라 시작
   const startCamera = async () => {
@@ -447,11 +490,11 @@ function SmileDetector({ user }) {
           const newCount = freeSessionCount + 1
           localStorage.setItem('freeSessionCount', newCount.toString())
           setFreeSessionCount(newCount)
-          const remaining = 10 - newCount
+          const remaining = FREE_TRIAL_LIMIT - newCount
           if (remaining > 0) {
             showToast(t('freeTrialCompleted', { count: newCount, remaining }), 'info', 3000)
           } else {
-            showToast(t('freeTrialAllUsed'), 'info', 3000)
+            showToast(t('freeTrialAllUsed', { limit: FREE_TRIAL_LIMIT }), 'info', 3000)
           }
         }
       }
@@ -893,11 +936,6 @@ function SmileDetector({ user }) {
           //     }
           //   }
           //   guide = guide.trim()
-          //   setFacePositionGuide(guide)
-          // } else {
-          //   setFacePositionGuide('')
-          // }
-          setFacePositionGuide('') // 항상 빈 문자열로 설정
 
           // 근육 가이드가 비활성화되어 있을 때만 원형 트래킹 표시
           if (!showMuscleGuide) {
@@ -1252,10 +1290,6 @@ function SmileDetector({ user }) {
         } else {
           // 얼굴을 찾지 못했을 때도 DOM으로 표시
           setCurrentCoachingMessages([t('getComfortable')])
-          // 얼굴이 감지되지 않을 때만 가이드 설정
-          if (facePositionGuide === '') {
-            setFacePositionGuide(t('adjustCameraToShowFace'))
-          }
         }
 
       } catch (error) {
@@ -1270,8 +1304,8 @@ function SmileDetector({ user }) {
 
   // 다시 시작
   const resetGuide = () => {
-    // 비로그인 사용자가 3회 이상 무료 세션을 사용한 경우
-    if (!user && freeSessionCount >= 3) {
+    // 비로그인 사용자가 무료 세션 제한을 초과한 경우
+    if (!user && freeSessionCount >= FREE_TRIAL_LIMIT) {
       setShowLoginPrompt(true)
       return
     }
@@ -1332,12 +1366,17 @@ function SmileDetector({ user }) {
     <div className="smile-detector">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
       
-      {/* 무료 체험 표시 */}
-      {freeSessionsRemaining !== null && (
-        <div className="ios-free-session-badge">
-          <span className="ios-badge-text">{t('freeTrialRemaining')}: <span className="ios-badge-count">{freeSessionsRemaining}/{FREE_TRIAL_LIMIT}</span></span>
-        </div>
-      )}
+      {/* 상단 상태 표시 영역 */}
+      <div className="top-status-bar">
+        {/* 무료 체험 표시 */}
+        {freeSessionsRemaining !== null && (
+          <div className="ios-free-session-badge">
+            <span className="ios-badge-text">{t('freeTrialRemaining')}: <span className="ios-badge-count">{freeSessionsRemaining}/{FREE_TRIAL_LIMIT}</span></span>
+          </div>
+        )}
+        
+        
+      </div>
       
       {/* 진행 단계 표시 */}
       {currentStep !== 'complete' && (
@@ -1500,13 +1539,6 @@ function SmileDetector({ user }) {
                   </div>
                 )}
                 
-                {/* 얼굴 위치 안내 메시지 - 카메라 화면 내부 하단 */}
-                {isDetecting && facePositionGuide && (
-                  <div className="face-position-guide">
-                    <span className="guide-icon">📍</span>
-                    <span className="guide-text">{facePositionGuide}</span>
-                  </div>
-                )}
               </div>
               
               {/* 코칭 메시지 영역 - 카메라 바로 아래 */}

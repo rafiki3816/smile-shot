@@ -1,0 +1,103 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    SmileShot MVP 개선 진행 현황
+  </text>
+  
+  <text x="400" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#666">
+    2025년 8월 27일 기준
+  </text>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="20" height="20" fill="#e74c3c" rx="4"/>
+    <text x="30" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">미착수 (0%)</text>
+    
+    <rect x="150" y="0" width="20" height="20" fill="#f39c12" rx="4"/>
+    <text x="180" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">진행중 (1-50%)</text>
+    
+    <rect x="300" y="0" width="20" height="20" fill="#3498db" rx="4"/>
+    <text x="330" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">개발중 (51-99%)</text>
+    
+    <rect x="450" y="0" width="20" height="20" fill="#27ae60" rx="4"/>
+    <text x="480" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">완료 (100%)</text>
+  </g>
+  
+  <!-- Progress Bars -->
+  <g transform="translate(50, 130)">
+    <!-- 1. 핵심 가치 명확화 -->
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">1. 핵심 가치 명확화</text>
+    <rect x="200" y="0" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="0" width="50" height="20" fill="#f39c12" rx="10"/>
+    <text x="710" y="15" font-family="Arial, sans-serif" font-size="12" fill="#666">10%</text>
+    
+    <!-- 2. 온보딩 경험 개선 -->
+    <text x="0" y="45" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">2. 온보딩 경험</text>
+    <rect x="200" y="30" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="30" width="150" height="20" fill="#f39c12" rx="10"/>
+    <text x="710" y="45" font-family="Arial, sans-serif" font-size="12" fill="#666">30%</text>
+    
+    <!-- 3. 즉각적 가치 전달 -->
+    <text x="0" y="75" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">3. 즉각적 가치 전달</text>
+    <rect x="200" y="60" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="60" width="100" height="20" fill="#f39c12" rx="10"/>
+    <text x="710" y="75" font-family="Arial, sans-serif" font-size="12" fill="#666">20%</text>
+    
+    <!-- 4. 포토 다이어리 -->
+    <text x="0" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">4. 포토 다이어리</text>
+    <rect x="200" y="90" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="90" width="200" height="20" fill="#f39c12" rx="10"/>
+    <text x="710" y="105" font-family="Arial, sans-serif" font-size="12" fill="#666">40%</text>
+    
+    <!-- 5. 소셜 증명 -->
+    <text x="0" y="135" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">5. 소셜 증명</text>
+    <rect x="200" y="120" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="120" width="0" height="20" fill="#e74c3c" rx="10"/>
+    <text x="710" y="135" font-family="Arial, sans-serif" font-size="12" fill="#666">0%</text>
+    
+    <!-- 6. 기술적 안정성 -->
+    <text x="0" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">6. 기술적 안정성</text>
+    <rect x="200" y="150" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="150" width="300" height="20" fill="#3498db" rx="10"/>
+    <text x="710" y="165" font-family="Arial, sans-serif" font-size="12" fill="#666">60%</text>
+    
+    <!-- 7. 수익 모델 -->
+    <text x="0" y="195" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">7. 수익 모델</text>
+    <rect x="200" y="180" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="180" width="75" height="20" fill="#f39c12" rx="10"/>
+    <text x="710" y="195" font-family="Arial, sans-serif" font-size="12" fill="#666">15%</text>
+    
+    <!-- 8. 피드백 루프 -->
+    <text x="0" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">8. 피드백 루프</text>
+    <rect x="200" y="210" width="500" height="20" fill="#e0e0e0" rx="10"/>
+    <rect x="200" y="210" width="0" height="20" fill="#e74c3c" rx="10"/>
+    <text x="710" y="225" font-family="Arial, sans-serif" font-size="12" fill="#666">0%</text>
+  </g>
+  
+  <!-- Overall Progress -->
+  <g transform="translate(50, 370)">
+    <rect width="700" height="5" fill="#e0e0e0" rx="2.5"/>
+    <rect width="175" height="5" fill="#f39c12" rx="2.5"/>
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">
+      전체 진행률: 25%
+    </text>
+  </g>
+  
+  <!-- Timeline -->
+  <g transform="translate(250, 320)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#666">MVP 목표</text>
+    <text x="100" y="0" font-family="Arial, sans-serif" font-size="12" fill="#666">1주차</text>
+    <text x="200" y="0" font-family="Arial, sans-serif" font-size="12" fill="#666">2주차</text>
+    <text x="300" y="0" font-family="Arial, sans-serif" font-size="12" fill="#666">출시</text>
+    
+    <!-- Timeline line -->
+    <line x1="0" y1="10" x2="300" y2="10" stroke="#ccc" stroke-width="2"/>
+    <circle cx="0" cy="10" r="4" fill="#27ae60"/>
+    <circle cx="100" cy="10" r="4" fill="#3498db"/>
+    <circle cx="200" cy="10" r="4" fill="#f39c12"/>
+    <circle cx="300" cy="10" r="4" fill="#e74c3c"/>
+  </g>
+</svg>

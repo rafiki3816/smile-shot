@@ -226,7 +226,7 @@
 }
 
 .purpose-desc {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.4;
   transition: color var(--duration-300) var(--ease-out);
@@ -273,7 +273,7 @@
 
 .characteristics li {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
   padding: 8px 0;
   padding-left: 20px;
   position: relative;
@@ -301,7 +301,7 @@
 
 .situations p {
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin: 0;
   text-align: center;
   font-weight: 500;
@@ -340,7 +340,7 @@
   padding: var(--space-3) var(--space-4);
   background: rgba(16, 185, 129, 0.05);
   border-radius: var(--radius-lg);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #111827 !important;
 }
@@ -351,7 +351,7 @@
   font-weight: 600;
   display: block;
   margin-bottom: 4px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -366,7 +366,7 @@
   font-weight: 600;
   display: block;
   margin-bottom: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .muscle-tips ul {
@@ -378,7 +378,7 @@
 
 .muscle-tips li {
   color: var(--text-secondary) !important;
-  font-size: 0.85rem;
+  font-size: 1rem;
   padding: 6px 0;
   padding-left: 20px;
   position: relative;
@@ -550,7 +550,7 @@
 
 .summary-label {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -630,7 +630,7 @@
   }
   
   .purpose-desc {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
   
   .smile-info-card {
@@ -1263,7 +1263,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .score-type {
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 600;
   color: #000000;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
@@ -1273,7 +1273,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .score-divider {
-  font-size: 12px;
+  font-size: 16px;
   color: #8E8E93;
   line-height: 1;
   margin: 0 2px;
@@ -1637,7 +1637,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -1677,7 +1677,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .average-label {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 8px;
 }
 
@@ -1770,11 +1770,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .badge-name {
   font-weight: 600;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .badge-progress {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   margin-top: 4px;
 }
@@ -1927,7 +1927,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border: none;
   background: transparent;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all var(--duration-200);
   color: var(--text-secondary);
@@ -2036,7 +2036,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .capture-label {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -2065,7 +2065,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   gap: 20px;
   align-items: center;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .session-details .time {
@@ -2101,7 +2101,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .session-duration {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .session-scores {
@@ -2128,7 +2128,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding: 6px 16px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 1rem;
   transition: all var(--duration-300) var(--ease-out);
 }
 
@@ -2633,7 +2633,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .toast-message {
   flex: 1;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-900);
   line-height: 1.5;
 }
@@ -2688,6 +2688,160 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
 }
 
+/* 상단 상태 바 */
+.top-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 50;
+  padding: 10px 0;
+}
+
+/* Streak 표시 */
+.streak-badge {
+  background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.25);
+  animation: pulse 2s infinite;
+}
+
+.streak-icon {
+  font-size: 1.2em;
+  animation: flicker 1.5s infinite alternate;
+}
+
+.streak-text {
+  font-size: 1rem;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* 1분 타이머 프로그레스 바 */
+.timer-progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 80px;
+}
+
+.timer-progress-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timer-progress-bar {
+  position: relative;
+  height: 6px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  min-height: 32px;
+}
+
+.timer-control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 999;
+  font-size: 20px;
+}
+
+.timer-control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.timer-control-btn:active {
+  transform: scale(0.95);
+}
+
+.timer-control-btn.start {
+  background: #10b981;
+  color: white;
+  border-color: #059669;
+}
+
+.timer-control-btn.pause {
+  background: #f59e0b;
+  color: white;
+  border-color: #d97706;
+}
+
+.timer-control-btn.reset {
+  background: #6b7280;
+  color: white;
+  border-color: #4b5563;
+}
+
+.timer-control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.timer-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 3px;
+  transition: width 0.5s linear;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.timer-progress-text {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  letter-spacing: 0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
 /* iOS 스타일 무료 체험 배지 */
 .ios-free-session-badge {
   background: #F2F2F7;
@@ -2696,7 +2850,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: inline-flex;
   align-items: center;
   font-size: var(--text-xs);
-  margin-bottom: 16px;
 }
 
 .ios-badge-text {
@@ -2819,7 +2972,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coaching-message.secondary {
   background: rgba(16, 185, 129, 0.06);
   color: var(--emerald-green);
-  font-size: 15px;
+  font-size: 16px;
   border: 1px solid rgba(16, 185, 129, 0.15);
 }
 
@@ -2853,7 +3006,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coaching-message.primary {
-    font-size: 15px;
+    font-size: 16px;
   }
   
   .coaching-message.secondary {
@@ -3029,7 +3182,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   color: white;
   padding: 4px 12px;
   border-radius: var(--radius-xl);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
@@ -3075,7 +3228,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .score-label {
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--text-secondary);
   margin-top: 4px;
 }
@@ -3500,7 +3653,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .score-display.compact h3 {
-  font-size: 15px;
+  font-size: 16px;
   margin-bottom: 12px;
 }
 
@@ -3555,7 +3708,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .coaching-message.primary {
-    font-size: 15px;
+    font-size: 16px;
   }
   
   .practice-layout {
@@ -3595,7 +3748,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .controls button {
     padding: var(--space-3) var(--space-4);
-    font-size: 15px;
+    font-size: 16px;
     flex: 1;
   }
   
@@ -3617,7 +3770,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .practice-controls button {
     padding: 16px 24px;
-    font-size: 15px;
+    font-size: 16px;
     border-radius: 14px;
   }
 }
@@ -3644,7 +3797,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .ios-metric-item.compact .ios-metric-label {
-    font-size: 12px;
+    font-size: 16px;
   }
   
   .ios-metric-item.compact .ios-metric-value {
@@ -3743,7 +3896,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-radius: var(--radius-xl);
   margin-bottom: 8px;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
   transition: all var(--duration-300);
 }
@@ -3785,7 +3938,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .recommended-time p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .motivational-quote {
@@ -3906,7 +4059,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   padding-left: 24px;
   position: relative;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .achievements li::before {
@@ -3941,7 +4094,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .technical-tips li,
   .muscle-exercises li {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 8px 10px;
   }
   
@@ -3951,7 +4104,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   
   .action-btn {
     padding: 16px 28px;
-    font-size: 15px;
+    font-size: 16px;
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
@@ -3976,7 +4129,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .summary-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   
   .summary-value {
@@ -3988,7 +4141,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
   
   .mood-before, .mood-after {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
 
@@ -4071,7 +4224,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .metric-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 
@@ -4092,7 +4245,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 .coaching-tip {
   margin: 0;
   padding: 4px 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-primary);
   line-height: 1.5;
 }
@@ -4130,63 +4283,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   }
 }
 
-/* 얼굴 위치 안내 메시지 */
-.face-position-guide {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-3xl);
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  z-index: 20;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateX(-50%) scale(1.02);
-    opacity: 1;
-  }
-}
-
-.guide-icon {
-  font-size: 1.2rem;
-}
-
-.guide-text {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .face-position-guide {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-  
-  .guide-icon {
-    font-size: 1rem;
-  }
-  
-  .guide-text {
-    font-size: 0.85rem;
-  }
-}
 
 /* 최고의 순간 모달 */
 .capture-modal-overlay {
@@ -4316,7 +4412,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .metric-label {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .metric-value {
@@ -4342,7 +4438,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   border-left: 3px solid rgba(59, 130, 246, 0.4);
   border-radius: 8px;
   margin-bottom: 8px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-primary);
   line-height: 1.5;
 }
@@ -4353,7 +4449,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 
@@ -4448,7 +4544,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 }
 
 .date-stats .stat-label {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 
@@ -4499,7 +4595,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .capture-score {
@@ -4534,13 +4630,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
 
 .session-detail .session-time {
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .session-metrics {
   display: flex;
   gap: 16px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 
@@ -4554,7 +4650,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 

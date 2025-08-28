@@ -125,7 +125,7 @@
 }
 
 .feature-number {
-  font-size: 14px;
+  font-size: 16px;
   color: #10b981;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -220,7 +220,7 @@
 .landing-footer {
   text-align: center;
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -269,7 +269,7 @@
   }
   
   .action-btn {
-    font-size: 15px;
+    font-size: 16px;
     padding: 16px 28px;
   }
 }
@@ -309,7 +309,7 @@
   }
   
   .feature-number {
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 8px;
   }
   
@@ -319,7 +319,7 @@
   }
   
   .feature-item p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
   }
   
@@ -329,12 +329,12 @@
   }
   
   .action-btn {
-    font-size: 14px;
+    font-size: 16px;
     padding: 14px 24px;
     border-radius: 14px;
   }
   
   .landing-footer {
-    font-size: 13px;
+    font-size: 16px;
   }
 }

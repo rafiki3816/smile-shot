@@ -208,20 +208,20 @@ export const translations = {
     coachingTipStartSmall: "작은 미소부터 시작해서 점점 크게 웃어보세요",
     
     // Exercises
-    exerciseBeginnerLipCorner: "입꼬리 올리기: 입꼬리를 귀 방향으로 올려 5초 유지, 10회 반복",
-    exerciseBeginnerCheekPuff: "볼 부풀리기: 볼을 최대한 부풀렸다가 천천히 빼기, 5회 반복",
-    exerciseBeginnerLipPurse: "입술 오므리기: '오' 모양으로 입술을 오므렸다가 '이' 모양으로 펴기, 10회",
-    exerciseIntermediateAsymmetric: "비대칭 미소: 한쪽 입꼬리만 올려 3초 유지, 양쪽 각 10회",
-    exerciseIntermediateEyeSmile: "눈 미소: 입은 그대로 두고 눈으로만 웃기, 10초 유지 5회",
-    exerciseAdvancedMicroControl: "미세 조절: 10단계로 나누어 미소 강도 조절하기",
+    exerciseBeginnerLipCorner: "입꼬리 올리기: 입꼬리를 귀 방향으로 올려 {{hold}} 유지, {{reps}} 반복",
+    exerciseBeginnerCheekPuff: "볼 부풀리기: 볼을 최대한 부풀렸다가 천천히 빼기, {{reps}} 반복",
+    exerciseBeginnerLipPurse: "입술 오므리기: '오' 모양으로 입술을 오므렸다가 '이' 모양으로 펴기, {{reps}}",
+    exerciseIntermediateAsymmetric: "비대칭 미소: 한쪽 입꼬리만 올려 {{hold}} 유지, 양쪽 각 {{reps}}",
+    exerciseIntermediateEyeSmile: "눈 미소: 입은 그대로 두고 눈으로만 웃기, {{hold}} 유지 {{reps}}",
+    exerciseAdvancedMicroControl: "미세 조절: {{steps}}로 나누어 미소 강도 조절하기",
     exerciseAdvancedEmotionSwitch: "감정 전환: 무표정 → 미소 → 크게 웃기 → 미소, 부드럽게 전환",
     
     // Goals
-    goalTodayPractice: "오늘 5분만 투자해서 3회 연습해보세요",
+    goalTodayPractice: "오늘 {{minutes}}만 투자해서 {{count}} 연습해보세요",
     goal14Days: "7일 연속 달성! 이제 14일 도전해보세요",
     goalDaily: "매일 꾸준히 연습해서 마스터가 되어보세요",
     goalNextScore: "다음 목표는 {{score}}점입니다",
-    goal70Points: "편안한 마음으로 70점을 목표로 해보세요",
+    goal70Points: "편안한 마음으로 {{score}}을 목표로 해보세요",
     goalContinueStreak: "연속 기록을 이어가세요",
     goalDailyPractice: "매일 연습하기",
     goalNewSmileType: "새로운 미소 타입 도전하기",
@@ -261,7 +261,7 @@ export const translations = {
     weeklyReportSummary: "이번 주 {{count}}회 연습, 평균 {{score}}점",
     achievement7Days: "7일 연속 연습 달성! 🎉",
     achievementGrowth: "{{rate}}% 성장했어요!",
-    improvement5Days: "주 5회 이상 연습을 목표로 해보세요",
+    improvement5Days: "주 {{count}} 이상 연습을 목표로 해보세요",
     
     // Practice History headings
     thisWeekAchievements: "이번 주 성과",
@@ -394,7 +394,8 @@ export const translations = {
     // 무료 체험
     freeTrialRemaining: "무료 체험 남은 횟수",
     freeTrialCompleted: "무료 체험 {{count}}회 완료! (남은 횟수: {{remaining}}회)",
-    freeTrialAllUsed: "무료 체험 3회를 모두 사용하셨습니다!",
+    freeTrialAllUsed: "무료 체험 {{limit}}회를 모두 사용하셨습니다!",
+    
     
     // 저장 관련
     practiceRecordSaved: "연습 기록이 저장되었습니다!",
@@ -663,20 +664,20 @@ export const translations = {
     coachingTipStartSmall: "Start with a small smile and gradually make it bigger",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Lip corner lift: Lift corners toward ears, hold 5 seconds, repeat 10 times",
-    exerciseBeginnerCheekPuff: "Cheek puff: Puff cheeks fully then slowly release, repeat 5 times",
-    exerciseBeginnerLipPurse: "Lip purse: Purse lips in 'O' shape then spread to 'E' shape, 10 times",
-    exerciseIntermediateAsymmetric: "Asymmetric smile: Lift one corner, hold 3 seconds, 10 times each side",
-    exerciseIntermediateEyeSmile: "Eye smile: Keep mouth still and smile with eyes only, hold 10 seconds, 5 times",
-    exerciseAdvancedMicroControl: "Micro control: Adjust smile intensity in 10 gradual steps",
+    exerciseBeginnerLipCorner: "Lip corner lift: Lift corners toward ears, hold {{hold}}, repeat {{reps}}",
+    exerciseBeginnerCheekPuff: "Cheek puff: Puff cheeks fully then slowly release, repeat {{reps}}",
+    exerciseBeginnerLipPurse: "Lip purse: Purse lips in 'O' shape then spread to 'E' shape, {{reps}}",
+    exerciseIntermediateAsymmetric: "Asymmetric smile: Lift one corner, hold {{hold}}, {{reps}} each side",
+    exerciseIntermediateEyeSmile: "Eye smile: Keep mouth still and smile with eyes only, hold {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Micro control: Adjust smile intensity in {{steps}} gradual steps",
     exerciseAdvancedEmotionSwitch: "Emotion switch: Neutral → smile → big smile → smile, smooth transitions",
     
     // Goals
-    goalTodayPractice: "Invest just 5 minutes today for 3 practice sessions",
+    goalTodayPractice: "Invest just {{minutes}} today for {{count}} practice sessions",
     goal14Days: "7 days achieved! Now challenge yourself to 14 days",
     goalDaily: "Practice daily to become a master",
     goalNextScore: "Your next goal is {{score}} points",
-    goal70Points: "Aim for 70 points with a relaxed mindset",
+    goal70Points: "Aim for {{score}} with a relaxed mindset",
     goalContinueStreak: "Continue your streak",
     goalDailyPractice: "Practice daily",
     goalNewSmileType: "Try a new smile type",
@@ -716,7 +717,7 @@ export const translations = {
     weeklyReportSummary: "This week: {{count}} practices, average {{score}} points",
     achievement7Days: "7 consecutive days achieved! 🎉",
     achievementGrowth: "You've grown {{rate}}%!",
-    improvement5Days: "Aim to practice at least 5 times a week",
+    improvement5Days: "Aim to practice at least {{count}} a week",
     
     // Practice History headings
     thisWeekAchievements: "This Week's Achievements",
@@ -849,7 +850,8 @@ export const translations = {
     // Free trial
     freeTrialRemaining: "Free Trial Remaining",
     freeTrialCompleted: "Free trial {{count}} completed! (Remaining: {{remaining}})",
-    freeTrialAllUsed: "You've used all 3 free trial sessions!",
+    freeTrialAllUsed: "You've used all {{limit}} free trial sessions!",
+    
     
     // Save related
     practiceRecordSaved: "Practice record saved!",
@@ -1118,20 +1120,20 @@ export const translations = {
     coachingTipStartSmall: "小さな笑顔から始めて徐々に大きくしましょう",
     
     // Exercises
-    exerciseBeginnerLipCorner: "口角上げ：口角を耳に向けて上げ、5秒保持、10回繰り返し",
-    exerciseBeginnerCheekPuff: "頬膨らまし：頬を最大限膨らませてゆっくり戻す、5回繰り返し",
-    exerciseBeginnerLipPurse: "唇すぼめ：'お'の形に唇をすぼめて'い'の形に広げる、10回",
-    exerciseIntermediateAsymmetric: "非対称笑顔：片側の口角だけ上げて3秒保持、各側10回",
-    exerciseIntermediateEyeSmile: "目の笑顔：口はそのままで目だけで笑う、10秒保持5回",
-    exerciseAdvancedMicroControl: "微細コントロール：10段階で笑顔の強度を調整",
+    exerciseBeginnerLipCorner: "口角上げ：口角を耳に向けて上げ、{{hold}}保持、{{reps}}繰り返し",
+    exerciseBeginnerCheekPuff: "頬膨らまし：頬を最大限膨らませてゆっくり戻す、{{reps}}繰り返し",
+    exerciseBeginnerLipPurse: "唇すぼめ：'お'の形に唇をすぼめて'い'の形に広げる、{{reps}}",
+    exerciseIntermediateAsymmetric: "非対称笑顔：片側の口角だけ上げて{{hold}}保持、各側{{reps}}",
+    exerciseIntermediateEyeSmile: "目の笑顔：口はそのままで目だけで笑う、{{hold}}保持{{reps}}",
+    exerciseAdvancedMicroControl: "微細コントロール：{{steps}}で笑顔の強度を調整",
     exerciseAdvancedEmotionSwitch: "感情切り替え：無表情→笑顔→大笑い→笑顔、スムーズに切り替え",
     
     // Goals
-    goalTodayPractice: "今日は5分だけ投資して3回練習しましょう",
+    goalTodayPractice: "今日は{{minutes}}だけ投資して{{count}}練習しましょう",
     goal14Days: "7日達成！次は14日に挑戦しましょう",
     goalDaily: "毎日練習してマスターになりましょう",
     goalNextScore: "次の目標は{{score}}点です",
-    goal70Points: "リラックスして70点を目指しましょう",
+    goal70Points: "リラックスして{{score}}を目指しましょう",
     goalContinueStreak: "連続記録を続けましょう",
     goalDailyPractice: "毎日練習する",
     goalNewSmileType: "新しい笑顔タイプに挑戦",
@@ -1171,7 +1173,7 @@ export const translations = {
     weeklyReportSummary: "今週：{{count}}回練習、平均{{score}}点",
     achievement7Days: "7日連続達成！🎉",
     achievementGrowth: "{{rate}}%成長しました！",
-    improvement5Days: "週5回以上の練習を目指しましょう",
+    improvement5Days: "週{{count}}以上の練習を目指しましょう",
     
     // Practice History headings
     thisWeekAchievementsReport: "今週の成果",
@@ -1296,7 +1298,8 @@ export const translations = {
     // 無料体験
     freeTrialRemaining: "無料体験残り回数",
     freeTrialCompleted: "無料体験{{count}}回完了！（残り：{{remaining}}回）",
-    freeTrialAllUsed: "無料体験3回をすべて使用しました！"
+    freeTrialAllUsed: "無料体験{{limit}}回をすべて使用しました！",
+    
   },
   
   zh: {
@@ -1494,20 +1497,20 @@ export const translations = {
     coachingTipStartSmall: "从小微笑开始，逐渐加大",
     
     // Exercises
-    exerciseBeginnerLipCorner: "嘴角上扬：将嘴角向耳朵方向上扬，保持5秒，重复10次",
-    exerciseBeginnerCheekPuff: "鼓腮：将腮帮子充分鼓起然后缓慢放气，重复5次",
-    exerciseBeginnerLipPurse: "嘴唇收紧：将嘴唇收成'O'形然后展开成'E'形，10次",
-    exerciseIntermediateAsymmetric: "不对称微笑：一侧嘴角上扬，保持3秒，每侧10次",
-    exerciseIntermediateEyeSmile: "眼部微笑：嘴保持不动，只用眼睛微笑，保持10秒，5次",
-    exerciseAdvancedMicroControl: "微控制：分成10个等级调节微笑强度",
+    exerciseBeginnerLipCorner: "嘴角上扬：将嘴角向耳朵方向上扬，保持{{hold}}，重复{{reps}}",
+    exerciseBeginnerCheekPuff: "鼓腮：将腮帮子充分鼓起然后缓慢放气，重复{{reps}}",
+    exerciseBeginnerLipPurse: "嘴唇收紧：将嘴唇收成'O'形然后展开成'E'形，{{reps}}",
+    exerciseIntermediateAsymmetric: "不对称微笑：一侧嘴角上扬，保持{{hold}}，每侧{{reps}}",
+    exerciseIntermediateEyeSmile: "眼部微笑：嘴保持不动，只用眼睛微笑，保持{{hold}}，{{reps}}",
+    exerciseAdvancedMicroControl: "微控制：分成{{steps}}调节微笑强度",
     exerciseAdvancedEmotionSwitch: "情绪切换：无表情→微笑→大笑→微笑，平滑过渡",
     
     // Goals
-    goalTodayPractice: "今天只需投入5分钟练习3次",
+    goalTodayPractice: "今天只需投入{{minutes}}练习{{count}}",
     goal14Days: "7天达成！现在挑戔14天吧",
     goalDaily: "每天练习成为大师",
     goalNextScore: "下一个目标是{{score}}分",
-    goal70Points: "以放松的心态目标是70分",
+    goal70Points: "以放松的心态目标是{{score}}",
     goalContinueStreak: "继续保持连续记录",
     goalDailyPractice: "每天练习",
     goalNewSmileType: "尝试新的微笑类型",
@@ -1547,7 +1550,7 @@ export const translations = {
     weeklyReportSummary: "本周：{{count}}次练习，平均{{score}}分",
     achievement7Days: "7天连续达成！🎉",
     achievementGrowth: "您成长了{{rate}}%！",
-    improvement5Days: "目标是每周至少练习5次",
+    improvement5Days: "目标是每周至少练习{{count}}",
     
     // Practice History headings
     thisWeekAchievementsReport: "本周成就",
@@ -1676,7 +1679,8 @@ export const translations = {
     // 免费试用
     freeTrialRemaining: "免费试用剩余次数",
     freeTrialCompleted: "免费试用{{count}}次完成！（剩余：{{remaining}}次）",
-    freeTrialAllUsed: "您已使用完所有3次免费试用！"
+    freeTrialAllUsed: "您已使用完所有{{limit}}次免费试用！",
+    
   },
   
   es: {
@@ -1874,20 +1878,20 @@ export const translations = {
     coachingTipStartSmall: "Comienza con una sonrisa pequeña y hazla gradualmente más grande",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Elevación de comisuras: Levanta las comisuras hacia las orejas, mantén 5 segundos, repite 10 veces",
-    exerciseBeginnerCheekPuff: "Inflar mejillas: Infla las mejillas completamente y suelta lentamente, repite 5 veces",
-    exerciseBeginnerLipPurse: "Fruncir labios: Frunce los labios en forma de 'O' luego extiende a forma de 'E', 10 veces",
-    exerciseIntermediateAsymmetric: "Sonrisa asimétrica: Levanta una comisura, mantén 3 segundos, 10 veces cada lado",
-    exerciseIntermediateEyeSmile: "Sonrisa con ojos: Mantén la boca quieta y sonríe solo con los ojos, mantén 10 segundos, 5 veces",
-    exerciseAdvancedMicroControl: "Micro control: Ajusta la intensidad de la sonrisa en 10 pasos graduales",
+    exerciseBeginnerLipCorner: "Elevación de comisuras: Levanta las comisuras hacia las orejas, mantén {{hold}}, repite {{reps}}",
+    exerciseBeginnerCheekPuff: "Inflar mejillas: Infla las mejillas completamente y suelta lentamente, repite {{reps}}",
+    exerciseBeginnerLipPurse: "Fruncir labios: Frunce los labios en forma de 'O' luego extiende a forma de 'E', {{reps}}",
+    exerciseIntermediateAsymmetric: "Sonrisa asimétrica: Levanta una comisura, mantén {{hold}}, {{reps}} cada lado",
+    exerciseIntermediateEyeSmile: "Sonrisa con ojos: Mantén la boca quieta y sonríe solo con los ojos, mantén {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Micro control: Ajusta la intensidad de la sonrisa en {{steps}} graduales",
     exerciseAdvancedEmotionSwitch: "Cambio de emoción: Neutral → sonrisa → gran sonrisa → sonrisa, transiciones suaves",
     
     // Goals
-    goalTodayPractice: "Invierte solo 5 minutos hoy para 3 sesiones de práctica",
+    goalTodayPractice: "Invierte solo {{minutes}} hoy para {{count}} de práctica",
     goal14Days: "¡7 días logrados! Ahora desafíate a 14 días",
     goalDaily: "Practica diariamente para convertirte en maestro",
     goalNextScore: "Tu próxima meta es {{score}} puntos",
-    goal70Points: "Apunta a 70 puntos con una mentalidad relajada",
+    goal70Points: "Apunta a {{score}} con una mentalidad relajada",
     goalContinueStreak: "Continúa tu racha",
     goalDailyPractice: "Practicar diariamente",
     goalNewSmileType: "Prueba un nuevo tipo de sonrisa",
@@ -1927,7 +1931,7 @@ export const translations = {
     weeklyReportSummary: "Esta semana: {{count}} prácticas, promedio {{score}} puntos",
     achievement7Days: "¡7 días consecutivos logrados! 🎉",
     achievementGrowth: "¡Has crecido {{rate}}%!",
-    improvement5Days: "Apunta a practicar al menos 5 veces por semana",
+    improvement5Days: "Apunta a practicar al menos {{count}} por semana",
     
     // Practice History headings
     thisWeekAchievementsReport: "Logros de Esta Semana",
@@ -2056,7 +2060,8 @@ export const translations = {
     // Prueba gratuita
     freeTrialRemaining: "Pruebas gratuitas restantes",
     freeTrialCompleted: "¡Prueba gratuita {{count}} completada! (Restantes: {{remaining}})",
-    freeTrialAllUsed: "¡Has usado las 3 pruebas gratuitas!"
+    freeTrialAllUsed: "¡Has usado las {{limit}} pruebas gratuitas!",
+    
   },
   
   fr: {
@@ -2254,20 +2259,20 @@ export const translations = {
     coachingTipStartSmall: "Commencez par un petit sourire et agrandissez-le progressivement",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Lever des commissures : Levez les commissures vers les oreilles, maintenez 5 secondes, répétez 10 fois",
-    exerciseBeginnerCheekPuff: "Gonfler les joues : Gonflez complètement les joues puis relâchez lentement, répétez 5 fois",
-    exerciseBeginnerLipPurse: "Pincer les lèvres : Pincez les lèvres en 'O' puis étendez en 'E', 10 fois",
-    exerciseIntermediateAsymmetric: "Sourire asymétrique : Levez une commissure, maintenez 3 secondes, 10 fois de chaque côté",
-    exerciseIntermediateEyeSmile: "Sourire des yeux : Gardez la bouche immobile et souriez seulement avec les yeux, maintenez 10 secondes, 5 fois",
-    exerciseAdvancedMicroControl: "Micro contrôle : Ajustez l'intensité du sourire en 10 étapes graduelles",
+    exerciseBeginnerLipCorner: "Lever des commissures : Levez les commissures vers les oreilles, maintenez {{hold}}, répétez {{reps}}",
+    exerciseBeginnerCheekPuff: "Gonfler les joues : Gonflez complètement les joues puis relâchez lentement, répétez {{reps}}",
+    exerciseBeginnerLipPurse: "Pincer les lèvres : Pincez les lèvres en 'O' puis étendez en 'E', {{reps}}",
+    exerciseIntermediateAsymmetric: "Sourire asymétrique : Levez une commissure, maintenez {{hold}}, {{reps}} de chaque côté",
+    exerciseIntermediateEyeSmile: "Sourire des yeux : Gardez la bouche immobile et souriez seulement avec les yeux, maintenez {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Micro contrôle : Ajustez l'intensité du sourire en {{steps}} graduelles",
     exerciseAdvancedEmotionSwitch: "Changement d'émotion : Neutre → sourire → grand sourire → sourire, transitions fluides",
     
     // Goals
-    goalTodayPractice: "Investissez seulement 5 minutes aujourd'hui pour 3 séances de pratique",
+    goalTodayPractice: "Investissez seulement {{minutes}} aujourd'hui pour {{count}} de pratique",
     goal14Days: "7 jours accomplis ! Maintenant défiez-vous à 14 jours",
     goalDaily: "Pratiquez quotidiennement pour devenir un maître",
     goalNextScore: "Votre prochain objectif est {{score}} points",
-    goal70Points: "Visez 70 points avec un état d'esprit détendu",
+    goal70Points: "Visez {{score}} avec un état d'esprit détendu",
     goalContinueStreak: "Continuez votre série",
     goalDailyPractice: "Pratiquer quotidiennement",
     goalNewSmileType: "Essayez un nouveau type de sourire",
@@ -2307,7 +2312,7 @@ export const translations = {
     weeklyReportSummary: "Cette semaine : {{count}} pratiques, moyenne {{score}} points",
     achievement7Days: "7 jours consécutifs accomplis ! 🎉",
     achievementGrowth: "Vous avez progressé de {{rate}}% !",
-    improvement5Days: "Visez à pratiquer au moins 5 fois par semaine",
+    improvement5Days: "Visez à pratiquer au moins {{count}} par semaine",
     
     // Practice History headings
     thisWeekAchievementsReport: "Réalisations de Cette Semaine",
@@ -2436,7 +2441,8 @@ export const translations = {
     // Essai gratuit
     freeTrialRemaining: "Essais gratuits restants",
     freeTrialCompleted: "Essai gratuit {{count}} terminé ! (Restants : {{remaining}})",
-    freeTrialAllUsed: "Vous avez utilisé les 3 essais gratuits !"
+    freeTrialAllUsed: "Vous avez utilisé les {{limit}} essais gratuits !",
+    
   },
   
   de: {
@@ -2634,20 +2640,20 @@ export const translations = {
     coachingTipStartSmall: "Beginnen Sie mit einem kleinen Lächeln und machen Sie es allmählich größer",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Mundwinkel heben: Heben Sie die Mundwinkel zu den Ohren, 5 Sekunden halten, 10 Mal wiederholen",
-    exerciseBeginnerCheekPuff: "Wangen aufblasen: Wangen vollständig aufblasen und langsam loslassen, 5 Mal wiederholen",
-    exerciseBeginnerLipPurse: "Lippen spitzen: Lippen zu 'O' formen, dann zu 'E' spreizen, 10 Mal",
-    exerciseIntermediateAsymmetric: "Asymmetrisches Lächeln: Einen Mundwinkel heben, 3 Sekunden halten, 10 Mal jede Seite",
-    exerciseIntermediateEyeSmile: "Augenlächeln: Mund stillhalten und nur mit den Augen lächeln, 10 Sekunden halten, 5 Mal",
-    exerciseAdvancedMicroControl: "Mikrokontrolle: Lächelintensität in 10 Stufen anpassen",
+    exerciseBeginnerLipCorner: "Mundwinkel heben: Heben Sie die Mundwinkel zu den Ohren, {{hold}} halten, {{reps}} wiederholen",
+    exerciseBeginnerCheekPuff: "Wangen aufblasen: Wangen vollständig aufblasen und langsam loslassen, {{reps}} wiederholen",
+    exerciseBeginnerLipPurse: "Lippen spitzen: Lippen zu 'O' formen, dann zu 'E' spreizen, {{reps}}",
+    exerciseIntermediateAsymmetric: "Asymmetrisches Lächeln: Einen Mundwinkel heben, {{hold}} halten, {{reps}} jede Seite",
+    exerciseIntermediateEyeSmile: "Augenlächeln: Mund stillhalten und nur mit den Augen lächeln, {{hold}} halten, {{reps}}",
+    exerciseAdvancedMicroControl: "Mikrokontrolle: Lächelintensität in {{steps}} anpassen",
     exerciseAdvancedEmotionSwitch: "Emotionswechsel: Neutral → Lächeln → großes Lächeln → Lächeln, sanfte Übergänge",
     
     // Goals
-    goalTodayPractice: "Investieren Sie heute nur 5 Minuten für 3 Übungseinheiten",
+    goalTodayPractice: "Investieren Sie heute nur {{minutes}} für {{count}} Übungseinheiten",
     goal14Days: "7 Tage geschafft! Fordern Sie sich jetzt zu 14 Tagen heraus",
     goalDaily: "Üben Sie täglich, um ein Meister zu werden",
     goalNextScore: "Ihr nächstes Ziel sind {{score}} Punkte",
-    goal70Points: "Zielen Sie mit entspannter Einstellung auf 70 Punkte",
+    goal70Points: "Zielen Sie mit entspannter Einstellung auf {{score}}",
     goalContinueStreak: "Setzen Sie Ihre Serie fort",
     goalDailyPractice: "Täglich üben",
     goalNewSmileType: "Probieren Sie einen neuen Lächeltyp aus",
@@ -2687,7 +2693,7 @@ export const translations = {
     weeklyReportSummary: "Diese Woche: {{count}} Übungen, durchschnittlich {{score}} Punkte",
     achievement7Days: "7 aufeinanderfolgende Tage geschafft! 🎉",
     achievementGrowth: "Sie sind um {{rate}}% gewachsen!",
-    improvement5Days: "Zielen Sie darauf ab, mindestens 5 Mal pro Woche zu üben",
+    improvement5Days: "Zielen Sie darauf ab, mindestens {{count}} pro Woche zu üben",
     
     // Practice History headings
     thisWeekAchievementsReport: "Erfolge dieser Woche",
@@ -2816,7 +2822,8 @@ export const translations = {
     // Kostenlose Testversion
     freeTrialRemaining: "Verbleibende kostenlose Tests",
     freeTrialCompleted: "Kostenloser Test {{count}} abgeschlossen! (Verbleibend: {{remaining}})",
-    freeTrialAllUsed: "Sie haben alle 3 kostenlosen Tests verwendet!"
+    freeTrialAllUsed: "Sie haben alle {{limit}} kostenlosen Tests verwendet!",
+    
   },
   
   it: {
@@ -3014,20 +3021,20 @@ export const translations = {
     coachingTipStartSmall: "Inizia con un piccolo sorriso e rendilo gradualmente più grande",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Solleva angoli bocca: Solleva gli angoli verso le orecchie, mantieni 5 secondi, ripeti 10 volte",
-    exerciseBeginnerCheekPuff: "Gonfia guance: Gonfia completamente le guance poi rilascia lentamente, ripeti 5 volte",
-    exerciseBeginnerLipPurse: "Stringi labbra: Stringi le labbra a 'O' poi allarga a 'E', 10 volte",
-    exerciseIntermediateAsymmetric: "Sorriso asimmetrico: Solleva un angolo, mantieni 3 secondi, 10 volte per lato",
-    exerciseIntermediateEyeSmile: "Sorriso con occhi: Tieni ferma la bocca e sorridi solo con gli occhi, mantieni 10 secondi, 5 volte",
-    exerciseAdvancedMicroControl: "Micro controllo: Regola l'intensità del sorriso in 10 gradini",
+    exerciseBeginnerLipCorner: "Solleva angoli bocca: Solleva gli angoli verso le orecchie, mantieni {{hold}}, ripeti {{reps}}",
+    exerciseBeginnerCheekPuff: "Gonfia guance: Gonfia completamente le guance poi rilascia lentamente, ripeti {{reps}}",
+    exerciseBeginnerLipPurse: "Stringi labbra: Stringi le labbra a 'O' poi allarga a 'E', {{reps}}",
+    exerciseIntermediateAsymmetric: "Sorriso asimmetrico: Solleva un angolo, mantieni {{hold}}, {{reps}} per lato",
+    exerciseIntermediateEyeSmile: "Sorriso con occhi: Tieni ferma la bocca e sorridi solo con gli occhi, mantieni {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Micro controllo: Regola l'intensità del sorriso in {{steps}}",
     exerciseAdvancedEmotionSwitch: "Cambio emozione: Neutro → sorriso → grande sorriso → sorriso, transizioni fluide",
     
     // Goals
-    goalTodayPractice: "Investi solo 5 minuti oggi per 3 sessioni di pratica",
+    goalTodayPractice: "Investi solo {{minutes}} oggi per {{count}} di pratica",
     goal14Days: "7 giorni raggiunti! Ora sfidati a 14 giorni",
     goalDaily: "Pratica quotidianamente per diventare un maestro",
     goalNextScore: "Il tuo prossimo obiettivo è {{score}} punti",
-    goal70Points: "Punta a 70 punti con una mentalità rilassata",
+    goal70Points: "Punta a {{score}} con una mentalità rilassata",
     goalContinueStreak: "Continua la tua serie",
     goalDailyPractice: "Praticare quotidianamente",
     goalNewSmileType: "Prova un nuovo tipo di sorriso",
@@ -3067,7 +3074,7 @@ export const translations = {
     weeklyReportSummary: "Questa settimana: {{count}} pratiche, media {{score}} punti",
     achievement7Days: "7 giorni consecutivi raggiunti! 🎉",
     achievementGrowth: "Sei cresciuto del {{rate}}%!",
-    improvement5Days: "Punta a praticare almeno 5 volte a settimana",
+    improvement5Days: "Punta a praticare almeno {{count}} a settimana",
     
     // Practice History headings
     thisWeekAchievementsReport: "Risultati di Questa Settimana",
@@ -3196,7 +3203,8 @@ export const translations = {
     // Prova gratuita
     freeTrialRemaining: "Prove gratuite rimanenti",
     freeTrialCompleted: "Prova gratuita {{count}} completata! (Rimanenti: {{remaining}})",
-    freeTrialAllUsed: "Hai utilizzato tutte le 3 prove gratuite!"
+    freeTrialAllUsed: "Hai utilizzato tutte le {{limit}} prove gratuite!",
+    
   },
   
   pt: {
@@ -3394,20 +3402,20 @@ export const translations = {
     coachingTipStartSmall: "Comece com um pequeno sorriso e torne-o gradualmente maior",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Levantar cantos da boca: Levante os cantos em direção às orelhas, segure 5 segundos, repita 10 vezes",
-    exerciseBeginnerCheekPuff: "Inflar bochechas: Infle completamente as bochechas e solte lentamente, repita 5 vezes",
-    exerciseBeginnerLipPurse: "Franzir lábios: Franza os lábios em 'O' depois estenda para 'E', 10 vezes",
-    exerciseIntermediateAsymmetric: "Sorriso assimétrico: Levante um canto, segure 3 segundos, 10 vezes cada lado",
-    exerciseIntermediateEyeSmile: "Sorriso com olhos: Mantenha a boca parada e sorria apenas com os olhos, segure 10 segundos, 5 vezes",
-    exerciseAdvancedMicroControl: "Micro controle: Ajuste a intensidade do sorriso em 10 níveis graduais",
+    exerciseBeginnerLipCorner: "Levantar cantos da boca: Levante os cantos em direção às orelhas, segure {{hold}}, repita {{reps}}",
+    exerciseBeginnerCheekPuff: "Inflar bochechas: Infle completamente as bochechas e solte lentamente, repita {{reps}}",
+    exerciseBeginnerLipPurse: "Franzir lábios: Franza os lábios em 'O' depois estenda para 'E', {{reps}}",
+    exerciseIntermediateAsymmetric: "Sorriso assimétrico: Levante um canto, segure {{hold}}, {{reps}} cada lado",
+    exerciseIntermediateEyeSmile: "Sorriso com olhos: Mantenha a boca parada e sorria apenas com os olhos, segure {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Micro controle: Ajuste a intensidade do sorriso em {{steps}} graduais",
     exerciseAdvancedEmotionSwitch: "Mudança de emoção: Neutro → sorriso → grande sorriso → sorriso, transições suaves",
     
     // Goals
-    goalTodayPractice: "Invista apenas 5 minutos hoje para 3 sessões de prática",
+    goalTodayPractice: "Invista apenas {{minutes}} hoje para {{count}} de prática",
     goal14Days: "7 dias alcançados! Agora desafie-se a 14 dias",
     goalDaily: "Pratique diariamente para se tornar um mestre",
     goalNextScore: "Sua próxima meta é {{score}} pontos",
-    goal70Points: "Mire em 70 pontos com uma mentalidade relaxada",
+    goal70Points: "Mire em {{score}} com uma mentalidade relaxada",
     goalContinueStreak: "Continue sua sequência",
     goalDailyPractice: "Praticar diariamente",
     goalNewSmileType: "Experimente um novo tipo de sorriso",
@@ -3447,7 +3455,7 @@ export const translations = {
     weeklyReportSummary: "Esta semana: {{count}} práticas, média {{score}} pontos",
     achievement7Days: "7 dias consecutivos alcançados! 🎉",
     achievementGrowth: "Você cresceu {{rate}}%!",
-    improvement5Days: "Mire praticar pelo menos 5 vezes por semana",
+    improvement5Days: "Mire praticar pelo menos {{count}} por semana",
     
     // Practice History headings
     thisWeekAchievementsReport: "Conquistas Desta Semana",
@@ -3576,7 +3584,8 @@ export const translations = {
     // Teste gratuito
     freeTrialRemaining: "Testes gratuitos restantes",
     freeTrialCompleted: "Teste gratuito {{count}} concluído! (Restantes: {{remaining}})",
-    freeTrialAllUsed: "Você usou todos os 3 testes gratuitos!"
+    freeTrialAllUsed: "Você usou todos os {{limit}} testes gratuitos!",
+    
   },
   
   ru: {
@@ -3774,20 +3783,20 @@ export const translations = {
     coachingTipStartSmall: "Начните с маленькой улыбки и постепенно делайте её больше",
     
     // Exercises
-    exerciseBeginnerLipCorner: "Подъём уголков губ: Поднимите уголки к ушам, удерживайте 5 секунд, повторите 10 раз",
-    exerciseBeginnerCheekPuff: "Надувание щёк: Полностью надуйте щёки, затем медленно выпустите воздух, повторите 5 раз",
-    exerciseBeginnerLipPurse: "Сжатие губ: Сожмите губы в 'О', затем растяните в 'И', 10 раз",
-    exerciseIntermediateAsymmetric: "Асимметричная улыбка: Поднимите один уголок, удерживайте 3 секунды, 10 раз с каждой стороны",
-    exerciseIntermediateEyeSmile: "Улыбка глазами: Держите рот неподвижным и улыбайтесь только глазами, удерживайте 10 секунд, 5 раз",
-    exerciseAdvancedMicroControl: "Микроконтроль: Регулируйте интенсивность улыбки на 10 уровнях",
+    exerciseBeginnerLipCorner: "Подъём уголков губ: Поднимите уголки к ушам, удерживайте {{hold}}, повторите {{reps}}",
+    exerciseBeginnerCheekPuff: "Надувание щёк: Полностью надуйте щёки, затем медленно выпустите воздух, повторите {{reps}}",
+    exerciseBeginnerLipPurse: "Сжатие губ: Сожмите губы в 'О', затем растяните в 'И', {{reps}}",
+    exerciseIntermediateAsymmetric: "Асимметричная улыбка: Поднимите один уголок, удерживайте {{hold}}, {{reps}} с каждой стороны",
+    exerciseIntermediateEyeSmile: "Улыбка глазами: Держите рот неподвижным и улыбайтесь только глазами, удерживайте {{hold}}, {{reps}}",
+    exerciseAdvancedMicroControl: "Микроконтроль: Регулируйте интенсивность улыбки на {{steps}}",
     exerciseAdvancedEmotionSwitch: "Переключение эмоций: Нейтральное → улыбка → широкая улыбка → улыбка, плавные переходы",
     
     // Goals
-    goalTodayPractice: "Инвестируйте всего 5 минут сегодня для 3 сессий практики",
+    goalTodayPractice: "Инвестируйте всего {{minutes}} сегодня для {{count}} практики",
     goal14Days: "7 дней достигнуто! Теперь бросьте вызов на 14 дней",
     goalDaily: "Практикуйтесь ежедневно, чтобы стать мастером",
     goalNextScore: "Ваша следующая цель - {{score}} баллов",
-    goal70Points: "Стремитесь к 70 баллам с расслабленным настроем",
+    goal70Points: "Стремитесь к {{score}} с расслабленным настроем",
     goalContinueStreak: "Продолжайте свою серию",
     goalDailyPractice: "Практиковаться ежедневно",
     goalNewSmileType: "Попробуйте новый тип улыбки",
@@ -3827,7 +3836,7 @@ export const translations = {
     weeklyReportSummary: "На этой неделе: {{count}} практик, средний результат {{score}} баллов",
     achievement7Days: "7 дней подряд достигнуто! 🎉",
     achievementGrowth: "Вы выросли на {{rate}}%!",
-    improvement5Days: "Стремитесь практиковаться не менее 5 раз в неделю",
+    improvement5Days: "Стремитесь практиковаться не менее {{count}} в неделю",
     
     // Practice History headings
     thisWeekAchievementsReport: "Достижения этой недели",
@@ -3956,7 +3965,8 @@ export const translations = {
     // Бесплатная пробная версия
     freeTrialRemaining: "Осталось бесплатных попыток",
     freeTrialCompleted: "Бесплатная попытка {{count}} завершена! (Осталось: {{remaining}})",
-    freeTrialAllUsed: "Вы использовали все 3 бесплатные попытки!"
+    freeTrialAllUsed: "Вы использовали все {{limit}} бесплатные попытки!",
+    
   }
 };
 
