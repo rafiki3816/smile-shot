@@ -196,6 +196,7 @@ function SmileDetector({ user }) {
 
   // isDetecting 상태가 변경될 때마다 감지 시작
   useEffect(() => {
+    console.log('useEffect triggered - isDetecting:', isDetecting, 'isModelLoaded:', isModelLoaded, 'isStreaming:', isStreaming)
     if (isDetecting && isModelLoaded && isStreaming) {
       console.log('미소 트레이닝 분석 시작')
       setSessionStartTime(Date.now())
@@ -204,6 +205,14 @@ function SmileDetector({ user }) {
   }, [isDetecting, isModelLoaded, isStreaming])
   
   
+  // practice 단계에서 카메라가 시작되면 자동으로 감지 시작
+  useEffect(() => {
+    if (currentStep === 'practice' && isStreaming && isModelLoaded && !isDetecting) {
+      console.log('Auto-starting detection in practice step')
+      setIsDetecting(true)
+    }
+  }, [currentStep, isStreaming, isModelLoaded])
+
   // 연속 연습 일수 계산
   useEffect(() => {
     const loadStreakData = async () => {
@@ -270,6 +279,7 @@ function SmileDetector({ user }) {
 
   // 카메라 시작
   const startCamera = async () => {
+    console.log('startCamera called')
     try {
       // 먼저 권한 상태 확인
       if (navigator.permissions && navigator.permissions.query) {
@@ -312,6 +322,7 @@ function SmileDetector({ user }) {
           })
         }
         
+        console.log('Setting isStreaming to true')
         setIsStreaming(true)
         setShowCameraPermission(false)
         setCameraPermissionDenied(false)
@@ -321,6 +332,8 @@ function SmileDetector({ user }) {
       if (canvasRef.current) {
         canvasRef.current.style.display = 'block'
       }
+      
+      return true  // 성공
     } catch (error) {
       console.error('카메라 접근 오류:', error)
       if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
@@ -332,6 +345,7 @@ function SmileDetector({ user }) {
         showToast(t('cameraAccessError'), 'error')
         announceError(t('cameraAccessError'))
       }
+      return false  // 실패
     }
   }
 
@@ -429,18 +443,22 @@ function SmileDetector({ user }) {
     setCurrentStep('context')
   }
 
-  const handleContextConfirm = () => {
+  const handleContextConfirm = async () => {
+    console.log('handleContextConfirm called')
     setCurrentStep('practice')
     // practice 단계 진입 시 카메라 자동 시작
-    startCamera()
+    await startCamera()
+    // useEffect가 자동으로 감지를 시작할 것임
   }
 
   // 미소 감지 시작
   const startDetection = () => {
+    console.log('startDetection called - isModelLoaded:', isModelLoaded, 'isStreaming:', isStreaming)
     if (!isModelLoaded || !isStreaming) {
       showToast(t('startCameraFirst'), 'warning')
       return
     }
+    console.log('Setting isDetecting to true')
     setIsDetecting(true)
     // 새 세션 시작 시 캡처 상태 초기화
     setCapturedPhoto(null)
@@ -736,13 +754,16 @@ function SmileDetector({ user }) {
       timestamp: new Date().toISOString()
     })
     
-    // 고정 ID를 사용하여 알림 업데이트
-    showToast(t('newHighScore', { score }) + ' 📸', 'success', 3000, 'high-score-toast')
+    // 토스트 알림 삭제 - UI 컴포넌트로 대체됨
   }
 
   // 실시간 미소 감지
   const detectSmile = async () => {
-    if (!videoRef.current || !canvasRef.current || !isDetecting) return
+    console.log('detectSmile called - isDetecting:', isDetecting, 'video:', !!videoRef.current, 'canvas:', !!canvasRef.current)
+    if (!videoRef.current || !canvasRef.current || !isDetecting) {
+      console.log('detectSmile early return')
+      return
+    }
 
     const video = videoRef.current
     const canvas = canvasRef.current
@@ -769,9 +790,11 @@ function SmileDetector({ user }) {
     const ctx = canvas.getContext('2d')
     
     const detect = async () => {
+      console.log('Inner detect called - isDetecting:', isDetecting)
       if (!isDetecting) return
 
       try {
+        console.log('Running face detection...')
         const detections = await faceapi
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ 
             inputSize: 416,
@@ -780,12 +803,18 @@ function SmileDetector({ user }) {
           .withFaceLandmarks()
           .withFaceExpressions()
 
+        console.log('Detections result:', detections.length, 'faces found')
         ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         if (detections.length > 0) {
+          console.log('Face detected! Processing...')
           const expressions = detections[0].expressions
           const smileQuality = analyzeTherapeuticSmile(expressions, detections[0].landmarks, smileContext)
           const score = Math.round(smileQuality.overallScore * 100)
+          
+          console.log('Expressions:', expressions)
+          console.log('SmileQuality:', smileQuality)
+          console.log('SmileContext:', smileContext)
           
           setCurrentScore(score)
           setSmileScore(score)
@@ -797,6 +826,7 @@ function SmileDetector({ user }) {
           
           // 코칭 메시지 업데이트
           const coaching = getContextualCoaching(smileQuality, expressions, smileContext)
+          console.log('Generated coaching messages:', coaching)
           setCurrentCoachingMessages(coaching)
           
           // Announce first coaching message if changed
@@ -1289,6 +1319,7 @@ function SmileDetector({ user }) {
 
         } else {
           // 얼굴을 찾지 못했을 때도 DOM으로 표시
+          console.log('No face detected - showing default message')
           setCurrentCoachingMessages([t('getComfortable')])
         }
 
@@ -1299,6 +1330,7 @@ function SmileDetector({ user }) {
       setTimeout(detect, 500)
     }
 
+    console.log('Calling detect() from detectSmile')
     detect()
   }
 
@@ -1542,6 +1574,7 @@ function SmileDetector({ user }) {
               </div>
               
               {/* 코칭 메시지 영역 - 카메라 바로 아래 */}
+              {console.log('Rendering UI - isDetecting:', isDetecting, 'messages:', currentCoachingMessages)}
               {isDetecting && currentCoachingMessages.length > 0 && (
                 <div className="coaching-messages-area">
                   <div className="coaching-messages">
@@ -1587,6 +1620,17 @@ function SmileDetector({ user }) {
                       )
                     })}
                 </ul>
+              </div>
+            )}
+            
+            {/* 최고 기록 표시 - 실시간 분석 아래 */}
+            {isDetecting && maxScore > 70 && (
+              <div className="high-score-notification">
+                <div className="high-score-badge">
+                  <span className="high-score-icon">🏆</span>
+                  <span className="high-score-text">{t('newHighScore', { score: maxScore })}</span>
+                  <span className="high-score-emoji">📸</span>
+                </div>
               </div>
             )}
             
