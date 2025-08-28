@@ -1824,7 +1824,7 @@ function SmileDetector({ user }) {
         <div className="login-prompt-overlay">
           <div className="login-prompt-modal">
             <h3>{t('freeTrialEnded')}</h3>
-            <p>{t('freeTrialEndedDesc')}</p>
+            <p>{t('freeTrialEndedDesc', { limit: FREE_TRIAL_LIMIT })}</p>
             <p>{t('loginToContinue')}</p>
             <div className="prompt-buttons">
               <button onClick={() => navigate('/login', { state: { from: '/app', message: t('loginToContinue') } })} className="login-prompt-btn">

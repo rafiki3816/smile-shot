@@ -395,6 +395,9 @@ export const translations = {
     freeTrialRemaining: "무료 체험 남은 횟수",
     freeTrialCompleted: "무료 체험 {{count}}회 완료! (남은 횟수: {{remaining}}회)",
     freeTrialAllUsed: "무료 체험 {{limit}}회를 모두 사용하셨습니다!",
+    freeTrialEnded: "무료 체험 종료",
+    freeTrialEndedDesc: "무료 체험 {{limit}}회를 모두 사용하셨습니다",
+    loginToContinue: "계속 연습하려면 로그인이 필요합니다",
     
     
     // 저장 관련
@@ -851,6 +854,9 @@ export const translations = {
     freeTrialRemaining: "Free Trial Remaining",
     freeTrialCompleted: "Free trial {{count}} completed! (Remaining: {{remaining}})",
     freeTrialAllUsed: "You've used all {{limit}} free trial sessions!",
+    freeTrialEnded: "Free Trial Ended",
+    freeTrialEndedDesc: "You have used all {{limit}} free trial sessions",
+    loginToContinue: "Login required to continue practicing",
     
     
     // Save related
@@ -1299,6 +1305,9 @@ export const translations = {
     freeTrialRemaining: "無料体験残り回数",
     freeTrialCompleted: "無料体験{{count}}回完了！（残り：{{remaining}}回）",
     freeTrialAllUsed: "無料体験{{limit}}回をすべて使用しました！",
+    freeTrialEnded: "無料体験終了",
+    freeTrialEndedDesc: "無料体験{{limit}}回をすべて使用しました",
+    loginToContinue: "続けるにはログインが必要です",
     
   },
   
@@ -1680,6 +1689,9 @@ export const translations = {
     freeTrialRemaining: "免费试用剩余次数",
     freeTrialCompleted: "免费试用{{count}}次完成！（剩余：{{remaining}}次）",
     freeTrialAllUsed: "您已使用完所有{{limit}}次免费试用！",
+    freeTrialEnded: "免费试用结束",
+    freeTrialEndedDesc: "您已使用完所有{{limit}}次免费试用",
+    loginToContinue: "需要登录才能继续练习",
     
   },
   
@@ -2061,6 +2073,9 @@ export const translations = {
     freeTrialRemaining: "Pruebas gratuitas restantes",
     freeTrialCompleted: "¡Prueba gratuita {{count}} completada! (Restantes: {{remaining}})",
     freeTrialAllUsed: "¡Has usado las {{limit}} pruebas gratuitas!",
+    freeTrialEnded: "Prueba Gratuita Terminada",
+    freeTrialEndedDesc: "Has usado las {{limit}} sesiones de prueba gratuita",
+    loginToContinue: "Se requiere iniciar sesión para continuar",
     
   },
   
@@ -2442,6 +2457,9 @@ export const translations = {
     freeTrialRemaining: "Essais gratuits restants",
     freeTrialCompleted: "Essai gratuit {{count}} terminé ! (Restants : {{remaining}})",
     freeTrialAllUsed: "Vous avez utilisé les {{limit}} essais gratuits !",
+    freeTrialEnded: "Essai Gratuit Terminé",
+    freeTrialEndedDesc: "Vous avez utilisé les {{limit}} séances d'essai gratuit",
+    loginToContinue: "Connexion requise pour continuer",
     
   },
   
@@ -2823,6 +2841,9 @@ export const translations = {
     freeTrialRemaining: "Verbleibende kostenlose Tests",
     freeTrialCompleted: "Kostenloser Test {{count}} abgeschlossen! (Verbleibend: {{remaining}})",
     freeTrialAllUsed: "Sie haben alle {{limit}} kostenlosen Tests verwendet!",
+    freeTrialEnded: "Kostenlose Testversion beendet",
+    freeTrialEndedDesc: "Sie haben alle {{limit}} kostenlosen Testsitzungen verwendet",
+    loginToContinue: "Anmeldung erforderlich, um fortzufahren",
     
   },
   
@@ -3204,6 +3225,9 @@ export const translations = {
     freeTrialRemaining: "Prove gratuite rimanenti",
     freeTrialCompleted: "Prova gratuita {{count}} completata! (Rimanenti: {{remaining}})",
     freeTrialAllUsed: "Hai utilizzato tutte le {{limit}} prove gratuite!",
+    freeTrialEnded: "Prova Gratuita Terminata",
+    freeTrialEndedDesc: "Hai utilizzato tutte le {{limit}} sessioni di prova gratuita",
+    loginToContinue: "Accesso richiesto per continuare",
     
   },
   
@@ -3585,6 +3609,9 @@ export const translations = {
     freeTrialRemaining: "Testes gratuitos restantes",
     freeTrialCompleted: "Teste gratuito {{count}} concluído! (Restantes: {{remaining}})",
     freeTrialAllUsed: "Você usou todos os {{limit}} testes gratuitos!",
+    freeTrialEnded: "Teste Gratuito Encerrado",
+    freeTrialEndedDesc: "Você usou todas as {{limit}} sessões de teste gratuito",
+    loginToContinue: "Login necessário para continuar",
     
   },
   
@@ -3966,6 +3993,9 @@ export const translations = {
     freeTrialRemaining: "Осталось бесплатных попыток",
     freeTrialCompleted: "Бесплатная попытка {{count}} завершена! (Осталось: {{remaining}})",
     freeTrialAllUsed: "Вы использовали все {{limit}} бесплатные попытки!",
+    freeTrialEnded: "Бесплатная пробная версия завершена",
+    freeTrialEndedDesc: "Вы использовали все {{limit}} бесплатные пробные сеансы",
+    loginToContinue: "Требуется вход для продолжения",
     
   }
 };
