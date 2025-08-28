@@ -1181,6 +1181,22 @@ h1, h2, h3, h4, h5, h6, p, span, div, button, label {
   align-items: center;
 }
 
+/* 진행시간 표시 */
+.practice-time {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 6px 12px;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  z-index: 10;
+  letter-spacing: 0.05em;
+}
+
 /* 모바일에서 1:1 정사각형 */
 @media (max-width: 768px) {
   .video-container {

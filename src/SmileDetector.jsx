@@ -27,6 +27,7 @@ function SmileDetector({ user }) {
   const [emotionBefore, setEmotionBefore] = useState('')
   const [smileContext, setSmileContext] = useState('')
   const [sessionStartTime, setSessionStartTime] = useState(null)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [emotionAfter, setEmotionAfter] = useState('')
   const [, setWellnessScore] = useState(0)
   const [, setEncouragementLevel] = useState(1)
@@ -212,6 +213,21 @@ function SmileDetector({ user }) {
       setIsDetecting(true)
     }
   }, [currentStep, isStreaming, isModelLoaded])
+
+  // 연습 시간 타이머
+  useEffect(() => {
+    let timer
+    if (isDetecting && sessionStartTime) {
+      timer = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000)
+        setElapsedSeconds(elapsed)
+      }, 1000)
+    }
+    
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [isDetecting, sessionStartTime])
 
   // 연속 연습 일수 계산
   useEffect(() => {
@@ -1539,6 +1555,13 @@ function SmileDetector({ user }) {
           <div className="practice-main-content">
             <div className="video-coaching-wrapper">
               <div className="video-container">
+                {/* 진행시간 표시 - 우측 상단 */}
+                {isDetecting && (
+                  <div className="practice-time">
+                    {elapsedSeconds} Sec
+                  </div>
+                )}
+                
                 <video 
                   ref={videoRef} 
                   autoPlay 
